@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.280">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Michal_Wypych">
+
+<title>r_website - r_intro</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">r_website</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./index.html">
+ <span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-basics" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Basics</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-basics">    
+        <li>
+    <a class="dropdown-item" href="./r_intro.html">
+ <span class="dropdown-text">Intro to R</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./basic_data.html">
+ <span class="dropdown-text">Basic data</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./storing_data.html">
+ <span class="dropdown-text">Data types</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./loops_conditionals.html">
+ <span class="dropdown-text">Loops and conditionals</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./functions.html">
+ <span class="dropdown-text">Functions</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-working-with-data" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Working with data</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-working-with-data">    
+        <li>
+    <a class="dropdown-item" href="./loading_data.html">
+ <span class="dropdown-text">Loading data</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./data_wrangling.html">
+ <span class="dropdown-text">dat wrangling</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./join_restructure.html">
+ <span class="dropdown-text">Joining and restructuring data</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./data_viz_1.html">
+ <span class="dropdown-text">Vizualization vol 1</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./data_viz_2.html">
+ <span class="dropdown-text">Vizualization vol 2</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-statistics" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Statistics</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-statistics">    
+        <li>
+    <a class="dropdown-item" href="./eda.html">
+ <span class="dropdown-text">Exploratory analysis</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./r_intro.html">
+ <span class="dropdown-text">T tests</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./r_intro.html">
+ <span class="dropdown-text">Anovas</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+              <div class="quarto-toggle-container">
+                  <a href="" class="quarto-reader-toggle nav-link" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+              </div>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#what-is-r" id="toc-what-is-r" class="nav-link active" data-scroll-target="#what-is-r">What is R?</a></li>
+  <li><a href="#what-is-rstudio" id="toc-what-is-rstudio" class="nav-link" data-scroll-target="#what-is-rstudio">What is RStudio?</a></li>
+  <li><a href="#getting-help" id="toc-getting-help" class="nav-link" data-scroll-target="#getting-help">Getting help</a></li>
+  <li><a href="#basic-operations" id="toc-basic-operations" class="nav-link" data-scroll-target="#basic-operations">Basic operations</a></li>
+  <li><a href="#basic-values" id="toc-basic-values" class="nav-link" data-scroll-target="#basic-values">Basic values</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">r_intro</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Michal_Wypych </p>
+          </div>
+  </div>
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<p>This chapter introduces R and RStudio and shows you how to perform the most basic operations in R. We’ll go through the basics of what is R, how to navigate in the most common program for working with R called RStudio and we’ll also look into where to look for help when you might need it.</p>
+<section id="what-is-r" class="level2">
+<h2 class="anchored" data-anchor-id="what-is-r">What is R?</h2>
+<p>R is a programming language. It was designed in the 90s mainly with working with data in mind.</p>
+<ul>
+<li>R is a programming language that was designed mainly for statistical analyses.</li>
+<li><strong>Short history of R?</strong></li>
+</ul>
+<p>So why bother with R rather than stick to SPSS? There is a number of reasons:</p>
+<ul>
+<li><p><strong>Is open source and free!</strong> This becomes especially important when you leave academia and very often can’t work on proprietary software like SPSS.</p></li>
+<li><p><strong>Has a great community!</strong> The first point also makes it much easier for people to collaborate and create new things for R.</p></li>
+<li><p><strong>Is more reproducible!</strong> Yes, some proprietary software allows you to write code (like SPSS) but what good is that if you need to buy the software to run it?</p></li>
+<li><p><strong>Is more flexible than SPSS.</strong> There is generally more things you can do in R and you can customize the code so that it does exactly what you need. Don’t like the defaultsettings? You can change them! If you need to you can just write your own functions to calculate just what you need.</p></li>
+<li><p><strong>More things are being developed in R</strong>. Generally more newer stuff is developed in R before it reaches e.g.&nbsp;SPSS.</p></li>
+<li><p><strong>Is much faster.</strong> Once you start working with large datasets and computation heavy analyses you will need things to run fast. R is pretty good with it (although for some really large things it won’t do and you might want to switch to other programming languages like C++).</p></li>
+</ul>
+<p>You can download R from <a href="https://cran.r-project.org/">here</a>.</p>
+</section>
+<section id="what-is-rstudio" class="level2">
+<h2 class="anchored" data-anchor-id="what-is-rstudio">What is RStudio?</h2>
+<p>While R is a programming language RStudio is an IDE (Integrated Development Environment). Basically, it’s purpose is to make working in R easier and more reproducible. You can download RStudio from <a href="https://www.rstudio.com/products/rstudio/download/">here</a>.</p>
+<p>When you open RStudio you might see something like this:</p>
+<p><img src="images/paste-D342C886.png" class="img-fluid"></p>
+<p>We’ll go through each pane one by one and see what they are used for.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/paste-ADD39EC3.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">First pane: R scripts</figcaption><p></p>
+</figure>
+</div>
+<p>The first pane is where your R scripts are displayed. This is the place where you will most commonly write your code. Scripts are files that contain your code and can be saved.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/paste-C7224361.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Second pane: console</figcaption><p></p>
+</figure>
+</div>
+<p>Second pane is where the console is. That’s where the results of your analyses will appear. You can also write code in the console but you can’t easily save it. Writing code in the console is best if you need to check something quickly and you don’t need it saved. However, it’s best to write the code in the script because then you have all your steps saved and can easily retrace them.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/image-967496533.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Third pane</figcaption><p></p>
+</figure>
+</div>
+<p>Third pane contains a few tabs. The most important for us is the Environment tab. This will by default show the global environment - a place where all the objects that you create in your script are stored (e.g.&nbsp;datasets that you load, results of analyses, plots, etc.). The other tabs show the history (so all the functions you ran), connections to databases and allow access to simple tutorials in R.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/image-711552030.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Fourth pane</figcaption><p></p>
+</figure>
+</div>
+<p>Fourth pane again contains a few tabs. It’s mainly used for viewing various things that are results of your code. The plots that you create will be displayed here, as well as some other visualizations like tables, maps etc. (the latter two in the Viewer tab). If you look up help for a function (you’ll see in a second how to do that) the documentation for that function will also show up here. You can also view which files are available in your current directory (the place where R will try to look for or save files by default) and the list of available packages.</p>
+</section>
+<section id="getting-help" class="level2">
+<h2 class="anchored" data-anchor-id="getting-help">Getting help</h2>
+<p>Working in R, especially in the beginning, might be quite overwhelming. Fortunately there is plenty of places where you can look for help. It’s fairly common to look for help.</p>
+<p>Looking up help</p>
+<ul>
+<li><p>Built-in help: you can check the documentation of a function in R by calling ?function_name. The documentation of the function will appear in the help tab. It should contain the basic information on the function: what it does, how it should be called, what arguments the function accepts. It can also contain more detailed information like what is the result of a given function or some examples of how to use it.</p></li>
+<li><p>CRAN: short for Comprehensive R Archive Network. You can download the newest version of R from CRAN. It’s also the place where many R packages are stored and can be downloaded from. Documentation of packages can be found there as well. You can visit its website <a href="https://cran.r-project.org/">here</a>.</p></li>
+<li><p>Books: there is plenty of great books on R that cover a range of various topics, many of them are available for free on the web. Books allow you to get a much more detailed account of various things you can do in R, they are also often written by people who developed specific packages for doing the things described in the books.</p></li>
+<li><p>The Internet: R community is generally very welcoming and helpful and there is plenty of places where you can look for help on the web, from social media like Twitter to common forums like StackOverflow. One thing to keep in mind about answers from the web is that they do not constitute the ‘official’ solutions so they might be wrong - it’s often a good idea to double check or be sure that you understand the solution proposed by someone on a forum.</p></li>
+</ul>
+</section>
+<section id="basic-operations" class="level2">
+<h2 class="anchored" data-anchor-id="basic-operations">Basic operations</h2>
+<p>Now that we know how the basic interface for working in R looks like and where to look for help if we need it, we can move on to making basic operations in R. As you could see, there are 2 places where we can write code: the console or in the scripts. If you type a command in the console you can run it by pressing <code>enter</code>. In order to run a command from the script go to the line where your command is or highlight it and press <code>ctrl</code> + <code>enter</code>.</p>
+<p>If you’re feeling like using a very fancy calculator you can turn R into one. All the basic mathematical operations work in the same way. So e.g.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="sc">+</span> <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 4</code></pre>
+</div>
+</div>
+<p>Other operations work in a similar way. Raising to a power can be achievied with <code>^</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span><span class="sc">^</span><span class="dv">3</span> <span class="sc">+</span> (<span class="dv">3</span><span class="sc">/</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 9.5</code></pre>
+</div>
+</div>
+<p>Ok, so we know we can use R as a calculator. However, that is not very useful.</p>
+</section>
+<section id="basic-values" class="level2">
+<h2 class="anchored" data-anchor-id="basic-values">Basic values</h2>
+<p>When analyzing something or writing a program you will probably encounter a number of different types of values. Above you saw one of them: numeric values. These can store numbers with values after the decimal point.. The other types are:</p>
+<ul>
+<li><p><strong>integer</strong>: it stores numbers without decimal point. They can be created by putting capital l after the number e.g.&nbsp;<code>3L</code>.</p></li>
+<li><p><strong>string</strong>: this type refers to to text values. Text is created using quotation marks e.g.&nbsp;‘this is text’</p></li>
+<li><p><strong>boolean/logical</strong>: this type refers to logical values: <code>TRUE</code> or <code>FALSE</code></p></li>
+</ul>
+<p>These types form a certain hierarchy: some of them can be converted to other but not the other way around. The reason why this is important is that if R encounters more than one type of value in one operation it will often try to convert the types so that they match. It will do so in a way to create the highest matching type. The hierarchy goes in this way: boolean -&gt; integer -&gt; numeric -&gt; string. All the types can be converted to text but not the other way around. Boolean values are converted so that TRUE = 1 and FALSE = 0. o e.g.&nbsp;if you try to add boolean and numeric value, R will convert the boolean to numeric.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="cn">TRUE</span> <span class="sc">+</span> <span class="dv">6</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 7</code></pre>
+</div>
+</div>
+<p>Some operations can’t be performed on certain types of values, e.g.&nbsp;you can’t multiply two strings. If R encoutners two types it can’t work with it will throw an error.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="dv">6</span> <span class="sc">*</span> <span class="st">'this is gonna throw an error'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<pre><code>Error in 6 * "this is gonna throw an error": argument nieliczbowy przekazany do operatora dwuargumentowego</code></pre>
+</div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

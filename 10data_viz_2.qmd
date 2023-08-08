@@ -1,0 +1,39 @@
+---
+title: "Data visualization part 2"
+---
+
+# Plotting continued
+
+We know how to make various plots to display the data and how to control the attributes and scales. Now we'll move on to additional layers in ggplot2
+
+## Faceting
+
+There are situations in which there is too much information to put it in a single plot.
+
+## Statistics
+
+-   how to represent statistics on a plot
+
+-   Pre-calculating values
+
+-   stat_summary
+
+## Coordinates
+
+This layer controls how the coordinates of the plot should be handled. Most likely you are used to plots with the cartesian space: an x and y axis that are perpendicular. However you can change that e.g. by fising the ratio of x to y axis, zooming in on a particualr part of the plot or even bending the axis altogether.
+
+## Theme
+
+The final layer, called theme, controlls all the non-data part of the plot: setting fonts, typeface, text size, controlling the background color, plot legend and the grid.
+
+There is a number of pre-specified themes that you can use but you can also control everything manually. You can check the documentation of `theme()` to see just how many elements you can control.
+
+-   some example themes
+
+-   controlling theme yourself
+
+### Fonts in R
+
+A note on working with fonts: if you want to work with more fonts than the built-in ones you will have to load them into R. This can sometimes prove quite problematic.
+
+-   showtext package

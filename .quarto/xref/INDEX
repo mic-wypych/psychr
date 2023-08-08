@@ -1,0 +1,101 @@
+{
+  "r_intro.qmd": {
+    "r_intro.html": "6f8f466f"
+  },
+  "index.qmd": {
+    "index.html": "abd93e0a"
+  },
+  "basic_data.qmd": {
+    "basic_data.html": "3e3686c8"
+  },
+  "storing_data.qmd": {
+    "storing_data.html": "2e40c2b2"
+  },
+  "data_viz_2.qmd": {
+    "data_viz_2.html": "3a2bb552"
+  },
+  "data_viz_1.qmd": {
+    "data_viz_1.html": "3cd6d13c"
+  },
+  "data_wrangling.qmd": {
+    "data_wrangling.html": "3c12ff75"
+  },
+  "functions.qmd": {
+    "functions.html": "78cdac1f"
+  },
+  "join_restructure.qmd": {
+    "join_restructure.html": "35c00a12"
+  },
+  "loading_data.qmd": {
+    "loading_data.html": "50f25422"
+  },
+  "loops_conditionals.qmd": {
+    "loops_conditionals.html": "bc52a210"
+  },
+  "regression.qmd": {
+    "regression.html": "7fd113d3"
+  },
+  "anova.qmd": {
+    "anova.html": "fe4e388c"
+  },
+  "correlations.qmd": {
+    "correlations.html": "c552f77a"
+  },
+  "eda.qmd": {
+    "eda.html": "6b0e3439"
+  },
+  "t-tests.qmd": {
+    "t-tests.html": "13d068fd"
+  },
+  "01r_intro.qmd": {
+    "01r_intro.html": "90b4abe6"
+  },
+  "02data_types.qmd": {
+    "02data_types.html": "9b77f75d"
+  },
+  "02basic_data.qmd": {
+    "02basic_data.html": "0962db1e"
+  },
+  "03data_types.qmd": {
+    "03data_types.html": "f453df85"
+  },
+  "04loops_conditionals.qmd": {
+    "04loops_conditionals.html": "fa981213"
+  },
+  "05functions.qmd": {
+    "05functions.html": "a5c57b05"
+  },
+  "06loading_data.qmd": {
+    "06loading_data.html": "bd64d727"
+  },
+  "07data_wrangling.qmd": {
+    "07data_wrangling.html": "9e9a289d"
+  },
+  "08join_restructure.qmd": {
+    "08join_restructure.html": "3a9b032a"
+  },
+  "09data_viz_1.qmd": {
+    "09data_viz_1.html": "2f712910"
+  },
+  "10data_viz_2.qmd": {
+    "10data_viz_2.html": "e70f063b"
+  },
+  "11organizingwork.qmd": {
+    "11organizingwork.html": "cd1441de"
+  },
+  "12eda.qmd": {
+    "12eda.html": "447ab192"
+  },
+  "14anova.qmd": {
+    "14anova.html": "4a71a753"
+  },
+  "15correlations.qmd": {
+    "15correlations.html": "434dc02f"
+  },
+  "16regression.qmd": {
+    "16regression.html": "2eb2a8ba"
+  },
+  "13t-tests.qmd": {
+    "13t-tests.html": "dff34f2a"
+  }
+}

@@ -1,0 +1,11 @@
+---
+title: "correlations"
+---
+
+# Correlations
+
+-what are those
+
+## Different ways to make correlations in R
+
+## Making adjustments

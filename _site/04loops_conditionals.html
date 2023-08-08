@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.335">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Michal Wypych">
+
+<title>r_website - Loops and conditionals</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">r_website</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./index.html">
+ <span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-basics" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Basics</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-basics">    
+        <li>
+    <a class="dropdown-item" href="./01r_intro.html">
+ <span class="dropdown-text">Introduction</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./02basic_data.html">
+ <span class="dropdown-text">Basic data</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./03data_types.html">
+ <span class="dropdown-text">Data types</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./04loops_conditionals.html">
+ <span class="dropdown-text">Loops and conditionals</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./05functions.html">
+ <span class="dropdown-text">Functions</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-working-with-data" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Working with data</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-working-with-data">    
+        <li>
+    <a class="dropdown-item" href="./06loading_data.html">
+ <span class="dropdown-text">Loading data</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./07data_wrangling.html">
+ <span class="dropdown-text">Data wrangling</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./08join_restructure.html">
+ <span class="dropdown-text">Joining and restructuring data</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./09data_viz_1.html">
+ <span class="dropdown-text">Vizualization vol 1</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./10data_viz_2.html">
+ <span class="dropdown-text">Vizualization vol 2</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./11organizingwork.html">
+ <span class="dropdown-text">organizing work</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-statistics" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Statistics</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-statistics">    
+        <li>
+    <a class="dropdown-item" href="./12eda.html">
+ <span class="dropdown-text">Exploratory analysis</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./13t-tests.html">
+ <span class="dropdown-text">T tests</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./14anova.html">
+ <span class="dropdown-text">Anovas</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./15correlations.html">
+ <span class="dropdown-text">Correlations</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./16regression.html">
+ <span class="dropdown-text">Regression</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+              <div class="quarto-toggle-container">
+                  <a href="" class="quarto-reader-toggle nav-link" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+              </div>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#the-flow-of-code" id="toc-the-flow-of-code" class="nav-link active" data-scroll-target="#the-flow-of-code">The flow of code</a>
+  <ul class="collapse">
+  <li><a href="#conditional-statements" id="toc-conditional-statements" class="nav-link" data-scroll-target="#conditional-statements">Conditional statements</a></li>
+  <li><a href="#loops" id="toc-loops" class="nav-link" data-scroll-target="#loops">Loops</a>
+  <ul class="collapse">
+  <li><a href="#for-loops" id="toc-for-loops" class="nav-link" data-scroll-target="#for-loops">for loops</a></li>
+  <li><a href="#while-loops" id="toc-while-loops" class="nav-link" data-scroll-target="#while-loops">While loops</a></li>
+  </ul></li>
+  <li><a href="#apply-family" id="toc-apply-family" class="nav-link" data-scroll-target="#apply-family">Apply family</a></li>
+  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises">Exercises</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Loops and conditionals</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Michal Wypych </p>
+          </div>
+  </div>
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="the-flow-of-code" class="level1">
+<h1>The flow of code</h1>
+<p>Now you know how to create different kinds of objects and how to perform simple operations with them. However, very often you want to add more control over how operations are ran in R. You might want to execute a command only if a condition is satisfied. Or you might want to make the same operations for a number of elements. These are the kinds of situations for which you want to use flow control. What this refers to is basically altering how the code is executed. In a regular situations all commands from your script are executed from the first line all the way down to the last line. Flow control alters that either by specifying conditinal statements that tell R to execute a given chunk of code only if a condition is met or by using loops that repeat a given chunk of code.</p>
+<section id="conditional-statements" class="level2">
+<h2 class="anchored" data-anchor-id="conditional-statements">Conditional statements</h2>
+<p>Another way conditional statements are referred to which may be more intuitive are if else statements. They allow you to tell R to execute given chunk of code if a condition is met and to do something else if the condition is not met.</p>
+<p>The general logic of conditional statements looks like this:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (condition) {</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  Do this</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  And do this</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>A single if statement can have multiple conditions chained together with <code>|</code> and <code>&amp;</code> operators. So, for example</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">5</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="sc">-</span><span class="dv">5</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (x <span class="sc">&gt;</span> <span class="dv">0</span> <span class="sc">&amp;</span> y <span class="sc">&lt;</span> <span class="dv">0</span>) {</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">"Hooray!"</span>)</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Hooray!"</code></pre>
+</div>
+</div>
+<p>In many situations you want to state what is to be done if a condition is met and what to do otherwise. This turns your statement into an if else one. The only difference is that after the if statement you add else and specify what to do then in curly brackets. With this knowledge you can already create the rules for a simple game like paper, rock, scissors!</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">#set the choice for each player</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>player1 <span class="ot">&lt;-</span> <span class="st">'scissors'</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>player2 <span class="ot">&lt;-</span> <span class="st">'rock'</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co">#define an if statement that outputs the result of the game</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (player1 <span class="sc">==</span> player2) {</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">'draw'</span>)</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> <span class="cf">if</span> ((player1 <span class="sc">==</span> <span class="st">'scissors'</span> <span class="sc">&amp;</span> player2 <span class="sc">==</span> <span class="st">'paper'</span>) <span class="sc">|</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>           (player1 <span class="sc">==</span> <span class="st">'paper'</span> <span class="sc">&amp;</span> player2 <span class="sc">==</span> <span class="st">'rock'</span>) <span class="sc">|</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>           (player1 <span class="sc">==</span> <span class="st">'rock'</span> <span class="sc">&amp;</span> player2 <span class="sc">==</span> <span class="st">'scissors'</span>)) {</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">'player 1 wins'</span>)</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> <span class="cf">if</span> ((player2 <span class="sc">==</span> <span class="st">'scissors'</span> <span class="sc">&amp;</span> player1 <span class="sc">==</span> <span class="st">'paper'</span>) <span class="sc">|</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>           (player2 <span class="sc">==</span> <span class="st">'paper'</span> <span class="sc">&amp;</span> player1 <span class="sc">==</span> <span class="st">'rock'</span>) <span class="sc">|</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>           (player2 <span class="sc">==</span> <span class="st">'rock'</span> <span class="sc">&amp;</span> player1 <span class="sc">==</span> <span class="st">'scissors'</span>)) {</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">'player 2 wins'</span>)</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> {</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">'these are not allowed moves'</span>)</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "player 2 wins"</code></pre>
+</div>
+</div>
+<p>Take a moment to study the code above. Notice what kinds of conditions are included in that statement. When writing an if statement it’s a good idea to consider all possible situations and how your if statement maps to them. In a paper, rock, scissors game you can have 3 outcomes: both players choose the same option (a draw), player 1 wins or player 2 wins. Notice that the code above includes also a fourth options specified in the last else statement. What if someone makes a typo and writes <code>rook</code> instead of <code>rock</code>? That last else statement safeguards us for such situations. If we didn’t include it and someone made a type then our if else statement wouldn’t produce anything. You can play around with different values of player1 and player2 to see the results.</p>
+<p>One more thing about <code>if else</code> statements: in many situations it is a good idea to give some thought to what exactly a given statement is supposed to do and how large the statement needs to be. A good example is an <code>if</code> statement that is supposed to run some check (e.g.&nbsp;make sure that we are working with a numeric value) and stop execution if it detects a problem. Imagine a situation in which we want to do some calculations on numbers and want to make sure that we are indeed working with numeric values. you could design an <code>if else</code> statement that would do it:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="st">'not a number'</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="dv">3</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> ((<span class="fu">class</span>(x) <span class="sc">!=</span> <span class="st">'numeric'</span>) <span class="sc">|</span> (<span class="fu">class</span>(y) <span class="sc">!=</span> <span class="st">'numeric'</span>)) {</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stop</span>(<span class="st">'This is not a number!'</span>)</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> {</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  x <span class="sc">+</span> y</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<pre><code>Error in eval(expr, envir, enclos): This is not a number!</code></pre>
+</div>
+</div>
+<p>Take a moment to look at the code above. Do you think it is good? It certainly gets the job done. Do you think it could be simplified?</p>
+<p>In fact the <code>else</code> part is redundant in this case. The if statement runs the check on <code>x</code> and <code>y</code> and stops execution of the code if any of them is not numeric. If both values are numeric the execution of code simply proceeds. In this case adding an <code>else</code> statement makes the code harder to read (and imagine what would happen if we had to perform a number of checks like this! We would need a lot of <code>if else</code> statements that would make everything even less clear). The code below does the same thing as the <code>if else</code> statement above but is more clear.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="st">'not a number'</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="dv">3</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> ((<span class="fu">class</span>(x) <span class="sc">!=</span> <span class="st">'numeric'</span>) <span class="sc">|</span> (<span class="fu">class</span>(y) <span class="sc">!=</span> <span class="st">'numeric'</span>)) {</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stop</span>(<span class="st">'This is not a number!'</span>)</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="do">## Error in eval(expr, envir, enclos): This is not a number!</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>x <span class="sc">+</span> y</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="do">## Error in x + y: argument nieliczbowy przekazany do operatora dwuargumentowego</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="loops" class="level2">
+<h2 class="anchored" data-anchor-id="loops">Loops</h2>
+<p>Another way of controlling the flow of your code is by repeating a given chunk of code. There are two basic ways to do that: repeat something a number of times or keep repeating until some condition is met. The first way is called a for loop and the second one a while loop.</p>
+<section id="for-loops" class="level3">
+<h3 class="anchored" data-anchor-id="for-loops">for loops</h3>
+<p>Before we make our first for loop lets take a moment to see when a for loop is not needed. Recall again that a lot of things in R are vectorized. This means that operations on vectors are conducted element-wise. Thanks to this if you want to e.g.&nbsp;add 5 to each value stored in a numeric vector (in the language of a for loop: for every element of a vector, add 5 to it) you can just write <code>vector_name + 5</code>. No need for more complicated, explicit repetition. However, there are situations in which you have to make an explicit for loop to repeat something n times. The general structure of a for loops looks like this:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> object) {</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  Do this to each element</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>It’s worth keeping in mind what the <code>i</code> in the for loop is. In the example above <code>i</code> will be every consecutive element of object. However we could do a similar thing with:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(object)) {</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  do this to object[i]</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Now each <code>i</code> is a number from 1 to thew length of <code>object</code> and we access each element of <code>object</code> by using a proper (<code>ith</code>) index. Which way of running a for loop you choose might depend on the context. looping explicitly over elements of an object rather than indexes can be more intuitive but imagine you don’t want to do something to every element of an object but only to to a subset (e.g.&nbsp;from 3rd onwards). Doing it with indexes is easier. Generally the best approach is to think what you need first and code second, not the other way around.</p>
+</section>
+<section id="while-loops" class="level3">
+<h3 class="anchored" data-anchor-id="while-loops">While loops</h3>
+<p>While loops will keep executing a given chunk of code as long as some condition is met.</p>
+<p>We can use a while loop to make a very simple simulation. Lets say we want to see how temperatures change from a given temperature (lets say 20 degrees Celsius) across time and that we represent time by some random change from each previous temperature. We can create a vector with such predicted temperatures and see how long it takes for it to reach a certain level (lets say 30 degrees Celsius). We represent the change by adding a random value from a normal distribution with mean = .05 and standard deviation = .5 (this is what the <code>rnorm(1,.05,.5)</code> does). The while loop would look something like this. We first create the initial value and a vector to store all temperatures and next we keep adding the random value to our temperature and storing all temperatures until it reaches 30. The last line tells R to plot all the temperatures as a line plot. This is of course a very, very very simplistic simulation (temperatures don’t change in such a simple way) but it works to show you the idea behind while loops. We can then calculate e.g.&nbsp;how long it took for the temperature to reach a certain level.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>C <span class="ot">&lt;-</span> <span class="dv">20</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">20</span>)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> (C <span class="sc">&lt;</span> <span class="dv">30</span>) {</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  C <span class="ot">&lt;-</span> C <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">1</span>,.<span class="dv">05</span>,.<span class="dv">5</span>)</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  results <span class="ot">&lt;-</span> <span class="fu">c</span>(results, C)</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(results, <span class="at">type =</span> <span class="st">'line'</span>, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">col=</span><span class="dv">4</span>, <span class="at">xlab =</span> <span class="st">"days"</span>, <span class="at">ylab =</span> <span class="st">"temperature"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in plot.xy(xy, type, ...): plot type 'line' will be truncated to first
+character</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="04loops_conditionals_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Because while loops do not have a fixed number of iteration they can potentially run infinitely. This is usually not something we want so it’s a good idea to make sure that your while loop eventually stops. In case you do get stuck in an infinite loop you can press <code>Esc</code> in your console and this should make RStudio stop the loop by force.</p>
+<p>Truth is while loops are not common in R. You will rarely find yourself in situation where you need to perform some actions while a given condition is true (e.g.&nbsp;keep a program running until a user presses exit; keep displaying a board of a game until a player makes a move). However, it’s still good to know what while loops are so that you will know one when you see it.</p>
+</section>
+</section>
+<section id="apply-family" class="level2">
+<h2 class="anchored" data-anchor-id="apply-family">Apply family</h2>
+<p>There is a special family of functions in R that makes working with for loops a bit easier. These functions let you specify what to loop over and what function to apply to each element but in a function rather than a whole loop with all the curly brackets and stuff.</p>
+<p>The reason why this is a whole family of functions is that you can iterate in various ways and you can get the output in different formats. There are more functions in the family but the general ones are:</p>
+<ul>
+<li><p><code>lapply()</code> - loops over elements of a vector/list and returns a list</p></li>
+<li><p><code>sapply()</code> - same as lapply but tries to simplify the result to a vector or matrix</p></li>
+<li><p><code>apply()</code> - used for looping over 2 dimensional structures - it lets you specify if you want to loop over rows or columns</p></li>
+<li><p><code>tapply()</code> - same as apply but lets you split the object you are looping over based on some factor (e.g.&nbsp;imagine you want to calculate the mean value of your dependent variable for each experimental condition).</p></li>
+</ul>
+<p>Lets see some of these in action.</p>
+</section>
+<section id="exercises" class="level2">
+<h2 class="anchored" data-anchor-id="exercises">Exercises</h2>
+<ol type="1">
+<li>Try to code the logic of assigning points to players of a prisoner dilemma with a given matrix:<br>
+<img src="images/the-prisoners-dilemma-using-game-theory-to-achieve-the-optimal-solution.jpg" class="img-fluid" width="400"></li>
+<li>Create a for loop that will print out the first 50 numbers from the Fibonacci sequence</li>
+<li>Given a dataframe loop over all of its columns and calculate the mean of every numeric column</li>
+</ol>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

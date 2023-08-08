@@ -1,0 +1,47 @@
+---
+title: "data wrangling"
+---
+
+# Data wrangling
+
+Now that we have our dataset loaded we can finally get to work with it!
+
+## Tidyverse
+
+We'll be working within Tidyverse throughout this course.
+
+-Explain what tidyverse is
+
+-How each package functions within tidyverse
+
+For now we'll focus on dplyr.
+
+## The pipe
+
+-What is the pipe, why it's useful
+
+-Native pipe alternative
+
+## The basic dplyr function
+
+-Filter
+
+-Select
+
+-Mutate
+
+-Summarise
+
+-Group by
+
+-Arrange
+
+## Combining functions together
+
+-Chaining functions together with pipes
+
+This already gives us the ability to anwser a number of questions that might be very interesting for analysis.
+
+## Base R alternatives
+
+-make this section optional: if you want to see how to achieve similar things but without using tiduverse

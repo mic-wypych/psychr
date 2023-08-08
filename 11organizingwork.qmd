@@ -1,0 +1,25 @@
+---
+title: "Organizing your work"
+---
+
+Organizing your work:
+
+## Working directories
+
+## Environments
+
+## Projects
+
+-what is a project
+
+-why is a project useful
+
+## Renv
+
+-managing package versions
+
+-groundhog package
+
+## .Rprofile
+
+-what these are and why they might be useful

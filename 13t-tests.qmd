@@ -1,0 +1,15 @@
+---
+title: "t tests"
+---
+
+# Comparing two groups
+
+-The whole idea behind the t-tests.
+
+The logic behind a t test.
+
+## Between subject t test
+
+## Paired sample t test
+
+## looking at the results

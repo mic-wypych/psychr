@@ -1,0 +1,31 @@
+---
+title: "Anova"
+---
+
+# Anova
+
+-many groups, many means
+
+## Simple one way anova
+
+-how to make a one-way anova.
+
+### Post hocs
+
+-What these are and how to make them
+
+### Contrasts
+
+-How these are different from post hocs
+
+-How to make them
+
+## Factorial designs
+
+## looking at the results
+
+-how to interpret the results
+
+-plotting results
+
+-effect size and power

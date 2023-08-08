@@ -1,0 +1,37 @@
+---
+title: "Exploratory Data Analysis"
+---
+
+-   Some introduction on moving on to section about data analysis.
+
+-   Exploring and cleaning data is often a necessary and fairly long process
+
+Why even bother with it?
+
+It is a necessary steps because there is a near-infinite number of things that can go wrong when preparing the data from errors in how data was coded to errors in preprocessing or loading the files. Lots of things can also happen that can make analysis or drawing conclusions difficult (like how reliable are your scales, are the items recoded correctly etc.)
+
+-   discuss some common problems e.g. in qualtrics?
+
+## getting the basic information about a dataset
+
+-   if you have it, start with any documentation on the dataset (like codebooks etc.)
+
+-   Getting basic info on the data: glimpse etc.
+
+-   Describe from psych package
+
+-   Getting information on categorical variables
+
+## Exploring via plots
+
+Why plotting data is always important
+
+A cautionary tale the boring way: Anscombe quartet
+
+The fun way: Gorilla in the data
+
+The key takeaway is that a lot of things that are wrong or at least problematic can be immediately spotted when you plot the data. e.g. in when comparing two conditions of an experiment you might spot that the whole effect is driven but just a few outliers.
+
+## reliabilities
+
+-getting reliability analysis with alpha()

@@ -1,0 +1,49 @@
+---
+title: "Functions"
+author: "Michal Wypych"
+---
+
+# What is a function?
+
+Introduce the subject: most of the time we don't just build things from scratch but
+
+## How is a function built?
+
+The first approximation to how a function is built is to think of it as a kind of machine. The machine takes some inputs, processes them in some way and returns outputs. The inputs are the arguments you provide to a function like a vector or a dataset. The result is the output. Very often the insides of a function, the machinery within it that is responsible for getting from the input to the output is a black box to us. We have no clue how exactly a function arrives at its result. Sometimes we don't need to know it but in many situations at least some knowledge is necessary to be certain that the function does exactly what we need it to do and won't surprise us (an annoying example is silent dropping of missing values by some functions).
+
+## Types of arguments
+
+Lets focus on the inputs. There are a few kinds of them. The most basic ones are input arguments - this is what you put into the machine. Apart from it there are a few other types of arguments that can allow you to have more control over the behavior of functions. They are a bit like toggles and switches on a machine that change how it operates.
+
+Default arguments: arguments that are set to some default value. This value will be used unless specified otherwise. An example is the `na.rm` argument from `mean` or `sum`. This argument is set to `FALSE` by default so that the function will return an error if there are any missing values in the input argument. This is such a good example because it also stresses why choosing proper defaults is really important when writing functions. A lot of people, when they first encounter functions like `mean` or `sum`, are surprised or even annoyed. Why in the world set defaults that are more likely to produce errors? We are often fixated on avoiding errors in code but this is not the way to go in data analysis. We often want functions to operate smoothly and seamlessly. But that is false peace. Smooth behavior is not always what we need from functions. **Clunky** functions are often good because they force us to be explicit with what we do with data. Even if they make climbing the hill a bit more steep they are sure to lead us on the right path to the top.
+
+You can also encounter alternative arguments. These arguments have a prespecified set of possible values (usually defined as a vector). **Find an example**
+
+The final type of argument is the `…` argument. It is a placeholder for any number and kind of arguments that will later on be passed inside the function usually as arguments in some internal function. Take `lapply` as an example. Apart from the argument `X` and `FUN` which specify what to loop over and what function to apply to each element of `X` it also has the `…` argument. It's there because the function you want to apply to every element of `X` might take some additional arguments. How many and what kind of arguments these are might vary from function to function and the `…` argument allows us to handle this. Any arguments passed in the `…` will be used as argument of the function specified in the `FUN` argument of lapply.
+
+## Building your own functions
+
+Why spend time building your own functions? There are a few general cases. The first and probably most obvious one is when there is no available function that would do what you need. For example
+
+Second reason is to avoid repetition. If you do similar operations a number of times (e.g. only the dataset changes but all the rest stays the same) then copying and pasting code will soon become problematic. IT makes code less readable, longer and more difficult to manage. Imagine you need to change one thing in that code. You'll need to change it in every place where it was pasted. Writing a function instead means you can just change how you define the function.
+
+Finally **What did I want to write here?**
+
+The general logic for defining a function is as follows:
+
+```{r}
+my_function <- function(arguments) {
+  #what the function does
+}
+
+```
+
+-How to turn a chunk of code into a function
+
+-Anonymous functions
+
+-Documentation: why it matters, why do it
+
+## Functions from packages
+
+Since R has a huge community people are constantly developing new things you can do in R. You don't have to define everything from scratch.

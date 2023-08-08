@@ -1,0 +1,62 @@
+project:
+  type: website
+
+website:
+  title: "r_website"
+  reader-mode: true
+  navbar:
+    left:
+      - href: index.qmd
+        text: Home
+      - text: "Basics"
+        menu: 
+          - href: 01r_intro.qmd
+            text: Introduction
+          - href: 02basic_data.qmd
+            text: Basic data
+          - href: 03data_types.qmd
+            text: Data types
+          - href: 04loops_conditionals.qmd
+            text: Loops and conditionals
+          - href: 05functions.qmd
+            text: Functions
+      - text: "Working with data"
+        menu: 
+          - href: 06loading_data.qmd
+            text: Loading data
+          - href: 07data_wrangling.qmd
+            text: Data wrangling
+          - href: 08join_restructure.qmd
+            text: Joining and restructuring data
+          - href: 09data_viz_1.qmd
+            text: Vizualization vol 1
+          - href: 10data_viz_2.qmd
+            text: Vizualization vol 2
+          - href: 11organizingwork.qmd
+            text: organizing work
+      - text: "Statistics"
+        menu: 
+          - href: 12eda.qmd
+            text: Exploratory analysis
+          - href: 13t-tests.qmd
+            text: T tests
+          - href: 14anova.qmd
+            text: Anovas
+          - href: 15correlations.qmd
+            text: Correlations
+          - href: 16regression.qmd
+            text: Regression
+        
+          
+  search: 
+    location: navbar
+    type: textbox
+
+format:
+  html:
+    theme: minty
+    css: styles.css
+    toc: true
+
+editor: visual
+

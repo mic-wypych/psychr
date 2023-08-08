@@ -1,0 +1,21 @@
+---
+title: "restructuring_and_joining_data"
+---
+
+# Restructuring data
+
+-separating and uniting variables
+
+-separate when there is various number of values
+
+## Joining data
+
+-Different types of joins
+
+-Gotchas in joins
+
+## Pivoting data
+
+-pivot longer
+
+-pivot wider
