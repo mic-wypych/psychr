@@ -1,0 +1,20 @@
+---
+title: "Linear Models"
+author: "Michał Wypych"
+---
+
+## Linear models
+
+-what is a linear model?
+
+-How to think about linear models
+
+-Basics of specifying a linear model
+
+-T-test, between-anova and regression are the same thing - a linear model
+
+-Buiding a simple linear model
+
+-Adding predictors
+
+-Categorical predictors

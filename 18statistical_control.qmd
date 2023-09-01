@@ -1,0 +1,8 @@
+---
+title: "Statistical control"
+author: "Michał Wypych"
+---
+
+-What is statistical control?
+
+-To control or not to control - confounders

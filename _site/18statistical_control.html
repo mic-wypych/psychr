@@ -6,8 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Michał Wypych">
 
-<title>r_website - loading_data</title>
+<title>r_website - Statistical control</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,40 +20,6 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
-}
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -220,34 +187,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#loading-data-in-r" id="toc-loading-data-in-r" class="nav-link active" data-scroll-target="#loading-data-in-r">Loading data in R</a></li>
-  <li><a href="#loading-flat-files" id="toc-loading-flat-files" class="nav-link" data-scroll-target="#loading-flat-files">Loading flat files</a></li>
-  <li><a href="#loading-data-from-spss" id="toc-loading-data-from-spss" class="nav-link" data-scroll-target="#loading-data-from-spss">Loading data from SPSS</a>
-  <ul class="collapse">
-  <li><a href="#loading-data-with-foreign" id="toc-loading-data-with-foreign" class="nav-link" data-scroll-target="#loading-data-with-foreign">loading data with foreign</a></li>
-  <li><a href="#loading-data-with-haven" id="toc-loading-data-with-haven" class="nav-link" data-scroll-target="#loading-data-with-haven">loading data with haven</a></li>
-  </ul></li>
-  <li><a href="#loading-excel-files" id="toc-loading-excel-files" class="nav-link" data-scroll-target="#loading-excel-files">Loading excel files</a></li>
-  <li><a href="#loading-jsons" id="toc-loading-jsons" class="nav-link" data-scroll-target="#loading-jsons">Loading jsons</a></li>
-  </ul>
-</nav>
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">loading_data</h1>
+<h1 class="title">Statistical control</h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Michał Wypych </p>
+          </div>
+  </div>
     
   
     
@@ -256,67 +215,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
-<section id="loading-data-in-r" class="level2">
-<h2 class="anchored" data-anchor-id="loading-data-in-r">Loading data in R</h2>
-<p>There are many ways of loading a dataset or file into your R session so that you can use it. How to do it depends mainly on how the data is stored.</p>
-<p>When loading a dataset there are generally a few things to consider.</p>
-</section>
-<section id="loading-flat-files" class="level2">
-<h2 class="anchored" data-anchor-id="loading-flat-files">Loading flat files</h2>
-<p>We’ll start with loading what are called flat files: csv (short for comma separated values) and tsv (tab separated values). Both of these are basically plain text files just structures in a ver specific wayThe name kind of gives away how these formats store data: in csv columns are separated by commas and in tsv columns are separated by tabs. You can see an example of a csv file below:</p>
-<p><strong>Put screenshot of csv file here</strong></p>
-<ul>
-<li><p>How to load csv and tsv files</p>
-<ul>
-<li><p>utils</p></li>
-<li><p>readr</p></li>
-<li><p>custom arguments. There’s a bunch of things we can customize when loading data into R. Maybe you don’t need the entire dataset but only a subset of columns? Or you want to manually specify what types of variables you want? Or maybe the dataset you are using does not have variable names? You can specify all of these things as arguments to the loading functions.</p></li>
-</ul></li>
-</ul>
-</section>
-<section id="loading-data-from-spss" class="level2">
-<h2 class="anchored" data-anchor-id="loading-data-from-spss">Loading data from SPSS</h2>
-<p>Data coming from statistical software can’t be loaded in such a simple way as above. Mainly because it stores more information. Here we’ll focus on .sav format which is used by SPSS. Apart from rows and columns (observations and variables) .sav format stores additional information e.g.&nbsp;on value labels - it is able to attach labels to numbers (like in Likert scales 1 can refer to ‘strongly disagree’). SPSS also allows to specify user-defined missing values (a common practice is to e.g.&nbsp;code missing values with 99).</p>
-<p>This means we have to somehow deal with this additional information when loading .sav files. There are essentially two ways to go about it: reduce the amount of information stored or introduce a new type of values that can store this additional information. This first approach is taken by the <code>foreign</code> package. The second one is taken by <code>haven</code> package. Each of these approaches has some advantages and drawbacks. Stripping labels from values is generally easier and keeps consistency in terms of types of objects you are dealing with. You just keep working with numeric, integer, character or boolean values. The downside is that you lose some information and when e.g.&nbsp;saving a data file back to .sav format you can’t restore them.</p>
-<p><strong>Discuss the consequences: you keep types of values native to R but loose information or you introduce a new format of data that keeps the information but might not work with some types of analysis</strong></p>
-<section id="loading-data-with-foreign" class="level3">
-<h3 class="anchored" data-anchor-id="loading-data-with-foreign">loading data with foreign</h3>
-<p>Go through loading data in foreign</p>
-<p>Please notice though that the documentation for <code>read.spss()</code> function in foreign states that it was originally developed in 2000 and does not guarantee compatibility with newer versions of SPSS (whcih hasn’t changed much since but still).</p>
-<p>By default <code>foregin</code> will load data into a list rather than a dataframe. You can load into a data frame by setting the argument <code>to.data.frame</code> to <code>TRUE</code>. Another useful argument is <code>use.value.labels</code> which, if set to <code>TRUE</code> will convert the numerical values stored in .sav into their corresponding labels. This is the way foreign deals with labelled values: you can use either numeric values or their labels. In the documentation of the function you can read about additional arguments that control handling of labels.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(foreign)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Once we have the data loaded lets see what types of values we have.</p>
-</section>
-<section id="loading-data-with-haven" class="level3">
-<h3 class="anchored" data-anchor-id="loading-data-with-haven">loading data with haven</h3>
-<p>Haven package deals differently with loading labeled variables. It introduces a new type of variable: haven-labelled data. It is capable of storing both numeric values and labels attached to it <strong>by adding an attribute to the variable with labels.loops_conditionals</strong></p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(haven)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Now that we have loaded the dataset, lets look at the types of variables we have</p>
-</section>
-</section>
-<section id="loading-excel-files" class="level2">
-<h2 class="anchored" data-anchor-id="loading-excel-files">Loading excel files</h2>
-<p>One additional thing you have to take into account when loading data from excel is that it can store a number of sheets in a single file. This has to be taken into account when loading such file into R.</p>
-<p>One of the packages available for loading excel data is <code>readxl</code>.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section id="loading-jsons" class="level2">
-<h2 class="anchored" data-anchor-id="loading-jsons">Loading jsons</h2>
-<p>There are situations in which you might work with data that does not come from simple tables but is stored in completely different way. One example that we’ll introduce here is the json format. Json is short for Javascript Object Notation and is a common way of storing data in the web.</p>
-<p>Json stores data as key - value pairs. These might not approximate tabular format and can be nested and fairly complicated. This type of data is especially common when downloading data directly from the web (e.g.&nbsp;social media data) or from APIs. You can imagine a file that stores information on each user of a website: their username, password and all posts that they have created along with information on each post like their creation date. It might look something like this:</p>
-<p><strong>Put an image of a json file here</strong></p>
-<p>Because json can be a complicated and nested structure the type of data that best approximates it in R is a list. There are ways to ask R to try and handle such list structure and try to convert it into a data frame but it does not always work. Cleaning an unevenly nested json can be a real pain sometimes!</p>
-<p>We’ll look at an example of a NASA API that stores information on the number of people currently present on space stations. The package we’ll use to load the data is <code>jsonlite</code>.</p>
-<p>Notice how the loaded object looks like. It is a list with <strong>…</strong></p>
+<p>-What is statistical control?</p>
+<p>-To control or not to control - confounders</p>
 
 
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

@@ -6,19 +6,27 @@ title: "loading_data"
 
 There are many ways of loading a dataset or file into your R session so that you can use it. How to do it depends mainly on how the data is stored.
 
+When loading a dataset there are generally a few things to consider.
+
 ## Loading flat files
 
--   loading csv and tsv files
+We'll start with loading what are called flat files: csv (short for comma separated values) and tsv (tab separated values). Both of these are basically plain text files just structures in a ver specific wayThe name kind of gives away how these formats store data: in csv columns are separated by commas and in tsv columns are separated by tabs. You can see an example of a csv file below:
+
+**Put screenshot of csv file here**
+
+-   How to load csv and tsv files
+
+    -   utils
+
+    -   readr
+
+    -   custom arguments. There's a bunch of things we can customize when loading data into R. Maybe you don't need the entire dataset but only a subset of columns? Or you want to manually specify what types of variables you want? Or maybe the dataset you are using does not have variable names? You can specify all of these things as arguments to the loading functions.
 
 ## Loading data from SPSS
 
-Haven vs foreign package
+Data coming from statistical software can't be loaded in such a simple way as above. Mainly because it stores more information. Here we'll focus on .sav format which is used by SPSS. Apart from rows and columns (observations and variables) .sav format stores additional information e.g. on value labels - it is able to attach labels to numbers (like in Likert scales 1 can refer to 'strongly disagree'). SPSS also allows to specify user-defined missing values (a common practice is to e.g. code missing values with 99).
 
-Data coming from statistical software can't be loaded in such a simple way.
-
-Mainly because it stores more information. Here we'll focus on .sav format which is used by SPSS. Apart from rows and columns (observations and variables) .sav format stores additional information e.g. on value labels - it is able to attach labels to numbers (like in Likert scales 1 can refer to 'strongly disagree'). SPSS also allows to specify user-defined missing values (a common practice is to e.g. code missing values with 99).
-
-This means we have to somehow deal with this additional information when loading .sav files. There are essentially two ways to go about it: reduce the amount of information stored or introduce a new type of values that can store this additional information. This first approach is taken by the `foreign` package. The second one is taken by `haven` package.
+This means we have to somehow deal with this additional information when loading .sav files. There are essentially two ways to go about it: reduce the amount of information stored or introduce a new type of values that can store this additional information. This first approach is taken by the `foreign` package. The second one is taken by `haven` package. Each of these approaches has some advantages and drawbacks. Stripping labels from values is generally easier and keeps consistency in terms of types of objects you are dealing with. You just keep working with numeric, integer, character or boolean values. The downside is that you lose some information and when e.g. saving a data file back to .sav format you can't restore them.
 
 **Discuss the consequences: you keep types of values native to R but loose information or you introduce a new format of data that keeps the information but might not work with some types of analysis**
 

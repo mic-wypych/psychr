@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.2.335">
+<meta name="generator" content="quarto-1.3.340">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -18,8 +18,42 @@ div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
   width: 0.8em;
-  margin: 0 0.8em 0.2em -1.6em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -75,109 +109,109 @@ ul.task-list li input[type="checkbox"] {
     <span class="navbar-title">r_website</span>
     </a>
   </div>
+            <div id="quarto-search" class="" title="Search"></div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./index.html">
+    <a class="nav-link" href="./index.html" rel="" target="">
  <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-basics" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-basics" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
  <span class="menu-text">Basics</span>
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-basics">    
         <li>
-    <a class="dropdown-item" href="./01r_intro.html">
+    <a class="dropdown-item" href="./01r_intro.html" rel="" target="">
  <span class="dropdown-text">Introduction</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./02basic_data.html">
+    <a class="dropdown-item" href="./02basic_data.html" rel="" target="">
  <span class="dropdown-text">Basic data</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./03data_types.html">
+    <a class="dropdown-item" href="./03data_types.html" rel="" target="">
  <span class="dropdown-text">Data types</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./04loops_conditionals.html">
+    <a class="dropdown-item" href="./04loops_conditionals.html" rel="" target="">
  <span class="dropdown-text">Loops and conditionals</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./05functions.html">
+    <a class="dropdown-item" href="./05functions.html" rel="" target="">
  <span class="dropdown-text">Functions</span></a>
   </li>  
     </ul>
   </li>
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-working-with-data" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-working-with-data" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
  <span class="menu-text">Working with data</span>
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-working-with-data">    
         <li>
-    <a class="dropdown-item" href="./06loading_data.html">
+    <a class="dropdown-item" href="./06loading_data.html" rel="" target="">
  <span class="dropdown-text">Loading data</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./07data_wrangling.html">
+    <a class="dropdown-item" href="./07data_wrangling.html" rel="" target="">
  <span class="dropdown-text">Data wrangling</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./08join_restructure.html">
+    <a class="dropdown-item" href="./08join_restructure.html" rel="" target="">
  <span class="dropdown-text">Joining and restructuring data</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./09data_viz_1.html">
+    <a class="dropdown-item" href="./09data_viz_1.html" rel="" target="">
  <span class="dropdown-text">Vizualization vol 1</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./10data_viz_2.html">
+    <a class="dropdown-item" href="./10data_viz_2.html" rel="" target="">
  <span class="dropdown-text">Vizualization vol 2</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./11organizingwork.html">
+    <a class="dropdown-item" href="./11organizingwork.html" rel="" target="">
  <span class="dropdown-text">organizing work</span></a>
   </li>  
     </ul>
   </li>
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-statistics" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-statistics" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
  <span class="menu-text">Statistics</span>
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-statistics">    
         <li>
-    <a class="dropdown-item" href="./12eda.html">
+    <a class="dropdown-item" href="./12eda.html" rel="" target="">
  <span class="dropdown-text">Exploratory analysis</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./13t-tests.html">
+    <a class="dropdown-item" href="./13t-tests.html" rel="" target="">
  <span class="dropdown-text">T tests</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./14anova.html">
+    <a class="dropdown-item" href="./14anova.html" rel="" target="">
  <span class="dropdown-text">Anovas</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./15correlations.html">
+    <a class="dropdown-item" href="./15correlations.html" rel="" target="">
  <span class="dropdown-text">Correlations</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./16regression.html">
+    <a class="dropdown-item" href="./16regression.html" rel="" target="">
  <span class="dropdown-text">Regression</span></a>
   </li>  
     </ul>
   </li>
 </ul>
-              <div class="quarto-toggle-container">
-                  <a href="" class="quarto-reader-toggle nav-link" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+            <div class="quarto-navbar-tools ms-auto">
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
   <div class="quarto-reader-toggle-btn">
   <i class="bi"></i>
   </div>
 </a>
-              </div>
-              <div id="quarto-search" class="" title="Search"></div>
+</div>
           </div> <!-- /navcollapse -->
       </div> <!-- /container-fluid -->
     </nav>
@@ -195,8 +229,14 @@ ul.task-list li input[type="checkbox"] {
   <ul class="collapse">
   <li><a href="#how-is-a-function-built" id="toc-how-is-a-function-built" class="nav-link" data-scroll-target="#how-is-a-function-built">How is a function built?</a></li>
   <li><a href="#types-of-arguments" id="toc-types-of-arguments" class="nav-link" data-scroll-target="#types-of-arguments">Types of arguments</a></li>
-  <li><a href="#building-your-own-functions" id="toc-building-your-own-functions" class="nav-link" data-scroll-target="#building-your-own-functions">Building your own functions</a></li>
+  <li><a href="#building-your-own-functions" id="toc-building-your-own-functions" class="nav-link" data-scroll-target="#building-your-own-functions">Building your own functions</a>
+  <ul class="collapse">
+  <li><a href="#a-few-remarks-on-testing" id="toc-a-few-remarks-on-testing" class="nav-link" data-scroll-target="#a-few-remarks-on-testing">A few remarks on testing</a></li>
+  </ul></li>
+  <li><a href="#anonymous-functions" id="toc-anonymous-functions" class="nav-link" data-scroll-target="#anonymous-functions">Anonymous functions</a></li>
+  <li><a href="#documentation" id="toc-documentation" class="nav-link" data-scroll-target="#documentation">Documentation</a></li>
   <li><a href="#functions-from-packages" id="toc-functions-from-packages" class="nav-link" data-scroll-target="#functions-from-packages">Functions from packages</a></li>
+  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises">Exercises</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -229,26 +269,222 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="what-is-a-function" class="level1">
 <h1>What is a function?</h1>
-<p>Introduce the subject: most of the time we don’t just build things from scratch</p>
+<p>Most of the things we do in R doesn’t have to be written from scratch. We have many tools available to get what we want. These tools are functions.</p>
 <section id="how-is-a-function-built" class="level2">
 <h2 class="anchored" data-anchor-id="how-is-a-function-built">How is a function built?</h2>
-<p>The insides of</p>
+<p>The first approximation to how a function is built is to think of it as a kind of machine. The machine takes some inputs, processes them in some way and returns outputs. The inputs are the arguments you provide to a function like a vector or a dataset. The result is the output. Very often the insides of a function, the machinery within it that is responsible for getting from the input to the output is a black box to us. We have no clue how exactly a function arrives at its result. Sometimes we don’t need to know it but in many situations at least some knowledge is necessary to be certain that the function does exactly what we need it to do and won’t surprise us (an annoying example we will get to later is silent dropping of missing values by some functions).</p>
 </section>
 <section id="types-of-arguments" class="level2">
 <h2 class="anchored" data-anchor-id="types-of-arguments">Types of arguments</h2>
-<p>Default argument</p>
-<p>alternative argument</p>
-<p>… argument</p>
+<p>Lets focus on the inputs. There are a few kinds of them. The most basic ones are input arguments - this is what you put into the machine. Apart from it there are a few other types of arguments that can allow you to have more control over the behavior of functions. They are a bit like toggles and switches on a machine that change how it operates.</p>
+<p>Default arguments: arguments that are set to some default value. This value will be used unless specified otherwise. An example is the <code>na.rm</code> argument from <code>mean</code> or <code>sum</code>. This argument is set to <code>FALSE</code> by default so that the function will return an error if there are any missing values in the input argument. This is such a good example because it also stresses why choosing proper defaults is really important when writing functions. A lot of people, when they first encounter functions like <code>mean</code> or <code>sum</code>, are surprised or even annoyed. Why in the world set defaults that are more likely to produce errors? We are often fixated on avoiding errors in code but this is not always the way to go in data analysis. We often want functions to operate smoothly and seamlessly. But that is false peace. Smooth behavior is not always what we need from functions. Clunky functions are often good in data analysis because they force us to be explicit with what we do with data. Even if they make climbing the hill a bit more steep they are sure to lead us on the right path to the top.</p>
+<p>You can also encounter alternative arguments. These arguments have a prespecified set of possible values (usually defined as a vector).= For example the <code>table()</code> function that can give us a frequency table of a factor has a <code>useNA</code> argument that specifies whether to use <code>NA</code> values.It can take three different valus that specify possible behaviour of the function. You can read more onwhat they do inthe documentation of the function.</p>
+<p>The final type of argument is the <code>…</code> argument. It is a placeholder for any number and kind of arguments that will later on be passed inside the function usually as arguments in some internal function. Take <code>lapply</code> as an example. Apart from the argument <code>X</code> and <code>FUN</code> which specify what to loop over and what function to apply to each element of <code>X</code> it also has the <code>…</code> argument. It’s there because the function you want to apply to every element of <code>X</code> might take some additional arguments. How many and what kind of arguments these are might vary from function to function and the <code>…</code> argument allows us to handle this. Any arguments passed in the <code>…</code> will be used as argument of the function specified in the <code>FUN</code> argument of lapply.</p>
 </section>
 <section id="building-your-own-functions" class="level2">
 <h2 class="anchored" data-anchor-id="building-your-own-functions">Building your own functions</h2>
-<p>Why spend time building your own functions?</p>
-<p>-How to turn a chunk of code into a function</p>
-<p>-Documentation: why it matters, why do it</p>
+<p>Why spend time building your own functions? There are a few general cases. The first and probably most obvious one is when there is no available function that would do what you need. For example there is no available function to find a mode of a vector in R. If you want to find it you need to build your own function. Finding a mode is a simple example but there may be cases where you need to do something more complex or customize the behavior of an already existing function. Second reason is to avoid repetition. If you do similar operations a number of times (e.g.&nbsp;only the dataset or vriables change but all the rest stays the same) then copying and pasting code will soon become problematic. It makes code less readable, longer and more difficult to manage. Imagine you need to change one thing in that code. You’ll need to change it in every place where it was pasted. Writing a function instead means you can just change how you define the function.</p>
+<p>The general logic for defining a function is as follows:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>my_function <span class="ot">&lt;-</span> <span class="cf">function</span>(arguments) {</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="co">#what the function does</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Turning a chunk of code into a function can be done quite easily in a few steps. Imagine we want to see what is the probability that a random number drawn from one vector will be larger than the mean of another vector (we will simulate a few variables with <code>rnorm()</code> which draws random numbers from a normal distribution with a given mean and standard deviation):</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">#simulate vectors</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>var1 <span class="ot">&lt;-</span><span class="fu">rnorm</span>(<span class="dv">100</span>, <span class="dv">0</span>, <span class="dv">1</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>var2 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">100</span>, <span class="dv">1</span>, <span class="dv">3</span>)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>var3 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">100</span>, .<span class="dv">5</span>, <span class="dv">2</span>)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>var4 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">100</span>, <span class="dv">0</span>, <span class="dv">3</span>)</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>var5 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">100</span>, <span class="fl">0.1</span>, .<span class="dv">2</span>)</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co">#calculate mean</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>mean_1 <span class="ot">&lt;-</span> <span class="fu">mean</span>(var1)</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="co">#calculate lenght</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>length_2 <span class="ot">&lt;-</span> <span class="fu">length</span>(var2)</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="co">#calculate how many values in var2 are larger than mean_1</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>n_larger <span class="ot">&lt;-</span> <span class="fu">length</span>(var2[var2 <span class="sc">&gt;</span> mean_1])</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="co">#get the proportion</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>n_larger<span class="sc">/</span>length_2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.57</code></pre>
+</div>
+</div>
+<ol type="1">
+<li><p>Build the scaffolding of the function. This is exactly what is in the code chunk above:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>my_function <span class="ot">&lt;-</span> <span class="cf">function</span>(arguments) {</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="co">#what the function does</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div></li>
+<li><p>Paste the code you want to turn into a function</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>my_function <span class="ot">&lt;-</span> <span class="cf">function</span>(arguments) {</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co">#calculate mean</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>mean_1 <span class="ot">&lt;-</span> <span class="fu">mean</span>(var1)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co">#calculate lenght</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>length_2 <span class="ot">&lt;-</span> <span class="fu">length</span>(var2)</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="co">#calculate how many values in var2 are larger than mean_1</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>n_larger <span class="ot">&lt;-</span> <span class="fu">length</span>(var2[var2 <span class="sc">&gt;</span> mean_1])</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="co">#get the proportion</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>n_larger<span class="sc">/</span>length_2</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div></li>
+<li><p>Identify all the “moving parts”: What will change? Each of these things has to get its own argument (all the moving parts are marked on the right side of the code chunk):</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="annotated-cell-1"><pre class="sourceCode numberSource r code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode r"><span id="annotated-cell-1-1"><a href="#annotated-cell-1-1"></a>my_function <span class="ot">&lt;-</span> <span class="cf">function</span>(arguments) {</span>
+<span id="annotated-cell-1-2"><a href="#annotated-cell-1-2"></a><span class="co">#calculate mean</span></span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="1">1</button><span id="annotated-cell-1-3" class="code-annotation-target"><a href="#annotated-cell-1-3"></a>mean_1 <span class="ot">&lt;-</span> <span class="fu">mean</span>(var1)</span>
+<span id="annotated-cell-1-4"><a href="#annotated-cell-1-4"></a></span>
+<span id="annotated-cell-1-5"><a href="#annotated-cell-1-5"></a><span class="co">#calculate lenght</span></span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="2">2</button><span id="annotated-cell-1-6" class="code-annotation-target"><a href="#annotated-cell-1-6"></a>length_2 <span class="ot">&lt;-</span> <span class="fu">length</span>(var2)</span>
+<span id="annotated-cell-1-7"><a href="#annotated-cell-1-7"></a></span>
+<span id="annotated-cell-1-8"><a href="#annotated-cell-1-8"></a><span class="co">#calculate how many values in var2 are larger than mean_1</span></span>
+<span id="annotated-cell-1-9"><a href="#annotated-cell-1-9"></a></span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="3">3</button><span id="annotated-cell-1-10" class="code-annotation-target"><a href="#annotated-cell-1-10"></a>n_larger <span class="ot">&lt;-</span> <span class="fu">length</span>(var2[var2 <span class="sc">&gt;</span> mean_1])</span>
+<span id="annotated-cell-1-11"><a href="#annotated-cell-1-11"></a></span>
+<span id="annotated-cell-1-12"><a href="#annotated-cell-1-12"></a><span class="co">#get the proportion</span></span>
+<span id="annotated-cell-1-13"><a href="#annotated-cell-1-13"></a></span>
+<span id="annotated-cell-1-14"><a href="#annotated-cell-1-14"></a>n_larger<span class="sc">/</span>length_2</span>
+<span id="annotated-cell-1-15"><a href="#annotated-cell-1-15"></a>}</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-annotation">
+<dl class="code-annotation-container-hidden code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-1" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-annotation="1" data-code-lines="3" data-code-cell="annotated-cell-1">var_1</span>
+</dd>
+<dt data-target-cell="annotated-cell-1" data-target-annotation="2">2</dt>
+<dd>
+<span data-code-annotation="2" data-code-lines="6" data-code-cell="annotated-cell-1">var_2</span>
+</dd>
+<dt data-target-cell="annotated-cell-1" data-target-annotation="3">3</dt>
+<dd>
+<span data-code-annotation="3" data-code-lines="10" data-code-cell="annotated-cell-1">var_2</span>
+</dd>
+</dl>
+</div>
+</div></li>
+<li><p>Change each of the “moving parts” in the code chunk into appropriate argument</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>my_function <span class="ot">&lt;-</span> <span class="cf">function</span>(x, y) {</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co">#calculate mean</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>mean_1 <span class="ot">&lt;-</span> <span class="fu">mean</span>(y)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="co">#calculate lenght</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>length_2 <span class="ot">&lt;-</span> <span class="fu">length</span>(x)</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="co">#calculate how many values in var2 are larger than mean_1</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>n_larger <span class="ot">&lt;-</span> <span class="fu">length</span>(x[x <span class="sc">&gt;</span> mean_2])</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="co">#get the proportion</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>n_larger<span class="sc">/</span>length_2</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div></li>
+</ol>
+<section id="a-few-remarks-on-testing" class="level3">
+<h3 class="anchored" data-anchor-id="a-few-remarks-on-testing">A few remarks on testing</h3>
+<p>When building your own functions, especially if they are going to be used by other people, it’s a good idea to consider potential weird things that could happen. When first creating a function we usually have its typical behaviour in mind because we just want our function to work. However, there’s a whole bunch of weird stuff that might happen if you don’t prepare for it in advance. For example, imagine you want to create a function from scratch that will output the mean of a numeric vector. You could try to do something like a for loop (yes this is slow and inefficient but it’s just for the purpose of demonstration):</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>my_mean <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  sum <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span>(i <span class="cf">in</span> x){</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    sum <span class="ot">&lt;-</span> sum <span class="sc">+</span> i</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  result <span class="ot">&lt;-</span> sum<span class="sc">/</span><span class="fu">length</span>(x)</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(result)</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Pretty straightforward right? Now lets see our function in action on some typical use case and compare its results to the built-in <code>mean()</code> function:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>v <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>,<span class="dv">7</span>,<span class="dv">8</span>,<span class="dv">9</span>)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="fu">my_mean</span>(v)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 5</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(v)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 5</code></pre>
+</div>
+</div>
+<p>Yay, we get the same result! Seems like our function works! But before we call it a day and start using our own mean function lets see some less typical cases. E.g. What will happen if the vector has some missing values? Or if its an empty vector? Or if it is not a numeric vector? Lets see:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>v_na <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="cn">NA</span>,<span class="dv">5</span>)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>v_empty <span class="ot">&lt;-</span> <span class="fu">c</span>()</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>v_char <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"C"</span>)</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="fu">my_mean</span>(v_na)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] NA</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">my_mean</span>(v_empty)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] NaN</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">my_mean</span>(v_char)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<pre><code>Error in sum + i: argument nieliczbowy przekazany do operatora dwuargumentowego</code></pre>
+</div>
+</div>
+<p>We get some weird behaviour. Each of these calls to <code>my_mean()</code> function returned something different. First we got <code>NA</code> when the vector had <code>NAs</code> in it. Passing an empty vector resulted in <code>NaN</code> - short for Not a Number. Finally, passing a character vector gave us an error.. Notice that only the last case gave us an error so if we then implemented our functions in some calculations we might not even notice something is wrong - for example imagine we calculated a mean with our function from a vector with missiing values (e.g we asked a bunch of participants about their mood 5 times a day and now we want to calculate daily average mood and see how it relates to some variables of interest) and then tried to use its output in some other function that had <code>na.rm</code> argument set to <code>TRUE</code>. We’d lose a bunch of information without so much as a warning! That`s why considering possible but unusual cases for a new function is important. It allows us to prepare for possible future problems.</p>
+</section>
+</section>
+<section id="anonymous-functions" class="level2">
+<h2 class="anchored" data-anchor-id="anonymous-functions">Anonymous functions</h2>
+<p>There are situations in which you might want to use a custom function but not necessarily save it with a name for future use. In such situations we often use what is called an anonymous function (sometimes you can also encounter the term lambda functions). The general way these functions are constructed in R is as follows:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>(<span class="cf">function</span>(x) WHAT THE FUCNTION DOES)(arguments)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>A pretty common situation where you can also encounter these functions is inside iterations like with apply:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>v1 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>)</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>v2 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>,<span class="dv">8</span>)</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>v3 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>,<span class="dv">4</span>,<span class="dv">3</span>,<span class="dv">2</span>)</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>v_list <span class="ot">&lt;-</span> <span class="fu">list</span>(v1,v2,v3)</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a><span class="fu">lapply</span>(v_list, <span class="cf">function</span>(x) {x<span class="sc">+</span>x})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[[1]]
+[1] 2 4 6 8
+
+[[2]]
+[1]  6  8 10 12 16
+
+[[3]]
+[1] -2  8  6  4</code></pre>
+</div>
+</div>
+</section>
+<section id="documentation" class="level2">
+<h2 class="anchored" data-anchor-id="documentation">Documentation</h2>
+<p>Ok, so we wrote our super cool new function. We tested it and are pretty confident it works properly. Can we finally call it a day? Again, not so fast. We need one more thing. Imagine you take a long holiday and get back towork after a month or two, How confident are you you will remember how exactly our new function works? Or imagine you share the function you ccreated with other people .Of course you (or others) can read the code of the function to learn that again but that is tedious. That`s why it’s so important to document code. This goes for functions but is just as true for any code that will be used by others or you in the future. Treat yourself in the future like you would treat another person. Documentation is super important! For a lot of people writing (or reading!) documentation is seen as tedious and redundant task. I guarantee you that if you don’t document your own functions you will regret this sooner or later (probably sooner). Very few functions are self explanatory enough to not need any form of documentation. In many cases simply using comments in code with <code>#</code> will be enough. Sometimes building vignettes that shows how to use some functions can be a better idea. Remember to always leave some description of what given code is about and what it does.</p>
 </section>
 <section id="functions-from-packages" class="level2">
 <h2 class="anchored" data-anchor-id="functions-from-packages">Functions from packages</h2>
-<p>Since R has a huge community people are constantly developing new things you can do in R. You don’t have to define everything from scratch.</p>
+<p>Since R has a huge community people are constantly developing new things you can do in R. You don’t have to define everything from scratch. Usually if you need a function for some statistical procedure or e.g.&nbsp;for plotting some package out there already has it. There is no need to reinvent the wheel.</p>
+<p>In order to use functions from packages you need to first install the package on your computer. You can do it by calling <code>install.packages("PACKAGENAME")</code> functon. You need to do it only once on a given device (unless you want to update the package or you are using <code>renv</code> but more on that later). Once the package has been installed you can load it in a given R session by calling <code>library(PACKAGENAME)</code>. Remember you need to run it every time you open a new R session. Alternatively, after installing a package you can call a function from it directly without loading the package first by using <code>PACKAGENAME::function_name()</code>.</p>
+<p>Another thing to know about functions from packages is name conflict. Since R is open source and most of the packages are developed and maintained by the community it is not so uncommon that two different packages have a function with the same name. You might wonder what will happen if you load both packages and then call this function? Generally, the last package loaded is going to mask previous packages. However this can be problematic e.g.&nbsp;if you are sharing scripts (and someone changes the order of loading packages) or if you actually want to use the function from the first package.</p>
+<p>There are at least two ways of dealing with this problem. The first one is to be explicit. Above we described a second way of calling a function from a package: <code>PACKAGENAME::function_name()</code>. This way you explicitly state which package the function is from so you shield yourself from name conflict. The second way is by specifying additional arguments to the <code>library()</code> function. If you look up its documentation you can see that it has two optional arguments: <code>exlcude</code> and <code>include.only</code>. They allow you to load a package without some function or to load only some functions from a package. This is useful in situations where you want to load 2 packages with conflicting functions but you know you want to use the conflicting function from only one of them.</p>
+</section>
+<section id="exercises" class="level2">
+<h2 class="anchored" data-anchor-id="exercises">Exercises</h2>
+<ul>
+<li><p>Remember the for loop that generated <em>n</em> first numbers from Fibonacci sequence from the class on loops? Now turn it into a function that will return from <em>ith</em> to <em>jth</em> Fibonacci number. Document the function properly so it is clear what it does</p></li>
+<li><p>Create a function that calculates a mode of a vector. Consider potential edge cases and provide tests that show your function behaves properly</p></li>
+</ul>
 
 
 </section>
@@ -282,9 +518,23 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     icon: icon
   };
   anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
   const clipboard = new window.ClipboardJS('.code-copy-button', {
-    target: function(trigger) {
-      return trigger.previousElementSibling;
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
     }
   });
   clipboard.on('success', function(e) {
@@ -349,6 +599,157 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return note.innerHTML;
     });
   }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Handle positioning of the toggle
+      window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+      const annoteTargets = window.document.querySelectorAll('.code-annotation-anchor');
+      for (let i=0; i<annoteTargets.length; i++) {
+        const annoteTarget = annoteTargets[i];
+        const targetCell = annoteTarget.getAttribute("data-target-cell");
+        const targetAnnotation = annoteTarget.getAttribute("data-target-annotation");
+        const contentFn = () => {
+          const content = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          if (content) {
+            const tipContent = content.cloneNode(true);
+            tipContent.classList.add("code-annotation-tip-content");
+            return tipContent.outerHTML;
+          }
+        }
+        const config = {
+          allowHTML: true,
+          content: contentFn,
+          onShow: (instance) => {
+            selectCodeLines(instance.reference);
+            instance.reference.classList.add('code-annotation-active');
+            window.tippy.hideAll();
+          },
+          onHide: (instance) => {
+            unselectCodeLines();
+            instance.reference.classList.remove('code-annotation-active');
+          },
+          maxWidth: 300,
+          delay: [50, 0],
+          duration: [200, 0],
+          offset: [5, 10],
+          arrow: true,
+          appendTo: function(el) {
+            return el.parentElement.parentElement.parentElement;
+          },
+          interactive: true,
+          interactiveBorder: 10,
+          theme: 'quarto',
+          placement: 'right',
+          popperOptions: {
+            modifiers: [
+            {
+              name: 'flip',
+              options: {
+                flipVariations: false, // true by default
+                allowedAutoPlacements: ['right'],
+                fallbackPlacements: ['right', 'top', 'top-start', 'top-end'],
+              },
+            },
+            {
+              name: 'preventOverflow',
+              options: {
+                mainAxis: false,
+                altAxis: false
+              }
+            }
+            ]        
+          }      
+        };
+        window.tippy(annoteTarget, config); 
+      }
   const findCites = (el) => {
     const parentEl = el.parentElement;
     if (parentEl) {

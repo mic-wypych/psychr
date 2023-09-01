@@ -1,0 +1,14 @@
+---
+title: "Postprocessing results"
+author: "Michał Wypych"
+---
+
+-general logic of working with results in R: you get a saved object
+
+-Making predictions
+
+-Marginal effects
+
+-Contrasts
+
+-reporting?
