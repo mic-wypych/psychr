@@ -269,15 +269,56 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="loading-flat-files" class="level2">
 <h2 class="anchored" data-anchor-id="loading-flat-files">Loading flat files</h2>
 <p>We’ll start with loading what are called flat files: csv (short for comma separated values) and tsv (tab separated values). Both of these are basically plain text files just structures in a ver specific wayThe name kind of gives away how these formats store data: in csv columns are separated by commas and in tsv columns are separated by tabs. You can see an example of a csv file below:</p>
-<p><strong>Put screenshot of csv file here</strong></p>
-<p>There are 2</p>
-<ul>
-<li><p>utils</p>
-<ul>
-<li><p>readr</p></li>
-<li><p>custom arguments. There’s a bunch of things we can customize when loading data into R. Maybe you don’t need the entire dataset but only a subset of columns? Or you want to manually specify what types of variables you want? Or maybe the dataset you are using does not have variable names? You can specify all of these things as arguments to the loading functions.</p></li>
-</ul></li>
-</ul>
+<p><img src="images/csv_file_example-01.png" class="img-fluid"></p>
+<p>Not very readable right? There are 2 packages with similar functions for loading .csv and .tsv files: <code>utils</code> and <code>readr</code>. We`ll load the <a href="https://www.gapminder.org/data/">gapminder population data</a> saved as a .csv file:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>df1 <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"datasets/pop.csv"</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                                              
+1 function (x, df1, df2, ncp, log = FALSE)    
+2 {                                           
+3     if (missing(ncp))                       
+4         .Call(C_df, x, df1, df2, log)       
+5     else .Call(C_dnf, x, df1, df2, ncp, log)
+6 }                                           </code></pre>
+</div>
+</div>
+<p>Using the <code>readr</code> package is very similar:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>df2 <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"datasets/pop.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Rows: 197 Columns: 302
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr (302): country, 1800, 1801, 1802, 1803, 1804, 1805, 1806, 1807, 1808, 18...
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(df2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 302
+  country  `1800` `1801` `1802` `1803` `1804` `1805` `1806` `1807` `1808` `1809`
+  &lt;chr&gt;    &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt; 
+1 Afghani… 3.28M  3.28M  3.28M  3.28M  3.28M  3.28M  3.28M  3.28M  3.28M  3.28M 
+2 Angola   1.57M  1.57M  1.57M  1.57M  1.57M  1.57M  1.57M  1.57M  1.57M  1.57M 
+3 Albania  400k   402k   404k   405k   407k   409k   411k   413k   414k   416k  
+4 Andorra  2650   2650   2650   2650   2650   2650   2650   2650   2650   2650  
+5 UAE      40.2k  40.2k  40.2k  40.2k  40.2k  40.2k  40.2k  40.2k  40.2k  40.2k 
+6 Argenti… 534k   520k   506k   492k   479k   466k   453k   441k   429k   417k  
+# ℹ 291 more variables: `1810` &lt;chr&gt;, `1811` &lt;chr&gt;, `1812` &lt;chr&gt;, `1813` &lt;chr&gt;,
+#   `1814` &lt;chr&gt;, `1815` &lt;chr&gt;, `1816` &lt;chr&gt;, `1817` &lt;chr&gt;, `1818` &lt;chr&gt;,
+#   `1819` &lt;chr&gt;, `1820` &lt;chr&gt;, `1821` &lt;chr&gt;, `1822` &lt;chr&gt;, `1823` &lt;chr&gt;,
+#   `1824` &lt;chr&gt;, `1825` &lt;chr&gt;, `1826` &lt;chr&gt;, `1827` &lt;chr&gt;, `1828` &lt;chr&gt;,
+#   `1829` &lt;chr&gt;, `1830` &lt;chr&gt;, `1831` &lt;chr&gt;, `1832` &lt;chr&gt;, `1833` &lt;chr&gt;,
+#   `1834` &lt;chr&gt;, `1835` &lt;chr&gt;, `1836` &lt;chr&gt;, `1837` &lt;chr&gt;, `1838` &lt;chr&gt;,
+#   `1839` &lt;chr&gt;, `1840` &lt;chr&gt;, `1841` &lt;chr&gt;, `1842` &lt;chr&gt;, `1843` &lt;chr&gt;, …</code></pre>
+</div>
+</div>
+<p>One big difference is that <code>readr</code> by default gives a message about number of rows, columns and types of variables that were loaded. Notice that it loaded every variable as character. That’s because the original file has “k” and “M” to indicate thousands and millions which is interpreted by R as text. We would need to convert those into proper numbers. Loading .tsv files is exactly the same, the only difference is that functions to do it are named <code>read.tsv()</code> and <code>read_tsv()</code>.</p>
+<p>There’s a bunch of things we can customize when loading data into R. Maybe you don’t need the entire dataset but only a subset of columns? Or you want to manually specify what types of variables you want? Or maybe the dataset you are using does not have variable names? You can specify all of these things as arguments to the loading functions. You can look at the documentation to lean more about them.</p>
 </section>
 <section id="loading-data-from-spss" class="level2">
 <h2 class="anchored" data-anchor-id="loading-data-from-spss">Loading data from SPSS</h2>
@@ -289,12 +330,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Please notice though that the documentation for <code>read.spss()</code> function in foreign states that it was originally developed in 2000 and does not guarantee compatibility with newer versions of SPSS (whcih hasn’t changed much since but still. At least it doesn’t look like windows xp anymore).</p>
 <p>To look at loading .sav files we’ll use a trimmed version (the whole file is huge and we don’t need it) of <a href="https://www.worldvaluessurvey.org/WVSDocumentationWV6.jsp">World Value Survey wave 6</a>:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(foreign)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>df_foreign <span class="ot">&lt;-</span> <span class="fu">read.spss</span>(<span class="st">"datasets/WVS6.sav"</span>, <span class="at">to.data.frame =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(foreign)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>df_foreign <span class="ot">&lt;-</span> <span class="fu">read.spss</span>(<span class="st">"datasets/WVS6.sav"</span>, <span class="at">to.data.frame =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Once we have the data loaded lets see what types of values we have.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(df_foreign[,<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(df_foreign[,<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>'data.frame':   89565 obs. of  3 variables:
  $ V1 : Factor w/ 7 levels "1981-1984","1989-1993",..: 6 6 6 6 6 6 6 6 6 6 ...
@@ -307,12 +348,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 class="anchored" data-anchor-id="loading-data-with-haven">loading data with haven</h3>
 <p>Haven package deals differently with loading labeled variables. It introduces a new type of variable: haven-labelled data. It is capable of storing both numeric values and labels attached to it by adding an attribute to the variable with labels. You can load a file in <code>haven</code> using <code>read_spss()</code> (notice the underscore).</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(haven)</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>df_haven <span class="ot">&lt;-</span> <span class="fu">read_spss</span>(<span class="st">"datasets/WVS6.sav"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(haven)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>df_haven <span class="ot">&lt;-</span> <span class="fu">read_spss</span>(<span class="st">"datasets/WVS6.sav"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Now that we have loaded the dataset, lets look at the types of variables we have.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(df_haven[,<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(df_haven[,<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>tibble [89,565 × 3] (S3: tbl_df/tbl/data.frame)
  $ V1 : dbl+lbl [1:89565] 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6...
@@ -335,8 +376,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>And lets see what happens if we zap the labels.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>df_nolab <span class="ot">&lt;-</span> <span class="fu">zap_labels</span>(df_haven)</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(df_nolab)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>df_nolab <span class="ot">&lt;-</span> <span class="fu">zap_labels</span>(df_haven)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(df_nolab)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>tibble [89,565 × 8] (S3: tbl_df/tbl/data.frame)
  $ V1             : num [1:89565] 6 6 6 6 6 6 6 6 6 6 ...
@@ -375,20 +416,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>One of the packages available for loading excel data is <code>readxl</code>.</p>
 <p>The main difference in excel files is that they can store multiple sheets in one file. Because of that we need to specify which sheet we want to load. You can inspect the names of sheets with <code>excel_sheets()</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="fu">excel_sheets</span>(<span class="st">"datasets/pop.xlsx"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="fu">excel_sheets</span>(<span class="st">"datasets/pop.xlsx"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "pop"</code></pre>
 </div>
 </div>
 <p>Once we know the sheet names we can load the one that interests us. We need to specify the path to the file and which sheet we want to load. There are of course many other arguments that give additional control over what is loaded but they are quite similar to other loading functions. You can read more on them in the documentation of the function. If you need to load multiple sheets you can save the sheet names as an object and then loop over them using <code>lapply()</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>df_excel <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"datasets/pop.xlsx"</span>, <span class="at">sheet =</span> <span class="st">"pop"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>df_excel <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"datasets/pop.xlsx"</span>, <span class="at">sheet =</span> <span class="st">"pop"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Now we can look at the top of the file:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(df_excel)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(df_excel)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 302
   country  `1800` `1801` `1802` `1803` `1804` `1805` `1806` `1807` `1808` `1809`
@@ -421,13 +462,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Because json can be a complicated and nested structure the type of data that best approximates it in R is a list. There are ways to ask R to try and handle such list structure and try to convert it into a data frame but it does not always work. Cleaning an unevenly nested json can be a real pain sometimes!</p>
 <p>We’ll look at an example of a NASA API that stores information on the number of people currently present on space stations. The package we’ll use to load the data is <code>jsonlite</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(jsonlite)</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>nasa <span class="ot">&lt;-</span> <span class="fu">fromJSON</span>(<span class="st">"http://api.open-notify.org/astros.json"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(jsonlite)</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>nasa <span class="ot">&lt;-</span> <span class="fu">fromJSON</span>(<span class="st">"http://api.open-notify.org/astros.json"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Notice how the loaded object looks like. It is a list with 3 elements: number of people as an integer, a dataframe of astronauts and a string “success”.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>nasa</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>nasa</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>$number
 [1] 10

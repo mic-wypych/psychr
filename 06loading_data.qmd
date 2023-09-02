@@ -15,15 +15,26 @@ When loading a dataset there are generally a few things to consider:
 
 We'll start with loading what are called flat files: csv (short for comma separated values) and tsv (tab separated values). Both of these are basically plain text files just structures in a ver specific wayThe name kind of gives away how these formats store data: in csv columns are separated by commas and in tsv columns are separated by tabs. You can see an example of a csv file below:
 
-**Put screenshot of csv file here**
+![](images/csv_file_example-01.png)
 
-There are 2
+Not very readable right? There are 2 packages with similar functions for loading .csv and .tsv files: `utils` and `readr`. We\`ll load the [gapminder population data](https://www.gapminder.org/data/) saved as a .csv file:
 
--   utils
+```{r}
+df1 <- read.csv("datasets/pop.csv")
+head(df)
+```
 
-    -   readr
+Using the `readr` package is very similar:
 
-    -   custom arguments. There's a bunch of things we can customize when loading data into R. Maybe you don't need the entire dataset but only a subset of columns? Or you want to manually specify what types of variables you want? Or maybe the dataset you are using does not have variable names? You can specify all of these things as arguments to the loading functions.
+```{r}
+library(readr)
+df2 <- read_csv("datasets/pop.csv")
+head(df2)
+```
+
+One big difference is that `readr` by default gives a message about number of rows, columns and types of variables that were loaded. Notice that it loaded every variable as character. That's because the original file has "k" and "M" to indicate thousands and millions which is interpreted by R as text. We would need to convert those into proper numbers. Loading .tsv files is exactly the same, the only difference is that functions to do it are named `read.tsv()` and `read_tsv()`.
+
+There's a bunch of things we can customize when loading data into R. Maybe you don't need the entire dataset but only a subset of columns? Or you want to manually specify what types of variables you want? Or maybe the dataset you are using does not have variable names? You can specify all of these things as arguments to the loading functions. You can look at the documentation to lean more about them.
 
 ## Loading data from SPSS
 

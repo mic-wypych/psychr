@@ -181,9 +181,9 @@ Notice that the means calculated above are global means from the entire dataset.
 apply(d[,1:4], 2, function(x) tapply(x, d$Month, mean))
 ```
 
-One important thing about apply functions is that they are generally faster than explicit for loops. Same thing goes for vectorized code as well - it's faster than a for loop. We can make a simple comparison by using the `microbenchmark` package to make the same thing with a for loop and `apply()` function.
+One important thing about apply functions is that they are generally faster than explicit for loops. Same thing goes for vectorized code as well - it's faster than a for loop. We can make a simple comparison by using the `microbenchmark` package to make the same thing with a for loop and `apply()` function. We'll save it as `bench`
 
-```{r include=FALSE}
+```{r warning=FALSE, message=FALSE, include=FALSE}
 library(microbenchmark)
 N <- 100000
 v1 <- rnorm(N, 0, 3)
@@ -199,7 +199,7 @@ Now if we look at the results:
 
 ```{r}
 
-bench |> gt::gt()
+bench
 ```
 
 ## Exercises
