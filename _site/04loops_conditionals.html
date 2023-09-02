@@ -233,7 +233,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#for-loops" id="toc-for-loops" class="nav-link" data-scroll-target="#for-loops">for loops</a></li>
   <li><a href="#while-loops" id="toc-while-loops" class="nav-link" data-scroll-target="#while-loops">While loops</a></li>
   </ul></li>
-  <li><a href="#apply-family" id="toc-apply-family" class="nav-link" data-scroll-target="#apply-family">Apply family</a></li>
+  <li><a href="#apply-family" id="toc-apply-family" class="nav-link" data-scroll-target="#apply-family">Apply family</a>
+  <ul class="collapse">
+  <li><a href="#example-1" id="toc-example-1" class="nav-link" data-scroll-target="#example-1">Example 1:</a></li>
+  <li><a href="#example-2" id="toc-example-2" class="nav-link" data-scroll-target="#example-2">Example 2:</a></li>
+  </ul></li>
   <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises">Exercises</a></li>
   </ul></li>
   </ul>
@@ -358,27 +362,33 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  do this to object[i]</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Now each <code>i</code> is a number from 1 to thew length of <code>object</code> and we access each element of <code>object</code> by using a proper (<code>ith</code>) index. Which way of running a for loop you choose might depend on the context. looping explicitly over elements of an object rather than indexes can be more intuitive but imagine you don’t want to do something to every element of an object but only to to a subset (e.g.&nbsp;from 3rd onwards). Doing it with indexes is easier. Generally the best approach is to think what you need first and code second, not the other way around.</p>
+<p>Now each <code>i</code> is a number from 1 to thew length of <code>object</code> and we access each element of <code>object</code> by using a proper (<code>ith</code>) index. Which way of running a for loop you choose might depend on the context. looping explicitly over elements of an object rather than indexes can be more intuitive but imagine you don’t want to do something to every element of an object but only to to a subset (e.g.&nbsp;from 3rd inwards). Doing it with indexes is easier. Generally the best approach is to think what you need first and write code code second, not the other way around.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(microbenchmark)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: pakiet 'microbenchmark' został zbudowany w wersji R 4.3.1</code></pre>
+</div>
+</div>
 </section>
 <section id="while-loops" class="level3">
 <h3 class="anchored" data-anchor-id="while-loops">While loops</h3>
-<p>While loops will keep executing a given chunk of code as long as some condition is met.</p>
-<p>We can use a while loop to make a very simple simulation. Lets say we want to see how temperatures change from a given temperature (lets say 20 degrees Celsius) across time and that we represent time by some random change from each previous temperature. We can create a vector with such predicted temperatures and see how long it takes for it to reach a certain level (lets say 30 degrees Celsius). We represent the change by adding a random value from a normal distribution with mean = .05 and standard deviation = .5 (this is what the <code>rnorm(1,.05,.5)</code> does). The while loop would look something like this. We first create the initial value and a vector to store all temperatures and next we keep adding the random value to our temperature and storing all temperatures until it reaches 30. The last line tells R to plot all the temperatures as a line plot. This is of course a very, very very simplistic simulation (temperatures don’t change in such a simple way) but it works to show you the idea behind while loops. We can then calculate e.g.&nbsp;how long it took for the temperature to reach a certain level.</p>
+<p>While loops will keep executing a given chunk of code as long as some condition is met. They aren’t very common in R, at least not until you start building your own algorithms or simulations from scratch. However, it’s worth knowing what they are in case you encounter them.</p>
+<p>We can use a while loop to make a very simple simulation. Lets say we want to see how temperatures change from a given temperature (lets say 20 degrees Celsius) across time and that we represent time by some random change from each previous temperature. We can create a vector with such predicted temperatures and see how long it takes for it to reach a certain level (lets say 30 degrees Celsius). We represent the change by adding a random value from a normal distribution with mean = .05 and standard deviation = .5 (this is what the <code>rnorm(1,.05,.5)</code> does). The while loop would look something like this: We first create the initial value and a vector to store all temperatures and next we keep adding the random value to our temperature and storing all temperatures until it reaches 30. The last line tells R to plot all the temperatures as a line plot. This is of course a very, very, very simplistic simulation (temperatures don’t change in such a simple way) but it works to show you the idea behind while loops. We can then calculate e.g.&nbsp;how long it took for the temperature to reach a certain level.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>C <span class="ot">&lt;-</span> <span class="dv">20</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">20</span>)</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> (C <span class="sc">&lt;</span> <span class="dv">30</span>) {</span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  C <span class="ot">&lt;-</span> C <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">1</span>,.<span class="dv">05</span>,.<span class="dv">5</span>)</span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  results <span class="ot">&lt;-</span> <span class="fu">c</span>(results, C)</span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(results, <span class="at">type =</span> <span class="st">'line'</span>, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">col=</span><span class="dv">4</span>, <span class="at">xlab =</span> <span class="st">"days"</span>, <span class="at">ylab =</span> <span class="st">"temperature"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>C <span class="ot">&lt;-</span> <span class="dv">20</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">20</span>)</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> (C <span class="sc">&lt;</span> <span class="dv">30</span>) {</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  C <span class="ot">&lt;-</span> C <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">1</span>,.<span class="dv">05</span>,.<span class="dv">5</span>)</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>  results <span class="ot">&lt;-</span> <span class="fu">c</span>(results, C)</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(results, <span class="at">type =</span> <span class="st">'line'</span>, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">col=</span><span class="dv">4</span>, <span class="at">xlab =</span> <span class="st">"days"</span>, <span class="at">ylab =</span> <span class="st">"temperature"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning in plot.xy(xy, type, ...): plot type 'line' will be truncated to first
 character</code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="04loops_conditionals_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="672"></p>
+<p><img src="04loops_conditionals_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>Because while loops do not have a fixed number of iteration they can potentially run infinitely. This is usually not something we want so it’s a good idea to make sure that your while loop eventually stops. In case you do get stuck in an infinite loop you can press <code>Esc</code> in your console and this should make RStudio stop the loop by force.</p>
@@ -396,27 +406,30 @@ character</code></pre>
 <li><p><code>tapply()</code> - same as apply but lets you split the object you are looping over based on some factor (e.g.&nbsp;imagine you want to calculate the mean value of your dependent variable for each experimental condition).</p></li>
 </ul>
 <p>Lets see some of these in action.</p>
-<p>Example 1:</p>
+<section id="example-1" class="level3">
+<h3 class="anchored" data-anchor-id="example-1">Example 1:</h3>
 <p>Imagine you are working with a list in R. You want to get information on how many elements each object in the list has. <code>sapply</code> makes it very easy:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>my_list <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="dv">1</span><span class="sc">:</span><span class="dv">50</span>,</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sample</span>(<span class="dv">300</span>, <span class="dv">5</span>),</span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(<span class="st">"random"</span>, <span class="st">"vector"</span>)</span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="fu">sapply</span>(my_list, length)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>my_list <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="dv">1</span><span class="sc">:</span><span class="dv">50</span>,</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sample</span>(<span class="dv">300</span>, <span class="dv">5</span>),</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(<span class="st">"random"</span>, <span class="st">"vector"</span>)</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="fu">sapply</span>(my_list, length)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 50  5  2</code></pre>
 </div>
 </div>
-<p>Example 2:</p>
+</section>
+<section id="example-2" class="level3">
+<h3 class="anchored" data-anchor-id="example-2">Example 2:</h3>
 <p>There is a dataset available in R on airquality in New York City called <code>airquality</code>. It stores information on ozone, sun, wind and temperature from 5 months One of the things that might be of interest when looking at the dataset is what was the average value of each of the variables informing on airquality:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">"airquality"</span>)</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> airquality</span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(d)</span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="fu">apply</span>(d[,<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>], <span class="dv">2</span>, mean)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">"airquality"</span>)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> airquality</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(d)</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="fu">apply</span>(d[,<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>], <span class="dv">2</span>, mean)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>    Ozone   Solar.R      Wind      Temp 
  42.09910 184.80180   9.93964  77.79279 </code></pre>
@@ -424,7 +437,7 @@ character</code></pre>
 </div>
 <p>Notice that the means calculated above are global means from the entire dataset. What is probably much more sensible is a mean for each month. There is one additional trick needed here. <code>Tapply</code> won’t allow us to split a number of columns by some vector and perform a given operation on each of the columns. That’s because <code>tapply</code> works on vectors. In order to get monthly means for all 4 columns we need to combine <code>apply</code> with <code>tapply.</code> What we need to do is start with apply and loop over the 4 columns of interest and for each of them use tapply that will split a given column by month and calculate the means. Combining functions can get us really far if only we give some thought to what each function does (including what are its inputs and outputs) and what we really need to do.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">apply</span>(d[,<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>], <span class="dv">2</span>, <span class="cf">function</span>(x) <span class="fu">tapply</span>(x, d<span class="sc">$</span>Month, mean))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">apply</span>(d[,<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>], <span class="dv">2</span>, <span class="cf">function</span>(x) <span class="fu">tapply</span>(x, d<span class="sc">$</span>Month, mean))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>     Ozone  Solar.R      Wind     Temp
 5 24.12500 182.0417 11.504167 66.45833
@@ -434,6 +447,869 @@ character</code></pre>
 9 31.44828 168.2069 10.075862 76.89655</code></pre>
 </div>
 </div>
+<p>One important thing about apply functions is that they are generally faster than explicit for loops. Same thing goes for vectorized code as well - it’s faster than a for loop. We can make a simple comparison by using the <code>microbenchmark</code> package to make the same thing with a for loop and <code>apply()</code> function.</p>
+<p>Now if we look at the results:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>bench <span class="sc">|&gt;</span> gt<span class="sc">::</span><span class="fu">gt</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div id="zxsqgalwjo" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#zxsqgalwjo table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#zxsqgalwjo thead, #zxsqgalwjo tbody, #zxsqgalwjo tfoot, #zxsqgalwjo tr, #zxsqgalwjo td, #zxsqgalwjo th {
+  border-style: none;
+}
+
+#zxsqgalwjo p {
+  margin: 0;
+  padding: 0;
+}
+
+#zxsqgalwjo .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#zxsqgalwjo .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#zxsqgalwjo .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#zxsqgalwjo .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#zxsqgalwjo .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#zxsqgalwjo .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#zxsqgalwjo .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#zxsqgalwjo .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#zxsqgalwjo .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#zxsqgalwjo .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#zxsqgalwjo .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#zxsqgalwjo .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#zxsqgalwjo .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#zxsqgalwjo .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#zxsqgalwjo .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#zxsqgalwjo .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#zxsqgalwjo .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#zxsqgalwjo .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#zxsqgalwjo .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#zxsqgalwjo .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#zxsqgalwjo .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#zxsqgalwjo .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#zxsqgalwjo .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#zxsqgalwjo .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#zxsqgalwjo .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#zxsqgalwjo .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#zxsqgalwjo .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#zxsqgalwjo .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#zxsqgalwjo .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#zxsqgalwjo .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#zxsqgalwjo .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#zxsqgalwjo .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#zxsqgalwjo .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#zxsqgalwjo .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#zxsqgalwjo .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#zxsqgalwjo .gt_left {
+  text-align: left;
+}
+
+#zxsqgalwjo .gt_center {
+  text-align: center;
+}
+
+#zxsqgalwjo .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#zxsqgalwjo .gt_font_normal {
+  font-weight: normal;
+}
+
+#zxsqgalwjo .gt_font_bold {
+  font-weight: bold;
+}
+
+#zxsqgalwjo .gt_font_italic {
+  font-style: italic;
+}
+
+#zxsqgalwjo .gt_super {
+  font-size: 65%;
+}
+
+#zxsqgalwjo .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#zxsqgalwjo .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#zxsqgalwjo .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#zxsqgalwjo .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#zxsqgalwjo .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#zxsqgalwjo .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#zxsqgalwjo .gt_indent_5 {
+  text-indent: 25px;
+}
+</style>
+<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+  <thead>
+    
+    <tr class="gt_col_headings">
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="expr">expr</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="time">time</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td headers="expr" class="gt_row gt_center">for (i in 1:ncol(df)) {     print(mean(df[, i])) }</td>
+<td headers="time" class="gt_row gt_right">6014000</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">for (i in 1:ncol(df)) {     print(mean(df[, i])) }</td>
+<td headers="time" class="gt_row gt_right">6336200</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">for (i in 1:ncol(df)) {     print(mean(df[, i])) }</td>
+<td headers="time" class="gt_row gt_right">6127100</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">for (i in 1:ncol(df)) {     print(mean(df[, i])) }</td>
+<td headers="time" class="gt_row gt_right">5485500</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">apply(df, 2, mean)</td>
+<td headers="time" class="gt_row gt_right">5182800</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">for (i in 1:ncol(df)) {     print(mean(df[, i])) }</td>
+<td headers="time" class="gt_row gt_right">5276700</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">apply(df, 2, mean)</td>
+<td headers="time" class="gt_row gt_right">6587100</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">for (i in 1:ncol(df)) {     print(mean(df[, i])) }</td>
+<td headers="time" class="gt_row gt_right">6146800</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">for (i in 1:ncol(df)) {     print(mean(df[, i])) }</td>
+<td headers="time" class="gt_row gt_right">5642300</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">for (i in 1:ncol(df)) {     print(mean(df[, i])) }</td>
+<td headers="time" class="gt_row gt_right">6269600</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">apply(df, 2, mean)</td>
+<td headers="time" class="gt_row gt_right">5500500</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">apply(df, 2, mean)</td>
+<td headers="time" class="gt_row gt_right">4427900</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">apply(df, 2, mean)</td>
+<td headers="time" class="gt_row gt_right">5633600</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">apply(df, 2, mean)</td>
+<td headers="time" class="gt_row gt_right">4963500</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">apply(df, 2, mean)</td>
+<td headers="time" class="gt_row gt_right">10431000</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">for (i in 1:ncol(df)) {     print(mean(df[, i])) }</td>
+<td headers="time" class="gt_row gt_right">6088400</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">apply(df, 2, mean)</td>
+<td headers="time" class="gt_row gt_right">5321700</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">apply(df, 2, mean)</td>
+<td headers="time" class="gt_row gt_right">4441800</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">for (i in 1:ncol(df)) {     print(mean(df[, i])) }</td>
+<td headers="time" class="gt_row gt_right">3640500</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">apply(df, 2, mean)</td>
+<td headers="time" class="gt_row gt_right">4554400</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">for (i in 1:ncol(df)) {     print(mean(df[, i])) }</td>
+<td headers="time" class="gt_row gt_right">3611500</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">apply(df, 2, mean)</td>
+<td headers="time" class="gt_row gt_right">4462500</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">for (i in 1:ncol(df)) {     print(mean(df[, i])) }</td>
+<td headers="time" class="gt_row gt_right">3609200</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">apply(df, 2, mean)</td>
+<td headers="time" class="gt_row gt_right">4661700</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">apply(df, 2, mean)</td>
+<td headers="time" class="gt_row gt_right">9418900</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">apply(df, 2, mean)</td>
+<td headers="time" class="gt_row gt_right">4213800</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">apply(df, 2, mean)</td>
+<td headers="time" class="gt_row gt_right">4139400</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">apply(df, 2, mean)</td>
+<td headers="time" class="gt_row gt_right">4275700</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">for (i in 1:ncol(df)) {     print(mean(df[, i])) }</td>
+<td headers="time" class="gt_row gt_right">4788100</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">for (i in 1:ncol(df)) {     print(mean(df[, i])) }</td>
+<td headers="time" class="gt_row gt_right">6819800</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">apply(df, 2, mean)</td>
+<td headers="time" class="gt_row gt_right">7952600</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">for (i in 1:ncol(df)) {     print(mean(df[, i])) }</td>
+<td headers="time" class="gt_row gt_right">8632300</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">apply(df, 2, mean)</td>
+<td headers="time" class="gt_row gt_right">7024700</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">for (i in 1:ncol(df)) {     print(mean(df[, i])) }</td>
+<td headers="time" class="gt_row gt_right">4883000</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">apply(df, 2, mean)</td>
+<td headers="time" class="gt_row gt_right">15036400</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">apply(df, 2, mean)</td>
+<td headers="time" class="gt_row gt_right">4728800</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">for (i in 1:ncol(df)) {     print(mean(df[, i])) }</td>
+<td headers="time" class="gt_row gt_right">3907500</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">for (i in 1:ncol(df)) {     print(mean(df[, i])) }</td>
+<td headers="time" class="gt_row gt_right">3913500</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">for (i in 1:ncol(df)) {     print(mean(df[, i])) }</td>
+<td headers="time" class="gt_row gt_right">5781700</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">apply(df, 2, mean)</td>
+<td headers="time" class="gt_row gt_right">4529600</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">for (i in 1:ncol(df)) {     print(mean(df[, i])) }</td>
+<td headers="time" class="gt_row gt_right">5104100</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">for (i in 1:ncol(df)) {     print(mean(df[, i])) }</td>
+<td headers="time" class="gt_row gt_right">4846000</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">apply(df, 2, mean)</td>
+<td headers="time" class="gt_row gt_right">5998700</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">for (i in 1:ncol(df)) {     print(mean(df[, i])) }</td>
+<td headers="time" class="gt_row gt_right">4643000</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">apply(df, 2, mean)</td>
+<td headers="time" class="gt_row gt_right">5297700</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">apply(df, 2, mean)</td>
+<td headers="time" class="gt_row gt_right">13698300</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">apply(df, 2, mean)</td>
+<td headers="time" class="gt_row gt_right">6378400</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">apply(df, 2, mean)</td>
+<td headers="time" class="gt_row gt_right">5445400</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">for (i in 1:ncol(df)) {     print(mean(df[, i])) }</td>
+<td headers="time" class="gt_row gt_right">4668900</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">for (i in 1:ncol(df)) {     print(mean(df[, i])) }</td>
+<td headers="time" class="gt_row gt_right">3526100</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">apply(df, 2, mean)</td>
+<td headers="time" class="gt_row gt_right">4666400</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">for (i in 1:ncol(df)) {     print(mean(df[, i])) }</td>
+<td headers="time" class="gt_row gt_right">5593200</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">apply(df, 2, mean)</td>
+<td headers="time" class="gt_row gt_right">5837400</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">apply(df, 2, mean)</td>
+<td headers="time" class="gt_row gt_right">11693400</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">for (i in 1:ncol(df)) {     print(mean(df[, i])) }</td>
+<td headers="time" class="gt_row gt_right">4501000</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">for (i in 1:ncol(df)) {     print(mean(df[, i])) }</td>
+<td headers="time" class="gt_row gt_right">6473200</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">apply(df, 2, mean)</td>
+<td headers="time" class="gt_row gt_right">6234800</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">for (i in 1:ncol(df)) {     print(mean(df[, i])) }</td>
+<td headers="time" class="gt_row gt_right">5112600</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">apply(df, 2, mean)</td>
+<td headers="time" class="gt_row gt_right">4627400</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">apply(df, 2, mean)</td>
+<td headers="time" class="gt_row gt_right">6461200</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">apply(df, 2, mean)</td>
+<td headers="time" class="gt_row gt_right">5254900</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">for (i in 1:ncol(df)) {     print(mean(df[, i])) }</td>
+<td headers="time" class="gt_row gt_right">4005900</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">for (i in 1:ncol(df)) {     print(mean(df[, i])) }</td>
+<td headers="time" class="gt_row gt_right">3766000</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">for (i in 1:ncol(df)) {     print(mean(df[, i])) }</td>
+<td headers="time" class="gt_row gt_right">5200200</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">apply(df, 2, mean)</td>
+<td headers="time" class="gt_row gt_right">12307600</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">apply(df, 2, mean)</td>
+<td headers="time" class="gt_row gt_right">5620900</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">for (i in 1:ncol(df)) {     print(mean(df[, i])) }</td>
+<td headers="time" class="gt_row gt_right">6552200</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">apply(df, 2, mean)</td>
+<td headers="time" class="gt_row gt_right">5505100</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">for (i in 1:ncol(df)) {     print(mean(df[, i])) }</td>
+<td headers="time" class="gt_row gt_right">5344200</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">apply(df, 2, mean)</td>
+<td headers="time" class="gt_row gt_right">7330500</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">for (i in 1:ncol(df)) {     print(mean(df[, i])) }</td>
+<td headers="time" class="gt_row gt_right">4975900</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">apply(df, 2, mean)</td>
+<td headers="time" class="gt_row gt_right">10221100</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">for (i in 1:ncol(df)) {     print(mean(df[, i])) }</td>
+<td headers="time" class="gt_row gt_right">5559200</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">for (i in 1:ncol(df)) {     print(mean(df[, i])) }</td>
+<td headers="time" class="gt_row gt_right">4838800</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">for (i in 1:ncol(df)) {     print(mean(df[, i])) }</td>
+<td headers="time" class="gt_row gt_right">5432000</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">for (i in 1:ncol(df)) {     print(mean(df[, i])) }</td>
+<td headers="time" class="gt_row gt_right">4554300</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">apply(df, 2, mean)</td>
+<td headers="time" class="gt_row gt_right">6142900</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">for (i in 1:ncol(df)) {     print(mean(df[, i])) }</td>
+<td headers="time" class="gt_row gt_right">5575700</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">apply(df, 2, mean)</td>
+<td headers="time" class="gt_row gt_right">5605600</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">for (i in 1:ncol(df)) {     print(mean(df[, i])) }</td>
+<td headers="time" class="gt_row gt_right">3772900</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">apply(df, 2, mean)</td>
+<td headers="time" class="gt_row gt_right">5746700</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">apply(df, 2, mean)</td>
+<td headers="time" class="gt_row gt_right">11413600</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">apply(df, 2, mean)</td>
+<td headers="time" class="gt_row gt_right">4585900</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">apply(df, 2, mean)</td>
+<td headers="time" class="gt_row gt_right">7119100</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">apply(df, 2, mean)</td>
+<td headers="time" class="gt_row gt_right">5810800</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">for (i in 1:ncol(df)) {     print(mean(df[, i])) }</td>
+<td headers="time" class="gt_row gt_right">4210500</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">for (i in 1:ncol(df)) {     print(mean(df[, i])) }</td>
+<td headers="time" class="gt_row gt_right">7075600</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">for (i in 1:ncol(df)) {     print(mean(df[, i])) }</td>
+<td headers="time" class="gt_row gt_right">7427600</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">for (i in 1:ncol(df)) {     print(mean(df[, i])) }</td>
+<td headers="time" class="gt_row gt_right">7190400</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">apply(df, 2, mean)</td>
+<td headers="time" class="gt_row gt_right">9195100</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">for (i in 1:ncol(df)) {     print(mean(df[, i])) }</td>
+<td headers="time" class="gt_row gt_right">6143900</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">apply(df, 2, mean)</td>
+<td headers="time" class="gt_row gt_right">6081800</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">apply(df, 2, mean)</td>
+<td headers="time" class="gt_row gt_right">5664400</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">for (i in 1:ncol(df)) {     print(mean(df[, i])) }</td>
+<td headers="time" class="gt_row gt_right">5313100</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">for (i in 1:ncol(df)) {     print(mean(df[, i])) }</td>
+<td headers="time" class="gt_row gt_right">5198100</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">apply(df, 2, mean)</td>
+<td headers="time" class="gt_row gt_right">10123200</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">for (i in 1:ncol(df)) {     print(mean(df[, i])) }</td>
+<td headers="time" class="gt_row gt_right">6035900</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">for (i in 1:ncol(df)) {     print(mean(df[, i])) }</td>
+<td headers="time" class="gt_row gt_right">5840200</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">apply(df, 2, mean)</td>
+<td headers="time" class="gt_row gt_right">5176800</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">for (i in 1:ncol(df)) {     print(mean(df[, i])) }</td>
+<td headers="time" class="gt_row gt_right">3679100</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">apply(df, 2, mean)</td>
+<td headers="time" class="gt_row gt_right">5573300</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">apply(df, 2, mean)</td>
+<td headers="time" class="gt_row gt_right">13744200</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">apply(df, 2, mean)</td>
+<td headers="time" class="gt_row gt_right">4809400</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">for (i in 1:ncol(df)) {     print(mean(df[, i])) }</td>
+<td headers="time" class="gt_row gt_right">5323600</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">apply(df, 2, mean)</td>
+<td headers="time" class="gt_row gt_right">3982500</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">apply(df, 2, mean)</td>
+<td headers="time" class="gt_row gt_right">4321100</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">apply(df, 2, mean)</td>
+<td headers="time" class="gt_row gt_right">4331400</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">apply(df, 2, mean)</td>
+<td headers="time" class="gt_row gt_right">4533100</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">for (i in 1:ncol(df)) {     print(mean(df[, i])) }</td>
+<td headers="time" class="gt_row gt_right">3593100</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">for (i in 1:ncol(df)) {     print(mean(df[, i])) }</td>
+<td headers="time" class="gt_row gt_right">3397700</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">apply(df, 2, mean)</td>
+<td headers="time" class="gt_row gt_right">10203900</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">for (i in 1:ncol(df)) {     print(mean(df[, i])) }</td>
+<td headers="time" class="gt_row gt_right">3622900</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">apply(df, 2, mean)</td>
+<td headers="time" class="gt_row gt_right">4368800</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">apply(df, 2, mean)</td>
+<td headers="time" class="gt_row gt_right">4319500</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">apply(df, 2, mean)</td>
+<td headers="time" class="gt_row gt_right">4433300</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">for (i in 1:ncol(df)) {     print(mean(df[, i])) }</td>
+<td headers="time" class="gt_row gt_right">3400000</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">for (i in 1:ncol(df)) {     print(mean(df[, i])) }</td>
+<td headers="time" class="gt_row gt_right">3163600</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">apply(df, 2, mean)</td>
+<td headers="time" class="gt_row gt_right">4134400</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">for (i in 1:ncol(df)) {     print(mean(df[, i])) }</td>
+<td headers="time" class="gt_row gt_right">3121700</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">for (i in 1:ncol(df)) {     print(mean(df[, i])) }</td>
+<td headers="time" class="gt_row gt_right">3136200</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">for (i in 1:ncol(df)) {     print(mean(df[, i])) }</td>
+<td headers="time" class="gt_row gt_right">3099000</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">apply(df, 2, mean)</td>
+<td headers="time" class="gt_row gt_right">4057400</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">for (i in 1:ncol(df)) {     print(mean(df[, i])) }</td>
+<td headers="time" class="gt_row gt_right">3135200</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">for (i in 1:ncol(df)) {     print(mean(df[, i])) }</td>
+<td headers="time" class="gt_row gt_right">2878100</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">for (i in 1:ncol(df)) {     print(mean(df[, i])) }</td>
+<td headers="time" class="gt_row gt_right">3106900</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">for (i in 1:ncol(df)) {     print(mean(df[, i])) }</td>
+<td headers="time" class="gt_row gt_right">2981100</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">apply(df, 2, mean)</td>
+<td headers="time" class="gt_row gt_right">8378300</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">for (i in 1:ncol(df)) {     print(mean(df[, i])) }</td>
+<td headers="time" class="gt_row gt_right">3204500</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">for (i in 1:ncol(df)) {     print(mean(df[, i])) }</td>
+<td headers="time" class="gt_row gt_right">3143800</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">for (i in 1:ncol(df)) {     print(mean(df[, i])) }</td>
+<td headers="time" class="gt_row gt_right">3145800</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">apply(df, 2, mean)</td>
+<td headers="time" class="gt_row gt_right">3615000</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">for (i in 1:ncol(df)) {     print(mean(df[, i])) }</td>
+<td headers="time" class="gt_row gt_right">3096300</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">for (i in 1:ncol(df)) {     print(mean(df[, i])) }</td>
+<td headers="time" class="gt_row gt_right">2942200</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">apply(df, 2, mean)</td>
+<td headers="time" class="gt_row gt_right">3926500</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">for (i in 1:ncol(df)) {     print(mean(df[, i])) }</td>
+<td headers="time" class="gt_row gt_right">3055500</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">apply(df, 2, mean)</td>
+<td headers="time" class="gt_row gt_right">3548700</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">apply(df, 2, mean)</td>
+<td headers="time" class="gt_row gt_right">3810900</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">for (i in 1:ncol(df)) {     print(mean(df[, i])) }</td>
+<td headers="time" class="gt_row gt_right">3087100</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">for (i in 1:ncol(df)) {     print(mean(df[, i])) }</td>
+<td headers="time" class="gt_row gt_right">3054600</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">apply(df, 2, mean)</td>
+<td headers="time" class="gt_row gt_right">8573300</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">apply(df, 2, mean)</td>
+<td headers="time" class="gt_row gt_right">3531000</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">for (i in 1:ncol(df)) {     print(mean(df[, i])) }</td>
+<td headers="time" class="gt_row gt_right">3587800</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">apply(df, 2, mean)</td>
+<td headers="time" class="gt_row gt_right">3855400</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">for (i in 1:ncol(df)) {     print(mean(df[, i])) }</td>
+<td headers="time" class="gt_row gt_right">3141600</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">apply(df, 2, mean)</td>
+<td headers="time" class="gt_row gt_right">3745900</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">apply(df, 2, mean)</td>
+<td headers="time" class="gt_row gt_right">3894000</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">apply(df, 2, mean)</td>
+<td headers="time" class="gt_row gt_right">8094900</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">for (i in 1:ncol(df)) {     print(mean(df[, i])) }</td>
+<td headers="time" class="gt_row gt_right">3152200</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">apply(df, 2, mean)</td>
+<td headers="time" class="gt_row gt_right">3702800</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">for (i in 1:ncol(df)) {     print(mean(df[, i])) }</td>
+<td headers="time" class="gt_row gt_right">3425500</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">for (i in 1:ncol(df)) {     print(mean(df[, i])) }</td>
+<td headers="time" class="gt_row gt_right">3155500</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">apply(df, 2, mean)</td>
+<td headers="time" class="gt_row gt_right">3810000</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">for (i in 1:ncol(df)) {     print(mean(df[, i])) }</td>
+<td headers="time" class="gt_row gt_right">3099900</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">apply(df, 2, mean)</td>
+<td headers="time" class="gt_row gt_right">3629300</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">for (i in 1:ncol(df)) {     print(mean(df[, i])) }</td>
+<td headers="time" class="gt_row gt_right">3262200</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">apply(df, 2, mean)</td>
+<td headers="time" class="gt_row gt_right">8505300</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">for (i in 1:ncol(df)) {     print(mean(df[, i])) }</td>
+<td headers="time" class="gt_row gt_right">3170300</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">for (i in 1:ncol(df)) {     print(mean(df[, i])) }</td>
+<td headers="time" class="gt_row gt_right">3332600</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">apply(df, 2, mean)</td>
+<td headers="time" class="gt_row gt_right">4026400</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">apply(df, 2, mean)</td>
+<td headers="time" class="gt_row gt_right">3782000</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">apply(df, 2, mean)</td>
+<td headers="time" class="gt_row gt_right">3671500</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">for (i in 1:ncol(df)) {     print(mean(df[, i])) }</td>
+<td headers="time" class="gt_row gt_right">3075300</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">for (i in 1:ncol(df)) {     print(mean(df[, i])) }</td>
+<td headers="time" class="gt_row gt_right">3137600</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">for (i in 1:ncol(df)) {     print(mean(df[, i])) }</td>
+<td headers="time" class="gt_row gt_right">2986600</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">for (i in 1:ncol(df)) {     print(mean(df[, i])) }</td>
+<td headers="time" class="gt_row gt_right">2953200</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">for (i in 1:ncol(df)) {     print(mean(df[, i])) }</td>
+<td headers="time" class="gt_row gt_right">2874500</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">for (i in 1:ncol(df)) {     print(mean(df[, i])) }</td>
+<td headers="time" class="gt_row gt_right">2962100</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">apply(df, 2, mean)</td>
+<td headers="time" class="gt_row gt_right">7198400</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">for (i in 1:ncol(df)) {     print(mean(df[, i])) }</td>
+<td headers="time" class="gt_row gt_right">2980800</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">apply(df, 2, mean)</td>
+<td headers="time" class="gt_row gt_right">3548800</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">for (i in 1:ncol(df)) {     print(mean(df[, i])) }</td>
+<td headers="time" class="gt_row gt_right">3115500</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">apply(df, 2, mean)</td>
+<td headers="time" class="gt_row gt_right">3417500</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">apply(df, 2, mean)</td>
+<td headers="time" class="gt_row gt_right">6240400</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">for (i in 1:ncol(df)) {     print(mean(df[, i])) }</td>
+<td headers="time" class="gt_row gt_right">3284400</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">for (i in 1:ncol(df)) {     print(mean(df[, i])) }</td>
+<td headers="time" class="gt_row gt_right">3310400</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">apply(df, 2, mean)</td>
+<td headers="time" class="gt_row gt_right">4424300</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">apply(df, 2, mean)</td>
+<td headers="time" class="gt_row gt_right">3791600</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">apply(df, 2, mean)</td>
+<td headers="time" class="gt_row gt_right">7974300</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">for (i in 1:ncol(df)) {     print(mean(df[, i])) }</td>
+<td headers="time" class="gt_row gt_right">3490100</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">for (i in 1:ncol(df)) {     print(mean(df[, i])) }</td>
+<td headers="time" class="gt_row gt_right">3430000</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">apply(df, 2, mean)</td>
+<td headers="time" class="gt_row gt_right">3913900</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">apply(df, 2, mean)</td>
+<td headers="time" class="gt_row gt_right">5619100</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">for (i in 1:ncol(df)) {     print(mean(df[, i])) }</td>
+<td headers="time" class="gt_row gt_right">3619300</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">apply(df, 2, mean)</td>
+<td headers="time" class="gt_row gt_right">3396800</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">for (i in 1:ncol(df)) {     print(mean(df[, i])) }</td>
+<td headers="time" class="gt_row gt_right">3356300</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">for (i in 1:ncol(df)) {     print(mean(df[, i])) }</td>
+<td headers="time" class="gt_row gt_right">3180400</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">apply(df, 2, mean)</td>
+<td headers="time" class="gt_row gt_right">9818300</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">apply(df, 2, mean)</td>
+<td headers="time" class="gt_row gt_right">3742300</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">apply(df, 2, mean)</td>
+<td headers="time" class="gt_row gt_right">4781700</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">apply(df, 2, mean)</td>
+<td headers="time" class="gt_row gt_right">5005400</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">for (i in 1:ncol(df)) {     print(mean(df[, i])) }</td>
+<td headers="time" class="gt_row gt_right">3639900</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">for (i in 1:ncol(df)) {     print(mean(df[, i])) }</td>
+<td headers="time" class="gt_row gt_right">3379400</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">apply(df, 2, mean)</td>
+<td headers="time" class="gt_row gt_right">4777800</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">for (i in 1:ncol(df)) {     print(mean(df[, i])) }</td>
+<td headers="time" class="gt_row gt_right">3982200</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">apply(df, 2, mean)</td>
+<td headers="time" class="gt_row gt_right">5099100</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">for (i in 1:ncol(df)) {     print(mean(df[, i])) }</td>
+<td headers="time" class="gt_row gt_right">4138500</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">apply(df, 2, mean)</td>
+<td headers="time" class="gt_row gt_right">10823300</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">for (i in 1:ncol(df)) {     print(mean(df[, i])) }</td>
+<td headers="time" class="gt_row gt_right">4245900</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">apply(df, 2, mean)</td>
+<td headers="time" class="gt_row gt_right">4809400</td></tr>
+    <tr><td headers="expr" class="gt_row gt_center">apply(df, 2, mean)</td>
+<td headers="time" class="gt_row gt_right">4412600</td></tr>
+  </tbody>
+  
+  
+</table>
+</div>
+</div>
+</div>
+</section>
 </section>
 <section id="exercises" class="level2">
 <h2 class="anchored" data-anchor-id="exercises">Exercises</h2>

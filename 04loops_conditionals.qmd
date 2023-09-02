@@ -105,13 +105,19 @@ for (i in 1:length(object)) {
 
 ```
 
-Now each `i` is a number from 1 to thew length of `object` and we access each element of `object` by using a proper (`ith`) index. Which way of running a for loop you choose might depend on the context. looping explicitly over elements of an object rather than indexes can be more intuitive but imagine you don't want to do something to every element of an object but only to to a subset (e.g. from 3rd onwards). Doing it with indexes is easier. Generally the best approach is to think what you need first and code second, not the other way around.
+Now each `i` is a number from 1 to thew length of `object` and we access each element of `object` by using a proper (`ith`) index. Which way of running a for loop you choose might depend on the context. looping explicitly over elements of an object rather than indexes can be more intuitive but imagine you don't want to do something to every element of an object but only to to a subset (e.g. from 3rd inwards). Doing it with indexes is easier. Generally the best approach is to think what you need first and write code code second, not the other way around.
+
+```{r}
+library(microbenchmark)
+
+
+```
 
 ### While loops
 
-While loops will keep executing a given chunk of code as long as some condition is met.
+While loops will keep executing a given chunk of code as long as some condition is met. They aren't very common in R, at least not until you start building your own algorithms or simulations from scratch. However, it's worth knowing what they are in case you encounter them.
 
-We can use a while loop to make a very simple simulation. Lets say we want to see how temperatures change from a given temperature (lets say 20 degrees Celsius) across time and that we represent time by some random change from each previous temperature. We can create a vector with such predicted temperatures and see how long it takes for it to reach a certain level (lets say 30 degrees Celsius). We represent the change by adding a random value from a normal distribution with mean = .05 and standard deviation = .5 (this is what the `rnorm(1,.05,.5)` does). The while loop would look something like this. We first create the initial value and a vector to store all temperatures and next we keep adding the random value to our temperature and storing all temperatures until it reaches 30. The last line tells R to plot all the temperatures as a line plot. This is of course a very, very very simplistic simulation (temperatures don't change in such a simple way) but it works to show you the idea behind while loops. We can then calculate e.g. how long it took for the temperature to reach a certain level.
+We can use a while loop to make a very simple simulation. Lets say we want to see how temperatures change from a given temperature (lets say 20 degrees Celsius) across time and that we represent time by some random change from each previous temperature. We can create a vector with such predicted temperatures and see how long it takes for it to reach a certain level (lets say 30 degrees Celsius). We represent the change by adding a random value from a normal distribution with mean = .05 and standard deviation = .5 (this is what the `rnorm(1,.05,.5)` does). The while loop would look something like this: We first create the initial value and a vector to store all temperatures and next we keep adding the random value to our temperature and storing all temperatures until it reaches 30. The last line tells R to plot all the temperatures as a line plot. This is of course a very, very, very simplistic simulation (temperatures don't change in such a simple way) but it works to show you the idea behind while loops. We can then calculate e.g. how long it took for the temperature to reach a certain level.
 
 ```{r}
 C <- 20
@@ -144,7 +150,7 @@ The reason why this is a whole family of functions is that you can iterate in va
 
 Lets see some of these in action.
 
-Example 1:
+### Example 1:
 
 Imagine you are working with a list in R. You want to get information on how many elements each object in the list has. `sapply` makes it very easy:
 
@@ -158,7 +164,7 @@ my_list <- list(
 sapply(my_list, length)
 ```
 
-Example 2:
+### Example 2:
 
 There is a dataset available in R on airquality in New York City called `airquality`. It stores information on ozone, sun, wind and temperature from 5 months One of the things that might be of interest when looking at the dataset is what was the average value of each of the variables informing on airquality:
 
@@ -173,6 +179,27 @@ Notice that the means calculated above are global means from the entire dataset.
 
 ```{r}
 apply(d[,1:4], 2, function(x) tapply(x, d$Month, mean))
+```
+
+One important thing about apply functions is that they are generally faster than explicit for loops. Same thing goes for vectorized code as well - it's faster than a for loop. We can make a simple comparison by using the `microbenchmark` package to make the same thing with a for loop and `apply()` function.
+
+```{r include=FALSE}
+library(microbenchmark)
+N <- 100000
+v1 <- rnorm(N, 0, 3)
+v2 <- rnorm(N, 1, 2)
+v3 <- rnorm(N, -1, 2)
+df <- data.frame(v1,v2,v3)
+
+bench <- microbenchmark(for(i in 1:ncol(df)) {print(mean(df[, i]))}, apply(df, 2, mean))
+
+```
+
+Now if we look at the results:
+
+```{r}
+
+bench |> gt::gt()
 ```
 
 ## Exercises
