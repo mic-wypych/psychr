@@ -1,28 +1,75 @@
 ---
 title: "data wrangling"
+author: "Michał Wypych"
 ---
 
 # Data wrangling
 
-Now that we have our dataset loaded we can finally get to work with it!
+Now that we have our dataset loaded we can finally get to work with it! We'll start with the basics of data wrangling: subsetting datasets, sorting variables, changing variables and getting basic summaries. These are the standard things that you might want to do before any statistical modelling.
 
 ## Tidyverse
 
-We'll be working within Tidyverse throughout this course.
+For data wrangling we'll be working within `tidyverse` throughout this course. `Tidyverse` is a set of packages designed for working with data in a clean, readable way. A huge advantage (apart from readability) is that all packages in `tidyverse` are designed to be compatible with each other and share common "grammar" and way of doing things. This way it is easy to combine them to do a lot of different things with your data. We've already met one package from this collection: `readr`. Other packages include:
 
--Explain what tidyverse is
+-   `dplyr`: package for data wrangling. We'll focus on it in this class
 
--How each package functions within tidyverse
+-   `tidyr`: package for tidying data and reshaping it. We'll look at it in the next class
 
-For now we'll focus on dplyr.
+-   `ggplot2`: the go to package for data visualization in R. Absolutely the best of the best when it comes to plotting.
+
+-   `forcats`: package for working with factors
+
+-   `strings`: package for working with text data
+
+-   `purrr`: functional programming stuff in R like easier iteration within tidyverse
+
+-   `tibble`: package that introduces slightly altered data frames
+
+`Tidyverse` is not the only way in R for data wrangling (other package often used is `data.table`, a new alternative is `polars`). If you don't want additional packages you don't even need them, you can do almost everything in base R if you want to. So why choose `tidyverse`? First of all it's extremely intuitive. Writing and reading code in `tidyverse` feels almost like writing plain text of what you want to do with your data. Thanks to pipes it also made code much more readable (more on that in a moment although there are now pipe alternatives). One downside of `tidyverse` is that it is significantly slower than other packages. If speed is paramount you might want to consider switching to `data.table` or `polars`.
 
 ## The pipe
 
--What is the pipe, why it's useful
+So far if we wanted to use multiple functions in a single call we had to wrap one function inside another e.g. if we wanted to take a list of vectors, calculate the mean of each vector and then find out the highest mean we could do something like this:
 
--Native pipe alternative
+```{r}
+max(sapply(list(c(1,2,3), c(4,5,6), c(6,7,8)), mean))
+
+```
+
+It's not the easiest code to read, right? When combining functions this way you need to read them inside out. This is not how people read. It would e much easier if we could read code more linearly e.g. from left to right and top to bottom. Enter the pipe! The pipe operator allows you to chain together functions in a readable way. The basic idea (there's more to pipes though) is to take what is on the left hand side of the pipe and pass it as the first argument of whatever is on the right hand side of the pipe. This changes the inside-out into left-to-right code. There are 2 pipes in R. The first one comes from the `magrittr` package and this is the one used in `tidyvese`. This pipe looks like this: `%>%`. If we wanted to rewrite the code above using this pipe it would look like this:
+
+```{r}
+library(magrittr)
+
+list(c(1,2,3), c(4,5,6), c(6,7,8)) %>%
+  sapply(mean) %>%
+  max()
+  
+```
+
+It's much easier to understand what this code does right? An alternative introduced in R 4.1 is the native pipe: `|>`. The basic functionality is pretty much the same as in the `magrittr` pipe but you don't need to load any packages to use it (you might need to enable native pipe in the global options in Tools bar in RStudio). The same code as above but with native pipe looks like this:
+
+```{r}
+list(c(1,2,3), c(4,5,6), c(6,7,8)) |>
+  sapply(mean) |>
+  max()
+```
+
+You might wonder why have two kinds of pipes one of which needs loading a new package? The first reason is very simple: `magrittr` pipe is older. There are however a few differences. You can read about the details [here](https://www.tidyverse.org/blog/2023/04/base-vs-magrittr-pipe/). Remember that pipe automatically passes what is on the left as the first argument to whatever is on the right of the pipe? What if you need to pass it not as the first but second or third argument? Both pipe operators have a placeholder argument that can be used in such situations. `%>%` has the `.` operator and `|>` has `_`. The difference between them is that `_` can only be used once and has to be used with named arguments. Here's an example of how placeholder argument can work: `append()` allows you to join two vectors together. The vector passed as the second argument is appended to the one passed as the first argument:
+
+```{r}
+x <- c(1,2,3)
+y <- c(4,5,6)
+x %>%
+  append(y, .)
+  
+```
+
+Generally, the differences boil down to simplicity: native pipe was deliberately created to be a simpler operator with less functionality. Most of the time you won't notice much difference (maybe except for how the placeholder argument works).
 
 ## The basic dplyr function
+
+Now we can get to the basics of data wrangling in `dplyr` package.
 
 -Filter
 
@@ -43,5 +90,7 @@ For now we'll focus on dplyr.
 This already gives us the ability to anwser a number of questions that might be very interesting for analysis.
 
 ## Base R alternatives
+
+This is an optional section that explains how to do all of the above without using `tidyverse`.
 
 -make this section optional: if you want to see how to achieve similar things but without using tiduverse
