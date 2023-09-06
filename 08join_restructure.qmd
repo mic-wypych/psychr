@@ -10,9 +10,9 @@ title: "restructuring_and_joining_data"
 
 ## Joining data
 
--Different types of joins
+-Different types of joins: inner, left, right, full, semi, anti
 
--Gotchas in joins
+-Gotchas in joins: duplicated values
 
 ## Pivoting data
 

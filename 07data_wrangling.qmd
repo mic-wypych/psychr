@@ -69,28 +69,198 @@ Generally, the differences boil down to simplicity: native pipe was deliberately
 
 ## The basic dplyr function
 
-Now we can get to the basics of data wrangling in `dplyr` package.
+Now we can get to the basics of data wrangling in `dplyr` package. We'll look at the storms dataset in the `dplyr` package. It stores information on date, place, status and some other things about storms from 1975 to 2021. The dataset stores multiple observations from each storm because measurements were made every few hours. Before we move one to working with data lets introduce one function: `glimpse()`. It's a bit like `str()` but is a bit more readable for dataframes. This function can give you a concise look at what variables you have in your dataset. Lets load `tidyverse`, our dataset and look at it:
 
--Filter
+```{r}
+library(tidyverse)
+data("storms")
 
--Select
+glimpse(storms)
+```
 
--Mutate
+The dataset has 19066 rows and 13 columns. We can also see that we have various types of variables: many numeric, one factor and one character.
 
--Summarise
+### Subsetting
 
--Group by
+You can subset a dataframe either by columns or by rows. If you want to extract a subset of rows based on some logical conditions you can use `filter()`. Lets say we want only storms from 2020:
 
--Arrange
+```{r}
+storms %>%
+  filter(year == 2020)
+```
+
+We can also filter based on multiple conditions. This works exactly like all the logical operations we've seen previously. One difference is that you can use `,` instead of `&`. Lets say we want to get all storms from June 2020:
+
+```{r}
+storms %>%
+  filter(year == 2020, month == 6)
+```
+
+There were 57 storms recorded in June 2020.
+
+If you want to select only certain columns from a dataset you can use `select()`. E.g. if we want only the name, latitude and longitude of the storm we can do it like this:
+
+```{r}
+storms %>%
+  select(name, lat, long)
+```
+
+If you want to select a range of columns you can use `:`
+
+```{r}
+storms %>%
+  select(year:hour)
+```
+
+A particular situation in which you might want to subset a dataset is to get the rows with highest/lowest values of a variable, get the first/last rows or draw a random sample from the dataset. All of these can be achieved by different versions of `slice()`. `slice_sample()` will draw a random sample from the dataset (either by number or proportion). You can also specify if you want to draw with replacements:
+
+```{r}
+storms %>%
+  slice_sample(n = 100)
+```
+
+`slice_min()` and `slice_max()` allow you to get rows with highest values on a variable.
+
+```{r}
+storms %>%
+  slice_max(wind, n = 10)
+```
+
+Finally `slice_head()` and `slice_tail()` allow you to get n first or last rows from a dataset.
+
+```{r}
+storms %>%
+  slice_head(n = 5)
+```
+
+One last thing about filtering. Sometimes you want to filter all unique values of a variable. In order to do it you can use `distinct()`. It will extract all unique values of a variable. By default it will return only the column with distinct values and drop all the other columns from the dataframe. If you want to keep all the other variables (though remember that it will probably keep only the first entry for each unique value!) you can set the `.keep_all` argument to `TRUE`.
+
+```{r}
+storms %>%
+  distinct(category)
+```
+
+### Sorting
+
+Sorting datasets based on variables is super simple. You can use the `arrange()` function and if you need to sort in descending order use `desc()` inside it. Lets say we want to find the storm with the strongest wind:
+
+```{r}
+storms %>%
+  arrange(desc(wind))
+```
+
+Looks like Allen from 1980 was the strongest storm.
+
+### Counting
+
+Counting values in variables is very simple, just use `count()`. One thing to remember is that `count()` will returned a different dataframe. Unless you specify anything additional it will return a dataframe with 2 columns: one will contain all unique values of the variable you counted and the other one, named `n` will contain their counts (you can specify the `name` variable to change that to something else). Setting `sort` argument to `TRUE` will sort the counts in descending order. E.g. if we want to find out which year had the most measurements of storms (and not the number of storms! Remember that each row is 1 measurement of 1 storm) we can do it with:
+
+```{r}
+storms %>%
+  count(year, sort = TRUE)
+  
+```
+
+### Changing variables
+
+A common task when wrangling data is creating new variables in an already existing dataset. You can do it by using `mutate()`. Lets say we want to create a new variable that stores information on whether the storm was during summer (June, July, August) or not:
+
+```{r}
+storms %>%
+  mutate(summer = ifelse(month == 6 | month == 7 | month == 8, TRUE, FALSE))
+```
+
+Remember that if you want to keep the variable you need to assign the new dataset to an object.
+
+### Summaries
+
+Another extremely common task is to get summaries about our dataset. We can do it with `summarise()` function. e.g. what if we want to see the mean and standard deviation of strength of wind (for now across all measurements):
+
+```{r}
+storms %>%
+  summarise(mean_wind = mean(wind, na.rm = T),
+            sd_wind = sd(wind, na.rm = T))
+```
+
+Notice that the shape of the dataset has changed now. The columns are now the summaries and not the original variables.
+
+### Grouping rows 
+
+So far we have been calculating things on entire datasets. In many situations you want to calculate something separately for each level of a categorical variable (much like `tapply()` earlier). To group a dataset we can use `group_by()`. You can also group by multiple variables at once by separating them by a coma. R will group by the first variable and then by the second etc. This is especially useful for creating summaries. E.g. if we want to get average wind speed for each storm we can easily do it:
+
+```{r}
+storms %>%
+  group_by(name) %>%
+  summarise(mean_wind = mean(wind, na.rm = T))
+```
+
+Similarly if we want to calculate average wind speed from all measurements for each year and month:
+
+```{r}
+storms %>%
+  group_by(year, month) %>%
+  summarise(mean_wind = mean(wind, na.rm = T))
+```
+
+Actually the `summarise()` function has its own argument for calculating grouped summaries. You can specify `.by` argument inside the `summarise()` function. If you use `group_by()` then `summarise()` will by default drop the last level of grouping.
+
+One more important thing about the `group_by()` function is that it works by adding an attribute to the dataframe. This means that after a `group_by()` all subsequent operations will be conducted on the grouped dataframe. E.g. if you sort after grouping then sorting will be conducted within each group separately. You can drop the grouping with `ungroup()`. There is one last special kind of grouping you might want to use - sometimes you want to perform some operation separately on each row (e.g. calculate the average of a multi item scale for each participant). You can do it with `rowwise()`.
+
+### calculating across columns
+
+There are situations when you want to perform the same operation on multiple columns (e.g. calculate the mean and standard deviation of multiple variables). You can do it by hand but this can be tedious. To simplify it you can use `across()` inside `mutate()` or `summarise()`. the syntax of `across()` is as follows: the first argument, `.cols` specifies which columns to perform operations on. The second argument `.fns` specifies which functions to apply. You have to provide it a list of functions (preferably named list) or a formula. Finally the `.names` argument specifies how to automatically assign new variable names. E.g. "{.col}\_{.fn}" will create variables with column name, underscore and function name (that's why named list is useful here). If we want to get the mean and standard deviation of wind speed and pressure in each category of storms we could do it in a few lines of code (by the way, notice how `group_by()` by default includes `NA` as a separate category):
+
+```{r}
+storms %>%
+  group_by(category) %>%
+  summarise(across(.cols = c("wind", "pressure"), .fns = list(mean = mean, sd = sd), .names = "{.col}_{.fn}"))
+```
+
+### Helper verbs
+
+One more useful thing for data wrangling is a set of functions making it easier to select multiple columns based on some condition. There are a few helper functions you can use to do that. They do basically what their names suggest. These verbs are as follows: `starts_with()`, `ends_with()` and `contains()`. This way you don't have to manually type all the names if they have something in common (e.g. they are items from the same scale so they are named \`\`scale_1, scale_2 etc.). E.g. lets say we want to get all the columns that end with "diameter":
+
+```{r}
+storms %>%
+  select(ends_with("diameter"))
+```
+
+Nice! These verbs also work nicely inside `across()`. One thing to be aware of: if no column matches what you ask for you won't get an error but a dataframe with all the rows but 0 columns:
+
+```{r}
+storms %>%
+  select(contains("some_weird_name"))
+```
 
 ## Combining functions together
 
--Chaining functions together with pipes
+Where `tidyverse` really shines is in combining multiple functions together with pipes. Through different orders of the functions described above we can get a ton of things out of our dataset. This already gives us the ability to anwser a number of questions that might be very interesting for analysis.
 
-This already gives us the ability to anwser a number of questions that might be very interesting for analysis.
+-   Example 1: Lets say we want to find out the name of storm from each category that had the highest average pressure in 1989.
 
-## Base R alternatives
+    ```{r}
+    storms %>%
+      filter(year == 1989) %>%
+      group_by(category, name) %>%
+      summarise(mean_pressure = mean(pressure, na.rm = T)) %>%
+      slice_max(mean_pressure, n = 1)
+    ```
 
-This is an optional section that explains how to do all of the above without using `tidyverse`.
+-   Example 2: Lets say we want to find the average wind speed at each hour of the day but we want that in kilometers per hours rather than knots (as is in the database). 1 knot is around 1.852 km/h.
 
--make this section optional: if you want to see how to achieve similar things but without using tiduverse
+    ```{r}
+    storms %>%
+      mutate(wind_km = wind*1.852) %>%
+      group_by(hour) %>%
+      summarise(mean_wind_km = mean(wind, na.rm = T))
+    ```
+
+## Exercises
+
+Throughout the exercises you'll still work with the `storms` dataset
+
+-   Find out which year had the most storms (remember that each row is 1 measurement of 1 storm. You have to find the year with the most storms and not the most measurements!)
+
+-   Find the average wind speed for each storm in 2018 and then sort from the highest to the lowest.
+
+-   Calculate the mean and standard deviation of measurement pressure for each month of the year

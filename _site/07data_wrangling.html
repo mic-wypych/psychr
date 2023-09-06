@@ -2,10 +2,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.2.335">
+<meta name="generator" content="quarto-1.3.340">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Michał Wypych">
 
 <title>r_website - data wrangling</title>
 <style>
@@ -17,8 +18,42 @@ div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
   width: 0.8em;
-  margin: 0 0.8em 0.2em -1.6em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -74,109 +109,109 @@ ul.task-list li input[type="checkbox"] {
     <span class="navbar-title">r_website</span>
     </a>
   </div>
+            <div id="quarto-search" class="" title="Search"></div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./index.html">
+    <a class="nav-link" href="./index.html" rel="" target="">
  <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-basics" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-basics" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
  <span class="menu-text">Basics</span>
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-basics">    
         <li>
-    <a class="dropdown-item" href="./01r_intro.html">
+    <a class="dropdown-item" href="./01r_intro.html" rel="" target="">
  <span class="dropdown-text">Introduction</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./02basic_data.html">
+    <a class="dropdown-item" href="./02basic_data.html" rel="" target="">
  <span class="dropdown-text">Basic data</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./03data_types.html">
+    <a class="dropdown-item" href="./03data_types.html" rel="" target="">
  <span class="dropdown-text">Data types</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./04loops_conditionals.html">
+    <a class="dropdown-item" href="./04loops_conditionals.html" rel="" target="">
  <span class="dropdown-text">Loops and conditionals</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./05functions.html">
+    <a class="dropdown-item" href="./05functions.html" rel="" target="">
  <span class="dropdown-text">Functions</span></a>
   </li>  
     </ul>
   </li>
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-working-with-data" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-working-with-data" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
  <span class="menu-text">Working with data</span>
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-working-with-data">    
         <li>
-    <a class="dropdown-item" href="./06loading_data.html">
+    <a class="dropdown-item" href="./06loading_data.html" rel="" target="">
  <span class="dropdown-text">Loading data</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./07data_wrangling.html">
+    <a class="dropdown-item" href="./07data_wrangling.html" rel="" target="">
  <span class="dropdown-text">Data wrangling</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./08join_restructure.html">
+    <a class="dropdown-item" href="./08join_restructure.html" rel="" target="">
  <span class="dropdown-text">Joining and restructuring data</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./09data_viz_1.html">
+    <a class="dropdown-item" href="./09data_viz_1.html" rel="" target="">
  <span class="dropdown-text">Vizualization vol 1</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./10data_viz_2.html">
+    <a class="dropdown-item" href="./10data_viz_2.html" rel="" target="">
  <span class="dropdown-text">Vizualization vol 2</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./11organizingwork.html">
+    <a class="dropdown-item" href="./11organizingwork.html" rel="" target="">
  <span class="dropdown-text">organizing work</span></a>
   </li>  
     </ul>
   </li>
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-statistics" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-statistics" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
  <span class="menu-text">Statistics</span>
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-statistics">    
         <li>
-    <a class="dropdown-item" href="./12eda.html">
+    <a class="dropdown-item" href="./12eda.html" rel="" target="">
  <span class="dropdown-text">Exploratory analysis</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./13t-tests.html">
+    <a class="dropdown-item" href="./13t-tests.html" rel="" target="">
  <span class="dropdown-text">T tests</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./14anova.html">
+    <a class="dropdown-item" href="./14anova.html" rel="" target="">
  <span class="dropdown-text">Anovas</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./15correlations.html">
+    <a class="dropdown-item" href="./15correlations.html" rel="" target="">
  <span class="dropdown-text">Correlations</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./16regression.html">
+    <a class="dropdown-item" href="./16regression.html" rel="" target="">
  <span class="dropdown-text">Regression</span></a>
   </li>  
     </ul>
   </li>
 </ul>
-              <div class="quarto-toggle-container">
-                  <a href="" class="quarto-reader-toggle nav-link" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+            <div class="quarto-navbar-tools ms-auto">
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
   <div class="quarto-reader-toggle-btn">
   <i class="bi"></i>
   </div>
 </a>
-              </div>
-              <div id="quarto-search" class="" title="Search"></div>
+</div>
           </div> <!-- /navcollapse -->
       </div> <!-- /container-fluid -->
     </nav>
@@ -194,9 +229,19 @@ ul.task-list li input[type="checkbox"] {
   <ul class="collapse">
   <li><a href="#tidyverse" id="toc-tidyverse" class="nav-link" data-scroll-target="#tidyverse">Tidyverse</a></li>
   <li><a href="#the-pipe" id="toc-the-pipe" class="nav-link" data-scroll-target="#the-pipe">The pipe</a></li>
-  <li><a href="#the-basic-dplyr-function" id="toc-the-basic-dplyr-function" class="nav-link" data-scroll-target="#the-basic-dplyr-function">The basic dplyr function</a></li>
+  <li><a href="#the-basic-dplyr-function" id="toc-the-basic-dplyr-function" class="nav-link" data-scroll-target="#the-basic-dplyr-function">The basic dplyr function</a>
+  <ul class="collapse">
+  <li><a href="#subsetting" id="toc-subsetting" class="nav-link" data-scroll-target="#subsetting">Subsetting</a></li>
+  <li><a href="#sorting" id="toc-sorting" class="nav-link" data-scroll-target="#sorting">Sorting</a></li>
+  <li><a href="#counting" id="toc-counting" class="nav-link" data-scroll-target="#counting">Counting</a></li>
+  <li><a href="#changing-variables" id="toc-changing-variables" class="nav-link" data-scroll-target="#changing-variables">Changing variables</a></li>
+  <li><a href="#summaries" id="toc-summaries" class="nav-link" data-scroll-target="#summaries">Summaries</a></li>
+  <li><a href="#grouping-rows" id="toc-grouping-rows" class="nav-link" data-scroll-target="#grouping-rows">Grouping rows</a></li>
+  <li><a href="#calculating-across-columns" id="toc-calculating-across-columns" class="nav-link" data-scroll-target="#calculating-across-columns">calculating across columns</a></li>
+  <li><a href="#helper-verbs" id="toc-helper-verbs" class="nav-link" data-scroll-target="#helper-verbs">Helper verbs</a></li>
+  </ul></li>
   <li><a href="#combining-functions-together" id="toc-combining-functions-together" class="nav-link" data-scroll-target="#combining-functions-together">Combining functions together</a></li>
-  <li><a href="#base-r-alternatives" id="toc-base-r-alternatives" class="nav-link" data-scroll-target="#base-r-alternatives">Base R alternatives</a></li>
+  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises">Exercises</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -213,6 +258,12 @@ ul.task-list li input[type="checkbox"] {
 
 <div class="quarto-title-meta">
 
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Michał Wypych </p>
+          </div>
+  </div>
     
   
     
@@ -223,36 +274,536 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="data-wrangling" class="level1">
 <h1>Data wrangling</h1>
-<p>Now that we have our dataset loaded we can finally get to work with it!</p>
+<p>Now that we have our dataset loaded we can finally get to work with it! We’ll start with the basics of data wrangling: subsetting datasets, sorting variables, changing variables and getting basic summaries. These are the standard things that you might want to do before any statistical modelling.</p>
 <section id="tidyverse" class="level2">
 <h2 class="anchored" data-anchor-id="tidyverse">Tidyverse</h2>
-<p>We’ll be working within Tidyverse throughout this course.</p>
-<p>-Explain what tidyverse is</p>
-<p>-How each package functions within tidyverse</p>
-<p>For now we’ll focus on dplyr.</p>
+<p>For data wrangling we’ll be working within <code>tidyverse</code> throughout this course. <code>Tidyverse</code> is a set of packages designed for working with data in a clean, readable way. A huge advantage (apart from readability) is that all packages in <code>tidyverse</code> are designed to be compatible with each other and share common “grammar” and way of doing things. This way it is easy to combine them to do a lot of different things with your data. We’ve already met one package from this collection: <code>readr</code>. Other packages include:</p>
+<ul>
+<li><p><code>dplyr</code>: package for data wrangling. We’ll focus on it in this class</p></li>
+<li><p><code>tidyr</code>: package for tidying data and reshaping it. We’ll look at it in the next class</p></li>
+<li><p><code>ggplot2</code>: the go to package for data visualization in R. Absolutely the best of the best when it comes to plotting.</p></li>
+<li><p><code>forcats</code>: package for working with factors</p></li>
+<li><p><code>strings</code>: package for working with text data</p></li>
+<li><p><code>purrr</code>: functional programming stuff in R like easier iteration within tidyverse</p></li>
+<li><p><code>tibble</code>: package that introduces slightly altered data frames</p></li>
+</ul>
+<p><code>Tidyverse</code> is not the only way in R for data wrangling (other package often used is <code>data.table</code>, a new alternative is <code>polars</code>). If you don’t want additional packages you don’t even need them, you can do almost everything in base R if you want to. So why choose <code>tidyverse</code>? First of all it’s extremely intuitive. Writing and reading code in <code>tidyverse</code> feels almost like writing plain text of what you want to do with your data. Thanks to pipes it also made code much more readable (more on that in a moment although there are now pipe alternatives). One downside of <code>tidyverse</code> is that it is significantly slower than other packages. If speed is paramount you might want to consider switching to <code>data.table</code> or <code>polars</code>.</p>
 </section>
 <section id="the-pipe" class="level2">
 <h2 class="anchored" data-anchor-id="the-pipe">The pipe</h2>
-<p>-What is the pipe, why it’s useful</p>
-<p>-Native pipe alternative</p>
+<p>So far if we wanted to use multiple functions in a single call we had to wrap one function inside another e.g.&nbsp;if we wanted to take a list of vectors, calculate the mean of each vector and then find out the highest mean we could do something like this:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">max</span>(<span class="fu">sapply</span>(<span class="fu">list</span>(<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>), <span class="fu">c</span>(<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>), <span class="fu">c</span>(<span class="dv">6</span>,<span class="dv">7</span>,<span class="dv">8</span>)), mean))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 7</code></pre>
+</div>
+</div>
+<p>It’s not the easiest code to read, right? When combining functions this way you need to read them inside out. This is not how people read. It would e much easier if we could read code more linearly e.g.&nbsp;from left to right and top to bottom. Enter the pipe! The pipe operator allows you to chain together functions in a readable way. The basic idea (there’s more to pipes though) is to take what is on the left hand side of the pipe and pass it as the first argument of whatever is on the right hand side of the pipe. This changes the inside-out into left-to-right code. There are 2 pipes in R. The first one comes from the <code>magrittr</code> package and this is the one used in <code>tidyvese</code>. This pipe looks like this: <code>%&gt;%</code>. If we wanted to rewrite the code above using this pipe it would look like this:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(magrittr)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">list</span>(<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>), <span class="fu">c</span>(<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>), <span class="fu">c</span>(<span class="dv">6</span>,<span class="dv">7</span>,<span class="dv">8</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sapply</span>(mean) <span class="sc">%&gt;%</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">max</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 7</code></pre>
+</div>
+</div>
+<p>It’s much easier to understand what this code does right? An alternative introduced in R 4.1 is the native pipe: <code>|&gt;</code>. The basic functionality is pretty much the same as in the <code>magrittr</code> pipe but you don’t need to load any packages to use it (you might need to enable native pipe in the global options in Tools bar in RStudio). The same code as above but with native pipe looks like this:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">list</span>(<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>), <span class="fu">c</span>(<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>), <span class="fu">c</span>(<span class="dv">6</span>,<span class="dv">7</span>,<span class="dv">8</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sapply</span>(mean) <span class="sc">|&gt;</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">max</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 7</code></pre>
+</div>
+</div>
+<p>You might wonder why have two kinds of pipes one of which needs loading a new package? The first reason is very simple: <code>magrittr</code> pipe is older. There are however a few differences. You can read about the details <a href="https://www.tidyverse.org/blog/2023/04/base-vs-magrittr-pipe/">here</a>. Remember that pipe automatically passes what is on the left as the first argument to whatever is on the right of the pipe? What if you need to pass it not as the first but second or third argument? Both pipe operators have a placeholder argument that can be used in such situations. <code>%&gt;%</code> has the <code>.</code> operator and <code>|&gt;</code> has <code>_</code>. The difference between them is that <code>_</code> can only be used once and has to be used with named arguments. Here’s an example of how placeholder argument can work: <code>append()</code> allows you to join two vectors together. The vector passed as the second argument is appended to the one passed as the first argument:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>x <span class="sc">%&gt;%</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">append</span>(y, .)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 4 5 6 1 2 3</code></pre>
+</div>
+</div>
+<p>Generally, the differences boil down to simplicity: native pipe was deliberately created to be a simpler operator with less functionality. Most of the time you won’t notice much difference (maybe except for how the placeholder argument works).</p>
 </section>
 <section id="the-basic-dplyr-function" class="level2">
 <h2 class="anchored" data-anchor-id="the-basic-dplyr-function">The basic dplyr function</h2>
-<p>-Filter</p>
-<p>-Select</p>
-<p>-Mutate</p>
-<p>-Summarise</p>
-<p>-Group by</p>
-<p>-Arrange</p>
+<p>Now we can get to the basics of data wrangling in <code>dplyr</code> package. We’ll look at the storms dataset in the <code>dplyr</code> package. It stores information on date, place, status and some other things about storms from 1975 to 2021. The dataset stores multiple observations from each storm because measurements were made every few hours. Before we move one to working with data lets introduce one function: <code>glimpse()</code>. It’s a bit like <code>str()</code> but is a bit more readable for dataframes. This function can give you a concise look at what variables you have in your dataset. Lets load <code>tidyverse</code>, our dataset and look at it:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+✔ dplyr     1.1.1     ✔ readr     2.1.4
+✔ forcats   1.0.0     ✔ stringr   1.5.0
+✔ ggplot2   3.4.2     ✔ tibble    3.2.1
+✔ lubridate 1.9.2     ✔ tidyr     1.3.0
+✔ purrr     1.0.1     
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ tidyr::extract()   masks magrittr::extract()
+✖ dplyr::filter()    masks stats::filter()
+✖ dplyr::lag()       masks stats::lag()
+✖ purrr::set_names() masks magrittr::set_names()
+ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">"storms"</span>)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(storms)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 19,066
+Columns: 13
+$ name                         &lt;chr&gt; "Amy", "Amy", "Amy", "Amy", "Amy", "Amy",…
+$ year                         &lt;dbl&gt; 1975, 1975, 1975, 1975, 1975, 1975, 1975,…
+$ month                        &lt;dbl&gt; 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6,…
+$ day                          &lt;int&gt; 27, 27, 27, 27, 28, 28, 28, 28, 29, 29, 2…
+$ hour                         &lt;dbl&gt; 0, 6, 12, 18, 0, 6, 12, 18, 0, 6, 12, 18,…
+$ lat                          &lt;dbl&gt; 27.5, 28.5, 29.5, 30.5, 31.5, 32.4, 33.3,…
+$ long                         &lt;dbl&gt; -79.0, -79.0, -79.0, -79.0, -78.8, -78.7,…
+$ status                       &lt;fct&gt; tropical depression, tropical depression,…
+$ category                     &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N…
+$ wind                         &lt;int&gt; 25, 25, 25, 25, 25, 25, 25, 30, 35, 40, 4…
+$ pressure                     &lt;int&gt; 1013, 1013, 1013, 1013, 1012, 1012, 1011,…
+$ tropicalstorm_force_diameter &lt;int&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N…
+$ hurricane_force_diameter     &lt;int&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N…</code></pre>
+</div>
+</div>
+<p>The dataset has 19066 rows and 13 columns. We can also see that we have various types of variables: many numeric, one factor and one character.</p>
+<section id="subsetting" class="level3">
+<h3 class="anchored" data-anchor-id="subsetting">Subsetting</h3>
+<p>You can subset a dataframe either by columns or by rows. If you want to extract a subset of rows based on some logical conditions you can use <code>filter()</code>. Lets say we want only storms from 2020:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>storms <span class="sc">%&gt;%</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2020</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 863 × 13
+   name    year month   day  hour   lat  long status     category  wind pressure
+   &lt;chr&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;fct&gt;         &lt;dbl&gt; &lt;int&gt;    &lt;int&gt;
+ 1 Arthur  2020     5    16    18  28   -78.7 tropical …       NA    30     1008
+ 2 Arthur  2020     5    17     0  28.9 -78   tropical …       NA    35     1006
+ 3 Arthur  2020     5    17     6  29.6 -77.6 tropical …       NA    35     1004
+ 4 Arthur  2020     5    17    12  30.3 -77.5 tropical …       NA    35     1003
+ 5 Arthur  2020     5    17    18  31   -77.3 tropical …       NA    40     1003
+ 6 Arthur  2020     5    18     0  31.9 -77   tropical …       NA    40     1003
+ 7 Arthur  2020     5    18     6  33.1 -76.7 tropical …       NA    40     1002
+ 8 Arthur  2020     5    18    12  34.4 -75.9 tropical …       NA    45     1000
+ 9 Arthur  2020     5    18    18  35.5 -74.7 tropical …       NA    45      993
+10 Arthur  2020     5    19     0  36.2 -73.1 tropical …       NA    50      991
+# ℹ 853 more rows
+# ℹ 2 more variables: tropicalstorm_force_diameter &lt;int&gt;,
+#   hurricane_force_diameter &lt;int&gt;</code></pre>
+</div>
+</div>
+<p>We can also filter based on multiple conditions. This works exactly like all the logical operations we’ve seen previously. One difference is that you can use <code>,</code> instead of <code>&amp;</code>. Lets say we want to get all storms from June 2020:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>storms <span class="sc">%&gt;%</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2020</span>, month <span class="sc">==</span> <span class="dv">6</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 57 × 13
+   name       year month   day  hour   lat  long status  category  wind pressure
+   &lt;chr&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;fct&gt;      &lt;dbl&gt; &lt;int&gt;    &lt;int&gt;
+ 1 Cristobal  2020     6     1    18  19.4 -90.9 tropic…       NA    25     1006
+ 2 Cristobal  2020     6     2     0  19.6 -91.6 tropic…       NA    25     1005
+ 3 Cristobal  2020     6     2     6  19.6 -92.1 tropic…       NA    30     1005
+ 4 Cristobal  2020     6     2    12  19.5 -92.5 tropic…       NA    35     1004
+ 5 Cristobal  2020     6     2    18  19.2 -92.6 tropic…       NA    40     1001
+ 6 Cristobal  2020     6     3     0  19   -92.5 tropic…       NA    45      996
+ 7 Cristobal  2020     6     3     6  18.9 -92.3 tropic…       NA    50      994
+ 8 Cristobal  2020     6     3    12  18.8 -92.2 tropic…       NA    50      993
+ 9 Cristobal  2020     6     3    13  18.7 -92.1 tropic…       NA    50      993
+10 Cristobal  2020     6     3    18  18.5 -91.9 tropic…       NA    45      994
+# ℹ 47 more rows
+# ℹ 2 more variables: tropicalstorm_force_diameter &lt;int&gt;,
+#   hurricane_force_diameter &lt;int&gt;</code></pre>
+</div>
+</div>
+<p>There were 57 storms recorded in June 2020.</p>
+<p>If you want to select only certain columns from a dataset you can use <code>select()</code>. E.g. if we want only the name, latitude and longitude of the storm we can do it like this:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>storms <span class="sc">%&gt;%</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(name, lat, long)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 19,066 × 3
+   name    lat  long
+   &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt;
+ 1 Amy    27.5 -79  
+ 2 Amy    28.5 -79  
+ 3 Amy    29.5 -79  
+ 4 Amy    30.5 -79  
+ 5 Amy    31.5 -78.8
+ 6 Amy    32.4 -78.7
+ 7 Amy    33.3 -78  
+ 8 Amy    34   -77  
+ 9 Amy    34.4 -75.8
+10 Amy    34   -74.8
+# ℹ 19,056 more rows</code></pre>
+</div>
+</div>
+<p>If you want to select a range of columns you can use <code>:</code></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>storms <span class="sc">%&gt;%</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(year<span class="sc">:</span>hour)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 19,066 × 4
+    year month   day  hour
+   &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt;
+ 1  1975     6    27     0
+ 2  1975     6    27     6
+ 3  1975     6    27    12
+ 4  1975     6    27    18
+ 5  1975     6    28     0
+ 6  1975     6    28     6
+ 7  1975     6    28    12
+ 8  1975     6    28    18
+ 9  1975     6    29     0
+10  1975     6    29     6
+# ℹ 19,056 more rows</code></pre>
+</div>
+</div>
+<p>A particular situation in which you might want to subset a dataset is to get the rows with highest/lowest values of a variable, get the first/last rows or draw a random sample from the dataset. All of these can be achieved by different versions of <code>slice()</code>. <code>slice_sample()</code> will draw a random sample from the dataset (either by number or proportion). You can also specify if you want to draw with replacements:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>storms <span class="sc">%&gt;%</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_sample</span>(<span class="at">n =</span> <span class="dv">100</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 100 × 13
+   name      year month   day  hour   lat  long status   category  wind pressure
+   &lt;chr&gt;    &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;fct&gt;       &lt;dbl&gt; &lt;int&gt;    &lt;int&gt;
+ 1 Nicholas  2003    10    21    12  18.7 -51   tropica…       NA    45     1000
+ 2 Barry     1983     8    29     0  25.5 -98.5 tropica…       NA    40      995
+ 3 Jose      2017     9    15     0  25.4 -67.6 tropica…       NA    60      988
+ 4 Olga      2019    10    25    12  24.7 -94.8 tropica…       NA    35     1004
+ 5 Luis      1995     9     7     6  21.3 -66   hurrica…        4   120      936
+ 6 Michael   2018    10    10    18  30.2 -85.4 hurrica…        4   135      920
+ 7 Emmy      1976     8    22    12  16.2 -56   tropica…       NA    35     1006
+ 8 Lili      2002    10     1     6  21   -82.2 hurrica…        1    75      970
+ 9 Georges   1998     9    28     0  29.3 -88.5 hurrica…        2    95      961
+10 Rina      2017    11     6     0  29.1 -51.2 tropica…       NA    30     1011
+# ℹ 90 more rows
+# ℹ 2 more variables: tropicalstorm_force_diameter &lt;int&gt;,
+#   hurricane_force_diameter &lt;int&gt;</code></pre>
+</div>
+</div>
+<p><code>slice_min()</code> and <code>slice_max()</code> allow you to get rows with highest values on a variable.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>storms <span class="sc">%&gt;%</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_max</span>(wind, <span class="at">n =</span> <span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 24 × 13
+   name     year month   day  hour   lat  long status    category  wind pressure
+   &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;fct&gt;        &lt;dbl&gt; &lt;int&gt;    &lt;int&gt;
+ 1 Allen    1980     8     7    18  21.8 -86.4 hurricane        5   165      899
+ 2 Gilbert  1988     9    14     0  19.7 -83.8 hurricane        5   160      888
+ 3 Wilma    2005    10    19    12  17.3 -82.8 hurricane        5   160      882
+ 4 Dorian   2019     9     1    16  26.5 -77   hurricane        5   160      910
+ 5 Dorian   2019     9     1    18  26.5 -77.1 hurricane        5   160      910
+ 6 Allen    1980     8     5    12  15.9 -70.5 hurricane        5   155      932
+ 7 Allen    1980     8     7    12  21   -84.8 hurricane        5   155      910
+ 8 Allen    1980     8     8     0  22.2 -87.9 hurricane        5   155      920
+ 9 Allen    1980     8     9     6  25   -94.2 hurricane        5   155      909
+10 Gilbert  1988     9    14     6  19.9 -85.3 hurricane        5   155      889
+# ℹ 14 more rows
+# ℹ 2 more variables: tropicalstorm_force_diameter &lt;int&gt;,
+#   hurricane_force_diameter &lt;int&gt;</code></pre>
+</div>
+</div>
+<p>Finally <code>slice_head()</code> and <code>slice_tail()</code> allow you to get n first or last rows from a dataset.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>storms <span class="sc">%&gt;%</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5 × 13
+  name   year month   day  hour   lat  long status       category  wind pressure
+  &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;fct&gt;           &lt;dbl&gt; &lt;int&gt;    &lt;int&gt;
+1 Amy    1975     6    27     0  27.5 -79   tropical de…       NA    25     1013
+2 Amy    1975     6    27     6  28.5 -79   tropical de…       NA    25     1013
+3 Amy    1975     6    27    12  29.5 -79   tropical de…       NA    25     1013
+4 Amy    1975     6    27    18  30.5 -79   tropical de…       NA    25     1013
+5 Amy    1975     6    28     0  31.5 -78.8 tropical de…       NA    25     1012
+# ℹ 2 more variables: tropicalstorm_force_diameter &lt;int&gt;,
+#   hurricane_force_diameter &lt;int&gt;</code></pre>
+</div>
+</div>
+<p>One last thing about filtering. Sometimes you want to filter all unique values of a variable. In order to do it you can use <code>distinct()</code>. It will extract all unique values of a variable. By default it will return only the column with distinct values and drop all the other columns from the dataframe. If you want to keep all the other variables (though remember that it will probably keep only the first entry for each unique value!) you can set the <code>.keep_all</code> argument to <code>TRUE</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>storms <span class="sc">%&gt;%</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(category)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 1
+  category
+     &lt;dbl&gt;
+1       NA
+2        1
+3        3
+4        2
+5        4
+6        5</code></pre>
+</div>
+</div>
+</section>
+<section id="sorting" class="level3">
+<h3 class="anchored" data-anchor-id="sorting">Sorting</h3>
+<p>Sorting datasets based on variables is super simple. You can use the <code>arrange()</code> function and if you need to sort in descending order use <code>desc()</code> inside it. Lets say we want to find the storm with the strongest wind:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>storms <span class="sc">%&gt;%</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(wind))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 19,066 × 13
+   name     year month   day  hour   lat  long status    category  wind pressure
+   &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;fct&gt;        &lt;dbl&gt; &lt;int&gt;    &lt;int&gt;
+ 1 Allen    1980     8     7    18  21.8 -86.4 hurricane        5   165      899
+ 2 Gilbert  1988     9    14     0  19.7 -83.8 hurricane        5   160      888
+ 3 Wilma    2005    10    19    12  17.3 -82.8 hurricane        5   160      882
+ 4 Dorian   2019     9     1    16  26.5 -77   hurricane        5   160      910
+ 5 Dorian   2019     9     1    18  26.5 -77.1 hurricane        5   160      910
+ 6 Allen    1980     8     5    12  15.9 -70.5 hurricane        5   155      932
+ 7 Allen    1980     8     7    12  21   -84.8 hurricane        5   155      910
+ 8 Allen    1980     8     8     0  22.2 -87.9 hurricane        5   155      920
+ 9 Allen    1980     8     9     6  25   -94.2 hurricane        5   155      909
+10 Gilbert  1988     9    14     6  19.9 -85.3 hurricane        5   155      889
+# ℹ 19,056 more rows
+# ℹ 2 more variables: tropicalstorm_force_diameter &lt;int&gt;,
+#   hurricane_force_diameter &lt;int&gt;</code></pre>
+</div>
+</div>
+<p>Looks like Allen from 1980 was the strongest storm.</p>
+</section>
+<section id="counting" class="level3">
+<h3 class="anchored" data-anchor-id="counting">Counting</h3>
+<p>Counting values in variables is very simple, just use <code>count()</code>. One thing to remember is that <code>count()</code> will returned a different dataframe. Unless you specify anything additional it will return a dataframe with 2 columns: one will contain all unique values of the variable you counted and the other one, named <code>n</code> will contain their counts (you can specify the <code>name</code> variable to change that to something else). Setting <code>sort</code> argument to <code>TRUE</code> will sort the counts in descending order. E.g. if we want to find out which year had the most measurements of storms (and not the number of storms! Remember that each row is 1 measurement of 1 storm) we can do it with:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>storms <span class="sc">%&gt;%</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(year, <span class="at">sort =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 47 × 2
+    year     n
+   &lt;dbl&gt; &lt;int&gt;
+ 1  2005   873
+ 2  2020   863
+ 3  1995   762
+ 4  2010   663
+ 5  2012   654
+ 6  2017   610
+ 7  2018   608
+ 8  2004   604
+ 9  2003   593
+10  2021   592
+# ℹ 37 more rows</code></pre>
+</div>
+</div>
+</section>
+<section id="changing-variables" class="level3">
+<h3 class="anchored" data-anchor-id="changing-variables">Changing variables</h3>
+<p>A common task when wrangling data is creating new variables in an already existing dataset. You can do it by using <code>mutate()</code>. Lets say we want to create a new variable that stores information on whether the storm was during summer (June, July, August) or not:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>storms <span class="sc">%&gt;%</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">summer =</span> <span class="fu">ifelse</span>(month <span class="sc">==</span> <span class="dv">6</span> <span class="sc">|</span> month <span class="sc">==</span> <span class="dv">7</span> <span class="sc">|</span> month <span class="sc">==</span> <span class="dv">8</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 19,066 × 14
+   name   year month   day  hour   lat  long status      category  wind pressure
+   &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;fct&gt;          &lt;dbl&gt; &lt;int&gt;    &lt;int&gt;
+ 1 Amy    1975     6    27     0  27.5 -79   tropical d…       NA    25     1013
+ 2 Amy    1975     6    27     6  28.5 -79   tropical d…       NA    25     1013
+ 3 Amy    1975     6    27    12  29.5 -79   tropical d…       NA    25     1013
+ 4 Amy    1975     6    27    18  30.5 -79   tropical d…       NA    25     1013
+ 5 Amy    1975     6    28     0  31.5 -78.8 tropical d…       NA    25     1012
+ 6 Amy    1975     6    28     6  32.4 -78.7 tropical d…       NA    25     1012
+ 7 Amy    1975     6    28    12  33.3 -78   tropical d…       NA    25     1011
+ 8 Amy    1975     6    28    18  34   -77   tropical d…       NA    30     1006
+ 9 Amy    1975     6    29     0  34.4 -75.8 tropical s…       NA    35     1004
+10 Amy    1975     6    29     6  34   -74.8 tropical s…       NA    40     1002
+# ℹ 19,056 more rows
+# ℹ 3 more variables: tropicalstorm_force_diameter &lt;int&gt;,
+#   hurricane_force_diameter &lt;int&gt;, summer &lt;lgl&gt;</code></pre>
+</div>
+</div>
+<p>Remember that if you want to keep the variable you need to assign the new dataset to an object.</p>
+</section>
+<section id="summaries" class="level3">
+<h3 class="anchored" data-anchor-id="summaries">Summaries</h3>
+<p>Another extremely common task is to get summaries about our dataset. We can do it with <code>summarise()</code> function. e.g.&nbsp;what if we want to see the mean and standard deviation of strength of wind (for now across all measurements):</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>storms <span class="sc">%&gt;%</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean_wind =</span> <span class="fu">mean</span>(wind, <span class="at">na.rm =</span> T),</span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>            <span class="at">sd_wind =</span> <span class="fu">sd</span>(wind, <span class="at">na.rm =</span> T))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 2
+  mean_wind sd_wind
+      &lt;dbl&gt;   &lt;dbl&gt;
+1      50.0    25.5</code></pre>
+</div>
+</div>
+<p>Notice that the shape of the dataset has changed now. The columns are now the summaries and not the original variables.</p>
+</section>
+<section id="grouping-rows" class="level3">
+<h3 class="anchored" data-anchor-id="grouping-rows">Grouping rows</h3>
+<p>So far we have been calculating things on entire datasets. In many situations you want to calculate something separately for each level of a categorical variable (much like <code>tapply()</code> earlier). To group a dataset we can use <code>group_by()</code>. You can also group by multiple variables at once by separating them by a coma. R will group by the first variable and then by the second etc. This is especially useful for creating summaries. E.g. if we want to get average wind speed for each storm we can easily do it:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>storms <span class="sc">%&gt;%</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(name) <span class="sc">%&gt;%</span></span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean_wind =</span> <span class="fu">mean</span>(wind, <span class="at">na.rm =</span> T))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 258 × 2
+   name     mean_wind
+   &lt;chr&gt;        &lt;dbl&gt;
+ 1 AL011993      29.5
+ 2 AL012000      25  
+ 3 AL021992      29  
+ 4 AL021994      24.2
+ 5 AL021999      28.8
+ 6 AL022000      29.2
+ 7 AL022001      25  
+ 8 AL022003      30  
+ 9 AL022006      31.5
+10 AL031987      21.2
+# ℹ 248 more rows</code></pre>
+</div>
+</div>
+<p>Similarly if we want to calculate average wind speed from all measurements for each year and month:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>storms <span class="sc">%&gt;%</span></span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(year, month) <span class="sc">%&gt;%</span></span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean_wind =</span> <span class="fu">mean</span>(wind, <span class="at">na.rm =</span> T))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`summarise()` has grouped output by 'year'. You can override using the
+`.groups` argument.</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 253 × 3
+# Groups:   year [47]
+    year month mean_wind
+   &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;
+ 1  1975     6      37.5
+ 2  1975     7      49.7
+ 3  1975     8      44.5
+ 4  1975     9      55.9
+ 5  1975    10      62.4
+ 6  1976     8      55.9
+ 7  1976     9      61.3
+ 8  1976    10      51.0
+ 9  1977     8      53  
+10  1977     9      50.6
+# ℹ 243 more rows</code></pre>
+</div>
+</div>
+<p>Actually the <code>summarise()</code> function has its own argument for calculating grouped summaries. You can specify <code>.by</code> argument inside the <code>summarise()</code> function. If you use <code>group_by()</code> then <code>summarise()</code> will by default drop the last level of grouping.</p>
+<p>One more important thing about the <code>group_by()</code> function is that it works by adding an attribute to the dataframe. This means that after a <code>group_by()</code> all subsequent operations will be conducted on the grouped dataframe. E.g. if you sort after grouping then sorting will be conducted within each group separately. You can drop the grouping with <code>ungroup()</code>. There is one last special kind of grouping you might want to use - sometimes you want to perform some operation separately on each row (e.g.&nbsp;calculate the average of a multi item scale for each participant). You can do it with <code>rowwise()</code>.</p>
+</section>
+<section id="calculating-across-columns" class="level3">
+<h3 class="anchored" data-anchor-id="calculating-across-columns">calculating across columns</h3>
+<p>There are situations when you want to perform the same operation on multiple columns (e.g.&nbsp;calculate the mean and standard deviation of multiple variables). You can do it by hand but this can be tedious. To simplify it you can use <code>across()</code> inside <code>mutate()</code> or <code>summarise()</code>. the syntax of <code>across()</code> is as follows: the first argument, <code>.cols</code> specifies which columns to perform operations on. The second argument <code>.fns</code> specifies which functions to apply. You have to provide it a list of functions (preferably named list) or a formula. Finally the <code>.names</code> argument specifies how to automatically assign new variable names. E.g. “{.col}_{.fn}” will create variables with column name, underscore and function name (that’s why named list is useful here). If we want to get the mean and standard deviation of wind speed and pressure in each category of storms we could do it in a few lines of code (by the way, notice how <code>group_by()</code> by default includes <code>NA</code> as a separate category):</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>storms <span class="sc">%&gt;%</span></span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(category) <span class="sc">%&gt;%</span></span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="fu">across</span>(<span class="at">.cols =</span> <span class="fu">c</span>(<span class="st">"wind"</span>, <span class="st">"pressure"</span>), <span class="at">.fns =</span> <span class="fu">list</span>(<span class="at">mean =</span> mean, <span class="at">sd =</span> sd), <span class="at">.names =</span> <span class="st">"{.col}_{.fn}"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 5
+  category wind_mean wind_sd pressure_mean pressure_sd
+     &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;         &lt;dbl&gt;       &lt;dbl&gt;
+1        1      71.0    5.55          981.        9.21
+2        2      89.5    3.77          967.        8.94
+3        3     104.     4.18          955.        8.91
+4        4     122.     6.39          940.        9.43
+5        5     147.     6.22          918.       12.0 
+6       NA      38.1   12.0          1002.        9.24</code></pre>
+</div>
+</div>
+</section>
+<section id="helper-verbs" class="level3">
+<h3 class="anchored" data-anchor-id="helper-verbs">Helper verbs</h3>
+<p>One more useful thing for data wrangling is a set of functions making it easier to select multiple columns based on some condition. There are a few helper functions you can use to do that. They do basically what their names suggest. These verbs are as follows: <code>starts_with()</code>, <code>ends_with()</code> and <code>contains()</code>. This way you don’t have to manually type all the names if they have something in common (e.g.&nbsp;they are items from the same scale so they are named ``scale_1, scale_2 etc.). E.g. lets say we want to get all the columns that end with “diameter”:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>storms <span class="sc">%&gt;%</span></span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="fu">ends_with</span>(<span class="st">"diameter"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 19,066 × 2
+   tropicalstorm_force_diameter hurricane_force_diameter
+                          &lt;int&gt;                    &lt;int&gt;
+ 1                           NA                       NA
+ 2                           NA                       NA
+ 3                           NA                       NA
+ 4                           NA                       NA
+ 5                           NA                       NA
+ 6                           NA                       NA
+ 7                           NA                       NA
+ 8                           NA                       NA
+ 9                           NA                       NA
+10                           NA                       NA
+# ℹ 19,056 more rows</code></pre>
+</div>
+</div>
+<p>Nice! These verbs also work nicely inside <code>across()</code>. One thing to be aware of: if no column matches what you ask for you won’t get an error but a dataframe with all the rows but 0 columns:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>storms <span class="sc">%&gt;%</span></span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="fu">contains</span>(<span class="st">"some_weird_name"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 19,066 × 0</code></pre>
+</div>
+</div>
+</section>
 </section>
 <section id="combining-functions-together" class="level2">
 <h2 class="anchored" data-anchor-id="combining-functions-together">Combining functions together</h2>
-<p>-Chaining functions together with pipes</p>
-<p>This already gives us the ability to anwser a number of questions that might be very interesting for analysis.</p>
+<p>Where <code>tidyverse</code> really shines is in combining multiple functions together with pipes. Through different orders of the functions described above we can get a ton of things out of our dataset. This already gives us the ability to anwser a number of questions that might be very interesting for analysis.</p>
+<ul>
+<li><p>Example 1: Lets say we want to find out the name of storm from each category that had the highest average pressure in 1989.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>storms <span class="sc">%&gt;%</span></span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">1989</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(category, name) <span class="sc">%&gt;%</span></span>
+<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean_pressure =</span> <span class="fu">mean</span>(pressure, <span class="at">na.rm =</span> T)) <span class="sc">%&gt;%</span></span>
+<span id="cb48-5"><a href="#cb48-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_max</span>(mean_pressure, <span class="at">n =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`summarise()` has grouped output by 'category'. You can override using the
+`.groups` argument.</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 3
+# Groups:   category [6]
+  category name      mean_pressure
+     &lt;dbl&gt; &lt;chr&gt;             &lt;dbl&gt;
+1        1 Chantal            987 
+2        2 Dean               972.
+3        3 Hugo               953.
+4        4 Gabrielle          943.
+5        5 Hugo               918 
+6       NA Barry             1012.</code></pre>
+</div>
+</div></li>
+<li><p>Example 2: Lets say we want to find the average wind speed at each hour of the day but we want that in kilometers per hours rather than knots (as is in the database). 1 knot is around 1.852 km/h.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>storms <span class="sc">%&gt;%</span></span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">wind_km =</span> wind<span class="sc">*</span><span class="fl">1.852</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(hour) <span class="sc">%&gt;%</span></span>
+<span id="cb51-4"><a href="#cb51-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean_wind_km =</span> <span class="fu">mean</span>(wind, <span class="at">na.rm =</span> T))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 24 × 2
+    hour mean_wind_km
+   &lt;dbl&gt;        &lt;dbl&gt;
+ 1     0         49.6
+ 2     1         76.2
+ 3     2         64.4
+ 4     3         76.7
+ 5     4         70.6
+ 6     5         76.2
+ 7     6         49.7
+ 8     7         80.8
+ 9     8         68.2
+10     9         60.9
+# ℹ 14 more rows</code></pre>
+</div>
+</div></li>
+</ul>
 </section>
-<section id="base-r-alternatives" class="level2">
-<h2 class="anchored" data-anchor-id="base-r-alternatives">Base R alternatives</h2>
-<p>-make this section optional: if you want to see how to achieve similar things but without using tiduverse</p>
+<section id="exercises" class="level2">
+<h2 class="anchored" data-anchor-id="exercises">Exercises</h2>
+<p>Throughout the exercises you’ll still work with the <code>storms</code> dataset</p>
+<ul>
+<li><p>Find out which year had the most storms (remember that each row is 1 measurement of 1 storm. You have to find the year with the most storms and not the most measurements!)</p></li>
+<li><p>Find the average wind speed for each storm in 2018 and then sort from the highest to the lowest.</p></li>
+<li><p>Calculate the mean and standard deviation of measurement pressure for each month of the year</p></li>
+</ul>
 
 
 </section>
@@ -286,9 +837,23 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     icon: icon
   };
   anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
   const clipboard = new window.ClipboardJS('.code-copy-button', {
-    target: function(trigger) {
-      return trigger.previousElementSibling;
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
     }
   });
   clipboard.on('success', function(e) {
@@ -353,6 +918,92 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return note.innerHTML;
     });
   }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
   const findCites = (el) => {
     const parentEl = el.parentElement;
     if (parentEl) {

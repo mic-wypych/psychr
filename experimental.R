@@ -35,3 +35,12 @@ my_df %>%
   labs(x = 'our prediction', y = 'how much we miss (sum of squares)') +
   transition_time(pred) +
   shadow_mark(past = T, future=F, alpha=0.9)
+
+
+
+##
+d <- data("storms")
+storms
+
+
+table(storms$status)
