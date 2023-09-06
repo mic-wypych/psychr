@@ -1,21 +1,51 @@
 ---
-title: "restructuring_and_joining_data"
+title: "Restructuring and joining data"
+author: "Michał Wypych"
 ---
 
 # Restructuring data
 
--separating and uniting variables
+We now know a bit about wrangling data. This time we will deal with situations in which your data is not in the correct shape to allow you to calculate what you want. We will look at separating and uniting variables (e.g. what if your dataset has separate columns for year, month and day but you need those in 1 variable?), joining datasets (e.g. what if some information is in 1 dataset but other information you need is in another one?) and reshaping data (going from wide to long format and back again)
 
--separate when there is various number of values
+-   We'll work with a lovely dataset on all (?) Scooby Doo episodes + **reference**
+
+## Separating and uniting variables
+
+In order to separate 1 variable into more you can use `separate()`. The opposite operation can be done with `unite().`When separating you need to specify which variable to split, what are the names of the new variables (passed as a character vector) and what is the separator which basically tells R where to "cut" the old variable into new ones. By default the old variable is removed from the dataset:
+
+```{r}
+library(tidyverse)
+# separating example
+```
+
+Uniting is very similar, it just has a reversed effect. You specify what should the name of the new variable be, what are the names of variables to unite and what R should use to separate the values from the old variables.
+
+-   
+
+-   Another way to separate is by separating into rows. This way each new value will be added in additional row rather than a column. You can do it with `separate_rows()`.
+
+-   A potential problem with `separate()` is when various rows have different number of values. Then you might get conflicting number of columns to create.
 
 ## Joining data
 
--Different types of joins: inner, left, right, full, semi, anti
+-   bind cols and bind rows
 
--Gotchas in joins: duplicated values
+```{=html}
+<!-- -->
+```
+-   Different types of joins: inner, left, right, full,
 
-## Pivoting data
+```{=html}
+<!-- -->
+```
+-   Filtering joinssemi, anti
 
--pivot longer
+-   Gotchas in joins: duplicated values
 
--pivot wider
+## From wide to long format and back again
+
+-   UN roll calls data?
+
+-   pivot longer
+
+-   pivot wider

@@ -6,6 +6,24 @@ title: "Data visualization part 1"
 
 R is absolutely great for plotting
 
+-   Which dataset do I want?
+
+    -   Starwars?
+
+    -   Midwest? (few factor variables though
+
+Lets briefly look at our dataset for this class:
+
+```{r}
+library(tidyverse)
+data("starwars")
+glimpse(starwars)
+```
+
+## Some base R graphics
+
+-   explain the basics of plotting with base R
+
 ## Enter ggplot2
 
 -Describe ggplot2 - part of tidyverse.
