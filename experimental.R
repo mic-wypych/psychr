@@ -67,3 +67,9 @@ plot(1:5, df_q$q_10, ylim = c(0,20), type = "l", col = 2, lwd = 2, lty = 2)
 lines(1:5, df_q$q_50, col = 4, lwd = 2, lty = 1)
 lines(1:5, df_q$q_90, col = 2, lwd = 2, lty = 2)
 axis(side = 3, at = 1:5, labels = unique(midwest$state))
+
+
+midwest %>%
+  ggplot() +
+  geom_point(aes(x = percadultpoverty, y = percollege, color =popdensity), alpha = .8) +
+  scale_color_gradient(values = c("#AAAAAA", "#CCCFFF"))

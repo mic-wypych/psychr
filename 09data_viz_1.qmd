@@ -6,7 +6,7 @@ title: "Data visualization part 1"
 
 Visualization is an indispensible part of data analysis. If done properly it allows us to understand a lot more about our analysis/data and to understand it much faster than by wading through text. It also looks really nice! And good news is that R is absolutely great for plotting! In this class we'll look at some basic R plotting functions first and then dive into the world of `ggplot2`, easily the best plotting package out there.
 
-In this class we'll use the `midwest` dataset from `ggplot2` package. It stores a bunch of information about population of 5 midwestern states: Illinois, Indiana, Michigan, Ohio and Wisconsin. The data are at county level. Lets briefly look at our dataset for this class:
+In this class we'll use the `midwest` dataset from `ggplot2` package. It stores a bunch of information about population of 5 midwestern states: Illinois, Indiana, Michigan, Ohio and Wisconsin. The data are at county level. Lets briefly look at our dataset for this class (all the variables are also described [here](https://ggplot2.tidyverse.org/reference/midwest.html)):
 
 ```{r}
 library(tidyverse)
@@ -265,6 +265,16 @@ midwest %>%
 
 By the way, you can define colors either with hex values as RGB but you can also use one of the built-in colors in R. You can check all the names of those built-in colors with `colors()` function. Another neat thing is that in newer version of RStudio you can see the preview of the colors when you type them in a script.
 
+One potential problem is when aesthetic and scale come into conflict. E.g. what will happen if we map color to state variable and then set it as attribute? Lets see:
+
+```{r}
+midwest %>%
+  ggplot() +
+  geom_point(aes(x = percadultpoverty, y = percollege, color = state), color = "red", alpha = .3)
+```
+
+The attribute overrides the aesthetic. It's something to remember about.
+
 ## Scales
 
 One more thing are functions for working with scales: they allow you to have more control over how each scale is represented (e.g. what the breaks and values are, should the scale be transformed). For example notice that R automatically chose some limits for the scales and displayed breaks (the values on the axes). You can have more control over that with the `scale_` family of functions. It's a family of functions because you need to declare: 1) which aesthetic you want to change and 2) what kind of scale you are working with (continuous, discrete or binned). So for example `scale_x_continuous()` allows you to customize a continuous x axis. The basic things that you can change inside the `scale_` function are: breaks, labels, limits and the expand argument (the last one controls additional space - notice that e.g. on the x axis there is a little space on the left of 0 and there is similarly a little space to the right of the point with the highest percadultpoverty value).
@@ -300,18 +310,104 @@ The warning now says that 220 rows were removed! What's even weirded we still go
 
 ## Colors
 
-Scale functions also allow you to control the color and fill aesthetics. You can change which color palette you want to use
+Scale functions also allow you to control the color and fill aesthetics. You can change which color palette you want to use. There are many packages available with predefined color palettes (e.g. `viridis` or `MetBrewer`). We'll focus on the built-in Brewer palettes and on making manual palettes. Brewer palettes can be invoked with `scale_color_brewer()` and `scale_fill_brewer()`. You can choose color palette by setting the `palette` argument. I can never remember the names of all the palettes but you can easily google them (just type something like "R brewer palettes). Lets change our palette on the scatterplot:
 
--   Discuss brewer and viridis packages
+```{r}
+midwest %>%
+  ggplot() +
+  geom_point(aes(x = percadultpoverty, y = percollege, color = state), alpha = .8) +
+  scale_color_brewer(palette = "Dark2")
+```
 
-What to be mindful of when setting color palettes:
+You can also set your own colors and create your own palette. In order to do that use `scale_color_manual()` and `scale_fill_manual()`. You can set the colors as hex or built-in colors in `values` argument. You can provide it a simple text vector or named vector to explicitly map each categorical variable (if you have categorical variables mapped to color or fill):
 
--   how people perceive color
+```{r}
+midwest %>%
+  ggplot() +
+  geom_point(aes(x = percadultpoverty, y = percollege, color = state), alpha = .8) +
+  scale_color_manual(values = c("IL" = "#5f0f40", "IN" = "#9a031e", "MI" = "#fb8b24", "OH" = "#e36414", "WI" = "#0f4c5c"))
+```
 
--   what information you want to represent (is there some order to the variable, is it divergent etc.)
+for contiunous variables matched to color aesthetic this works a little different. You need `scale_color_gradient()` function. `scale_color_gradient2()` allows you to specify a midpoint and thus make a divergent palette. Lets code county area with color this time and specify our own palette with midpoint at the mean county area:
+
+```{r}
+midpoint <- mean(midwest$area)
+midwest %>%
+  ggplot() +
+  geom_point(aes(x = percadultpoverty, y = percollege, color = area)) +
+  scale_color_gradient2(low = "#e63946", mid = "#8d99ae", high = "#1d3557", midpoint = midpoint)
+```
+
+When using colors on a plot you need to be mindful of a number of things. Color is used to convey information so it should be visible. Try to avoid very small contrasts if you want something to stand out (e.g. using light grey on white background). Also remember that not everyone perceives color the same way so it is worth checking if your palette is suitable for everyone. Finally, color shouldn't be used just because "it looks cool". Generally everything that is in a plot should be there for a reason. Remember that data visualizations should convey information. That's their primary purpose. Using color can help with that but it can also make things more difficult to understand. E.g. using a lot of flashy colors just for the sake of using colors might make a plot much more difficult to understand for viewers. Finally, colors can be used to convey different kinds of information, from continuity (e.g. a palette going from light to dark blue to code a continuous variable liek percentage of adults in college), divergence (a palette going from dark blue through light blue and red to dark red to display polarization of opinions) or contrast (e.g. contrasting colors in a palette to display different US states).
 
 ## Positions
 
--   What are position adjustments
+One issue that pops up quite often, especially when adding color to aesthetics, is how to deal with overlapping values. On the plots above there were some overlapping points on the scatterplot but we could easily deal with it by adjusting transparency. There are situations when this is not so easy or even not desirable. For example you can't just as easily deal with overlapping bars. `ggplot2` has a number of position adjustments that help us deal with this problem. THey allow us to stack, normalize or nudge shapes so that they won't overlap. The basic position adjustments are:
 
--   Basic adjustments
+-   dodge: move shapes to the side (how much is controlled with the `width` argument)
+
+-   stack: stack shapes on top of each other
+
+-   fill: stack shapes on top of each other and normalize height (good for displaying proportions)
+
+-   jitter: add some random noise (you can adjust how much with `height` and `width` arguments). It's good for cluttered scatterplots
+
+-   nudge: slightly move shapes, good for nudging text
+
+Ok, lets see some of them in action. We'll start with jitter. In some situation you might want to display point with a categorical x axis. This can be useful when showing a distribution, e.g. with `geom_violin()` and adding all the data points on top of it with `geom_point()`. IF we don't use any position adjustments we'll get something like this (we want to look at distribution of percollege in each state):
+
+```{r}
+midwest %>%
+  ggplot(aes(x = state, y = percollege)) +
+  geom_violin(alpha = .4) +
+  geom_point()
+```
+
+Ok, lets add some jitter but constrain it to be only in width (adding jitter in height might change how we interpret some values!):
+
+```{r}
+midwest %>%
+  ggplot(aes(x = state, y = percollege)) +
+  geom_violin(alpha = .4) +
+  geom_point(position = position_jitter(height = 0, width = .2))
+```
+
+This makes it much easier to see all the points!
+
+Now we'll move on to position adjustments in barplots. Lets say we want to look at number of counties in each state that are or are not in metro area(`inmetro` variable). We can do it by adding a `fill` aesthetic to the `geom_bar()`:
+
+```{r}
+midwest %>%
+  ggplot(aes(x = state, fill = as.factor(inmetro))) +
+  geom_bar()
+```
+
+By default `geom_bar()` uses the stack position adjustment. Lets experiment with it a little and see what happens if we add a fill adjustment:
+
+```{r}
+midwest %>%
+  ggplot(aes(x = state, fill = as.factor(inmetro))) +
+  geom_bar(position = "fill")
+```
+
+Now we have proportions rather than counts. Remember that order here matters (proportions sum to 1 within each state. If we wanted to see the share of each state in metro vs non-metro counties in the midwest we would need to switch x and fill aesthetics).
+
+To see position dodge we will look at `geom_col()`. Lets say we want to plot the average percentage of adults in poverty in metro and nonmetro counties in each state:
+
+```{r}
+midwest %>%
+  summarise(mean_perc = mean(percadultpoverty), .by = c(state, inmetro)) %>%
+  ggplot(aes(x = inmetro, y = mean_perc, fill = state)) +
+  geom_col()
+```
+
+This looks pretty bad right? `geom_col()` also uses stack adjustment by default. To make it more readable and compare the percentages we can use the dodge adjustment:
+
+```{r}
+midwest %>%
+  summarise(mean_perc = mean(percadultpoverty), .by = c(inmetro, state)) %>%
+  ggplot(aes(x = as.factor(inmetro), y = mean_perc, fill = state)) +
+  geom_col(position = position_dodge(width = .9))
+```
+
+Much better! Now we can compare the percentages across state and metro vs non-metro counties!
