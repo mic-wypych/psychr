@@ -4,11 +4,31 @@ title: "Data visualization part 2"
 
 # Plotting continued
 
-We know how to make various plots to display the data and how to control the attributes and scales. Now we'll move on to additional layers in `ggplot2`.
+We know how to make various plots to display the data and how to control the attributes and scales. Now we'll move on to additional layers in `ggplot2`. We'll continue working with the `midwest` dataset from the previous lesson.
 
 ## Faceting
 
-There are situations in which there is too much information to put it in a single plot.
+We'll start with faceting as it is pretty straightforward. Plotting often involves including a lot of information in a single plot. Sometimes the amount of information might be too much to easily comprehend. One of the ways in which we can try to deal with this is by faceting. It allows us to create a separate subplot for each level of a factor variable. The two basic functions for faceting in `ggplot2` are `facet_wrap()` and `facet_grid()`. The main difference is in their syntax and how they display facets. The first one takes a formula-like syntax: `facet_wrap(~variable)`. It automatically tries to fit rows and columns and adjust the number of rows and colums (you can customize that if you want). The second one needs you to specify the rows and columns manually: `facet_grid(rows = vars(variable1), cols = vars(variable2)`.
+
+For example lets say we are interested in relation between percentage of children below poverty and percentage of people with college degree in all 5 state with a split between metro and non-metro areas. That's a lot to cram into one plot so we can use faceting to make the plot more readable. Using `facet_wrap()` is super easy here:
+
+```{r}
+midwest %>%
+  ggplot(aes(x = percollege, y = percchildbelowpovert, color = as.factor(inmetro))) +
+  geom_point() +
+  facet_wrap(~state)
+```
+
+If we wanted to display the same information but with `facet_grid()` we could do it like this (lets put `inmetro` as one of facets instead of color as well):
+
+```{r}
+midwest %>%
+  ggplot(aes(x = percollege, y = percchildbelowpovert)) +
+  geom_point() +
+  facet_grid(rows = vars(state), cols = vars(inmetro))
+```
+
+By default R will fix x and y axis across all facets (which is generally good!). If you want to free any axis by setting the `scales` argument to `free_x` or `free_y` or `free` to free both axes.
 
 ## Statistics
 
@@ -20,11 +40,31 @@ There are situations in which there is too much information to put it in a singl
 
 ## Coordinates
 
-This layer controls how the coordinates of the plot should be handled. Most likely you are used to plots with the cartesian space: an x and y axis that are perpendicular. However you can change that e.g. by fising the ratio of x to y axis, zooming in on a particualr part of the plot or even bending the axis altogether.
+This layer controls how the coordinates of the plot should be handled. Most likely you are used to plots with the cartesian space: an x and y axis that are perpendicular. However you can change that e.g. by fising the ratio of x to y axis, zooming in on a particualr part of the plot or even bending the axis altogether. All of this is handled in this layer. Its functions start with `coord_`. The basic one is `coord_cartesian()`:
+
+```{r}
+midwest %>%
+  ggplot(aes(x = percbelowpoverty, y = percollege)) +
+  geom_point() +
+  coord_cartesian(xlim = c(0, 25))
+```
+
+Notice that this time we did not get any warnings about missing data. This way we can e.g. adjust the axis limits of a bar plot without losing the bars.
+
+Now for slightly weirder stuff. What if we bended the coordinates so that they are no longer simple cartesian but polar instead (imagine taking the x axis and bending it into a circle)? We get something like this:
+
+```{r}
+midwest %>%
+  ggplot(aes(x = state, fill = state)) +
+  geom_bar(width = 1) +
+  coord_polar()
+```
 
 ## Theme
 
-The final layer, called theme, controlls all the non-data part of the plot: setting fonts, typeface, text size, controlling the background color, plot legend and the grid.
+The final layer, called theme, controls all the non-data part of the plot: setting fonts, typeface, text size, controlling the background color, plot legend and the grid.
+
+The theme layer is huge
 
 There is a number of pre-specified themes that you can use but you can also control everything manually. You can check the documentation of `theme()` to see just how many elements you can control.
 
