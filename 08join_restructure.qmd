@@ -28,16 +28,16 @@ Uniting is very similar, it just has a reversed effect. You specify what should 
 
 ## Joining data
 
+In many situations the information that you need is not stored in a single dataset but in multiple ones. For example you might be working on a longitudinal study and each wave is saved in a separate dataset.
+
 -   bind cols and bind rows
 
-```{=html}
 <!-- -->
-```
+
 -   Different types of joins: inner, left, right, full,
 
-```{=html}
 <!-- -->
-```
+
 -   Filtering joinssemi, anti
 
 -   Gotchas in joins: duplicated values

@@ -38,9 +38,10 @@ my_df %>%
 
 
 
-##
-d <- data("storms")
-storms
+# testing datasets ####
+library(tidyverse)
+d <- data("midwest")
+glimpse(midwest)
 
 
-table(storms$status)
+table(midwest$state)
