@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.2.335">
+<meta name="generator" content="quarto-1.3.340">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -17,9 +17,10 @@ div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
   width: 0.8em;
-  margin: 0 0.8em 0.2em -1.6em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -46,43 +47,13 @@ pre.numberSource code > span > a:first-child::before
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
     padding: 0 4px; width: 4em;
-    color: #aaaaaa;
   }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
 div.sourceCode
   {   }
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { color: #008000; } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { color: #008000; font-weight: bold; } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 
@@ -137,109 +108,109 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <span class="navbar-title">r_website</span>
     </a>
   </div>
+            <div id="quarto-search" class="" title="Search"></div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./index.html">
+    <a class="nav-link" href="./index.html" rel="" target="">
  <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-basics" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-basics" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
  <span class="menu-text">Basics</span>
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-basics">    
         <li>
-    <a class="dropdown-item" href="./01r_intro.html">
+    <a class="dropdown-item" href="./01r_intro.html" rel="" target="">
  <span class="dropdown-text">Introduction</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./02basic_data.html">
+    <a class="dropdown-item" href="./02basic_data.html" rel="" target="">
  <span class="dropdown-text">Basic data</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./03data_types.html">
+    <a class="dropdown-item" href="./03data_types.html" rel="" target="">
  <span class="dropdown-text">Data types</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./04loops_conditionals.html">
+    <a class="dropdown-item" href="./04loops_conditionals.html" rel="" target="">
  <span class="dropdown-text">Loops and conditionals</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./05functions.html">
+    <a class="dropdown-item" href="./05functions.html" rel="" target="">
  <span class="dropdown-text">Functions</span></a>
   </li>  
     </ul>
   </li>
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-working-with-data" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-working-with-data" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
  <span class="menu-text">Working with data</span>
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-working-with-data">    
         <li>
-    <a class="dropdown-item" href="./06loading_data.html">
+    <a class="dropdown-item" href="./06loading_data.html" rel="" target="">
  <span class="dropdown-text">Loading data</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./07data_wrangling.html">
+    <a class="dropdown-item" href="./07data_wrangling.html" rel="" target="">
  <span class="dropdown-text">Data wrangling</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./08join_restructure.html">
+    <a class="dropdown-item" href="./08join_restructure.html" rel="" target="">
  <span class="dropdown-text">Joining and restructuring data</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./09data_viz_1.html">
+    <a class="dropdown-item" href="./09data_viz_1.html" rel="" target="">
  <span class="dropdown-text">Vizualization vol 1</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./10data_viz_2.html">
+    <a class="dropdown-item" href="./10data_viz_2.html" rel="" target="">
  <span class="dropdown-text">Vizualization vol 2</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./11organizingwork.html">
+    <a class="dropdown-item" href="./11organizingwork.html" rel="" target="">
  <span class="dropdown-text">organizing work</span></a>
   </li>  
     </ul>
   </li>
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-statistics" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-statistics" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
  <span class="menu-text">Statistics</span>
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-statistics">    
         <li>
-    <a class="dropdown-item" href="./12eda.html">
+    <a class="dropdown-item" href="./12eda.html" rel="" target="">
  <span class="dropdown-text">Exploratory analysis</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./13t-tests.html">
+    <a class="dropdown-item" href="./13t-tests.html" rel="" target="">
  <span class="dropdown-text">T tests</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./14anova.html">
+    <a class="dropdown-item" href="./14anova.html" rel="" target="">
  <span class="dropdown-text">Anovas</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./15correlations.html">
+    <a class="dropdown-item" href="./15correlations.html" rel="" target="">
  <span class="dropdown-text">Correlations</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./16regression.html">
+    <a class="dropdown-item" href="./16regression.html" rel="" target="">
  <span class="dropdown-text">Regression</span></a>
   </li>  
     </ul>
   </li>
 </ul>
-              <div class="quarto-toggle-container">
-                  <a href="" class="quarto-reader-toggle nav-link" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+            <div class="quarto-navbar-tools ms-auto">
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
   <div class="quarto-reader-toggle-btn">
   <i class="bi"></i>
   </div>
 </a>
-              </div>
-              <div id="quarto-search" class="" title="Search"></div>
+</div>
           </div> <!-- /navcollapse -->
       </div> <!-- /container-fluid -->
     </nav>
@@ -255,6 +226,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <ul>
   <li><a href="#plotting-data" id="toc-plotting-data" class="nav-link active" data-scroll-target="#plotting-data">Plotting data</a>
   <ul class="collapse">
+  <li><a href="#some-base-r-graphics" id="toc-some-base-r-graphics" class="nav-link" data-scroll-target="#some-base-r-graphics">Some base R graphics</a></li>
   <li><a href="#enter-ggplot2" id="toc-enter-ggplot2" class="nav-link" data-scroll-target="#enter-ggplot2">Enter ggplot2</a></li>
   <li><a href="#grammar-of-graphics" id="toc-grammar-of-graphics" class="nav-link" data-scroll-target="#grammar-of-graphics">Grammar of graphics</a></li>
   <li><a href="#aesthetics" id="toc-aesthetics" class="nav-link" data-scroll-target="#aesthetics">Aesthetics</a></li>
@@ -262,6 +234,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#attributes" id="toc-attributes" class="nav-link" data-scroll-target="#attributes">Attributes</a></li>
   <li><a href="#scales" id="toc-scales" class="nav-link" data-scroll-target="#scales">Scales</a></li>
   <li><a href="#colors" id="toc-colors" class="nav-link" data-scroll-target="#colors">Colors</a></li>
+  <li><a href="#positions" id="toc-positions" class="nav-link" data-scroll-target="#positions">Positions</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -288,60 +261,348 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <section id="plotting-data" class="level1">
 <h1>Plotting data</h1>
-<p>R is absolutely great for plotting</p>
+<p>Visualization is an indispensible part of data analysis. If done properly it allows us to understand a lot more about our analysis/data and to understand it much faster than by wading through text. It also looks really nice! And good news is that R is absolutely great for plotting! In this class we’ll look at some basic R plotting functions first and then dive into the world of <code>ggplot2</code>, easily the best plotting package out there.</p>
+<p>In this class we’ll use the <code>midwest</code> dataset from <code>ggplot2</code> package. It stores a bunch of information about population of 5 midwestern states: Illinois, Indiana, Michigan, Ohio and Wisconsin. The data are at county level. Lets briefly look at our dataset for this class:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+✔ dplyr     1.1.1     ✔ readr     2.1.4
+✔ forcats   1.0.0     ✔ stringr   1.5.0
+✔ ggplot2   3.4.2     ✔ tibble    3.2.1
+✔ lubridate 1.9.2     ✔ tidyr     1.3.0
+✔ purrr     1.0.1     
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">"midwest"</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(midwest)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 437
+Columns: 28
+$ PID                  &lt;int&gt; 561, 562, 563, 564, 565, 566, 567, 568, 569, 570,…
+$ county               &lt;chr&gt; "ADAMS", "ALEXANDER", "BOND", "BOONE", "BROWN", "…
+$ state                &lt;chr&gt; "IL", "IL", "IL", "IL", "IL", "IL", "IL", "IL", "…
+$ area                 &lt;dbl&gt; 0.052, 0.014, 0.022, 0.017, 0.018, 0.050, 0.017, …
+$ poptotal             &lt;int&gt; 66090, 10626, 14991, 30806, 5836, 35688, 5322, 16…
+$ popdensity           &lt;dbl&gt; 1270.9615, 759.0000, 681.4091, 1812.1176, 324.222…
+$ popwhite             &lt;int&gt; 63917, 7054, 14477, 29344, 5264, 35157, 5298, 165…
+$ popblack             &lt;int&gt; 1702, 3496, 429, 127, 547, 50, 1, 111, 16, 16559,…
+$ popamerindian        &lt;int&gt; 98, 19, 35, 46, 14, 65, 8, 30, 8, 331, 51, 26, 17…
+$ popasian             &lt;int&gt; 249, 48, 16, 150, 5, 195, 15, 61, 23, 8033, 89, 3…
+$ popother             &lt;int&gt; 124, 9, 34, 1139, 6, 221, 0, 84, 6, 1596, 20, 7, …
+$ percwhite            &lt;dbl&gt; 96.71206, 66.38434, 96.57128, 95.25417, 90.19877,…
+$ percblack            &lt;dbl&gt; 2.57527614, 32.90043290, 2.86171703, 0.41225735, …
+$ percamerindan        &lt;dbl&gt; 0.14828264, 0.17880670, 0.23347342, 0.14932156, 0…
+$ percasian            &lt;dbl&gt; 0.37675897, 0.45172219, 0.10673071, 0.48691813, 0…
+$ percother            &lt;dbl&gt; 0.18762294, 0.08469791, 0.22680275, 3.69733169, 0…
+$ popadults            &lt;int&gt; 43298, 6724, 9669, 19272, 3979, 23444, 3583, 1132…
+$ perchsd              &lt;dbl&gt; 75.10740, 59.72635, 69.33499, 75.47219, 68.86152,…
+$ percollege           &lt;dbl&gt; 19.63139, 11.24331, 17.03382, 17.27895, 14.47600,…
+$ percprof             &lt;dbl&gt; 4.355859, 2.870315, 4.488572, 4.197800, 3.367680,…
+$ poppovertyknown      &lt;int&gt; 63628, 10529, 14235, 30337, 4815, 35107, 5241, 16…
+$ percpovertyknown     &lt;dbl&gt; 96.27478, 99.08714, 94.95697, 98.47757, 82.50514,…
+$ percbelowpoverty     &lt;dbl&gt; 13.151443, 32.244278, 12.068844, 7.209019, 13.520…
+$ percchildbelowpovert &lt;dbl&gt; 18.011717, 45.826514, 14.036061, 11.179536, 13.02…
+$ percadultpoverty     &lt;dbl&gt; 11.009776, 27.385647, 10.852090, 5.536013, 11.143…
+$ percelderlypoverty   &lt;dbl&gt; 12.443812, 25.228976, 12.697410, 6.217047, 19.200…
+$ inmetro              &lt;int&gt; 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0…
+$ category             &lt;chr&gt; "AAR", "LHR", "AAR", "ALU", "AAR", "AAR", "LAR", …</code></pre>
+</div>
+</div>
+<section id="some-base-r-graphics" class="level2">
+<h2 class="anchored" data-anchor-id="some-base-r-graphics">Some base R graphics</h2>
+<p>Before we move on to <code>ggplot2</code> lets look at some built-in base R graphics. The <code>graphics</code> and <code>stats</code> packages have some function for plotting already available.</p>
+<ul>
+<li><p>The most generic is the <code>plot()</code> function. It allows you to create simple plots in R. The first arguments are usually the variables you want to map onto the axes:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(midwest<span class="sc">$</span>percadultpoverty, midwest<span class="sc">$</span>percollege)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="09data_viz_1_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid" width="672"></p>
+</div>
+</div></li>
+<li><p><code>plot()</code> function has a bunch of arguments you can use to customize the plot. For example we can change the color and thickness of the points and add a title to the plot and axes:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(midwest<span class="sc">$</span>percadultpoverty, midwest<span class="sc">$</span>percollege, <span class="at">col =</span> <span class="dv">2</span>, <span class="at">lwd =</span> <span class="dv">2</span>,</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">"Percent in college vs percent adults in poverty"</span>,</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">"Percent adults in poverty"</span>,</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">"percent in college"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="09data_viz_1_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Unfortunately the <code>plot()</code> function does not have great documentation and finding some of the arguments can be quite difficult. Some of these arguments also have very unintuitive names (e.g.&nbsp;argument named <code>lty</code> specifies line type, good luck memorizing that!). Base R has additional functions for more specific plots. Namely, <code>lines()</code> will create a line plot, <code>points()</code> will create a scatterplot and <code>boxplot()</code> will create a boxplot. These functions have better documentation than the general <code>plot()</code> though I still don’t consider it great. Lets see some of these in action. <code>lines()</code> and <code>points()</code> require that you first initialize the plots with the coordinates set to the variables of interest with the <code>plot()</code> function. You can specify what kind of plot (line plot, scatterplot etc) you want inside <code>plot()</code> by setting the <code>type</code> argument. E.g. setting it to <code>l</code> will create a line plot.</p></li>
+<li><p>Lines: Lets say we want to make a line plot that will display the 10th, 50th and 90th quantile of percent of adults in poverty in all states. We’ll also introduce the <code>axis()</code> function which gives you some control over how the x and y axis should look like. Here we need it because <code>lines()</code> does not like categorical values at x axis so we need to add the state names (we add them at the top) with <code>axis()</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co">#get the quantiles</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co">#calculate quantiles at of percadultpoverty for each state</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>list_q <span class="ot">&lt;-</span> <span class="fu">tapply</span>(midwest<span class="sc">$</span>percadultpoverty, midwest<span class="sc">$</span>state, quantile, <span class="fu">c</span>(.<span class="dv">1</span>,.<span class="dv">5</span>,.<span class="dv">9</span>))</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="co">#convert the result into a dataframe with each column as one quantile and each row as one state</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>df_q <span class="ot">&lt;-</span> <span class="fu">data.frame</span>()</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>df_q <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(list_q[[<span class="dv">1</span>]], list_q[[<span class="dv">2</span>]], list_q[[<span class="dv">3</span>]], list_q[[<span class="dv">4</span>]], list_q[[<span class="dv">5</span>]])</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(df_q) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"q_10"</span>, <span class="st">"q_50"</span>, <span class="st">"q_90"</span>)</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="co">#plot them</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, df_q<span class="sc">$</span>q_10, <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">20</span>), <span class="at">type =</span> <span class="st">"l"</span>, <span class="at">col =</span> <span class="dv">2</span>, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">lty =</span> <span class="dv">2</span>)</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, df_q<span class="sc">$</span>q_50, <span class="at">col =</span> <span class="dv">4</span>, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">lty =</span> <span class="dv">1</span>)</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, df_q<span class="sc">$</span>q_90, <span class="at">col =</span> <span class="dv">2</span>, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">lty =</span> <span class="dv">2</span>)</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a><span class="fu">axis</span>(<span class="at">side =</span> <span class="dv">3</span>, <span class="at">at =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="at">labels =</span> <span class="fu">unique</span>(midwest<span class="sc">$</span>state))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="09data_viz_1_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>One important thing here: notice how each element is added to the plot on a new line. These functions are not chained together in any way and we are not saving any intermediate objects. This is pretty unusual in R (although perfectly normal in other programming languages). It’s just how base R plotting works.</p></li>
+<li><p>Points: We can recreate the plot that we made with the generic <code>plot()</code> function but using <code>points()</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(midwest<span class="sc">$</span>percadultpoverty, midwest<span class="sc">$</span>percollege)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(midwest<span class="sc">$</span>percadultpoverty, midwest<span class="sc">$</span>percollege, <span class="at">col =</span> <span class="dv">2</span>, <span class="at">lwd =</span> <span class="dv">2</span>, </span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">"Percent in college vs percent adults in poverty"</span>,</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">"Percent adults in poverty"</span>,</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">"percent in college"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="09data_viz_1_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
+</div>
+</div></li>
+<li><p>Boxplots are useful for showing differences in distributions of some continuous variable between levels of some factor. For example lets say we want to</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(midwest<span class="sc">$</span>percadultpoverty <span class="sc">~</span> midwest<span class="sc">$</span>state)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="09data_viz_1_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
+</div>
+</div></li>
+</ul>
+<p>There are also built-in functions for plotting distributions: <code>hist()</code> for histograms, <code>plot(density())</code> for density functions and <code>plot.ecdf()</code> for cumulative distribution plots. Lets look at all 3 plots for percent of population in college:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(midwest<span class="sc">$</span>percollege)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="09data_viz_1_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">density</span>(midwest<span class="sc">$</span>percollege))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="09data_viz_1_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot.ecdf</span>(midwest<span class="sc">$</span>percollege)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="09data_viz_1_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>One problem with base R plots is that they are not intuitive. Lots of arguments have weird names and doing some things is really not so easy. Making more complicated plots (e.g.&nbsp;adding text annotations on the plot) is also generally hard to do. That’s why we’ll focus on <code>ggplot2</code> which is much more intuitive and versatile.</p>
+</section>
 <section id="enter-ggplot2" class="level2">
 <h2 class="anchored" data-anchor-id="enter-ggplot2">Enter ggplot2</h2>
-<p>-Describe ggplot2 - part of tidyverse.</p>
-<p>One of the great things about it is that it breaks down each plot into a number of layers that can be changed (more or less) independently.</p>
+<p><code>ggplot2</code> is a package in th <code>tidyverse</code> designed for making data visualizations. One of the great things about it is that it breaks down each plot into a number of layers that can be changed (more or less) independently. This idea is encapsulated in what is called the grammar of graphics.</p>
 </section>
 <section id="grammar-of-graphics" class="level2">
 <h2 class="anchored" data-anchor-id="grammar-of-graphics">Grammar of graphics</h2>
-<p>-What is grammar of graphics</p>
-<p>-What layers are there in ggplot2</p>
-<p>-ggplot() starts the plot and each layer is chained together with a <code>+</code>.</p>
+<p>The name comes from a book by Leland Wilkinson under the same title. Basically making a plot with the grammar of graphics is like making a building with lego blocks with different colors. You can mix the colors of the blocks to get exactly the building you want. Similalry in <code>ggplot2</code> you can use different layers to make the plot that you want (e.g.&nbsp;mix different datasets or add a line to a scatterplot). Ok, but what are those layers? In <code>ggplot2</code> there are following layers:</p>
+<ul>
+<li><p>Data: the datasets (usually data frames) you want to plot</p></li>
+<li><p>Aesthetics: mapping between data and the plot, e.g.&nbsp;what is to be mapped to x and y axis</p></li>
+<li><p>Geometry: shapes used to represent data</p></li>
+<li><p>Statistics: any statistics like means or confidence intervals that you want to add</p></li>
+<li><p>Coordinates: coordinates of the plot (axes limits, cartesian vs polar coordinates etc.)</p></li>
+<li><p>Facets: this layer is used for making subplots (e.g.&nbsp;separate plot for each level of a categorical variable)</p></li>
+<li><p>Theme: All non-data stuff like fonts, titles</p></li>
+</ul>
+<p>You always start the plot with <code>ggplot()</code> function. All the lego blocks that you want to add are chained together with <code>+</code>. Lets see what happens when we pass the first layer, data, to our plot:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>midwest <span class="sc">%&gt;%</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="09data_viz_1_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Hmm, we get en empty plot. Why is that? Well, all we supplied so far is the data we want to plot but we did not include any additional information so R doesn’t know yet what exactly should be displayed on the plot. We need to add the next layer: aesthetics.</p>
 </section>
 <section id="aesthetics" class="level2">
 <h2 class="anchored" data-anchor-id="aesthetics">Aesthetics</h2>
-<p>-What are aesthetics</p>
-<p>-What are the basic aesthetics</p>
+<p>Aesthetics map what variables should be displayed on the plot in what way. In this layer you declare e.g.&nbsp;what should be on the x and y axis. The basic aesthetics (the list is not exhaustive) are:</p>
+<ul>
+<li><p>x axis</p></li>
+<li><p>y axis</p></li>
+<li><p>colour: colour of points and lines (that includes borders of e.g.&nbsp;rectangles)</p></li>
+<li><p>fill: colour of filling</p></li>
+<li><p>alpha: transparency. 0 means completely transparent, 1 means not transparency</p></li>
+<li><p>size: point size</p></li>
+<li><p>linewidth: width of lines</p></li>
+<li><p>linetype: type of line (e.g.&nbsp;dashed)</p></li>
+<li><p>shape: shape of points (circles, rectangles, etc.)</p></li>
+<li><p>labels: text</p></li>
+</ul>
+<p>Aesthetics are declared within <code>aes()</code>. It can be declared within <code>ggplot()</code> function, separately or inside geoms (more on those in a second). Lets see what happens when we add aesthetics to our plot:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>midwest <span class="sc">%&gt;%</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> percadultpoverty, <span class="at">y =</span> percollege)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="09data_viz_1_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Now we got our axes! Notice there is no data on the plot though. That’s because so far we have declared which dataset to plot and which variables to map onto axes but we did not specify how to represent the data. This is declared in the next layer: geometry.</p>
 </section>
 <section id="geometries" class="level2">
 <h2 class="anchored" data-anchor-id="geometries">Geometries</h2>
 <p>After providing a dataset and aesthetics we have the variables and their mapping to axes on the plot. However, we still don’t have any shapes to actually represent the data. Do we want a scatter plot? Or maybe a bar plot? Or a line plot? The shapes used to represent the data are defined in the geometry layer. Generally all geometries start with <code>geom_</code> so for example <code>geom_point()</code> will make a scatter plot while <code>geom_bar()</code> will make a bar plot.</p>
-<p>Geometries differ in what aesthetics they accept. You can look up what these are by looking up help for a given geometry. They also differ in what kinds of variables they expect (any combination of categorical vs continuous variables)</p>
-<p>-What are some common geometries:</p>
-<p>Now we can make our first plot in ggplot!</p>
+<p>Geometries differ in what aesthetics they accept. You can look up what these are by looking up help for a given geometry. Each geometry has all the aesthetics it accepts in its documentation. They also differ in what kinds of variables they expect (any combination of categorical vs continuous variables).</p>
+<p>Lets expand the initial plot with <code>geom_point()</code> to make a scatterplot!</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: pakiet 'ggplot2' został zbudowany w wersji R 4.2.2</code></pre>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>midwest <span class="sc">%&gt;%</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> percadultpoverty, <span class="at">y =</span> percollege) <span class="sc">+</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="09data_viz_1_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<p>There is one more thing about geometries and aesthetics. You can set global aesthetics inside the <code>ggplot()</code> function. If you do so these aesthetics will be used by default by all geometries in that plot. You can also set aesthetics inside a given geometry (in fact you can even set a different dataset for a given geometry; this is what we meant by independence of layers) but then they will be used only for this particular geometry and won’t be inherited by other ones.</p>
+<p>We got a plot very similar to the one we made with base R! We can customize it further if we want to. Lets say we want to represent each state with a different color. We just need to add a color aesthetic. R will add a legend automatically:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>midwest <span class="sc">%&gt;%</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> percadultpoverty, <span class="at">y =</span> percollege, <span class="at">color =</span> state) <span class="sc">+</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="09data_viz_1_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>There is one more thing about geometries and aesthetics. Remember you can declare aesthetics in different places? You can set global aesthetics inside the <code>ggplot()</code> function. If you do so these aesthetics will be used by default by all geometries in that plot. You can also set aesthetics inside a given geometry (in fact you can even set a different dataset for a given geometry; this is what we meant by independence of layers) but then they will be used only for this particular geometry and won’t be inherited by other ones.</p>
 <p>Compare the to plots below. They produce the same result:</p>
 <div class="cell">
-
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>midwest <span class="sc">%&gt;%</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> percadultpoverty, <span class="at">y =</span> percollege)) <span class="sc">+</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="09data_viz_1_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid" width="672"></p>
+</div>
 </div>
 <p>And the second plot:</p>
 <div class="cell">
-
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>midwest <span class="sc">%&gt;%</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> percadultpoverty, <span class="at">y =</span> percollege))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="09data_viz_1_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid" width="672"></p>
 </div>
+</div>
+<p>Some common geometries you can encounter are as follows:</p>
+<ul>
+<li><p><code>geom_histogram()</code> and <code>geom_density()</code> for displaying distributions of continuous variables</p></li>
+<li><p><code>geom_bar()</code> for displaying counts of categorical variables (you can change counts to other summary statistic but more on that later)</p></li>
+<li><p><code>geom_col()</code> for displaying differences in some continuous variable between levels of a factor</p></li>
+<li><p><code>geom_point()</code>: your good old scatterplot</p></li>
+<li><p><code>geom_boxplot()</code></p></li>
+<li><p><code>geom_violin()</code> a bit like boxplot but displays a distribution of a continuous variable for each level of a factor</p></li>
+<li><p><code>geom_smooth()</code> for displaying lines of best fit (e.g.&nbsp;from a linear model)</p></li>
+</ul>
+<p>You can check them out if you want to to see how they look like.</p>
+<p>Lets look at 2 thing in a bit more details with regard to geometries. First, lets look at combining geoms. We can add a line of best fit to our scatterplot if we want to by adding an additional geometry. <code>geom_smooth()</code> will use a GAM or LOESS by default (depending on how many unique values x variable has) but we can set it to a linear model by adding <code>method = "lm"</code>. A linear model probably won’t do well here but it’s just for demonstration:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>midwest <span class="sc">%&gt;%</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> percadultpoverty, <span class="at">y =</span> percollege)) <span class="sc">+</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method  =</span><span class="st">"lm"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="09data_viz_1_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>See? Just like building with lego blocks.</p>
+<p>Last thing before we move on: a few words on <code>geom_bar()</code> and <code>geom_col()</code>. They often get mixed up at the beginning because they both show bar plots. <code>geom_bar()</code> takes a single aesthetic and is generally used to display counts of some factor variable. For example if we wanted to see how many counties are there in each state we could use <code>geom_bar()</code> (later we’ll see how to display e.g.&nbsp;means of variables across levels of a factor):</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>midwest <span class="sc">%&gt;%</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>state)) <span class="sc">+</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="09data_viz_1_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p><code>geom_col()</code> takes at least 2 aesthetics: x and y. It needs one categorical and one continuous variable. By default it is going to sum all values in a given category. e.g.&nbsp;lets look at the sum of area of all counties in each of the states:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>midwest <span class="sc">%&gt;%</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>state, <span class="at">y =</span> area)) <span class="sc">+</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="09data_viz_1_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>What if we wanted to look at the average county area in each state? We can e.g.&nbsp;first summarise the dataset and then pipe it to plot:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>midwest <span class="sc">%&gt;%</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean_area =</span> <span class="fu">mean</span>(area), <span class="at">.by =</span> state) <span class="sc">%&gt;%</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> state, <span class="at">y =</span> mean_area)) <span class="sc">+</span></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="09data_viz_1_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Since <code>ggplot2</code> is part of <code>tidyverse</code> it’s really easy to pipe a set of dplyr functions into a plot in a single call!</p>
 </section>
 <section id="attributes" class="level2">
 <h2 class="anchored" data-anchor-id="attributes">Attributes</h2>
-<p>There are situations in which you don’t want to set some feature to be represented by a given variable but to set them to a fixed value for the entire plot/geometry. For example you might want to set the color or size of all points in a scatter plot. That’s when you set attributes. They are declared inside geometries but outside of aesthetics.</p>
+<p>There are situations in which you don’t want to set some feature to be represented by a given variable but to set them to a fixed value for the entire plot/geometry. For example you might want to set the color or size of all points in a scatter plot. That’s when you set attributes. They are declared inside geometries but outside of aesthetics. Lets say we want to take our scatterplot and change the transparency and color of the points. We can do it by defining them inside geometry. The names for the arguments are the same as for aesthetics. Just remember to use them outside of <code>aes()</code>!</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>midwest <span class="sc">%&gt;%</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> percadultpoverty, <span class="at">y =</span> percollege), <span class="at">color =</span> <span class="st">"red"</span>, <span class="at">alpha =</span> .<span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="09data_viz_1_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>By the way, you can define colors either with hex values as RGB but you can also use one of the built-in colors in R. You can check all the names of those built-in colors with <code>colors()</code> function. Another neat thing is that in newer version of RStudio you can see the preview of the colors when you type them in a script.</p>
 </section>
 <section id="scales" class="level2">
 <h2 class="anchored" data-anchor-id="scales">Scales</h2>
-<p>One more thing are functions for working with scales: they allow you to have more control over how each scale is represented (e.g.&nbsp;what the breaks and values are, should the scale be transformed)</p>
+<p>One more thing are functions for working with scales: they allow you to have more control over how each scale is represented (e.g.&nbsp;what the breaks and values are, should the scale be transformed). For example notice that R automatically chose some limits for the scales and displayed breaks (the values on the axes). You can have more control over that with the <code>scale_</code> family of functions. It’s a family of functions because you need to declare: 1) which aesthetic you want to change and 2) what kind of scale you are working with (continuous, discrete or binned). So for example <code>scale_x_continuous()</code> allows you to customize a continuous x axis. The basic things that you can change inside the <code>scale_</code> function are: breaks, labels, limits and the expand argument (the last one controls additional space - notice that e.g.&nbsp;on the x axis there is a little space on the left of 0 and there is similarly a little space to the right of the point with the highest percadultpoverty value).</p>
+<p>Lets say now we want to work a little with our scales. Lets change the breaks to be every 5%, change the labels to be actually in percentage format (there is a very neat function in <code>scales</code> package called <code>label_percent()</code> that does that. We just need to set scale argument in it to 1 because in our dataset e.g.&nbsp;10% is represented as 10 and not 0.1):</p>
 <div class="cell">
-
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>midwest <span class="sc">%&gt;%</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> percadultpoverty, <span class="at">y =</span> percollege), <span class="at">color =</span> <span class="st">"red"</span>, <span class="at">alpha =</span> .<span class="dv">3</span>) <span class="sc">+</span> <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">40</span>,<span class="dv">5</span>),<span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">label_percent</span>(<span class="at">scale =</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">50</span>,<span class="dv">5</span>),<span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">label_percent</span>(<span class="at">scale =</span> <span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="09data_viz_1_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid" width="672"></p>
 </div>
-<p>A cautionary tale about the limits: scale functions allow you to</p>
+</div>
+<p>A cautionary tale about using limits in <code>scale_</code> functions: These limits work by filtering the data to be plotted. This can be a serious problem because you basically lose data when plotting and only get a warning about it. This can be especially problematic if you are trying to display bars or ranges because if e.g.&nbsp;one side of an interval falls out of the limits, the entire range will not be displayed. Lets see what happens if we set limits on one of our axes:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>midwest <span class="sc">%&gt;%</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> percadultpoverty, <span class="at">y =</span> percollege), <span class="at">color =</span> <span class="st">"red"</span>, <span class="at">alpha =</span> .<span class="dv">3</span>) <span class="sc">+</span> <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">25</span>,<span class="dv">5</span>),<span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">label_percent</span>(<span class="at">scale =</span> <span class="dv">1</span>), <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">25</span>)) <span class="sc">+</span></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">50</span>,<span class="dv">5</span>),<span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">label_percent</span>(<span class="at">scale =</span> <span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 9 rows containing missing values (`geom_point()`).</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="09data_viz_1_files/figure-html/unnamed-chunk-22-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Notice the warning about removed data. This is especially problematic in bar plots because by default they start from 0 (which can be a good thing because it reduces misinterpretation of visual differences between bars but can be undesired e.g.&nbsp;if displaying results of a 1-5 Likert scale which doesn’t have a 0). Another problematic situation is when plotting some summaries e.g.&nbsp;means and limiting axes. Limits will work before calculating the summaries so you might get nonsensical plots because of this like below where we try to plot mean <code>percadultpoverty</code> by each state and limit the y axis to 10:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>midwest <span class="sc">%&gt;%</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> state, <span class="at">y =</span> percadultpoverty)) <span class="sc">+</span></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"summary"</span>, <span class="at">fun =</span> mean) <span class="sc">+</span></span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">10</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 220 rows containing non-finite values (`stat_summary()`).</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="09data_viz_1_files/figure-html/unnamed-chunk-23-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>The warning now says that 220 rows were removed! What’s even weirded we still got our plot but the means were calculated based on trimmed variable.</p>
 </section>
 <section id="colors" class="level2">
 <h2 class="anchored" data-anchor-id="colors">Colors</h2>
-<p>Scale functions also allow you to control the color and fill aesthetics.</p>
+<p>Scale functions also allow you to control the color and fill aesthetics. You can change which color palette you want to use</p>
 <ul>
 <li>Discuss brewer and viridis packages</li>
 </ul>
@@ -349,6 +610,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li><p>how people perceive color</p></li>
 <li><p>what information you want to represent (is there some order to the variable, is it divergent etc.)</p></li>
+</ul>
+</section>
+<section id="positions" class="level2">
+<h2 class="anchored" data-anchor-id="positions">Positions</h2>
+<ul>
+<li><p>What are position adjustments</p></li>
+<li><p>Basic adjustments</p></li>
 </ul>
 
 
@@ -383,9 +651,23 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     icon: icon
   };
   anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
   const clipboard = new window.ClipboardJS('.code-copy-button', {
-    target: function(trigger) {
-      return trigger.previousElementSibling;
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
     }
   });
   clipboard.on('success', function(e) {
@@ -450,6 +732,92 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return note.innerHTML;
     });
   }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
   const findCites = (el) => {
     const parentEl = el.parentElement;
     if (parentEl) {

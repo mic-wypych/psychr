@@ -33,24 +33,29 @@ Before we move on to `ggplot2` lets look at some built-in base R graphics. The `
          ylab = "percent in college")
     ```
 
-    Unfortunately the `plot()` function does not have great documentation and finding some of the arguments can be quite difficult. Some of these arguments also have very unintuitive names (e.g. argument named `lty` specifies line type, good luck memorizing that!). Base R has additional functions for more specific plots. Namely, `lines()` will create a line plot, `points()` will create a scatterplot and `boxplot()` will create a boxplot. These functions have better documentation than the general `plot()` though I still don't consider it great. Lets see some of these in action. `lines()` and `points()` require that you first initialize the plots with the coordinates set to the variables of interest with the `plot()` function.
+    Unfortunately the `plot()` function does not have great documentation and finding some of the arguments can be quite difficult. Some of these arguments also have very unintuitive names (e.g. argument named `lty` specifies line type, good luck memorizing that!). Base R has additional functions for more specific plots. Namely, `lines()` will create a line plot, `points()` will create a scatterplot and `boxplot()` will create a boxplot. These functions have better documentation than the general `plot()` though I still don't consider it great. Lets see some of these in action. `lines()` and `points()` require that you first initialize the plots with the coordinates set to the variables of interest with the `plot()` function. You can specify what kind of plot (line plot, scatterplot etc) you want inside `plot()` by setting the `type` argument. E.g. setting it to `l` will create a line plot.
 
--   Lines: Lets say we want to make a line plot that will display the 10th, 50th and 90th quantile of percent of adults in poverty in all states:
+-   Lines: Lets say we want to make a line plot that will display the 10th, 50th and 90th quantile of percent of adults in poverty in all states. We'll also introduce the `axis()` function which gives you some control over how the x and y axis should look like. Here we need it because `lines()` does not like categorical values at x axis so we need to add the state names (we add them at the top) with `axis()`:
 
     ```{r}
     #get the quantiles
     library(dplyr)
-    pov_quantiles <- midwest %>%
-      group_by(state) %>%
-      summarize(q_10 = quantile(midwest$percadultpoverty, .1),
-                q_50 = quantile(midwest$percadultpoverty, .5),
-                q_90 = quantile(midwest$percadultpoverty, .9))
+    #calculate quantiles at of percadultpoverty for each state
+    list_q <- tapply(midwest$percadultpoverty, midwest$state, quantile, c(.1,.5,.9))
+
+    #convert the result into a dataframe with each column as one quantile and each row as one state
+    df_q <- data.frame()
+    df_q <- bind_rows(list_q[[1]], list_q[[2]], list_q[[3]], list_q[[4]], list_q[[5]])
+    colnames(df_q) <- c("q_10", "q_50", "q_90")
+
     #plot them
-    plot(pov_quantiles$q_10 ~ pov_quantiles$state, ylim = c(0, 20))
-    lines(1:5, pov_quantiles$q_10, col = 2, lwd = 2, lty = 2)
-    lines(1:5, pov_quantiles$q_50, col = 4, lwd = 2, lty = 1)
-    lines(1:5, pov_quantiles$q_90, col = 2, lwd = 2, lty = 2)
+    plot(1:5, df_q$q_10, ylim = c(0,20), type = "l", col = 2, lwd = 2, lty = 2)
+    lines(1:5, df_q$q_50, col = 4, lwd = 2, lty = 1)
+    lines(1:5, df_q$q_90, col = 2, lwd = 2, lty = 2)
+    axis(side = 3, at = 1:5, labels = unique(midwest$state))
     ```
+
+    One important thing here: notice how each element is added to the plot on a new line. These functions are not chained together in any way and we are not saving any intermediate objects. This is pretty unusual in R (although perfectly normal in other programming languages). It's just how base R plotting works.
 
 -   Points: We can recreate the plot that we made with the generic `plot()` function but using `points()`:
 
@@ -295,7 +300,7 @@ The warning now says that 220 rows were removed! What's even weirded we still go
 
 ## Colors
 
-Scale functions also allow you to control the color and fill aesthetics.
+Scale functions also allow you to control the color and fill aesthetics. You can change which color palette you want to use
 
 -   Discuss brewer and viridis packages
 
