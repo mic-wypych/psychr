@@ -262,7 +262,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="plotting-data" class="level1">
 <h1>Plotting data</h1>
 <p>Visualization is an indispensible part of data analysis. If done properly it allows us to understand a lot more about our analysis/data and to understand it much faster than by wading through text. It also looks really nice! And good news is that R is absolutely great for plotting! In this class we’ll look at some basic R plotting functions first and then dive into the world of <code>ggplot2</code>, easily the best plotting package out there.</p>
-<p>In this class we’ll use the <code>midwest</code> dataset from <code>ggplot2</code> package. It stores a bunch of information about population of 5 midwestern states: Illinois, Indiana, Michigan, Ohio and Wisconsin. The data are at county level. Lets briefly look at our dataset for this class:</p>
+<p>In this class we’ll use the <code>midwest</code> dataset from <code>ggplot2</code> package. It stores a bunch of information about population of 5 midwestern states: Illinois, Indiana, Michigan, Ohio and Wisconsin. The data are at county level. Lets briefly look at our dataset for this class (all the variables are also described <a href="https://ggplot2.tidyverse.org/reference/midwest.html">here</a>):</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
@@ -558,66 +558,164 @@ $ category             &lt;chr&gt; "AAR", "LHR", "AAR", "ALU", "AAR", "AAR", "LA
 </div>
 </div>
 <p>By the way, you can define colors either with hex values as RGB but you can also use one of the built-in colors in R. You can check all the names of those built-in colors with <code>colors()</code> function. Another neat thing is that in newer version of RStudio you can see the preview of the colors when you type them in a script.</p>
+<p>One potential problem is when aesthetic and scale come into conflict. E.g. what will happen if we map color to state variable and then set it as attribute? Lets see:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>midwest <span class="sc">%&gt;%</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> percadultpoverty, <span class="at">y =</span> percollege, <span class="at">color =</span> state), <span class="at">color =</span> <span class="st">"red"</span>, <span class="at">alpha =</span> .<span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="09data_viz_1_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>The attribute overrides the aesthetic. It’s something to remember about.</p>
 </section>
 <section id="scales" class="level2">
 <h2 class="anchored" data-anchor-id="scales">Scales</h2>
 <p>One more thing are functions for working with scales: they allow you to have more control over how each scale is represented (e.g.&nbsp;what the breaks and values are, should the scale be transformed). For example notice that R automatically chose some limits for the scales and displayed breaks (the values on the axes). You can have more control over that with the <code>scale_</code> family of functions. It’s a family of functions because you need to declare: 1) which aesthetic you want to change and 2) what kind of scale you are working with (continuous, discrete or binned). So for example <code>scale_x_continuous()</code> allows you to customize a continuous x axis. The basic things that you can change inside the <code>scale_</code> function are: breaks, labels, limits and the expand argument (the last one controls additional space - notice that e.g.&nbsp;on the x axis there is a little space on the left of 0 and there is similarly a little space to the right of the point with the highest percadultpoverty value).</p>
 <p>Lets say now we want to work a little with our scales. Lets change the breaks to be every 5%, change the labels to be actually in percentage format (there is a very neat function in <code>scales</code> package called <code>label_percent()</code> that does that. We just need to set scale argument in it to 1 because in our dataset e.g.&nbsp;10% is represented as 10 and not 0.1):</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>midwest <span class="sc">%&gt;%</span></span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> percadultpoverty, <span class="at">y =</span> percollege), <span class="at">color =</span> <span class="st">"red"</span>, <span class="at">alpha =</span> .<span class="dv">3</span>) <span class="sc">+</span> <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">40</span>,<span class="dv">5</span>),<span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">label_percent</span>(<span class="at">scale =</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
-<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">50</span>,<span class="dv">5</span>),<span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">label_percent</span>(<span class="at">scale =</span> <span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<p><img src="09data_viz_1_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid" width="672"></p>
-</div>
-</div>
-<p>A cautionary tale about using limits in <code>scale_</code> functions: These limits work by filtering the data to be plotted. This can be a serious problem because you basically lose data when plotting and only get a warning about it. This can be especially problematic if you are trying to display bars or ranges because if e.g.&nbsp;one side of an interval falls out of the limits, the entire range will not be displayed. Lets see what happens if we set limits on one of our axes:</p>
-<div class="cell">
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>midwest <span class="sc">%&gt;%</span></span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> percadultpoverty, <span class="at">y =</span> percollege), <span class="at">color =</span> <span class="st">"red"</span>, <span class="at">alpha =</span> .<span class="dv">3</span>) <span class="sc">+</span> <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">25</span>,<span class="dv">5</span>),<span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">label_percent</span>(<span class="at">scale =</span> <span class="dv">1</span>), <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">25</span>)) <span class="sc">+</span></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> percadultpoverty, <span class="at">y =</span> percollege), <span class="at">color =</span> <span class="st">"red"</span>, <span class="at">alpha =</span> .<span class="dv">3</span>) <span class="sc">+</span> <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">40</span>,<span class="dv">5</span>),<span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">label_percent</span>(<span class="at">scale =</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
 <span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">50</span>,<span class="dv">5</span>),<span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">label_percent</span>(<span class="at">scale =</span> <span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 9 rows containing missing values (`geom_point()`).</code></pre>
-</div>
 <div class="cell-output-display">
 <p><img src="09data_viz_1_files/figure-html/unnamed-chunk-22-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
+<p>A cautionary tale about using limits in <code>scale_</code> functions: These limits work by filtering the data to be plotted. This can be a serious problem because you basically lose data when plotting and only get a warning about it. This can be especially problematic if you are trying to display bars or ranges because if e.g.&nbsp;one side of an interval falls out of the limits, the entire range will not be displayed. Lets see what happens if we set limits on one of our axes:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>midwest <span class="sc">%&gt;%</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> percadultpoverty, <span class="at">y =</span> percollege), <span class="at">color =</span> <span class="st">"red"</span>, <span class="at">alpha =</span> .<span class="dv">3</span>) <span class="sc">+</span> <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">25</span>,<span class="dv">5</span>),<span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">label_percent</span>(<span class="at">scale =</span> <span class="dv">1</span>), <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">25</span>)) <span class="sc">+</span></span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">50</span>,<span class="dv">5</span>),<span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">label_percent</span>(<span class="at">scale =</span> <span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 9 rows containing missing values (`geom_point()`).</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="09data_viz_1_files/figure-html/unnamed-chunk-23-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
 <p>Notice the warning about removed data. This is especially problematic in bar plots because by default they start from 0 (which can be a good thing because it reduces misinterpretation of visual differences between bars but can be undesired e.g.&nbsp;if displaying results of a 1-5 Likert scale which doesn’t have a 0). Another problematic situation is when plotting some summaries e.g.&nbsp;means and limiting axes. Limits will work before calculating the summaries so you might get nonsensical plots because of this like below where we try to plot mean <code>percadultpoverty</code> by each state and limit the y axis to 10:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>midwest <span class="sc">%&gt;%</span></span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> state, <span class="at">y =</span> percadultpoverty)) <span class="sc">+</span></span>
-<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"summary"</span>, <span class="at">fun =</span> mean) <span class="sc">+</span></span>
-<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">10</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>midwest <span class="sc">%&gt;%</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> state, <span class="at">y =</span> percadultpoverty)) <span class="sc">+</span></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"summary"</span>, <span class="at">fun =</span> mean) <span class="sc">+</span></span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">10</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning: Removed 220 rows containing non-finite values (`stat_summary()`).</code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="09data_viz_1_files/figure-html/unnamed-chunk-23-1.png" class="img-fluid" width="672"></p>
+<p><img src="09data_viz_1_files/figure-html/unnamed-chunk-24-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>The warning now says that 220 rows were removed! What’s even weirded we still got our plot but the means were calculated based on trimmed variable.</p>
 </section>
 <section id="colors" class="level2">
 <h2 class="anchored" data-anchor-id="colors">Colors</h2>
-<p>Scale functions also allow you to control the color and fill aesthetics. You can change which color palette you want to use</p>
-<ul>
-<li>Discuss brewer and viridis packages</li>
-</ul>
-<p>What to be mindful of when setting color palettes:</p>
-<ul>
-<li><p>how people perceive color</p></li>
-<li><p>what information you want to represent (is there some order to the variable, is it divergent etc.)</p></li>
-</ul>
+<p>Scale functions also allow you to control the color and fill aesthetics. You can change which color palette you want to use. There are many packages available with predefined color palettes (e.g.&nbsp;<code>viridis</code> or <code>MetBrewer</code>). We’ll focus on the built-in Brewer palettes and on making manual palettes. Brewer palettes can be invoked with <code>scale_color_brewer()</code> and <code>scale_fill_brewer()</code>. You can choose color palette by setting the <code>palette</code> argument. I can never remember the names of all the palettes but you can easily google them (just type something like “R brewer palettes). Lets change our palette on the scatterplot:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>midwest <span class="sc">%&gt;%</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> percadultpoverty, <span class="at">y =</span> percollege, <span class="at">color =</span> state), <span class="at">alpha =</span> .<span class="dv">8</span>) <span class="sc">+</span></span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_brewer</span>(<span class="at">palette =</span> <span class="st">"Dark2"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="09data_viz_1_files/figure-html/unnamed-chunk-25-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>You can also set your own colors and create your own palette. In order to do that use <code>scale_color_manual()</code> and <code>scale_fill_manual()</code>. You can set the colors as hex or built-in colors in <code>values</code> argument. You can provide it a simple text vector or named vector to explicitly map each categorical variable (if you have categorical variables mapped to color or fill):</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>midwest <span class="sc">%&gt;%</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> percadultpoverty, <span class="at">y =</span> percollege, <span class="at">color =</span> state), <span class="at">alpha =</span> .<span class="dv">8</span>) <span class="sc">+</span></span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"IL"</span> <span class="ot">=</span> <span class="st">"#5f0f40"</span>, <span class="st">"IN"</span> <span class="ot">=</span> <span class="st">"#9a031e"</span>, <span class="st">"MI"</span> <span class="ot">=</span> <span class="st">"#fb8b24"</span>, <span class="st">"OH"</span> <span class="ot">=</span> <span class="st">"#e36414"</span>, <span class="st">"WI"</span> <span class="ot">=</span> <span class="st">"#0f4c5c"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="09data_viz_1_files/figure-html/unnamed-chunk-26-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>for contiunous variables matched to color aesthetic this works a little different. You need <code>scale_color_gradient()</code> function. <code>scale_color_gradient2()</code> allows you to specify a midpoint and thus make a divergent palette. Lets code county area with color this time and specify our own palette with midpoint at the mean county area:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>midpoint <span class="ot">&lt;-</span> <span class="fu">mean</span>(midwest<span class="sc">$</span>area)</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>midwest <span class="sc">%&gt;%</span></span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> percadultpoverty, <span class="at">y =</span> percollege, <span class="at">color =</span> area)) <span class="sc">+</span></span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_gradient2</span>(<span class="at">low =</span> <span class="st">"#e63946"</span>, <span class="at">mid =</span> <span class="st">"#8d99ae"</span>, <span class="at">high =</span> <span class="st">"#1d3557"</span>, <span class="at">midpoint =</span> midpoint)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="09data_viz_1_files/figure-html/unnamed-chunk-27-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>When using colors on a plot you need to be mindful of a number of things. Color is used to convey information so it should be visible. Try to avoid very small contrasts if you want something to stand out (e.g.&nbsp;using light grey on white background). Also remember that not everyone perceives color the same way so it is worth checking if your palette is suitable for everyone. Finally, color shouldn’t be used just because “it looks cool”. Generally everything that is in a plot should be there for a reason. Remember that data visualizations should convey information. That’s their primary purpose. Using color can help with that but it can also make things more difficult to understand. E.g. using a lot of flashy colors just for the sake of using colors might make a plot much more difficult to understand for viewers. Finally, colors can be used to convey different kinds of information, from continuity (e.g.&nbsp;a palette going from light to dark blue to code a continuous variable liek percentage of adults in college), divergence (a palette going from dark blue through light blue and red to dark red to display polarization of opinions) or contrast (e.g.&nbsp;contrasting colors in a palette to display different US states).</p>
 </section>
 <section id="positions" class="level2">
 <h2 class="anchored" data-anchor-id="positions">Positions</h2>
+<p>One issue that pops up quite often, especially when adding color to aesthetics, is how to deal with overlapping values. On the plots above there were some overlapping points on the scatterplot but we could easily deal with it by adjusting transparency. There are situations when this is not so easy or even not desirable. For example you can’t just as easily deal with overlapping bars. <code>ggplot2</code> has a number of position adjustments that help us deal with this problem. THey allow us to stack, normalize or nudge shapes so that they won’t overlap. The basic position adjustments are:</p>
 <ul>
-<li><p>What are position adjustments</p></li>
-<li><p>Basic adjustments</p></li>
+<li><p>dodge: move shapes to the side (how much is controlled with the <code>width</code> argument)</p></li>
+<li><p>stack: stack shapes on top of each other</p></li>
+<li><p>fill: stack shapes on top of each other and normalize height (good for displaying proportions)</p></li>
+<li><p>jitter: add some random noise (you can adjust how much with <code>height</code> and <code>width</code> arguments). It’s good for cluttered scatterplots</p></li>
+<li><p>nudge: slightly move shapes, good for nudging text</p></li>
 </ul>
+<p>Ok, lets see some of them in action. We’ll start with jitter. In some situation you might want to display point with a categorical x axis. This can be useful when showing a distribution, e.g.&nbsp;with <code>geom_violin()</code> and adding all the data points on top of it with <code>geom_point()</code>. IF we don’t use any position adjustments we’ll get something like this (we want to look at distribution of percollege in each state):</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>midwest <span class="sc">%&gt;%</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> state, <span class="at">y =</span> percollege)) <span class="sc">+</span></span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_violin</span>(<span class="at">alpha =</span> .<span class="dv">4</span>) <span class="sc">+</span></span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="09data_viz_1_files/figure-html/unnamed-chunk-28-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Ok, lets add some jitter but constrain it to be only in width (adding jitter in height might change how we interpret some values!):</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>midwest <span class="sc">%&gt;%</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> state, <span class="at">y =</span> percollege)) <span class="sc">+</span></span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_violin</span>(<span class="at">alpha =</span> .<span class="dv">4</span>) <span class="sc">+</span></span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">position =</span> <span class="fu">position_jitter</span>(<span class="at">height =</span> <span class="dv">0</span>, <span class="at">width =</span> .<span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="09data_viz_1_files/figure-html/unnamed-chunk-29-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>This makes it much easier to see all the points!</p>
+<p>Now we’ll move on to position adjustments in barplots. Lets say we want to look at number of counties in each state that are or are not in metro area(<code>inmetro</code> variable). We can do it by adding a <code>fill</code> aesthetic to the <code>geom_bar()</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>midwest <span class="sc">%&gt;%</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> state, <span class="at">fill =</span> <span class="fu">as.factor</span>(inmetro))) <span class="sc">+</span></span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="09data_viz_1_files/figure-html/unnamed-chunk-30-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>By default <code>geom_bar()</code> uses the stack position adjustment. Lets experiment with it a little and see what happens if we add a fill adjustment:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>midwest <span class="sc">%&gt;%</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> state, <span class="at">fill =</span> <span class="fu">as.factor</span>(inmetro))) <span class="sc">+</span></span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">position =</span> <span class="st">"fill"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="09data_viz_1_files/figure-html/unnamed-chunk-31-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Now we have proportions rather than counts. Remember that order here matters (proportions sum to 1 within each state. If we wanted to see the share of each state in metro vs non-metro counties in the midwest we would need to switch x and fill aesthetics).</p>
+<p>To see position dodge we will look at <code>geom_col()</code>. Lets say we want to plot the average percentage of adults in poverty in metro and nonmetro counties in each state:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>midwest <span class="sc">%&gt;%</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean_perc =</span> <span class="fu">mean</span>(percadultpoverty), <span class="at">.by =</span> <span class="fu">c</span>(state, inmetro)) <span class="sc">%&gt;%</span></span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> inmetro, <span class="at">y =</span> mean_perc, <span class="at">fill =</span> state)) <span class="sc">+</span></span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="09data_viz_1_files/figure-html/unnamed-chunk-32-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>This looks pretty bad right? <code>geom_col()</code> also uses stack adjustment by default. To make it more readable and compare the percentages we can use the dodge adjustment:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>midwest <span class="sc">%&gt;%</span></span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean_perc =</span> <span class="fu">mean</span>(percadultpoverty), <span class="at">.by =</span> <span class="fu">c</span>(inmetro, state)) <span class="sc">%&gt;%</span></span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">as.factor</span>(inmetro), <span class="at">y =</span> mean_perc, <span class="at">fill =</span> state)) <span class="sc">+</span></span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">position =</span> <span class="fu">position_dodge</span>(<span class="at">width =</span> .<span class="dv">9</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="09data_viz_1_files/figure-html/unnamed-chunk-33-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Much better! Now we can compare the percentages across state and metro vs non-metro counties!</p>
 
 
 </section>

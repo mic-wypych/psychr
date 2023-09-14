@@ -4,7 +4,7 @@ title: "Data visualization part 2"
 
 # Plotting continued
 
-We know how to make various plots to display the data and how to control the attributes and scales. Now we'll move on to additional layers in ggplot2
+We know how to make various plots to display the data and how to control the attributes and scales. Now we'll move on to additional layers in `ggplot2`.
 
 ## Faceting
 
