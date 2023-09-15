@@ -73,3 +73,25 @@ midwest %>%
   ggplot() +
   geom_point(aes(x = percadultpoverty, y = percollege, color =popdensity), alpha = .8) +
   scale_color_gradient(values = c("#AAAAAA", "#CCCFFF"))
+
+
+midwest %>%
+  summarise(mean_perblack = mean(percblack),
+            mean_percasian = mean(percasian),
+            mean_percind = mean(percamerindan),
+            mean_percother = mean(percother), .by = state) %>%
+  pivot_longer(cols = mean_perblack:mean_percother, names_to = "group", values_to = "percent")
+
+
+midwest %>%
+  group_by(state) %>%
+  summarise(mean_pct_college = mean(percollege),
+            sd_pct_college = sd(percollege),
+            n = n(),
+            se_pct_college = sd_pct_college/sqrt(n()))
+
+test <- ecdf(midwest$percollege)
+midwest %>%
+  ggplot(aes(x = percollege)) +
+  stat_function(fun = test, geom = "line") +
+  geom_density()
