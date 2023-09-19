@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.340">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>r_website - loading_data</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+</head>
+
+<body class="floating nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">r_website</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./index.html" rel="" target="">
+ <span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-basics" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Basics</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-basics">    
+        <li>
+    <a class="dropdown-item" href="./01r_intro.html" rel="" target="">
+ <span class="dropdown-text">Introduction</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./02basic_data.html" rel="" target="">
+ <span class="dropdown-text">Basic data</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./03data_types.html" rel="" target="">
+ <span class="dropdown-text">Data types</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./04loops_conditionals.html" rel="" target="">
+ <span class="dropdown-text">Loops and conditionals</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./05functions.html" rel="" target="">
+ <span class="dropdown-text">Functions</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-working-with-data" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Working with data</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-working-with-data">    
+        <li>
+    <a class="dropdown-item" href="./06loading_data.html" rel="" target="">
+ <span class="dropdown-text">Loading data</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./07data_wrangling.html" rel="" target="">
+ <span class="dropdown-text">Data wrangling</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./08join_restructure.html" rel="" target="">
+ <span class="dropdown-text">Joining and restructuring data</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./09data_viz_1.html" rel="" target="">
+ <span class="dropdown-text">Vizualization vol 1</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./10data_viz_2.html" rel="" target="">
+ <span class="dropdown-text">Vizualization vol 2</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./11organizingwork.html" rel="" target="">
+ <span class="dropdown-text">organizing work</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-statistics" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Statistics</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-statistics">    
+        <li>
+    <a class="dropdown-item" href="./12eda.html" rel="" target="">
+ <span class="dropdown-text">Exploratory analysis</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./13t-tests.html" rel="" target="">
+ <span class="dropdown-text">T tests</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./14anova.html" rel="" target="">
+ <span class="dropdown-text">Anovas</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./15correlations.html" rel="" target="">
+ <span class="dropdown-text">Correlations</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./16regression.html" rel="" target="">
+ <span class="dropdown-text">Regression</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+            <div class="quarto-navbar-tools ms-auto">
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+</div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+    <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#loading-data-in-r" id="toc-loading-data-in-r" class="nav-link active" data-scroll-target="#loading-data-in-r">Loading data in R</a></li>
+  <li><a href="#loading-flat-files" id="toc-loading-flat-files" class="nav-link" data-scroll-target="#loading-flat-files">Loading flat files</a></li>
+  <li><a href="#loading-data-from-spss" id="toc-loading-data-from-spss" class="nav-link" data-scroll-target="#loading-data-from-spss">Loading data from SPSS</a>
+  <ul class="collapse">
+  <li><a href="#loading-data-with-foreign" id="toc-loading-data-with-foreign" class="nav-link" data-scroll-target="#loading-data-with-foreign">loading data with foreign</a></li>
+  <li><a href="#loading-data-with-haven" id="toc-loading-data-with-haven" class="nav-link" data-scroll-target="#loading-data-with-haven">loading data with haven</a></li>
+  </ul></li>
+  <li><a href="#loading-excel-files" id="toc-loading-excel-files" class="nav-link" data-scroll-target="#loading-excel-files">Loading excel files</a></li>
+  <li><a href="#loading-jsons" id="toc-loading-jsons" class="nav-link" data-scroll-target="#loading-jsons">Loading jsons</a></li>
+  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises">exercises</a></li>
+  </ul>
+</nav>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+    </div>
+<!-- main -->
+<main class="content column-page-right" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">loading_data</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="loading-data-in-r" class="level2">
+<h2 class="anchored" data-anchor-id="loading-data-in-r">Loading data in R</h2>
+<p>So far we’ve been creating the object to work with ourselves. Usually you will work with already existing datasets though (like a file from an experiment, survey etc.). The first thing you need to do to start working on your file is to load it into R session. There are many ways of loading a dataset or file into your R session so that you can use it. How to do it depends mainly on how the data is stored.</p>
+<p>When loading a dataset there are generally a few things to consider:</p>
+<ol type="1">
+<li>Extension: data can be stored in different ways. This can also be related to what kind of information is stored in a given file. Depending on how a file is stored you might need to load it differently because it stores different information. For example excel files can have multiple sheets while spss files can store labels attached to variables. When loading a file you always have to provide files with extensions.</li>
+<li>file path: files are stored in different places on your computer (or on the web). In order to load it you need to tell R exactly where to look for the file. A file path speifies exactly where exactly a file is stored e.g.&nbsp;<code>C:/Users/User/Documents</code> specifies the path to the documents folder. A file path can be absolute like the one shown above - its unequivocal. There are also relative file paths that specifies the location of a file relative to current directory. By default R will look in what is called working directory. For simple scripts this by default is set to the documents folder. You can check the current working directory with <code>getwd()</code> function. If you want to change the working directory you can do it with <code>setwd()</code> and pass a string with new directory as argument. This way of working with directories will do for now but it’s not really a good way of managing directories. If you move your script to another folder or share the data and script with other people using <code>setwd()</code> will fail you. Because of this you should avoid manually setting working directory.. One way to deal with this problem is to use <code>here()</code> function from the <code>here</code> package. It uses some heuristics to determine the directory of your script. It can solve the problem of moving or sharing files but remember it uses heuristics so it might not always work. The other solution is to use R projects which automatically set the working directory to the project directory. We’ll learn about them later on.</li>
+</ol>
+</section>
+<section id="loading-flat-files" class="level2">
+<h2 class="anchored" data-anchor-id="loading-flat-files">Loading flat files</h2>
+<p>We’ll start with loading what are called flat files: csv (short for comma separated values) and tsv (tab separated values). Both of these are basically plain text files just structures in a ver specific wayThe name kind of gives away how these formats store data: in csv columns are separated by commas and in tsv columns are separated by tabs. You can see an example of a csv file below:</p>
+<p><img src="images/csv_file_example-01.png" class="img-fluid"></p>
+<p>Not very readable right? There are 2 packages with similar functions for loading .csv and .tsv files: <code>utils</code> and <code>readr</code>. We`ll load the <a href="https://www.gapminder.org/data/">gapminder population data</a> saved as a .csv file:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>df1 <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"datasets/pop.csv"</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                                              
+1 function (x, df1, df2, ncp, log = FALSE)    
+2 {                                           
+3     if (missing(ncp))                       
+4         .Call(C_df, x, df1, df2, log)       
+5     else .Call(C_dnf, x, df1, df2, ncp, log)
+6 }                                           </code></pre>
+</div>
+</div>
+<p>Using the <code>readr</code> package is very similar:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>df2 <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"datasets/pop.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Rows: 197 Columns: 302
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr (302): country, 1800, 1801, 1802, 1803, 1804, 1805, 1806, 1807, 1808, 18...
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(df2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 302
+  country  `1800` `1801` `1802` `1803` `1804` `1805` `1806` `1807` `1808` `1809`
+  &lt;chr&gt;    &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt; 
+1 Afghani… 3.28M  3.28M  3.28M  3.28M  3.28M  3.28M  3.28M  3.28M  3.28M  3.28M 
+2 Angola   1.57M  1.57M  1.57M  1.57M  1.57M  1.57M  1.57M  1.57M  1.57M  1.57M 
+3 Albania  400k   402k   404k   405k   407k   409k   411k   413k   414k   416k  
+4 Andorra  2650   2650   2650   2650   2650   2650   2650   2650   2650   2650  
+5 UAE      40.2k  40.2k  40.2k  40.2k  40.2k  40.2k  40.2k  40.2k  40.2k  40.2k 
+6 Argenti… 534k   520k   506k   492k   479k   466k   453k   441k   429k   417k  
+# ℹ 291 more variables: `1810` &lt;chr&gt;, `1811` &lt;chr&gt;, `1812` &lt;chr&gt;, `1813` &lt;chr&gt;,
+#   `1814` &lt;chr&gt;, `1815` &lt;chr&gt;, `1816` &lt;chr&gt;, `1817` &lt;chr&gt;, `1818` &lt;chr&gt;,
+#   `1819` &lt;chr&gt;, `1820` &lt;chr&gt;, `1821` &lt;chr&gt;, `1822` &lt;chr&gt;, `1823` &lt;chr&gt;,
+#   `1824` &lt;chr&gt;, `1825` &lt;chr&gt;, `1826` &lt;chr&gt;, `1827` &lt;chr&gt;, `1828` &lt;chr&gt;,
+#   `1829` &lt;chr&gt;, `1830` &lt;chr&gt;, `1831` &lt;chr&gt;, `1832` &lt;chr&gt;, `1833` &lt;chr&gt;,
+#   `1834` &lt;chr&gt;, `1835` &lt;chr&gt;, `1836` &lt;chr&gt;, `1837` &lt;chr&gt;, `1838` &lt;chr&gt;,
+#   `1839` &lt;chr&gt;, `1840` &lt;chr&gt;, `1841` &lt;chr&gt;, `1842` &lt;chr&gt;, `1843` &lt;chr&gt;, …</code></pre>
+</div>
+</div>
+<p>One big difference is that <code>readr</code> by default gives a message about number of rows, columns and types of variables that were loaded. Notice that it loaded every variable as character. That’s because the original file has “k” and “M” to indicate thousands and millions which is interpreted by R as text. We would need to convert those into proper numbers. Loading .tsv files is exactly the same, the only difference is that functions to do it are named <code>read.tsv()</code> and <code>read_tsv()</code>.</p>
+<p>There’s a bunch of things we can customize when loading data into R. Maybe you don’t need the entire dataset but only a subset of columns? Or you want to manually specify what types of variables you want? Or maybe the dataset you are using does not have variable names? You can specify all of these things as arguments to the loading functions. You can look at the documentation to lean more about them.</p>
+</section>
+<section id="loading-data-from-spss" class="level2">
+<h2 class="anchored" data-anchor-id="loading-data-from-spss">Loading data from SPSS</h2>
+<p>Data coming from statistical software can’t be loaded in such a simple way as above. Mainly because it stores more information. Here we’ll focus on .sav format which is used by SPSS. Apart from rows and columns (observations and variables) .sav format stores additional information e.g.&nbsp;on value labels - it is able to attach labels to numbers (like in Likert scales 1 can refer to ‘strongly disagree’). SPSS also allows to specify user-defined missing values (a common practice is to e.g.&nbsp;code missing values with 99).</p>
+<p>This means we have to somehow deal with this additional information when loading .sav files. There are essentially two ways to go about it: reduce the amount of information stored or introduce a new type of values that can store this additional information. This first approach is taken by the <code>foreign</code> package. The second one is taken by <code>haven</code> package. Each of these approaches has some advantages and drawbacks. Stripping labels from values is generally easier and keeps consistency in terms of types of objects you are dealing with. You just keep working with numeric, integer, character or boolean values. The downside is that you lose some information and when e.g.&nbsp;saving a data file back to .sav format you can’t restore them. It might also cause problems if some variables need to be reversed beause you will lose information about that. Using <code>haven</code> allows you to keep all the labels but this is achieved by creating a new type of object: <code>haven-labelled</code>. Thanks to this you can keep all the information e.g.&nbsp;when saving back to .sav format. Most of the time you shouldn’t have problems with this new type of object but some statistical procedures from other packages might not like this and refuse to work. If that happens you can strip the labels using <code>zap_labels()</code>.</p>
+<section id="loading-data-with-foreign" class="level3">
+<h3 class="anchored" data-anchor-id="loading-data-with-foreign">loading data with foreign</h3>
+<p>The main functiom in <code>foreign</code> is <code>read.spss()</code>. By default <code>foregin</code> will load data into a list rather than a dataframe. You can load into a data frame by setting the argument <code>to.data.frame</code> to <code>TRUE</code>. Another useful argument is <code>use.value.labels</code> which, if set to <code>TRUE</code> will convert the numerical values stored in .sav into their corresponding labels. This is the way foreign deals with labelled values: you can use either numeric values or their labels. In the documentation of the function you can read about additional arguments that control handling of labels.</p>
+<p>Please notice though that the documentation for <code>read.spss()</code> function in foreign states that it was originally developed in 2000 and does not guarantee compatibility with newer versions of SPSS (whcih hasn’t changed much since but still. At least it doesn’t look like windows xp anymore).</p>
+<p>To look at loading .sav files we’ll use a trimmed version (the whole file is huge and we don’t need it) of <a href="https://www.worldvaluessurvey.org/WVSDocumentationWV6.jsp">World Value Survey wave 6</a>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(foreign)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>df_foreign <span class="ot">&lt;-</span> <span class="fu">read.spss</span>(<span class="st">"datasets/WVS6.sav"</span>, <span class="at">to.data.frame =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Once we have the data loaded lets see what types of values we have.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(df_foreign[,<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>'data.frame':   89565 obs. of  3 variables:
+ $ V1 : Factor w/ 7 levels "1981-1984","1989-1993",..: 6 6 6 6 6 6 6 6 6 6 ...
+ $ V2 : Factor w/ 61 levels "Not asked in survey",..: 2 2 2 2 2 2 2 2 2 2 ...
+ $ V2A: Factor w/ 61 levels "Algeria","Azerbaijan",..: 1 1 1 1 1 1 1 1 1 1 ...</code></pre>
+</div>
+</div>
+</section>
+<section id="loading-data-with-haven" class="level3">
+<h3 class="anchored" data-anchor-id="loading-data-with-haven">loading data with haven</h3>
+<p>Haven package deals differently with loading labeled variables. It introduces a new type of variable: haven-labelled data. It is capable of storing both numeric values and labels attached to it by adding an attribute to the variable with labels. You can load a file in <code>haven</code> using <code>read_spss()</code> (notice the underscore).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(haven)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>df_haven <span class="ot">&lt;-</span> <span class="fu">read_spss</span>(<span class="st">"datasets/WVS6.sav"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Now that we have loaded the dataset, lets look at the types of variables we have.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(df_haven[,<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>tibble [89,565 × 3] (S3: tbl_df/tbl/data.frame)
+ $ V1 : dbl+lbl [1:89565] 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6...
+   ..@ label      : chr "Wave"
+   ..@ format.spss: chr "F2.0"
+   ..@ labels     : Named num [1:7] 1 2 3 4 5 6 7
+   .. ..- attr(*, "names")= chr [1:7] "1981-1984" "1989-1993" "1994-1998" "1999-2004" ...
+ $ V2 : dbl+lbl [1:89565] 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, ...
+   ..@ label      : chr "Country/region"
+   ..@ format.spss: chr "F4.0"
+   ..@ labels     : Named num [1:61] -4 12 31 32 36 51 76 112 152 156 ...
+   .. ..- attr(*, "names")= chr [1:61] "Not asked in survey" "Algeria" "Azerbaijan" "Argentina" ...
+ $ V2A: dbl+lbl [1:89565] 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, ...
+   ..@ label      : chr "Country/regions [with split ups]"
+   ..@ format.spss: chr "F3.0"
+   ..@ labels     : Named num [1:61] 12 31 32 36 51 76 112 152 156 158 ...
+   .. ..- attr(*, "names")= chr [1:61] "Algeria" "Azerbaijan" "Argentina" "Australia" ...
+ - attr(*, "label")= chr "filelabel"</code></pre>
+</div>
+</div>
+<p>And lets see what happens if we zap the labels.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>df_nolab <span class="ot">&lt;-</span> <span class="fu">zap_labels</span>(df_haven)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(df_nolab)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>tibble [89,565 × 8] (S3: tbl_df/tbl/data.frame)
+ $ V1             : num [1:89565] 6 6 6 6 6 6 6 6 6 6 ...
+  ..- attr(*, "label")= chr "Wave"
+  ..- attr(*, "format.spss")= chr "F2.0"
+ $ V2             : num [1:89565] 12 12 12 12 12 12 12 12 12 12 ...
+  ..- attr(*, "label")= chr "Country/region"
+  ..- attr(*, "format.spss")= chr "F4.0"
+ $ V2A            : num [1:89565] 12 12 12 12 12 12 12 12 12 12 ...
+  ..- attr(*, "label")= chr "Country/regions [with split ups]"
+  ..- attr(*, "format.spss")= chr "F3.0"
+ $ COW            : num [1:89565] 615 615 615 615 615 615 615 615 615 615 ...
+  ..- attr(*, "label")= chr "COW Country Code"
+  ..- attr(*, "format.spss")= chr "F2.0"
+ $ C_COW_ALPHA    : chr [1:89565] "ALG" "ALG" "ALG" "ALG" ...
+  ..- attr(*, "label")= chr "Country code CoW alpha"
+  ..- attr(*, "format.spss")= chr "A8"
+ $ B_COUNTRY_ALPHA: chr [1:89565] "DZA" "DZA" "DZA" "DZA" ...
+  ..- attr(*, "label")= chr "Country code ISO 3166 alpha"
+  ..- attr(*, "format.spss")= chr "A8"
+ $ V10            : num [1:89565] 2 2 2 2 1 2 2 2 2 1 ...
+  ..- attr(*, "label")= chr "Feeling of happiness"
+  ..- attr(*, "format.spss")= chr "F3.0"
+ $ V11            : num [1:89565] 1 2 2 1 3 1 2 1 2 1 ...
+  ..- attr(*, "label")= chr "State of health (subjective)"
+  ..- attr(*, "format.spss")= chr "F3.0"
+ - attr(*, "label")= chr "filelabel"</code></pre>
+</div>
+</div>
+<p>One last thing about the <code>haven</code> package. SPSS has the habit of storing categorical variables as labelled values (e.g.&nbsp;1 - blue, 2 - brown). This can be a big problem because R will try to treat them as numeric values. This can lead to some ridiculous errors in analysis. To change a variable from <code>haven-labelled</code> to a factors with values taken from labels you can use <code>as_factor()</code> (again notice the underscore instead of dot).</p>
+</section>
+</section>
+<section id="loading-excel-files" class="level2">
+<h2 class="anchored" data-anchor-id="loading-excel-files">Loading excel files</h2>
+<p>One additional thing you have to take into account when loading data from excel is that it can store a number of sheets in a single file. This has to be taken into account when loading such file into R.</p>
+<p>One of the packages available for loading excel data is <code>readxl</code>.</p>
+<p>The main difference in excel files is that they can store multiple sheets in one file. Because of that we need to specify which sheet we want to load. You can inspect the names of sheets with <code>excel_sheets()</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="fu">excel_sheets</span>(<span class="st">"datasets/pop.xlsx"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "pop"</code></pre>
+</div>
+</div>
+<p>Once we know the sheet names we can load the one that interests us. We need to specify the path to the file and which sheet we want to load. There are of course many other arguments that give additional control over what is loaded but they are quite similar to other loading functions. You can read more on them in the documentation of the function. If you need to load multiple sheets you can save the sheet names as an object and then loop over them using <code>lapply()</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>df_excel <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"datasets/pop.xlsx"</span>, <span class="at">sheet =</span> <span class="st">"pop"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Now we can look at the top of the file:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(df_excel)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 302
+  country  `1800` `1801` `1802` `1803` `1804` `1805` `1806` `1807` `1808` `1809`
+  &lt;chr&gt;    &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt; 
+1 Afghani… 3.28M  3.28M  3.28M  3.28M  3.28M  3.28M  3.28M  3.28M  3.28M  3.28M 
+2 Angola   1.57M  1.57M  1.57M  1.57M  1.57M  1.57M  1.57M  1.57M  1.57M  1.57M 
+3 Albania  400k   402k   404k   405k   407k   409k   411k   413k   414k   416k  
+4 Andorra  2650   2650   2650   2650   2650   2650   2650   2650   2650   2650  
+5 UAE      40.2k  40.2k  40.2k  40.2k  40.2k  40.2k  40.2k  40.2k  40.2k  40.2k 
+6 Argenti… 534k   520k   506k   492k   479k   466k   453k   441k   429k   417k  
+# ℹ 291 more variables: `1810` &lt;chr&gt;, `1811` &lt;chr&gt;, `1812` &lt;chr&gt;, `1813` &lt;chr&gt;,
+#   `1814` &lt;chr&gt;, `1815` &lt;chr&gt;, `1816` &lt;chr&gt;, `1817` &lt;chr&gt;, `1818` &lt;chr&gt;,
+#   `1819` &lt;chr&gt;, `1820` &lt;chr&gt;, `1821` &lt;chr&gt;, `1822` &lt;chr&gt;, `1823` &lt;chr&gt;,
+#   `1824` &lt;chr&gt;, `1825` &lt;chr&gt;, `1826` &lt;chr&gt;, `1827` &lt;chr&gt;, `1828` &lt;chr&gt;,
+#   `1829` &lt;chr&gt;, `1830` &lt;chr&gt;, `1831` &lt;chr&gt;, `1832` &lt;chr&gt;, `1833` &lt;chr&gt;,
+#   `1834` &lt;chr&gt;, `1835` &lt;chr&gt;, `1836` &lt;chr&gt;, `1837` &lt;chr&gt;, `1838` &lt;chr&gt;,
+#   `1839` &lt;chr&gt;, `1840` &lt;chr&gt;, `1841` &lt;chr&gt;, `1842` &lt;chr&gt;, `1843` &lt;chr&gt;, …</code></pre>
+</div>
+</div>
+</section>
+<section id="loading-jsons" class="level2">
+<h2 class="anchored" data-anchor-id="loading-jsons">Loading jsons</h2>
+<p>There are situations in which you might work with data that does not come from simple tables but is stored in completely different way. One example that we’ll introduce here is the json format. Json is short for Javascript Object Notation and is a common way of storing data in the web.</p>
+<p>Json stores data as key - value pairs. These might not approximate tabular format and can be nested and fairly complicated. This type of data is especially common when downloading data directly from the web (e.g.&nbsp;social media data) or from APIs. You can imagine a file that stores information on each user of a website: their username, password and all posts that they have created along with information on each post like their creation date. It might look something like this:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/paste-E897D59A.png" class="img-fluid figure-img" width="364"></p>
+</figure>
+</div>
+<p>Because json can be a complicated and nested structure the type of data that best approximates it in R is a list. There are ways to ask R to try and handle such list structure and try to convert it into a data frame but it does not always work. Cleaning an unevenly nested json can be a real pain sometimes!</p>
+<p>We’ll look at an example of a NASA API that stores information on the number of people currently present on space stations. The package we’ll use to load the data is <code>jsonlite</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(jsonlite)</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>nasa <span class="ot">&lt;-</span> <span class="fu">fromJSON</span>(<span class="st">"http://api.open-notify.org/astros.json"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Notice how the loaded object looks like. It is a list with 3 elements: number of people as an integer, a dataframe of astronauts and a string “success”.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>nasa</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$people
+                 name    craft
+1    Sergey Prokopyev      ISS
+2      Dmitry Petelin      ISS
+3         Frank Rubio      ISS
+4        Jing Haiping Tiangong
+5         Gui Haichow Tiangong
+6         Zhu Yangzhu Tiangong
+7     Jasmin Moghbeli      ISS
+8    Andreas Mogensen      ISS
+9    Satoshi Furukawa      ISS
+10 Konstantin Borisov      ISS
+11     Oleg Kononenko      ISS
+12       Nikolai Chub      ISS
+13       Loral O'Hara      ISS
+
+$number
+[1] 13
+
+$message
+[1] "success"</code></pre>
+</div>
+</div>
+</section>
+<section id="exercises" class="level2">
+<h2 class="anchored" data-anchor-id="exercises">exercises</h2>
+<ol type="1">
+<li>loading a flat file</li>
+<li>loading excel</li>
+<li>loading json</li>
+</ol>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
