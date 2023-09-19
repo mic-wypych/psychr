@@ -95,10 +95,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }</script>
 
 
-<link rel="stylesheet" href="styles.css">
 </head>
 
-<body class="nav-fixed">
+<body class="floating nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -219,9 +218,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-<!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+    <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">On this page</h2>
    
   <ul>
@@ -230,9 +228,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#separating-and-uniting-variables" id="toc-separating-and-uniting-variables" class="nav-link" data-scroll-target="#separating-and-uniting-variables">Separating and uniting variables</a></li>
   <li><a href="#joining-data" id="toc-joining-data" class="nav-link" data-scroll-target="#joining-data">Joining data</a></li>
   <li><a href="#from-wide-to-long-format-and-back-again" id="toc-from-wide-to-long-format-and-back-again" class="nav-link" data-scroll-target="#from-wide-to-long-format-and-back-again">From wide to long format and back again</a></li>
+  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises">Exercises</a></li>
   </ul></li>
   </ul>
 </nav>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -262,13 +265,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="restructuring-data" class="level1">
 <h1>Restructuring data</h1>
-<p>We now know a bit about wrangling data. This time we will deal with situations in which your data is not in the correct shape to allow you to calculate what you want. We will look at separating and uniting variables (e.g.&nbsp;what if your dataset has separate columns for year, month and day but you need those in 1 variable?), joining datasets (e.g.&nbsp;what if some information is in 1 dataset but other information you need is in another one?) and reshaping data (going from wide to long format and back again)</p>
-<ul>
-<li>We’ll work with a lovely dataset on all (?) Scooby Doo episodes + <strong>reference</strong></li>
-</ul>
-<section id="separating-and-uniting-variables" class="level2">
-<h2 class="anchored" data-anchor-id="separating-and-uniting-variables">Separating and uniting variables</h2>
-<p>In order to separate 1 variable into more you can use <code>separate()</code>. The opposite operation can be done with <code>unite().</code>When separating you need to specify which variable to split, what are the names of the new variables (passed as a character vector) and what is the separator which basically tells R where to “cut” the old variable into new ones. By default the old variable is removed from the dataset:</p>
+<p>We know a bit about wrangling data. Now we will deal with situations in which your data is not in the correct shape to allow you to calculate what you want. We will look at separating and uniting variables (e.g.&nbsp;what if your dataset has separate columns for year, month and day but you need those in 1 variable?), joining datasets (e.g.&nbsp;what if some information is in 1 dataset but other information you need is in another one?) and reshaping data (going from wide to long format and back again).</p>
+<p>We’ll learn seaparting and uniting variables by looking at a dataset aboutScooby Doo episodes by <a href="https://www.kaggle.com/williamschooleman">plummye</a>. The dataset is taken from <a href="https://www.kaggle.com/datasets/williamschooleman/scoobydoo-complete">Kaggle</a>. This dataset has a loot of variables that are either generally about a given episode or about specific characters (like monsters or members of the scooby gang).</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
@@ -283,37 +281,384 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 ✖ dplyr::lag()    masks stats::lag()
 ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># separating example</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>scooby <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"datasets/scooby.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>New names:
+Rows: 603 Columns: 76
+── Column specification
+──────────────────────────────────────────────────────── Delimiter: "," chr
+(60): series_name, network, season, title, imdb, engagement, format, mo... dbl
+(6): ...1, index, run_time, monster_amount, suspects_amount, culprit_a... lgl
+(9): unmask_other, caught_other, caught_not, door_gag, batman, scooby_... date
+(1): date_aired
+ℹ Use `spec()` to retrieve the full column specification for this data. ℹ
+Specify the column types or set `show_col_types = FALSE` to quiet this message.
+• `` -&gt; `...1`</code></pre>
 </div>
-<p>Uniting is very similar, it just has a reversed effect. You specify what should the name of the new variable be, what are the names of variables to unite and what R should use to separate the values from the old variables.</p>
-<ul>
-<li></li>
-<li><p>Another way to separate is by separating into rows. This way each new value will be added in additional row rather than a column. You can do it with <code>separate_rows()</code>.</p></li>
-<li><p>A potential problem with <code>separate()</code> is when various rows have different number of values. Then you might get conflicting number of columns to create.</p></li>
-</ul>
+</div>
+<section id="separating-and-uniting-variables" class="level2">
+<h2 class="anchored" data-anchor-id="separating-and-uniting-variables">Separating and uniting variables</h2>
+<p>In order to separate 1 variable into more you can use <code>separate()</code>. The opposite operation can be done with <code>unite().</code>When separating you need to specify which variable to split, what are the names of the new variables (passed as a character vector) and what is the separator which basically tells R where to “cut” the old variable into new ones. By default the old variable is removed from the dataset. Lets look at the <code>date_aired</code> variable. It stores the year, month and day of when each episode was aired. Lets say we wanted to split it into three variables: year, month and day. We can easily do it with <code>separate()</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>scooby_separated <span class="ot">&lt;-</span> scooby <span class="sc">%&gt;%</span> <span class="fu">separate</span>(date_aired, <span class="at">into =</span> <span class="fu">c</span>(<span class="st">"year"</span>, <span class="st">"month"</span>, <span class="st">"day"</span>), <span class="at">sep =</span> <span class="st">"-"</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>scooby_separated <span class="sc">%&gt;%</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(year, month, day) <span class="sc">%&gt;%</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 3
+  year  month day  
+  &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;
+1 1969  09    13   
+2 1969  09    20   
+3 1969  09    27   
+4 1969  10    04   
+5 1969  10    11   
+6 1969  10    18   </code></pre>
+</div>
+</div>
+<p>Yay, we got 3 new variables just like we wanted! Uniting is very similar, it just has a reversed effect. You specify what should the name of the new variable be, what are the names of variables to unite and what R should use to separate the values from the old variables.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co">#unite example</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>scooby_united <span class="ot">&lt;-</span> <span class="fu">unite</span>(scooby_separated, <span class="at">col =</span> <span class="st">"date_aired"</span>, year<span class="sc">:</span>day, <span class="at">sep =</span> <span class="st">"-"</span>)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(scooby_united<span class="sc">$</span>date_aired)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "1969-09-13" "1969-09-20" "1969-09-27" "1969-10-04" "1969-10-11"
+[6] "1969-10-18"</code></pre>
+</div>
+</div>
+<p>A potential problem with <code>separate()</code> is when various rows have different number of values. Then you might get conflicting number of columns to create. For example the <code>monster_type</code> column stores information on the types of monsters that were present in a given episode. The problem is various episodes had different numbers of monsters and they’re all stored in a single column. They are all separated by commas. In order to use <code>separate()</code> we need to know how many columns to create. We can do it by finding out what is the maximum number of commas and adding 1. We can do it quickly with th <code>str_count()</code> function from <code>stringr</code> package which counts occurences of a string.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">max</span>(<span class="fu">str_count</span>(scooby<span class="sc">$</span>monster_type, <span class="st">","</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 18</code></pre>
+</div>
+</div>
+<p>Ok, the maximum number of commas is 18 so there were maximum of 19 monster in a given episode. Now we’ll need to prepare the names for new variables as we’d rather not type 19 names by hand and then separate</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="st">"monster_type_"</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">19</span>)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>vars <span class="ot">&lt;-</span> <span class="fu">paste0</span>(a, b)</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>scooby_separated <span class="ot">&lt;-</span> <span class="fu">separate</span>(scooby, monster_type, <span class="at">into =</span> vars,  <span class="at">sep =</span> <span class="st">","</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Expected 19 pieces. Missing pieces filled with `NA` in 602 rows [1, 2, 3, 4, 5,
+6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, ...].</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>scooby_separated <span class="sc">%&gt;%</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(monster_type_1<span class="sc">:</span>monster_type_19) <span class="sc">%&gt;%</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 19
+  monster_type_1   monster_type_2 monster_type_3 monster_type_4 monster_type_5
+  &lt;chr&gt;            &lt;chr&gt;          &lt;chr&gt;          &lt;chr&gt;          &lt;chr&gt;         
+1 Possessed Object &lt;NA&gt;           &lt;NA&gt;           &lt;NA&gt;           &lt;NA&gt;          
+2 Ghost            &lt;NA&gt;           &lt;NA&gt;           &lt;NA&gt;           &lt;NA&gt;          
+3 Ghost            &lt;NA&gt;           &lt;NA&gt;           &lt;NA&gt;           &lt;NA&gt;          
+4 Ancient          &lt;NA&gt;           &lt;NA&gt;           &lt;NA&gt;           &lt;NA&gt;          
+5 Ancient          &lt;NA&gt;           &lt;NA&gt;           &lt;NA&gt;           &lt;NA&gt;          
+6 Ghost            &lt;NA&gt;           &lt;NA&gt;           &lt;NA&gt;           &lt;NA&gt;          
+# ℹ 14 more variables: monster_type_6 &lt;chr&gt;, monster_type_7 &lt;chr&gt;,
+#   monster_type_8 &lt;chr&gt;, monster_type_9 &lt;chr&gt;, monster_type_10 &lt;chr&gt;,
+#   monster_type_11 &lt;chr&gt;, monster_type_12 &lt;chr&gt;, monster_type_13 &lt;chr&gt;,
+#   monster_type_14 &lt;chr&gt;, monster_type_15 &lt;chr&gt;, monster_type_16 &lt;chr&gt;,
+#   monster_type_17 &lt;chr&gt;, monster_type_18 &lt;chr&gt;, monster_type_19 &lt;chr&gt;</code></pre>
+</div>
+</div>
+<p>Notice the warning that said for rows where there were not enough values to fill all 19 variables the rest was filled with missing values.</p>
+<p>An alternative way to separate values is to create new rows rather than columns. This way you can avoid the problem with needing to know the number of columns to create. You can do it with <code>separate_rows()</code>. It will split a given column values into multiple rows and duplicate all the values from other columns:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>scooby_separated <span class="ot">&lt;-</span> <span class="fu">separate_rows</span>(scooby, monster_subtype, <span class="at">sep =</span> <span class="st">","</span>)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(scooby_separated)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1148</code></pre>
+</div>
+</div>
+<p>We end up with a dataframe that has 1148 rows. Each row now corresponds to 1 monster per episode. If we count rows (<code>title</code>variable) and extract the highest value we should get 19:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">count</span>(scooby_separated, title) <span class="sc">%&gt;%</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_max</span>(n, <span class="at">n =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 2
+  title                                      n
+  &lt;chr&gt;                                  &lt;int&gt;
+1 Scooby-Doo! and the Reluctant Werewolf    19</code></pre>
+</div>
+</div>
 </section>
 <section id="joining-data" class="level2">
 <h2 class="anchored" data-anchor-id="joining-data">Joining data</h2>
-<p>In many situations the information that you need is not stored in a single dataset but in multiple ones. For example you might be working on a longitudinal study and each wave is saved in a separate dataset.</p>
-<ul>
-<li>bind cols and bind rows</li>
-</ul>
-<!-- -->
-<ul>
-<li>Different types of joins: inner, left, right, full,</li>
-</ul>
-<!-- -->
-<ul>
-<li><p>Filtering joinssemi, anti</p></li>
-<li><p>Gotchas in joins: duplicated values</p></li>
-</ul>
+<p>In many situations the information that you need is not stored in a single dataset but in multiple ones. For example you might be working on a longitudinal study and each wave is saved in a separate dataset. Another common situation in which data is stored in multiple files (or tables) is to reduce redundancies. Imagine you store information about book authors and the books they published. You have some information about each author like the date of birth, nationality, awards etc. and some information about each book like the title, release date and genre. If you wanted to store it all in one table keeping 1 book per row would probably be most natural. However, then you would need to duplicate information about authors for every book they published. If the dataset is big this might prove to be a real issue. It might be easier to keep 1 table with author information and another table with book information which would also include 1 column to map books to authors. When working on both datasets you might want to join these two tables.</p>
+<p>To look at joining data we’ll use 3 datasets that contain information about <a href="https://doi.org/10.7910/DVN/LEJUQZ">United Nations Roll calls.</a> The data comes from <a href="https://dataverse.harvard.edu/dataset.xhtml?persistentId=hdl:1902.1/12379">Harvard Dataverse</a>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>issues <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"datasets/issues.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Rows: 5745 Columns: 3
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr (2): short_name, issue
+dbl (1): rcid
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>roll_calls <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"datasets/roll_calls.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Rows: 6202 Columns: 9
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr  (3): unres, short, descr
+dbl  (5): rcid, session, importantvote, amend, para
+date (1): date
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>votes <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"datasets/unvotes.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Rows: 869937 Columns: 4
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr (3): country, country_code, vote
+dbl (1): rcid
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+</div>
+</div>
+<p>The first dataset, <code>issues</code> stores information on the roll call id: <code>rcid</code> variable (what we will be joining on) and the name of the issue a given roll call was about:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(issues)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 5,745
+Columns: 3
+$ rcid       &lt;dbl&gt; 77, 9001, 9002, 9003, 9004, 9005, 9006, 128, 129, 130, 131,…
+$ short_name &lt;chr&gt; "me", "me", "me", "me", "me", "me", "me", "me", "me", "me",…
+$ issue      &lt;chr&gt; "Palestinian conflict", "Palestinian conflict", "Palestinia…</code></pre>
+</div>
+</div>
+<p>The second dataset contains information about specific roll calls like dates and descriptions:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(roll_calls)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 6,202
+Columns: 9
+$ rcid          &lt;dbl&gt; 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18,…
+$ session       &lt;dbl&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,…
+$ importantvote &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,…
+$ date          &lt;date&gt; 1946-01-01, 1946-01-02, 1946-01-04, 1946-01-04, 1946-01…
+$ unres         &lt;chr&gt; "R/1/66", "R/1/79", "R/1/98", "R/1/107", "R/1/295", "R/1…
+$ amend         &lt;dbl&gt; 1, 0, 0, 0, 1, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1,…
+$ para          &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0,…
+$ short         &lt;chr&gt; "AMENDMENTS, RULES OF PROCEDURE", "SECURITY COUNCIL ELEC…
+$ descr         &lt;chr&gt; "TO ADOPT A CUBAN AMENDMENT TO THE UK PROPOSAL REFERRING…</code></pre>
+</div>
+</div>
+<p>Finally, <code>votes</code> dataset contains roll call ids and information about how each country voted (yes, no or abstain):</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(votes)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 869,937
+Columns: 4
+$ rcid         &lt;dbl&gt; 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, …
+$ country      &lt;chr&gt; "United States", "Canada", "Cuba", "Haiti", "Dominican Re…
+$ country_code &lt;chr&gt; "US", "CA", "CU", "HT", "DO", "MX", "GT", "HN", "SV", "NI…
+$ vote         &lt;chr&gt; "yes", "no", "yes", "yes", "yes", "yes", "yes", "yes", "y…</code></pre>
+</div>
+</div>
+<p>Imagine you want to analyze how many times each country voted in a specific way on each issue. In order to do that we need to join the <code>issues</code> and <code>votes</code> dataframes. All join functions in <code>tidyr</code> end with <code>_join</code>. They differ in what is kept or removed from the dataset when joining. In many situations not all records in two datasets will match (e.g.&nbsp;there is dropout between first and second wave of a longitudinal study so not every row in wave 1 will have a matching row in wave 2). You can deal with it in 3 ways: keep only the matching rows (<code>inner_join()</code> function), keep all rows from one dataset and remove non-matching rows from the other (<code>right_join()</code> and <code>left_join()</code> functions) or keep all the rows from both datasets (<code>full_join()</code> function). When performing a join you can also specify a <code>by</code> argument that controls which columns should be used for the join. If you don’t specify this argument R will automatically try to join on all columns that have the same names in both datasets.</p>
+<p>Lets try and answer our question about how countries voted on specific issues:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>votes <span class="sc">%&gt;%</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">inner_join</span>(issues, <span class="at">by =</span> <span class="st">"rcid"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(issue, country) <span class="sc">%&gt;%</span></span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(vote)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in inner_join(., issues, by = "rcid"): Detected an unexpected many-to-many relationship between `x` and `y`.
+ℹ Row 382 of `x` matches multiple rows in `y`.
+ℹ Row 3009 of `y` matches multiple rows in `x`.
+ℹ If a many-to-many relationship is expected, set `relationship =
+  "many-to-many"` to silence this warning.</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3,469 × 4
+# Groups:   issue, country [1,195]
+   issue                        country     vote        n
+   &lt;chr&gt;                        &lt;chr&gt;       &lt;chr&gt;   &lt;int&gt;
+ 1 Arms control and disarmament Afghanistan abstain    69
+ 2 Arms control and disarmament Afghanistan no         19
+ 3 Arms control and disarmament Afghanistan yes       939
+ 4 Arms control and disarmament Albania     abstain   114
+ 5 Arms control and disarmament Albania     no        168
+ 6 Arms control and disarmament Albania     yes       468
+ 7 Arms control and disarmament Algeria     abstain   109
+ 8 Arms control and disarmament Algeria     no          2
+ 9 Arms control and disarmament Algeria     yes       929
+10 Arms control and disarmament Andorra     abstain   112
+# ℹ 3,459 more rows</code></pre>
+</div>
+</div>
+<p>Notice that we got a warning about a many-to-many relationship. That’s because in the <code>votes</code> dataset multiple rows have the same <code>rcid</code> value (multiple countries voted in the same roll calls) and in the <code>issues</code> datasets certain roll calls have more than one issue.</p>
+<p>Apart from the classic joins there are also filtering joins. They don’t really join datasets but they filter the datasets to keep the rows that match (<code>semi_join()</code>) or don’t match (<code>anti_join()</code>). Using them we can e.g.&nbsp;find out for which roll calls we don’t have information on their issues:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>roll_calls <span class="sc">%&gt;%</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">anti_join</span>(issues, <span class="at">by =</span> <span class="st">"rcid"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2,103 × 9
+    rcid session importantvote date       unres   amend  para short        descr
+   &lt;dbl&gt;   &lt;dbl&gt;         &lt;dbl&gt; &lt;date&gt;     &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;        &lt;chr&gt;
+ 1     3       1             0 1946-01-01 R/1/66      1     0 AMENDMENTS,… "TO …
+ 2     4       1             0 1946-01-02 R/1/79      0     0 SECURITY CO… "TO …
+ 3     5       1             0 1946-01-04 R/1/98      0     0 VOTING PROC… "TO …
+ 4     7       1             0 1946-01-02 R/1/295     1     0 GENERAL ASS… "TO …
+ 5     9       1             0 1946-02-05 R/1/329     0     0 POST-WAR RE… "TO …
+ 6    10       1             0 1946-02-05 R/1/361     1     1 U.N. MEMBER… "TO …
+ 7    12       1             0 1946-02-06 R/1/394     1     1 COUNCIL MEM… "TO …
+ 8    13       1             0 1946-02-01 R/1/434     1     1 PROPAGANDA,… "TO …
+ 9    14       1             0 1946-02-01 R/1/435     1     1 PERSONNEL, … "TO …
+10    15       1             0 1946-02-01 R/1/435     1     1 QUISLINGS, … "TO …
+# ℹ 2,093 more rows</code></pre>
+</div>
+</div>
+<p>One final note on joins: their behaviour might sometimes feel a bit unintuitive when dealing with duplicated values. Imagine two dataframe like below. What do you think will happen when we make an inner join on the <code>id</code> variable?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>table1 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">id =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>),</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>                     <span class="at">a =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>))</span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>table2 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">id =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>),</span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>                     <span class="at">b =</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">4</span>))</span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a>table1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  id a
+1  1 1
+2  1 2</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>table2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  id b
+1  1 3
+2  1 4</code></pre>
+</div>
+</div>
+<p>What we get is a many-to-many mapping just like with the unvotes join we made:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>table1 <span class="sc">%&gt;%</span></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">inner_join</span>(table2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Joining with `by = join_by(id)`</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in inner_join(., table2): Detected an unexpected many-to-many relationship between `x` and `y`.
+ℹ Row 1 of `x` matches multiple rows in `y`.
+ℹ Row 1 of `y` matches multiple rows in `x`.
+ℹ If a many-to-many relationship is expected, set `relationship =
+  "many-to-many"` to silence this warning.</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  id a b
+1  1 1 3
+2  1 1 4
+3  1 2 3
+4  1 2 4</code></pre>
+</div>
+</div>
+<p>R automatically join every matching row from table 1 with every matching row from table 2. This might seem confusing but is actually a quite desirable behaviour. Remember the example with 2 tables on books: one with authors and one with books? When joining we want to match each author to every book they have written not just to the first or last one. If you want to have more control you can use the <code>multiple</code> or <code>relationship</code> arguments.</p>
 </section>
 <section id="from-wide-to-long-format-and-back-again" class="level2">
 <h2 class="anchored" data-anchor-id="from-wide-to-long-format-and-back-again">From wide to long format and back again</h2>
+<p>The last thing we’ll cover here is changing the format of your data from wide to long or vice versa. For many datasets there are 2 ways in which you can store information.</p>
+<p>In wide format you generally store 1 observation in one row (e.g.&nbsp;one participant across all the waves of a study), In long format one row is one measurement for one observation (e.g.&nbsp;1 wave for 1 participant). Lets look at the <code>votes</code> data frame. if we are interested in roll calls its currently in a long format - each row is 1 vote in a given roll call for one country. In wide format we could have 1 row per roll call and 1 column per country.</p>
+<p>You can reshape the dataset into a wide format using <code>pivot_wider()</code>. You need to specify 3 things: from which column to derive values for new columns, (<code>values_from</code>) from which columns to use values for new variable names (<code>names_from</code>) and a set of observations that uniquely identify each observation. (<code>id_cols</code>). The last argument is needed so that we end up with 1 value per cell. We can reshape the <code>votes</code> data frame like this:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>votes_wide <span class="ot">&lt;-</span> votes <span class="sc">%&gt;%</span></span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">id_cols =</span> <span class="st">"rcid"</span>, <span class="at">names_from =</span> <span class="st">"country"</span>, <span class="at">values_from =</span> <span class="st">"vote"</span>)</span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a>votes_wide</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6,202 × 201
+    rcid `United States` Canada Cuba  Haiti `Dominican Republic` Mexico
+   &lt;dbl&gt; &lt;chr&gt;           &lt;chr&gt;  &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;                &lt;chr&gt; 
+ 1     3 yes             no     yes   yes   yes                  yes   
+ 2     4 no              no     no    no    no                   no    
+ 3     5 no              no     yes   no    no                   yes   
+ 4     6 no              no     yes   &lt;NA&gt;  abstain              yes   
+ 5     7 no              no     yes   yes   yes                  yes   
+ 6     8 no              yes    yes   &lt;NA&gt;  yes                  yes   
+ 7     9 yes             yes    yes   yes   yes                  yes   
+ 8    10 yes             yes    yes   yes   yes                  yes   
+ 9    11 yes             yes    yes   &lt;NA&gt;  yes                  &lt;NA&gt;  
+10    12 yes             yes    yes   &lt;NA&gt;  yes                  no    
+# ℹ 6,192 more rows
+# ℹ 194 more variables: Guatemala &lt;chr&gt;, Honduras &lt;chr&gt;, `El Salvador` &lt;chr&gt;,
+#   Nicaragua &lt;chr&gt;, `Costa Rica` &lt;chr&gt;, Panama &lt;chr&gt;, Colombia &lt;chr&gt;,
+#   Venezuela &lt;chr&gt;, Ecuador &lt;chr&gt;, Peru &lt;chr&gt;, Brazil &lt;chr&gt;, Bolivia &lt;chr&gt;,
+#   Paraguay &lt;chr&gt;, Chile &lt;chr&gt;, Argentina &lt;chr&gt;, Uruguay &lt;chr&gt;,
+#   `United Kingdom` &lt;chr&gt;, Netherlands &lt;chr&gt;, Belgium &lt;chr&gt;, Luxembourg &lt;chr&gt;,
+#   France &lt;chr&gt;, Poland &lt;chr&gt;, Czechoslovakia &lt;chr&gt;, Yugoslavia &lt;chr&gt;, …</code></pre>
+</div>
+</div>
+<p>You could reshape the data in a different way so that each country is in 1 row and each column is a separate roll call:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>votes_wide2 <span class="ot">&lt;-</span> votes <span class="sc">%&gt;%</span></span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">id_cols =</span> <span class="st">"country"</span>, <span class="at">names_from =</span> <span class="st">"rcid"</span>, <span class="at">values_from =</span> <span class="st">"vote"</span>)</span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a>votes_wide2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 200 × 6,203
+   country     `3`   `4`   `5`   `6`   `7`   `8`   `9`   `10`  `11`  `12`  `13` 
+   &lt;chr&gt;       &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;
+ 1 United Sta… yes   no    no    no    no    no    yes   yes   yes   yes   no   
+ 2 Canada      no    no    no    no    no    yes   yes   yes   yes   yes   no   
+ 3 Cuba        yes   no    yes   yes   yes   yes   yes   yes   yes   yes   no   
+ 4 Haiti       yes   no    no    &lt;NA&gt;  yes   &lt;NA&gt;  yes   yes   &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt; 
+ 5 Dominican … yes   no    no    abst… yes   yes   yes   yes   yes   yes   no   
+ 6 Mexico      yes   no    yes   yes   yes   yes   yes   yes   &lt;NA&gt;  no    &lt;NA&gt; 
+ 7 Guatemala   yes   no    no    no    &lt;NA&gt;  yes   &lt;NA&gt;  yes   &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt; 
+ 8 Honduras    yes   no    yes   yes   yes   &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  yes   yes   no   
+ 9 El Salvador yes   no    yes   abst… &lt;NA&gt;  &lt;NA&gt;  yes   no    &lt;NA&gt;  &lt;NA&gt;  no   
+10 Nicaragua   yes   no    yes   yes   yes   &lt;NA&gt;  &lt;NA&gt;  no    &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt; 
+# ℹ 190 more rows
+# ℹ 6,191 more variables: `14` &lt;chr&gt;, `15` &lt;chr&gt;, `16` &lt;chr&gt;, `17` &lt;chr&gt;,
+#   `18` &lt;chr&gt;, `19` &lt;chr&gt;, `20` &lt;chr&gt;, `21` &lt;chr&gt;, `22` &lt;chr&gt;, `23` &lt;chr&gt;,
+#   `24` &lt;chr&gt;, `25` &lt;chr&gt;, `26` &lt;chr&gt;, `27` &lt;chr&gt;, `28` &lt;chr&gt;, `29` &lt;chr&gt;,
+#   `30` &lt;chr&gt;, `31` &lt;chr&gt;, `32` &lt;chr&gt;, `33` &lt;chr&gt;, `34` &lt;chr&gt;, `35` &lt;chr&gt;,
+#   `36` &lt;chr&gt;, `37` &lt;chr&gt;, `38` &lt;chr&gt;, `39` &lt;chr&gt;, `40` &lt;chr&gt;, `41` &lt;chr&gt;,
+#   `42` &lt;chr&gt;, `43` &lt;chr&gt;, `44` &lt;chr&gt;, `45` &lt;chr&gt;, `46` &lt;chr&gt;, `47` &lt;chr&gt;, …</code></pre>
+</div>
+</div>
+<p>There is no one correct way to shape your data. Instead the shape of your data should match the question you want to answer.</p>
+<p>You can reshape the dataset into a long format using <code>pivot_longer()</code>. You nned to pass it a data frame, columns to reshape and how to name he new column with values and the new column with names. The latter will use variable names as its values. We can go back to the long format of <code>votes</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>votes_long <span class="ot">&lt;-</span> votes_wide <span class="sc">%&gt;%</span></span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="st">"United States"</span><span class="sc">:</span><span class="st">"South Sudan"</span>, <span class="at">names_to =</span> <span class="st">"country"</span>, <span class="at">values_to =</span> <span class="st">"vote"</span>)</span>
+<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a>votes_long</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1,240,400 × 3
+    rcid country            vote 
+   &lt;dbl&gt; &lt;chr&gt;              &lt;chr&gt;
+ 1     3 United States      yes  
+ 2     3 Canada             no   
+ 3     3 Cuba               yes  
+ 4     3 Haiti              yes  
+ 5     3 Dominican Republic yes  
+ 6     3 Mexico             yes  
+ 7     3 Guatemala          yes  
+ 8     3 Honduras           yes  
+ 9     3 El Salvador        yes  
+10     3 Nicaragua          yes  
+# ℹ 1,240,390 more rows</code></pre>
+</div>
+</div>
+</section>
+<section id="exercises" class="level2">
+<h2 class="anchored" data-anchor-id="exercises">Exercises</h2>
+<p>Using the datasets on UN roll calls. You can get the data by installing <code>unvotes</code> package.</p>
 <ul>
-<li><p>UN roll calls data?</p></li>
-<li><p>pivot longer</p></li>
-<li><p>pivot wider</p></li>
+<li><p>Find out which country voted the most in 1946 regardless of what kind of vote it was.</p></li>
+<li><p>Find out how many amendments each issue had across all roll calls</p></li>
+<li><p>Find out on which issue there was most agreement (highest percentage of the same votes) between USA and Poland</p></li>
 </ul>
 
 

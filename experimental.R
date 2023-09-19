@@ -95,3 +95,11 @@ midwest %>%
   ggplot(aes(x = percollege)) +
   stat_function(fun = test, geom = "line") +
   geom_density()
+
+
+
+### tidying data ----
+
+data("cms_patient_experience")
+d
+glimpse(cms_patient_experience)

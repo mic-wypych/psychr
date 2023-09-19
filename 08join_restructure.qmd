@@ -5,47 +5,186 @@ author: "Michał Wypych"
 
 # Restructuring data
 
-We now know a bit about wrangling data. This time we will deal with situations in which your data is not in the correct shape to allow you to calculate what you want. We will look at separating and uniting variables (e.g. what if your dataset has separate columns for year, month and day but you need those in 1 variable?), joining datasets (e.g. what if some information is in 1 dataset but other information you need is in another one?) and reshaping data (going from wide to long format and back again)
+We know a bit about wrangling data. Now we will deal with situations in which your data is not in the correct shape to allow you to calculate what you want. We will look at separating and uniting variables (e.g. what if your dataset has separate columns for year, month and day but you need those in 1 variable?), joining datasets (e.g. what if some information is in 1 dataset but other information you need is in another one?) and reshaping data (going from wide to long format and back again).
 
--   We'll work with a lovely dataset on all (?) Scooby Doo episodes + **reference**
-
-## Separating and uniting variables
-
-In order to separate 1 variable into more you can use `separate()`. The opposite operation can be done with `unite().`When separating you need to specify which variable to split, what are the names of the new variables (passed as a character vector) and what is the separator which basically tells R where to "cut" the old variable into new ones. By default the old variable is removed from the dataset:
+We'll learn seaparting and uniting variables by looking at a dataset aboutScooby Doo episodes by [plummye](https://www.kaggle.com/williamschooleman). The dataset is taken from [Kaggle](https://www.kaggle.com/datasets/williamschooleman/scoobydoo-complete). This dataset has a loot of variables that are either generally about a given episode or about specific characters (like monsters or members of the scooby gang).
 
 ```{r}
 library(tidyverse)
-# separating example
+
+scooby <- read_csv("datasets/scooby.csv")
 ```
 
-Uniting is very similar, it just has a reversed effect. You specify what should the name of the new variable be, what are the names of variables to unite and what R should use to separate the values from the old variables.
+## Separating and uniting variables
 
--   
+In order to separate 1 variable into more you can use `separate()`. The opposite operation can be done with `unite().`When separating you need to specify which variable to split, what are the names of the new variables (passed as a character vector) and what is the separator which basically tells R where to "cut" the old variable into new ones. By default the old variable is removed from the dataset. Lets look at the `date_aired` variable. It stores the year, month and day of when each episode was aired. Lets say we wanted to split it into three variables: year, month and day. We can easily do it with `separate()`:
 
--   Another way to separate is by separating into rows. This way each new value will be added in additional row rather than a column. You can do it with `separate_rows()`.
+```{r}
+scooby_separated <- scooby %>% separate(date_aired, into = c("year", "month", "day"), sep = "-")
 
--   A potential problem with `separate()` is when various rows have different number of values. Then you might get conflicting number of columns to create.
+scooby_separated %>%
+  select(year, month, day) %>%
+  head()
+```
+
+Yay, we got 3 new variables just like we wanted! Uniting is very similar, it just has a reversed effect. You specify what should the name of the new variable be, what are the names of variables to unite and what R should use to separate the values from the old variables.
+
+```{r}
+#unite example
+scooby_united <- unite(scooby_separated, col = "date_aired", year:day, sep = "-")
+
+head(scooby_united$date_aired)
+```
+
+A potential problem with `separate()` is when various rows have different number of values. Then you might get conflicting number of columns to create. For example the `monster_type` column stores information on the types of monsters that were present in a given episode. The problem is various episodes had different numbers of monsters and they're all stored in a single column. They are all separated by commas. In order to use `separate()` we need to know how many columns to create. We can do it by finding out what is the maximum number of commas and adding 1. We can do it quickly with th `str_count()` function from `stringr` package which counts occurences of a string.
+
+```{r}
+max(str_count(scooby$monster_type, ","))
+```
+
+Ok, the maximum number of commas is 18 so there were maximum of 19 monster in a given episode. Now we'll need to prepare the names for new variables as we'd rather not type 19 names by hand and then separate
+
+```{r}
+a <- "monster_type_"
+b <- c(1:19)
+vars <- paste0(a, b)
+
+scooby_separated <- separate(scooby, monster_type, into = vars,  sep = ",")
+
+scooby_separated %>%
+  select(monster_type_1:monster_type_19) %>%
+  head()
+```
+
+Notice the warning that said for rows where there were not enough values to fill all 19 variables the rest was filled with missing values.
+
+An alternative way to separate values is to create new rows rather than columns. This way you can avoid the problem with needing to know the number of columns to create. You can do it with `separate_rows()`. It will split a given column values into multiple rows and duplicate all the values from other columns:
+
+```{r}
+scooby_separated <- separate_rows(scooby, monster_subtype, sep = ",")
+nrow(scooby_separated)
+```
+
+We end up with a dataframe that has 1148 rows. Each row now corresponds to 1 monster per episode. If we count rows (`title`variable) and extract the highest value we should get 19:
+
+```{r}
+count(scooby_separated, title) %>%
+  slice_max(n, n = 1)
+```
 
 ## Joining data
 
-In many situations the information that you need is not stored in a single dataset but in multiple ones. For example you might be working on a longitudinal study and each wave is saved in a separate dataset.
+In many situations the information that you need is not stored in a single dataset but in multiple ones. For example you might be working on a longitudinal study and each wave is saved in a separate dataset. Another common situation in which data is stored in multiple files (or tables) is to reduce redundancies. Imagine you store information about book authors and the books they published. You have some information about each author like the date of birth, nationality, awards etc. and some information about each book like the title, release date and genre. If you wanted to store it all in one table keeping 1 book per row would probably be most natural. However, then you would need to duplicate information about authors for every book they published. If the dataset is big this might prove to be a real issue. It might be easier to keep 1 table with author information and another table with book information which would also include 1 column to map books to authors. When working on both datasets you might want to join these two tables.
 
--   bind cols and bind rows
+To look at joining data we'll use 3 datasets that contain information about [United Nations Roll calls.](https://doi.org/10.7910/DVN/LEJUQZ) The data comes from [Harvard Dataverse](https://dataverse.harvard.edu/dataset.xhtml?persistentId=hdl:1902.1/12379).
 
-<!-- -->
+```{r}
+issues <- read_csv("datasets/issues.csv")
+roll_calls <- read_csv("datasets/roll_calls.csv")
+votes <- read_csv("datasets/unvotes.csv")
+```
 
--   Different types of joins: inner, left, right, full,
+The first dataset, `issues` stores information on the roll call id: `rcid` variable (what we will be joining on) and the name of the issue a given roll call was about:
 
-<!-- -->
+```{r}
+glimpse(issues)
+```
 
--   Filtering joinssemi, anti
+The second dataset contains information about specific roll calls like dates and descriptions:
 
--   Gotchas in joins: duplicated values
+```{r}
+glimpse(roll_calls)
+```
+
+Finally, `votes` dataset contains roll call ids and information about how each country voted (yes, no or abstain):
+
+```{r}
+glimpse(votes)
+```
+
+Imagine you want to analyze how many times each country voted in a specific way on each issue. In order to do that we need to join the `issues` and `votes` dataframes. All join functions in `tidyr` end with `_join`. They differ in what is kept or removed from the dataset when joining. In many situations not all records in two datasets will match (e.g. there is dropout between first and second wave of a longitudinal study so not every row in wave 1 will have a matching row in wave 2). You can deal with it in 3 ways: keep only the matching rows (`inner_join()` function), keep all rows from one dataset and remove non-matching rows from the other (`right_join()` and `left_join()` functions) or keep all the rows from both datasets (`full_join()` function). When performing a join you can also specify a `by` argument that controls which columns should be used for the join. If you don't specify this argument R will automatically try to join on all columns that have the same names in both datasets.
+
+Lets try and answer our question about how countries voted on specific issues:
+
+```{r}
+votes %>%
+  inner_join(issues, by = "rcid") %>%
+  group_by(issue, country) %>%
+  count(vote)
+```
+
+Notice that we got a warning about a many-to-many relationship. That's because in the `votes` dataset multiple rows have the same `rcid` value (multiple countries voted in the same roll calls) and in the `issues` datasets certain roll calls have more than one issue.
+
+Apart from the classic joins there are also filtering joins. They don't really join datasets but they filter the datasets to keep the rows that match (`semi_join()`) or don't match (`anti_join()`). Using them we can e.g. find out for which roll calls we don't have information on their issues:
+
+```{r}
+roll_calls %>%
+  anti_join(issues, by = "rcid")
+```
+
+One final note on joins: their behaviour might sometimes feel a bit unintuitive when dealing with duplicated values. Imagine two dataframe like below. What do you think will happen when we make an inner join on the `id` variable?
+
+```{r}
+table1 <- data.frame(id = c(1, 1),
+                     a = c(1, 2))
+table2 <- data.frame(id = c(1, 1),
+                     b = c(3, 4))
+
+table1
+table2
+```
+
+What we get is a many-to-many mapping just like with the unvotes join we made:
+
+```{r}
+table1 %>%
+  inner_join(table2)
+```
+
+R automatically join every matching row from table 1 with every matching row from table 2. This might seem confusing but is actually a quite desirable behaviour. Remember the example with 2 tables on books: one with authors and one with books? When joining we want to match each author to every book they have written not just to the first or last one. If you want to have more control you can use the `multiple` or `relationship` arguments.
 
 ## From wide to long format and back again
 
--   UN roll calls data?
+The last thing we'll cover here is changing the format of your data from wide to long or vice versa. For many datasets there are 2 ways in which you can store information.
 
--   pivot longer
+In wide format you generally store 1 observation in one row (e.g. one participant across all the waves of a study), In long format one row is one measurement for one observation (e.g. 1 wave for 1 participant). Lets look at the `votes` data frame. if we are interested in roll calls its currently in a long format - each row is 1 vote in a given roll call for one country. In wide format we could have 1 row per roll call and 1 column per country.
 
--   pivot wider
+You can reshape the dataset into a wide format using `pivot_wider()`. You need to specify 3 things: from which column to derive values for new columns, (`values_from`) from which columns to use values for new variable names (`names_from`) and a set of observations that uniquely identify each observation. (`id_cols`). The last argument is needed so that we end up with 1 value per cell. We can reshape the `votes` data frame like this:
+
+```{r}
+votes_wide <- votes %>%
+  pivot_wider(id_cols = "rcid", names_from = "country", values_from = "vote")
+
+votes_wide
+```
+
+You could reshape the data in a different way so that each country is in 1 row and each column is a separate roll call:
+
+```{r}
+votes_wide2 <- votes %>%
+  pivot_wider(id_cols = "country", names_from = "rcid", values_from = "vote")
+
+votes_wide2
+```
+
+There is no one correct way to shape your data. Instead the shape of your data should match the question you want to answer.
+
+You can reshape the dataset into a long format using `pivot_longer()`. You nned to pass it a data frame, columns to reshape and how to name he new column with values and the new column with names. The latter will use variable names as its values. We can go back to the long format of `votes`:
+
+```{r}
+
+votes_long <- votes_wide %>%
+  pivot_longer(cols = "United States":"South Sudan", names_to = "country", values_to = "vote")
+
+votes_long
+```
+
+## Exercises
+
+Using the datasets on UN roll calls. You can get the data by installing `unvotes` package.
+
+-   Find out which country voted the most in 1946 regardless of what kind of vote it was.
+
+-   Find out how many amendments each issue had across all roll calls
+
+-   Find out on which issue there was most agreement (highest percentage of the same votes) between USA and Poland
