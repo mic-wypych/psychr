@@ -94,10 +94,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }</script>
 
 
-<link rel="stylesheet" href="styles.css">
 </head>
 
-<body class="nav-fixed">
+<body class="floating nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -216,11 +215,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
 <!-- sidebar -->
-<!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+    <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">On this page</h2>
    
   <ul>
@@ -236,9 +234,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises">exercises</a></li>
   </ul>
 </nav>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content column-page-right" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
@@ -470,21 +472,24 @@ chr (302): country, 1800, 1801, 1802, 1803, 1804, 1805, 1806, 1807, 1808, 18...
 <div class="cell">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>nasa</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>$number
-[1] 10
+<pre><code>$people
+                 name    craft
+1    Sergey Prokopyev      ISS
+2      Dmitry Petelin      ISS
+3         Frank Rubio      ISS
+4        Jing Haiping Tiangong
+5         Gui Haichow Tiangong
+6         Zhu Yangzhu Tiangong
+7     Jasmin Moghbeli      ISS
+8    Andreas Mogensen      ISS
+9    Satoshi Furukawa      ISS
+10 Konstantin Borisov      ISS
+11     Oleg Kononenko      ISS
+12       Nikolai Chub      ISS
+13       Loral O'Hara      ISS
 
-$people
-               name    craft
-1  Sergey Prokopyev      ISS
-2    Dmitry Petelin      ISS
-3       Frank Rubio      ISS
-4     Stephen Bowen      ISS
-5     Warren Hoburg      ISS
-6   Sultan Alneyadi      ISS
-7    Andrey Fedyaev      ISS
-8      Jing Haiping Tiangong
-9       Gui Haichow Tiangong
-10      Zhu Yangzhu Tiangong
+$number
+[1] 13
 
 $message
 [1] "success"</code></pre>

@@ -60,5 +60,8 @@ format:
     page-layout: full
     highlight-style: nord
 
+execute:
+  freeze: auto
+
 editor: visual
 

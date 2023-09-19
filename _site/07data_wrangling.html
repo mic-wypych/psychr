@@ -95,10 +95,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }</script>
 
 
-<link rel="stylesheet" href="styles.css">
 </head>
 
-<body class="nav-fixed">
+<body class="floating nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -217,11 +216,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
 <!-- sidebar -->
-<!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+    <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">On this page</h2>
    
   <ul>
@@ -245,9 +243,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </ul></li>
   </ul>
 </nav>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content column-page-right" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
@@ -470,16 +472,16 @@ $ hurricane_force_diameter     &lt;int&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, N
 <pre><code># A tibble: 100 × 13
    name      year month   day  hour   lat  long status   category  wind pressure
    &lt;chr&gt;    &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;fct&gt;       &lt;dbl&gt; &lt;int&gt;    &lt;int&gt;
- 1 Nicholas  2003    10    21    12  18.7 -51   tropica…       NA    45     1000
- 2 Barry     1983     8    29     0  25.5 -98.5 tropica…       NA    40      995
- 3 Jose      2017     9    15     0  25.4 -67.6 tropica…       NA    60      988
- 4 Olga      2019    10    25    12  24.7 -94.8 tropica…       NA    35     1004
- 5 Luis      1995     9     7     6  21.3 -66   hurrica…        4   120      936
- 6 Michael   2018    10    10    18  30.2 -85.4 hurrica…        4   135      920
- 7 Emmy      1976     8    22    12  16.2 -56   tropica…       NA    35     1006
- 8 Lili      2002    10     1     6  21   -82.2 hurrica…        1    75      970
- 9 Georges   1998     9    28     0  29.3 -88.5 hurrica…        2    95      961
-10 Rina      2017    11     6     0  29.1 -51.2 tropica…       NA    30     1011
+ 1 Laura     2020     8    23     0  18.2 -68.8 tropica…       NA    45     1004
+ 2 Ana       2015     5    12    12  40.8 -70.7 other l…       NA    25     1009
+ 3 Epsilon   2005    12     9     6  25.1 -40.4 other l…       NA    25     1008
+ 4 Jeanne    1998     9    25    12  18.6 -37.9 hurrica…        2    85      975
+ 5 Erin      1989     8    26    18  49.5 -33.5 hurrica…        1    65      986
+ 6 Nadine    2012    10     3    18  35.4 -32.5 tropica…       NA    40     1000
+ 7 Gordon    2012     8    21     0  39.8 -19.3 other l…       NA    40     1000
+ 8 Hortense  1990     8    27    18  20   -42.5 tropica…       NA    50      997
+ 9 Barry     2001     8     8     6  37.5 -90   other l…       NA    10     1017
+10 Ana       2021     5    20     6  31.5 -54.5 extratr…       NA    35     1013
 # ℹ 90 more rows
 # ℹ 2 more variables: tropicalstorm_force_diameter &lt;int&gt;,
 #   hurricane_force_diameter &lt;int&gt;</code></pre>
