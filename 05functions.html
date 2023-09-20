@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.340">
+<meta name="generator" content="quarto-1.3.450">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -90,7 +90,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
     "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit"
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
   }
 }</script>
 
@@ -315,7 +316,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>n_larger<span class="sc">/</span>length_2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.58</code></pre>
+<pre><code>[1] 0.61</code></pre>
 </div>
 </div>
 <ol type="1">
@@ -364,15 +365,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <dl class="code-annotation-container-hidden code-annotation-container-grid">
 <dt data-target-cell="annotated-cell-1" data-target-annotation="1">1</dt>
 <dd>
-<span data-code-lines="3" data-code-cell="annotated-cell-1" data-code-annotation="1">var_1</span>
+<span data-code-cell="annotated-cell-1" data-code-lines="3" data-code-annotation="1">var_1</span>
 </dd>
 <dt data-target-cell="annotated-cell-1" data-target-annotation="2">2</dt>
 <dd>
-<span data-code-lines="6" data-code-cell="annotated-cell-1" data-code-annotation="2">var_2</span>
+<span data-code-cell="annotated-cell-1" data-code-lines="6" data-code-annotation="2">var_2</span>
 </dd>
 <dt data-target-cell="annotated-cell-1" data-target-annotation="3">3</dt>
 <dd>
-<span data-code-lines="10" data-code-cell="annotated-cell-1" data-code-annotation="3">var_2</span>
+<span data-code-cell="annotated-cell-1" data-code-lines="10" data-code-annotation="3">var_2</span>
 </dd>
 </dl>
 </div>
@@ -438,7 +439,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">my_mean</span>(v_char)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-error">
-<pre><code>Error in sum + i: argument nieliczbowy przekazany do operatora dwuargumentowego</code></pre>
+<pre><code>Error in sum + i: non-numeric argument to binary operator</code></pre>
 </div>
 </div>
 <p>We get some weird behaviour. Each of these calls to <code>my_mean()</code> function returned something different. First we got <code>NA</code> when the vector had <code>NAs</code> in it. Passing an empty vector resulted in <code>NaN</code> - short for Not a Number. Finally, passing a character vector gave us an error.. Notice that only the last case gave us an error so if we then implemented our functions in some calculations we might not even notice something is wrong - for example imagine we calculated a mean with our function from a vector with missiing values (e.g we asked a bunch of participants about their mood 5 times a day and now we want to calculate daily average mood and see how it relates to some variables of interest) and then tried to use its output in some other function that had <code>na.rm</code> argument set to <code>TRUE</code>. We’d lose a bunch of information without so much as a warning! That`s why considering possible but unusual cases for a new function is important. It allows us to prepare for possible future problems.</p>
