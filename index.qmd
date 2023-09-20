@@ -9,3 +9,5 @@ title: "Introduction"
 This is a website accompanying the Introduction to R course at the Faculty of Psychology at University of Warsaw. The course covers basics of working in R, from the basic operations to fundamental statistics. No knowledge of R is assumed but basic knowledge of statistics is required to follow the course (especially for the latter topics).
 
 Please note that this website **is not a substitution for the course**. It supplements and extends it but cannot replace it.
+
+**This website is still work in progress so some things might change (exercises added, some classes modified etc.)**

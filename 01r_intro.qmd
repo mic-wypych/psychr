@@ -8,26 +8,18 @@ This chapter introduces R and RStudio and shows you how to perform the most basi
 
 ## What is R?
 
-R is a programming language. It was designed in the 90s mainly with working with data in mind.
+R is a programming language. It was designed in the 90s mainly with data analysis, data visualization and statistics in mind. What does it mean it is a programming language? To put it simply it provides you the words and the syntax to tell your computer exactly what to do. It means you need to be very precise in what you write (computers aren't very good at understanding typos or vague instructions) but you can accomplish a lot with it by harnessing the computing power of your machine!
 
--   R is a programming language that was designed mainly for statistical analyses.
--   **Short history of R?**
-
-So why bother with R rather than stick to SPSS? There is a number of reasons:
+Many people might wonder why bother with R rather than stick to some point and click software like SPSS or Excel? There is a number of reasons:
 
 -   **Is open source and free!** This becomes especially important when you leave academia and very often can't work on proprietary software like SPSS.
-
--   **Has a great community!** The first point also makes it much easier for people to collaborate and create new things for R.
-
+-   **Has a great community!** The first point also makes it much easier for people to collaborate and create new things for R. It's also much easier to ask questions and get answers from others
 -   **Is more reproducible!** Yes, some proprietary software allows you to write code (like SPSS) but what good is that if you need to buy the software to run it?
-
--   **Is more flexible than SPSS.** There is generally more things you can do in R and you can customize the code so that it does exactly what you need. Don't like the defaultsettings? You can change them! If you need to you can just write your own functions to calculate just what you need.
-
+-   **Is more flexible than SPSS.** There is generally more things you can do in R and you can customize the code so that it does exactly what you need. Don't like the default settings? You can change them! If you need to you can just write your own functions to calculate just what you need.
 -   **More things are being developed in R**. Generally more newer stuff is developed in R before it reaches e.g. SPSS.
+-   **Is much faster.** Once you start working with large datasets and computation heavy analyses you will need things to run fast. R is pretty good with it (although for some really large things it won't do and you might want to switch to other programming languages like C++. Ultimately for some big things R can serve as just interface for C++).
 
--   **Is much faster.** Once you start working with large datasets and computation heavy analyses you will need things to run fast. R is pretty good with it (although for some really large things it won't do and you might want to switch to other programming languages like C++).
-
-You can download R from <a href="https://cran.r-project.org/">here</a>.
+You can download R from <a href="https://cran.r-project.org/">here</a>. For this course it's best you work with R version of at least 4.2.0.
 
 ## What is RStudio?
 
