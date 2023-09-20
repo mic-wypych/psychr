@@ -1,0 +1,7 @@
+"0","x <- 'not a number'"
+"0","y <- 3"
+"0","if ((class(x) != 'numeric') | (class(y) != 'numeric')) {"
+"0","  stop('This is not a number!')"
+"0","}"
+"2","Error: This is not a number!
+"

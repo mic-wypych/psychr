@@ -1,0 +1,8 @@
+"0","C <- 20"
+"0","results <- c(20)"
+"0","while (C < 30) {"
+"0","  C <- C + rnorm(1,.05,.5)"
+"0","  results <- c(results, C)"
+"0","}"
+"0",""
+"0","plot(results, type = 'line', lwd = 2, col=4, xlab = ""days"", ylab = ""temperature"")"

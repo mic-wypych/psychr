@@ -1,0 +1,119 @@
+---
+title: "Loops and conditionals"
+author: "Michal Wypych"
+---
+
+# The flow of code
+
+Now you know how to create different kinds of objects and how to perform simple operations with them. However, very often you want to add more control over how operations are ran in R. You might want to execute a command only if a condition is satisfied. Or you might want to make the same operations for a number of elements. These are the kinds of situations for which you want to use flow control. What this refers to is basically altering how the code is executed. In a regular situations all commands from your script are executed from the first line all the way down to the last line. Flow control alters that either by specifying conditinal statements that tell R to execute a given chunk of code only if a condition is met or by using loops that repeat a given chunk of code.
+
+## Conditional statements
+
+Another way conditional statements are referred to which may be more intuitive are if else statements. They allow you to tell R to execute given chunk of code if a condition is met and to do something else if the condition is not met.
+
+The general logic of conditional statements looks like this:
+
+```{r eval = F, echo = T}
+if (condition) {
+  Do this
+  And do this
+}
+```
+
+A single if statement can have multiple conditions chained together with `|` and `&` operators. So, for example
+
+```{r}
+#some if statement example
+```
+
+In many situations you want to state what is to be done if a condition is met and what to do otherwise. This turns your statement into an if else one. The only difference is that after the if statement you add else and specify what to do then in curly brackets. With this knowledge you can already create the rules for a simple game like paper, rock, scissors!
+
+```{r}
+#set the choice for each player
+player1 <- 'scissors'
+player2 <- 'rock'
+
+#define an if statement that outputs the result of the game
+if (player1 == player2) {
+  print('draw')
+} else if ((player1 == 'scissors' & player2 == 'paper') |
+           (player1 == 'paper' & player2 == 'rock') |
+           (player1 == 'rock' & player2 == 'scissors')) {
+  print('player 1 wins')
+} else if ((player2 == 'scissors' & player1 == 'paper') |
+           (player2 == 'paper' & player1 == 'rock') |
+           (player2 == 'rock' & player1 == 'scissors')) {
+  print('player 2 wins')
+} else {
+  print('these are not allowed moves')
+}
+
+```
+
+Take a moment to study the code above. Notice what kinds of conditions are included in that statement. When writing an if statement it's a good idea to consider all possible situations and how your if statement maps to them. In a paper, rock, scissors game you can have 3 outcomes: both players choose the same option (a draw), player 1 wins or player 2 wins. Notice that the code above includes also a fourth options specified in the last else statement. What if someone makes a typo and writes `rook` instead of `rock`? That last else statement safeguards us for such situations. If we didn't include it and someone made a type then our if else statement wouldn't produce anything. You can play around with different values of player1 and player2 to see the results.
+
+## Loops
+
+Another way of controlling the flow of your code is by repeating a given chunk of code. There are two basic ways to do that: repeat something a number of times or keep repeating until some condition is met. The first way is called a for loop and the second one a while loop.
+
+### for loops
+
+Before we make our first for loop lets take a moment to see when a for loop is not needed. Recall again that a lot of things in R are vectorized. This means that operations on vectors are conducted element-wise. Thanks to this if you want to e.g. add 5 to each value stored in a numeric vector you can just write `vector_name + 5`. No need for more complicated, explicit repetition. However, there are situations in which you have to make an explicit for loop to repeat something n times. The general structure of a for loops looks like this:
+
+```{r eval = F, echo = T}
+for (i in object) {
+  Do this to each element
+}
+```
+
+-discuss the two ways in which looping can happen: over objects and over indices.
+
+### While loops
+
+While loops will keep executing a given chunk of code as long as some condition is met.
+
+We can use a while loop to make a very simple simulation. Lets say we want to see how temperatures change from a given temperature (lets say 20 degrees Celsius) across time and that we represent time by some random change from each previous temperature. We can create a vector with such predicted temperatures and see how long it takes for it to reach a certain level (lets say 30 degrees Celsius). We represent the change by adding a random value from a normal distribution with mean = .05 and standard deviation = .5 (this is what the `rnorm(1,.05,.5)` does). The while loop would look something like this. We first create the initial value and a vector to store all temperatures and next we keep adding the random value to our temperature and storing all temperatures until it reaches 30. The last line tells R to plot all the temperatures as a line plot. This is of course a very, very very simple simulation (temperatures don't change in such a simple way) but it works to show you the idea behind while loops. We can then calculate e.g. how long it took for the temperature to reach a certain level.
+
+```{r}
+C <- 20
+results <- c(25)
+while (C < 30) {
+  C <- C + rnorm(1,.05,.5)
+  results <- c(results, C)
+}
+
+plot(results, type = 'line')
+```
+
+Because while loops do not have a fixed number of iteration they can potentially run infinitely. This is usually not something we want so it's a good idea to make sure that your while loop eventually stops. In case you do get stuck in an infinite loop you can press `Esc` in your console and this should make RStudio stop the loop by force.
+
+## Examples?
+
+Design some code-along example that would show why this might actually be useful. e.g.
+
+-   a simple game?
+
+-   Some simple algorithm?
+
+-   Calculator-type of thing
+
+## Apply family
+
+There is a special family of functions in R that makes working with for loops a bit easier. These functions let you specify what to loop over and what function to apply to each element but in a function rather than a whole loop with all the curly brackets and stuff.
+
+The reason why this is a whole family of functions is that you can iterate in various ways and you can get the output in different formats. There are more functions in the family but the general ones are:
+
+-   `lapply()` - loops over elements of a vector/list and returns a list
+
+-   `sapply()` - same as lapply but tries to simplify the result to a vector or matrix
+
+-   `apply()` - used for looping over 2 dimensional structures - it lets you specify if you want to loop over rows or columns
+
+-   `tapply()` - same as apply but lets you split the object you are looping over based on some factor (e.g. imagine you want to calculate the mean value of your dependent variable for each experimental condition).
+
+Lets see some of these in action.
+
+## Exercises
+
+1.  Try to code the logic of assigning points to players of a prisoner dilemma with a given matrix:
+2.  Create a for loop that will print out the first 50 numbers from the Fibonacci sequence
