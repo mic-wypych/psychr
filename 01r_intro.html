@@ -8,7 +8,7 @@
 
 <meta name="author" content="Michal_Wypych">
 
-<title>r_website - r_intro</title>
+<title>r_website - First steps in R</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -195,7 +195,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="dropdown-text">Covariates</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./19postproseccing.qmd" rel="" target="">
+    <a class="dropdown-item" href="./19postproxessing.qmd" rel="" target="">
  <span class="dropdown-text">Postprocessing models</span></a>
   </li>  
     </ul>
@@ -222,9 +222,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
   <li><a href="#what-is-r" id="toc-what-is-r" class="nav-link active" data-scroll-target="#what-is-r">What is R?</a></li>
   <li><a href="#what-is-rstudio" id="toc-what-is-rstudio" class="nav-link" data-scroll-target="#what-is-rstudio">What is RStudio?</a></li>
-  <li><a href="#getting-help" id="toc-getting-help" class="nav-link" data-scroll-target="#getting-help">Getting help</a></li>
   <li><a href="#basic-operations" id="toc-basic-operations" class="nav-link" data-scroll-target="#basic-operations">Basic operations</a></li>
   <li><a href="#basic-values" id="toc-basic-values" class="nav-link" data-scroll-target="#basic-values">Basic values</a></li>
+  <li><a href="#getting-help" id="toc-getting-help" class="nav-link" data-scroll-target="#getting-help">Getting help</a></li>
   </ul>
 </nav>
 </nav>
@@ -237,7 +237,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">r_intro</h1>
+<h1 class="title">First steps in R</h1>
 </div>
 
 
@@ -275,10 +275,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="what-is-rstudio" class="level2">
 <h2 class="anchored" data-anchor-id="what-is-rstudio">What is RStudio?</h2>
-<p>While R is a programming language RStudio is an IDE (Integrated Development Environment). Basically, it’s purpose is to make working in R easier and more reproducible. You can download RStudio from <a href="https://www.rstudio.com/products/rstudio/download/">here</a>.</p>
+<p>While R is a programming language RStudio is an IDE (Integrated Development Environment). Basically, it’s purpose is to make working in R easier and more reproducible. It makes writing and managing code much easier. It can also show you some basic results like plots and tables. You can download RStudio from <a href="https://www.rstudio.com/products/rstudio/download/">here</a>.</p>
 <p>When you open RStudio you might see something like this:</p>
 <p><img src="images/paste-D342C886.png" class="img-fluid"></p>
-<p>We’ll go through each pane one by one and see what they are used for.</p>
+<p>We’ll go through each pane one by one and see what they are used for. Lets start with top-left:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/paste-ADD39EC3.png" class="img-fluid figure-img"></p>
@@ -306,47 +306,36 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <figcaption class="figure-caption">Fourth pane</figcaption>
 </figure>
 </div>
-<p>Fourth pane again contains a few tabs. It’s mainly used for viewing various things that are results of your code. The plots that you create will be displayed here, as well as some other visualizations like tables, maps etc. (the latter two in the Viewer tab). If you look up help for a function (you’ll see in a second how to do that) the documentation for that function will also show up here. You can also view which files are available in your current directory (the place where R will try to look for or save files by default) and the list of available packages.</p>
-</section>
-<section id="getting-help" class="level2">
-<h2 class="anchored" data-anchor-id="getting-help">Getting help</h2>
-<p>Working in R, especially in the beginning, might be quite overwhelming. Fortunately there is plenty of places where you can look for help. It’s fairly common to look for help.</p>
-<p>Looking up help</p>
-<ul>
-<li><p>Built-in help: you can check the documentation of a function in R by calling ?function_name. The documentation of the function will appear in the help tab. It should contain the basic information on the function: what it does, how it should be called, what arguments the function accepts. It can also contain more detailed information like what is the result of a given function or some examples of how to use it.</p></li>
-<li><p>CRAN: short for Comprehensive R Archive Network. You can download the newest version of R from CRAN. It’s also the place where many R packages are stored and can be downloaded from. Documentation of packages can be found there as well. You can visit its website <a href="https://cran.r-project.org/">here</a>.</p></li>
-<li><p>Books: there is plenty of great books on R that cover a range of various topics, many of them are available for free on the web. Books allow you to get a much more detailed account of various things you can do in R, they are also often written by people who developed specific packages for doing the things described in the books.</p></li>
-<li><p>The Internet: R community is generally very welcoming and helpful and there is plenty of places where you can look for help on the web, from social media like Twitter to common forums like StackOverflow. One thing to keep in mind about answers from the web is that they do not constitute the ‘official’ solutions so they might be wrong - it’s often a good idea to double check or be sure that you understand the solution proposed by someone on a forum.</p></li>
-</ul>
+<p>Fourth pane also contains a few tabs. It’s mainly used for viewing various things that are results of your code. The plots that you create will be displayed here, as well as some other visualizations like tables, maps etc. (the latter two in the Viewer tab). If you look up help for a function (you’ll see in a second how to do that) the documentation for that function will also show up here. You can also view which files are available in your current directory (the place where R will try to look for or save files by default) and the list of available packages.</p>
 </section>
 <section id="basic-operations" class="level2">
 <h2 class="anchored" data-anchor-id="basic-operations">Basic operations</h2>
-<p>Now that we know how the basic interface for working in R looks like and where to look for help if we need it, we can move on to making basic operations in R. As you could see, there are 2 places where we can write code: the console or in the scripts. If you type a command in the console you can run it by pressing <code>enter</code>. In order to run a command from the script go to the line where your command is or highlight it and press <code>ctrl</code> + <code>enter</code>.</p>
-<p>If you’re feeling like using a very fancy calculator you can turn R into one. All the basic mathematical operations work in the same way. So e.g.</p>
+<p>Now that we know how the basic interface for working in R looks like, we can move on to making basic operations in R. As you could see, there are 2 places where we can write code: the console or in the scripts. If you type a command in the console you can run it by pressing <code>enter</code>. In order to run a command from the script go to the line where your command is or highlight it and press <code>ctrl</code> + <code>enter</code>.</p>
+<p>If you’re feeling like using a very fancy calculator you can turn R into one. All the basic mathematical operations work in the same way. So e.g.&nbsp;addition is made with <code>+</code>:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="sc">+</span> <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 4</code></pre>
 </div>
 </div>
-<p>Other operations work in a similar way. Raising to a power can be achievied with <code>^</code>:</p>
+<p>Other operations work in a similar way. Raising to a power can be achieved with <code>^</code>:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span><span class="sc">^</span><span class="dv">3</span> <span class="sc">+</span> (<span class="dv">3</span><span class="sc">/</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 9.5</code></pre>
 </div>
 </div>
-<p>Ok, so we know we can use R as a calculator. However, that is not very useful.</p>
+<p>Ok, so we know we can use R as a calculator. However, that’s not a lot and might seem like a an overkill. Numbers are not the only thing R can work with though.</p>
 </section>
 <section id="basic-values" class="level2">
 <h2 class="anchored" data-anchor-id="basic-values">Basic values</h2>
 <p>When analyzing something or writing a program you will probably encounter a number of different types of values. Above you saw one of them: numeric values. These can store numbers with values after the decimal point.. The other types are:</p>
 <ul>
 <li><p><strong>integer</strong>: it stores numbers without decimal point. They can be created by putting capital l after the number e.g.&nbsp;<code>3L</code>.</p></li>
-<li><p><strong>string</strong>: this type refers to to text values. Text is created using quotation marks e.g.&nbsp;‘this is text’</p></li>
+<li><p><strong>string</strong>: this type refers to to text values. Text is created using quotation marks e.g.&nbsp;<code>'this is text'</code></p></li>
 <li><p><strong>boolean/logical</strong>: this type refers to logical values: <code>TRUE</code> or <code>FALSE</code></p></li>
 </ul>
-<p>These types form a certain hierarchy: some of them can be converted to other but not the other way around. The reason why this is important is that if R encounters more than one type of value in one operation it will often try to convert the types so that they match. It will do so in a way to create the highest matching type. The hierarchy goes in this way: boolean -&gt; integer -&gt; numeric -&gt; string. All the types can be converted to text but not the other way around. Boolean values are converted so that TRUE = 1 and FALSE = 0. o e.g.&nbsp;if you try to add boolean and numeric value, R will convert the boolean to numeric.</p>
+<p>These types form a certain hierarchy: some of them can be converted to other but not the other way around. The reason why this is important is that if R encounters more than one type of value in one operation it will often try to convert the types so that they match. It will do so in a way to create the highest matching type. The hierarchy goes in this way: boolean -&gt; integer -&gt; numeric -&gt; string. All the types can be converted to text but not the other way around. Boolean values are converted so that TRUE = 1 and FALSE = 0. o e.g.&nbsp;if you try to add boolean and numeric value, R will convert the boolean to numeric:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="cn">TRUE</span> <span class="sc">+</span> <span class="dv">6</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -360,13 +349,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <pre><code>Error in 6 * "this is gonna throw an error": non-numeric argument to binary operator</code></pre>
 </div>
 </div>
-<p>Whoops, we got our first error. An error means that R was not able to execute your command and stopped. You won’t get results of the operation if you get an error (which is different from getting a warning! A warning means that something happened that R wants to tell you about: e.g.&nbsp;it encountered something unusual and had to deal with it in a certain way. Warnings will start with the word Warning. Sometimes it may be a bit confusing because depending on you color settings errors and warnings may be displayed in the same color and it can be a bit scary in the beginning if you get flashing red letter saying something went wrong).</p>
+<p>Whoops, we got our first error. An error means that R was not able to execute your command and stopped. You won’t get results of the operation if you get an error (which is different from getting a warning! A warning means that something happened that R wants to tell you about: e.g.&nbsp;it encountered something unusual and had to deal with it in a certain way. Warnings will often start with the word Warning. Sometimes it may be a bit confusing because depending on you color settings errors and warnings may be displayed in the same color and it can be a bit scary in the beginning if you get flashing red letter saying something went wrong but don’t worry).</p>
 <p>Generally an error message will tell you 2 things:</p>
 <ol type="1">
 <li>Where the error happened (in our case in the <code>6 * 'this is gonna throw an error'</code> line)</li>
 <li>What the error is (in our case <code>non-numeric argument to binary operator</code> which just means we used something that is not a number in an operation that requires numbers).</li>
 </ol>
 <p>How exactly an error message is structured largely depends on how well the functions were prepared. If the functions you use are well documented then the error messages should be pretty clear and understandable (which unfortunately is not always the case. This is another reason to document functions well when you start writing your own functions. Be nice to people who start using them!).</p>
+</section>
+<section id="getting-help" class="level2">
+<h2 class="anchored" data-anchor-id="getting-help">Getting help</h2>
+<p>Working in R, especially in the beginning, might be quite overwhelming. Fortunately there is plenty of places where you can look for help. You don’t need to know every single function by heart. Looking for help is perfectly normal. Lets see what are the most common places you can find it:</p>
+<ul>
+<li><p>Built-in help: you can check the documentation of a function in R by calling ?function_name. The documentation of the function will appear in the help tab. It should contain the basic information on the function: what it does, how it should be called, what arguments the function accepts. It can also contain more detailed information like what is the result of a given function or some examples of how to use it.</p></li>
+<li><p>CRAN: short for Comprehensive R Archive Network. You can download the newest version of R from CRAN. It’s also the place where many R packages are stored and can be downloaded from. Documentation of packages can be found there as well. You can visit its website <a href="https://cran.r-project.org/">here</a>.</p></li>
+<li><p>Books: there is plenty of great books on R that cover a range of various topics, many of them are available for free on the web. Books allow you to get a much more detailed account of various things you can do in R, they are also often written by people who developed specific packages for doing the things described in the books.</p></li>
+<li><p>The Internet: R community is generally very welcoming and helpful and there is plenty of places where you can look for help on the web, from social media like Twitter to common forums like StackOverflow. One thing to keep in mind about answers from the web is that they do not constitute the ‘official’ solutions so they might be wrong - it’s often a good idea to double check or be sure that you understand the solution proposed by someone on a forum.</p></li>
+</ul>
 
 
 </section>

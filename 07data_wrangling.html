@@ -195,7 +195,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="dropdown-text">Covariates</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./19postproseccing.qmd" rel="" target="">
+    <a class="dropdown-item" href="./19postproxessing.qmd" rel="" target="">
  <span class="dropdown-text">Postprocessing models</span></a>
   </li>  
     </ul>
@@ -467,18 +467,18 @@ $ hurricane_force_diameter     &lt;int&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, N
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_sample</span>(<span class="at">n =</span> <span class="dv">100</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 100 × 13
-   name      year month   day  hour   lat  long status   category  wind pressure
-   &lt;chr&gt;    &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;fct&gt;       &lt;dbl&gt; &lt;int&gt;    &lt;int&gt;
- 1 Isaias    2020     7    31     9  20.9 -73.4 hurrica…        1    70      990
- 2 Arthur    2014     7     5     6  42.3 -67.6 tropica…       NA    60      981
- 3 Andrew    1992     8    17    12  12.3 -42   tropica…       NA    35     1006
- 4 Julian    2021     8    31     6  47.5 -34.5 extratr…       NA    45      999
- 5 Jose      1999    10    24     0  26.6 -63.1 tropica…       NA    55      995
- 6 Ernesto   1994     9    24     0  15.4 -30.6 tropica…       NA    40     1003
- 7 Arlene    1987     8    14     0  33   -63.6 tropica…       NA    50     1002
- 8 Hortense  1984     9    30    12  33.9 -64.2 tropica…       NA    35     1007
- 9 Florence  2018     9    18    12  42.2 -73.3 extratr…       NA    25     1006
-10 Cindy     2011     7    21    12  39.4 -48.4 tropica…       NA    55      996
+   name       year month   day  hour   lat  long status  category  wind pressure
+   &lt;chr&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;fct&gt;      &lt;dbl&gt; &lt;int&gt;    &lt;int&gt;
+ 1 Dolly      1996     8    20    18  19.2 -87.8 hurric…        1    65      999
+ 2 Joan       1988    10    17    12  11.9 -72.1 tropic…       NA    60      995
+ 3 Frances    2004     9     3    10  25.1 -76.1 hurric…        2    95      956
+ 4 Karl       2010     9    16     6  19.4 -91.1 tropic…       NA    45      994
+ 5 Bonnie     2010     7    23     0  23.1 -75.9 tropic…       NA    35     1006
+ 6 Chris      1982     9     9    12  26.4 -92.3 subtro…       NA    25     1009
+ 7 Dean       1995     7    31     2  29.2 -95.3 tropic…       NA    40      999
+ 8 Barry      2019     7    14     6  31   -93.2 tropic…       NA    40     1003
+ 9 Josephine  1996    10     9     0  38   -73.5 extrat…       NA    45      983
+10 Karl       1998     9    29    12  49   -11   extrat…       NA    35      994
 # ℹ 90 more rows
 # ℹ 2 more variables: tropicalstorm_force_diameter &lt;int&gt;,
 #   hurricane_force_diameter &lt;int&gt;</code></pre>
