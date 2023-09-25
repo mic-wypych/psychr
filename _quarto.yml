@@ -38,14 +38,12 @@ website:
         menu: 
           - href: 12eda.qmd
             text: Exploratory analysis
-          - href: 13t-tests.qmd
-            text: T tests
-          - href: 14anova.qmd
-            text: Anovas
-          - href: 15correlations.qmd
-            text: Correlations
           - href: 16regression.qmd
-            text: Regression
+            text: Linear models
+          - href: 18statistical_control.qmd
+            text: Covariates
+          - href: 19postproseccing.qmd
+            text: Postprocessing models
         
           
   search: 
