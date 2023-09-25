@@ -1,3 +1,13 @@
+## vectors
+
+library(microbenchmark)
+
+v1 <- rep(c("a","b","c"), 1e7)
+v2 <- rep(c("a","b","c"), 1e5)
+
+
+
+microbenchmark(c(v1,v2), append(v1,v2))
 
 #simulate data
 
@@ -17,7 +27,6 @@ my_df <-data.frame(pred,ss)
 plot(pred,ss)
 
 library(gganimate)
-
 #animate the predictions appearing
 a <- my_df %>%
   ggplot(aes(pred,ss, group = pred)) +

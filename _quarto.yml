@@ -13,7 +13,7 @@ website:
           - href: 01r_intro.qmd
             text: Introduction
           - href: 02basic_data.qmd
-            text: Basic data
+            text: Basic objects
           - href: 03data_types.qmd
             text: Data types
           - href: 04loops_conditionals.qmd

@@ -3,10 +3,10 @@ title: "Types of data"
 author: "Michal Wypych"
 ---
 
-So far we have worked only with single values. However, usually you want to work with whole sets of values like variables or whole datasets. There is a number of types of data you can encounter in R. A fairly easy way to orient yourself in the different types of data is:
+So far we have worked only with single values or objects storing only one value. However, usually you want to work with whole sets of values like variables or whole datasets. There is a number of types of data you can encounter in R which allow you to do that. A fairly easy way to orient yourself in the different types of data is:
 
-1.  how many dimensions does a given type have
-2.  What kinds of values can it store?
+1.  how many dimensions does a given type have: you can think about it in terms of how many ways can you traverse a given object: if you can only move left or right then it has only one dimension. If you can move left or right and up or down then you have 2 dimensions.
+2.  What kinds of values can it store? Some types can store values of only 1 type while others can store multiple types of values a the same time.
 
 ## Vectors
 
@@ -17,14 +17,14 @@ my_very_first_vector <- c(1,2,3)
 my_very_first_vector
 ```
 
-Vectors are **indexed**: they have a first, second value etc. This means that you can access part of a vector -subset them. Subsetting is accomplished with `[]`. You can also subset a range of values from a vector wirh `[:]`.
+Vectors are **indexed**: they have a first, second value etc. This means that you can access part of a vector -subset them. Subsetting is accomplished with `[]`. You can also subset a range of values from a vector wirh `[:]`:
 
 ```{r}
 long_vector <- c(1,2,3,4,5,6,7,8,9,10)
 long_vector[3:5]
 ```
 
-If you try to put different types of values into one vector R will convert the types to a matching one. This is especially important when due to some mistake/error a single value of a different type gets lost in some other variable. Just a single value will trigger the whole variable to be converted.
+If you try to put different types of values into one vector R will convert the types to a matching one. This is especially important when due to some mistake/error a single value of a different type gets lost in some other variable. Just a single value will trigger the whole variable to be converted!
 
 ```{r}
 my_vector <- c(1, TRUE, 'some text')
@@ -47,6 +47,19 @@ If the vectors have different lengths then R will start to recycle values from t
 short_v <- c(1,2,3)
 long_v <- c(1,2,3,4,5)
 short_v + long_v
+```
+
+If you want to join two vectors together you can do it in 2 ways: the first one is with `c()` just like creating a new vector (and in fact it will simply create a new vector!). The other one is with `append()`. The first argument is the vector you want to append to and the second argument is the vector you want to append. `append()` also allows you to specify where to append the second vector with `after` argument that requires an index so you can put it e.g. inside the first vector rather than at the end
+
+```{r}
+append(long_v, short_v, after = 2)
+```
+
+Last thing about vectors is that they can be named: each element can have a name. This can be especially useful e.g. when the vector is a result of some statistical operations and you want to make it easier to understand which number means what (e.g. you want to put together the mean, median and mode in 1 vector). You can add names to elements in a vector simply with a `=`:
+
+```{r}
+named_vector <- c("element one" = 1, "element two" = 2)
+named_vector
 ```
 
 ## Factors
