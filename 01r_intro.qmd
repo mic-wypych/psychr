@@ -1,5 +1,5 @@
 ---
-title: "r_intro"
+title: "First steps in R"
 author: "Michal_Wypych"
 editor: visual
 ---
@@ -23,13 +23,13 @@ You can download R from <a href="https://cran.r-project.org/">here</a>. For this
 
 ## What is RStudio?
 
-While R is a programming language RStudio is an IDE (Integrated Development Environment). Basically, it's purpose is to make working in R easier and more reproducible. You can download RStudio from <a href="https://www.rstudio.com/products/rstudio/download/">here</a>.
+While R is a programming language RStudio is an IDE (Integrated Development Environment). Basically, it's purpose is to make working in R easier and more reproducible. It makes writing and managing code much easier. It can also show you some basic results like plots and tables. You can download RStudio from <a href="https://www.rstudio.com/products/rstudio/download/">here</a>.
 
 When you open RStudio you might see something like this:
 
 ![](images/paste-D342C886.png)
 
-We'll go through each pane one by one and see what they are used for.
+We'll go through each pane one by one and see what they are used for. Lets start with top-left:
 
 ![First pane: R scripts](images/paste-ADD39EC3.png)
 
@@ -45,39 +45,25 @@ Third pane contains a few tabs. The most important for us is the Environment tab
 
 ![Fourth pane](images/image-711552030.png)
 
-Fourth pane again contains a few tabs. It's mainly used for viewing various things that are results of your code. The plots that you create will be displayed here, as well as some other visualizations like tables, maps etc. (the latter two in the Viewer tab). If you look up help for a function (you'll see in a second how to do that) the documentation for that function will also show up here. You can also view which files are available in your current directory (the place where R will try to look for or save files by default) and the list of available packages.
-
-## Getting help
-
-Working in R, especially in the beginning, might be quite overwhelming. Fortunately there is plenty of places where you can look for help. It's fairly common to look for help.
-
-Looking up help
-
--   Built-in help: you can check the documentation of a function in R by calling ?function_name. The documentation of the function will appear in the help tab. It should contain the basic information on the function: what it does, how it should be called, what arguments the function accepts. It can also contain more detailed information like what is the result of a given function or some examples of how to use it.
-
--   CRAN: short for Comprehensive R Archive Network. You can download the newest version of R from CRAN. It's also the place where many R packages are stored and can be downloaded from. Documentation of packages can be found there as well. You can visit its website <a href="https://cran.r-project.org/">here</a>.
-
--   Books: there is plenty of great books on R that cover a range of various topics, many of them are available for free on the web. Books allow you to get a much more detailed account of various things you can do in R, they are also often written by people who developed specific packages for doing the things described in the books.
-
--   The Internet: R community is generally very welcoming and helpful and there is plenty of places where you can look for help on the web, from social media like Twitter to common forums like StackOverflow. One thing to keep in mind about answers from the web is that they do not constitute the 'official' solutions so they might be wrong - it's often a good idea to double check or be sure that you understand the solution proposed by someone on a forum.
+Fourth pane also contains a few tabs. It's mainly used for viewing various things that are results of your code. The plots that you create will be displayed here, as well as some other visualizations like tables, maps etc. (the latter two in the Viewer tab). If you look up help for a function (you'll see in a second how to do that) the documentation for that function will also show up here. You can also view which files are available in your current directory (the place where R will try to look for or save files by default) and the list of available packages.
 
 ## Basic operations
 
-Now that we know how the basic interface for working in R looks like and where to look for help if we need it, we can move on to making basic operations in R. As you could see, there are 2 places where we can write code: the console or in the scripts. If you type a command in the console you can run it by pressing `enter`. In order to run a command from the script go to the line where your command is or highlight it and press `ctrl` + `enter`.
+Now that we know how the basic interface for working in R looks like, we can move on to making basic operations in R. As you could see, there are 2 places where we can write code: the console or in the scripts. If you type a command in the console you can run it by pressing `enter`. In order to run a command from the script go to the line where your command is or highlight it and press `ctrl` + `enter`.
 
-If you're feeling like using a very fancy calculator you can turn R into one. All the basic mathematical operations work in the same way. So e.g.
+If you're feeling like using a very fancy calculator you can turn R into one. All the basic mathematical operations work in the same way. So e.g. addition is made with `+`:
 
 ```{r}
 2 + 2
 ```
 
-Other operations work in a similar way. Raising to a power can be achievied with `^`:
+Other operations work in a similar way. Raising to a power can be achieved with `^`:
 
 ```{r}
 2^3 + (3/2)
 ```
 
-Ok, so we know we can use R as a calculator. However, that is not very useful.
+Ok, so we know we can use R as a calculator. However, that's not a lot and might seem like a an overkill. Numbers are not the only thing R can work with though.
 
 ## Basic values
 
@@ -85,11 +71,11 @@ When analyzing something or writing a program you will probably encounter a numb
 
 -   **integer**: it stores numbers without decimal point. They can be created by putting capital l after the number e.g. `3L`.
 
--   **string**: this type refers to to text values. Text is created using quotation marks e.g. 'this is text'
+-   **string**: this type refers to to text values. Text is created using quotation marks e.g. `'this is text'`
 
 -   **boolean/logical**: this type refers to logical values: `TRUE` or `FALSE`
 
-These types form a certain hierarchy: some of them can be converted to other but not the other way around. The reason why this is important is that if R encounters more than one type of value in one operation it will often try to convert the types so that they match. It will do so in a way to create the highest matching type. The hierarchy goes in this way: boolean -\> integer -\> numeric -\> string. All the types can be converted to text but not the other way around. Boolean values are converted so that TRUE = 1 and FALSE = 0. o e.g. if you try to add boolean and numeric value, R will convert the boolean to numeric.
+These types form a certain hierarchy: some of them can be converted to other but not the other way around. The reason why this is important is that if R encounters more than one type of value in one operation it will often try to convert the types so that they match. It will do so in a way to create the highest matching type. The hierarchy goes in this way: boolean -\> integer -\> numeric -\> string. All the types can be converted to text but not the other way around. Boolean values are converted so that TRUE = 1 and FALSE = 0. o e.g. if you try to add boolean and numeric value, R will convert the boolean to numeric:
 
 ```{r}
 TRUE + 6
@@ -101,7 +87,7 @@ Some operations can't be performed on certain types of values, e.g. you can't mu
 6 * 'this is gonna throw an error'
 ```
 
-Whoops, we got our first error. An error means that R was not able to execute your command and stopped. You won't get results of the operation if you get an error (which is different from getting a warning! A warning means that something happened that R wants to tell you about: e.g. it encountered something unusual and had to deal with it in a certain way. Warnings will start with the word Warning. Sometimes it may be a bit confusing because depending on you color settings errors and warnings may be displayed in the same color and it can be a bit scary in the beginning if you get flashing red letter saying something went wrong).
+Whoops, we got our first error. An error means that R was not able to execute your command and stopped. You won't get results of the operation if you get an error (which is different from getting a warning! A warning means that something happened that R wants to tell you about: e.g. it encountered something unusual and had to deal with it in a certain way. Warnings will often start with the word Warning. Sometimes it may be a bit confusing because depending on you color settings errors and warnings may be displayed in the same color and it can be a bit scary in the beginning if you get flashing red letter saying something went wrong but don't worry).
 
 Generally an error message will tell you 2 things:
 
@@ -109,3 +95,15 @@ Generally an error message will tell you 2 things:
 2.  What the error is (in our case `non-numeric argument to binary operator` which just means we used something that is not a number in an operation that requires numbers).
 
 How exactly an error message is structured largely depends on how well the functions were prepared. If the functions you use are well documented then the error messages should be pretty clear and understandable (which unfortunately is not always the case. This is another reason to document functions well when you start writing your own functions. Be nice to people who start using them!).
+
+## Getting help
+
+Working in R, especially in the beginning, might be quite overwhelming. Fortunately there is plenty of places where you can look for help. You don't need to know every single function by heart. Looking for help is perfectly normal. Lets see what are the most common places you can find it:
+
+-   Built-in help: you can check the documentation of a function in R by calling ?function_name. The documentation of the function will appear in the help tab. It should contain the basic information on the function: what it does, how it should be called, what arguments the function accepts. It can also contain more detailed information like what is the result of a given function or some examples of how to use it.
+
+-   CRAN: short for Comprehensive R Archive Network. You can download the newest version of R from CRAN. It's also the place where many R packages are stored and can be downloaded from. Documentation of packages can be found there as well. You can visit its website <a href="https://cran.r-project.org/">here</a>.
+
+-   Books: there is plenty of great books on R that cover a range of various topics, many of them are available for free on the web. Books allow you to get a much more detailed account of various things you can do in R, they are also often written by people who developed specific packages for doing the things described in the books.
+
+-   The Internet: R community is generally very welcoming and helpful and there is plenty of places where you can look for help on the web, from social media like Twitter to common forums like StackOverflow. One thing to keep in mind about answers from the web is that they do not constitute the 'official' solutions so they might be wrong - it's often a good idea to double check or be sure that you understand the solution proposed by someone on a forum.
