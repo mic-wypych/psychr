@@ -195,7 +195,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="dropdown-text">Covariates</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./19postproxessing.qmd" rel="" target="">
+    <a class="dropdown-item" href="./19postprocessing.html" rel="" target="">
  <span class="dropdown-text">Postprocessing models</span></a>
   </li>  
     </ul>
@@ -449,12 +449,12 @@ character</code></pre>
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>bench</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Unit: milliseconds
-                                               expr    min      lq     mean
- for (i in 1:ncol(df)) {     print(mean(df[, i])) } 3.8790 4.01735 4.204469
-                                 apply(df, 2, mean) 7.2467 7.32505 8.242820
+                                               expr    min     lq     mean
+ for (i in 1:ncol(df)) {     print(mean(df[, i])) } 3.1451 3.2432 3.384575
+                                 apply(df, 2, mean) 6.7537 7.1550 7.656283
   median      uq     max neval
- 4.14170 4.42135  4.7286   100
- 7.35925 7.40570 13.1832   100</code></pre>
+ 3.33320 3.51245  3.8819   100
+ 7.19985 7.24065 10.4982   100</code></pre>
 </div>
 </div>
 </section>
