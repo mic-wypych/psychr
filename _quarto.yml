@@ -42,7 +42,7 @@ website:
             text: Linear models
           - href: 18statistical_control.qmd
             text: Covariates
-          - href: 19postproxessing.qmd
+          - href: 19postprocessing.qmd
             text: Postprocessing models
         
           
