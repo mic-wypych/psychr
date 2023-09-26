@@ -58,12 +58,14 @@ $$
 
 ## Making a simple regression
 
--how to make a regression analysis
+Running a regression in R is actually super simple. You can use the `lm()` function to do it.
 
 -how to look at the results
 
-## Multiple regression
+## Categorical predictors
 
--how to make it
+-   What are categorical predictors
 
--Why you should always think first: putting things into regression
+-   How R codes categorical predictors
+
+-   t-tests, one-way anovas and regressions - it's all the same!

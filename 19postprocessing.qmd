@@ -3,12 +3,42 @@ title: "Postprocessing results"
 author: "Michał Wypych"
 ---
 
--general logic of working with results in R: you get a saved object
+In the final class we will look at how to post process your models to get exactly what you want from them. In older tutorials or textbooks you could usually read to make models directly interpretable. That meant for example such coding of categorical variables so that the regression coefficient were exactly the contrast you wanted.
 
--Making predictions
+With newer and more versatile software you don't really need to do it this way. You can run a model and then process the results to get exactly what matches your hypothesis e.g. if you want to test a specific contrast from an experiment. Or if you want to compare whether the effect of one variable is significantly stronger than the effect of another variable (remember that [if one effect is statistically significant and another is not it does not mean they are significantly different](http://www.stat.columbia.edu/~gelman/research/published/signif4.pdf)). This gets especially important once you start working with more complex models (like logistic or ordinal regression) where coefficients themselves aren't easily interpretable.
 
--Marginal effects
+## General logic
 
--Contrasts
+The dataset we will be working with today is
 
--reporting?
+The packages we will be working with today is `broom`, `performance` and (amazing!) `marginaleffects`. The last package also has absolutely incredible documentation so I highly recommend checking out its [website](https://marginaleffects.com/).
+
+## Diagnostics
+
+Here we'll look at some basic diagnostics for regression models.
+
+-   Looking at outliers
+
+-   Looking at multicollinearity
+
+## Making predictions
+
+Sometimes you might want to assess the predictions of your model - how well does it predict?
+
+-   splitting the sample
+
+-   common metrics like rmse, r2
+
+## Marginal effects
+
+An extremely good and clear introduction to marginal effects with explanation of differences between 2 main packages used for them in R can be found on [Andrew Heiss' blog](https://www.andrewheiss.com/blog/2022/05/20/marginalia/). If you want to dive deeper into this topic I highly recommend you read that blog post.
+
+-   What is a marginal effect
+
+-   calculating marginal effect
+
+-   conditional effects
+
+## Contrasts
+
+In many situations when you work with categorical variables you are interested in
