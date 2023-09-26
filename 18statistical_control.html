@@ -181,13 +181,22 @@ ul.task-list li input[type="checkbox"] {
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
 <!-- sidebar -->
-  
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+    <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#what-is-statistical-control" id="toc-what-is-statistical-control" class="nav-link active" data-scroll-target="#what-is-statistical-control">What is statistical control?</a></li>
+  <li><a href="#to-control-or-not-to-control" id="toc-to-control-or-not-to-control" class="nav-link" data-scroll-target="#to-control-or-not-to-control">To control or not to control?</a></li>
+  </ul>
+</nav>
+</nav>
 <div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
     </div>
 <!-- main -->
-<main class="content column-page" id="quarto-document-content">
+<main class="content column-page-right" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
@@ -212,10 +221,26 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<p>-What is statistical control?</p>
-<p>-To control or not to control - confounders</p>
+<p>So far we have been working with only 1 independent variable at a time.</p>
+<section id="what-is-statistical-control" class="level2">
+<h2 class="anchored" data-anchor-id="what-is-statistical-control">What is statistical control?</h2>
+<ul>
+<li><p>What does it mean to control for a variable?</p></li>
+<li><p>How do we do it in R?</p></li>
+</ul>
+</section>
+<section id="to-control-or-not-to-control" class="level2">
+<h2 class="anchored" data-anchor-id="to-control-or-not-to-control">To control or not to control?</h2>
+<ul>
+<li><p>What are confounders</p></li>
+<li><p>Basic types of confounds: fork, mediator, collider, descendant. A really good paper on this topic is <a href="https://journals.sagepub.com/doi/full/10.1177/25152459221095823">here</a>.</p></li>
+<li><p>When should you control?</p></li>
+<li><p>Interpreting coefficients from covariates - should you?<br>
+For example you might be tempted to interpret the effect of gender which was included in a model as a covariate. But ask yourself - is it the total or direct effect?</p></li>
+</ul>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

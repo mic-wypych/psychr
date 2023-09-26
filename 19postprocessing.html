@@ -181,13 +181,25 @@ ul.task-list li input[type="checkbox"] {
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
 <!-- sidebar -->
-  
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+    <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#general-logic" id="toc-general-logic" class="nav-link active" data-scroll-target="#general-logic">General logic</a></li>
+  <li><a href="#diagnostics" id="toc-diagnostics" class="nav-link" data-scroll-target="#diagnostics">Diagnostics</a></li>
+  <li><a href="#making-predictions" id="toc-making-predictions" class="nav-link" data-scroll-target="#making-predictions">Making predictions</a></li>
+  <li><a href="#marginal-effects" id="toc-marginal-effects" class="nav-link" data-scroll-target="#marginal-effects">Marginal effects</a></li>
+  <li><a href="#contrasts" id="toc-contrasts" class="nav-link" data-scroll-target="#contrasts">Contrasts</a></li>
+  </ul>
+</nav>
+</nav>
 <div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
     </div>
 <!-- main -->
-<main class="content column-page" id="quarto-document-content">
+<main class="content column-page-right" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
@@ -212,13 +224,44 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<p>-general logic of working with results in R: you get a saved object</p>
-<p>-Making predictions</p>
-<p>-Marginal effects</p>
-<p>-Contrasts</p>
-<p>-reporting?</p>
+<p>In the final class we will look at how to post process your models to get exactly what you want from them. In older tutorials or textbooks you could usually read to make models directly interpretable. That meant for example such coding of categorical variables so that the regression coefficient were exactly the contrast you wanted.</p>
+<p>With newer and more versatile software you don’t really need to do it this way. You can run a model and then process the results to get exactly what matches your hypothesis e.g.&nbsp;if you want to test a specific contrast from an experiment. Or if you want to compare whether the effect of one variable is significantly stronger than the effect of another variable (remember that <a href="http://www.stat.columbia.edu/~gelman/research/published/signif4.pdf">if one effect is statistically significant and another is not it does not mean they are significantly different</a>). This gets especially important once you start working with more complex models (like logistic or ordinal regression) where coefficients themselves aren’t easily interpretable.</p>
+<section id="general-logic" class="level2">
+<h2 class="anchored" data-anchor-id="general-logic">General logic</h2>
+<p>The dataset we will be working with today is</p>
+<p>The packages we will be working with today is <code>broom</code>, <code>performance</code> and (amazing!) <code>marginaleffects</code>. The last package also has absolutely incredible documentation so I highly recommend checking out its <a href="https://marginaleffects.com/">website</a>.</p>
+</section>
+<section id="diagnostics" class="level2">
+<h2 class="anchored" data-anchor-id="diagnostics">Diagnostics</h2>
+<p>Here we’ll look at some basic diagnostics for regression models.</p>
+<ul>
+<li><p>Looking at outliers</p></li>
+<li><p>Looking at multicollinearity</p></li>
+</ul>
+</section>
+<section id="making-predictions" class="level2">
+<h2 class="anchored" data-anchor-id="making-predictions">Making predictions</h2>
+<p>Sometimes you might want to assess the predictions of your model - how well does it predict?</p>
+<ul>
+<li><p>splitting the sample</p></li>
+<li><p>common metrics like rmse, r2</p></li>
+</ul>
+</section>
+<section id="marginal-effects" class="level2">
+<h2 class="anchored" data-anchor-id="marginal-effects">Marginal effects</h2>
+<p>An extremely good and clear introduction to marginal effects with explanation of differences between 2 main packages used for them in R can be found on <a href="https://www.andrewheiss.com/blog/2022/05/20/marginalia/">Andrew Heiss’ blog</a>. If you want to dive deeper into this topic I highly recommend you read that blog post.</p>
+<ul>
+<li><p>What is a marginal effect</p></li>
+<li><p>calculating marginal effect</p></li>
+<li><p>conditional effects</p></li>
+</ul>
+</section>
+<section id="contrasts" class="level2">
+<h2 class="anchored" data-anchor-id="contrasts">Contrasts</h2>
+<p>In many situations when you work with categorical variables you are interested in</p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

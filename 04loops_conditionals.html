@@ -449,12 +449,12 @@ character</code></pre>
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>bench</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Unit: milliseconds
-                                               expr    min     lq     mean
- for (i in 1:ncol(df)) {     print(mean(df[, i])) } 3.1069 3.1819 3.331779
-                                 apply(df, 2, mean) 6.6640 7.0459 7.540627
-  median     uq     max neval
- 3.27535 3.4668  3.7943   100
- 7.07355 7.1144 10.2673   100</code></pre>
+                                               expr    min      lq     mean
+ for (i in 1:ncol(df)) {     print(mean(df[, i])) } 3.8790 4.01735 4.204469
+                                 apply(df, 2, mean) 7.2467 7.32505 8.242820
+  median      uq     max neval
+ 4.14170 4.42135  4.7286   100
+ 7.35925 7.40570 13.1832   100</code></pre>
 </div>
 </div>
 </section>
