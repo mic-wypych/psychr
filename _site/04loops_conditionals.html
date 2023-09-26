@@ -129,7 +129,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>  
         <li>
     <a class="dropdown-item" href="./02basic_data.html" rel="" target="">
- <span class="dropdown-text">Basic data</span></a>
+ <span class="dropdown-text">Basic objects</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="./03data_types.html" rel="" target="">
@@ -186,20 +186,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="dropdown-text">Exploratory analysis</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./13t-tests.html" rel="" target="">
- <span class="dropdown-text">T tests</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="./14anova.html" rel="" target="">
- <span class="dropdown-text">Anovas</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="./15correlations.html" rel="" target="">
- <span class="dropdown-text">Correlations</span></a>
-  </li>  
-        <li>
     <a class="dropdown-item" href="./16regression.html" rel="" target="">
- <span class="dropdown-text">Regression</span></a>
+ <span class="dropdown-text">Linear models</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./18statistical_control.html" rel="" target="">
+ <span class="dropdown-text">Covariates</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./19postproxessing.qmd" rel="" target="">
+ <span class="dropdown-text">Postprocessing models</span></a>
   </li>  
     </ul>
   </li>
@@ -455,12 +451,12 @@ character</code></pre>
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>bench</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Unit: milliseconds
-                                               expr    min      lq     mean
- for (i in 1:ncol(df)) {     print(mean(df[, i])) } 2.9332 3.35135 4.207084
-                                 apply(df, 2, mean) 3.6724 4.43455 6.396318
-  median      uq     max neval cld
- 3.78895 5.08595  7.3418   100  a 
- 5.51640 7.42440 16.5944   100   b</code></pre>
+                                               expr      min       lq     mean
+ for (i in 1:ncol(df)) {     print(mean(df[, i])) } 3.908402 7.122201  7.98188
+                                 apply(df, 2, mean) 5.362700 8.680801 11.17800
+   median        uq     max neval
+ 7.710000  8.605151 12.7287   100
+ 9.271351 10.749951 26.0162   100</code></pre>
 </div>
 </div>
 </section>
@@ -472,6 +468,7 @@ character</code></pre>
 <img src="images/the-prisoners-dilemma-using-game-theory-to-achieve-the-optimal-solution.jpg" class="img-fluid" width="400"></li>
 <li>Create a for loop that will print out the first 50 numbers from the Fibonacci sequence</li>
 <li>Given the <code>iris</code> dataframe (you can load it with <code>data("iris")</code> loop over all of its columns and calculate the mean of every numeric column</li>
+<li>Create a vector of numbers randomly drawn from a normal distribution with a mean of 2 and standard deviation 0.5. Loop over a sequence of 100 numbers from the minimum to the maximum of the vector you created. For each value in the sequence calculate the sum of squared differences from each value in the vector. Store all the sums in a new vector. Which value in the sequence minimizes the sum of squared distances?</li>
 </ol>
 
 

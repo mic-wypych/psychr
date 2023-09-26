@@ -128,7 +128,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>  
         <li>
     <a class="dropdown-item" href="./02basic_data.html" rel="" target="">
- <span class="dropdown-text">Basic data</span></a>
+ <span class="dropdown-text">Basic objects</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="./03data_types.html" rel="" target="">
@@ -229,6 +229,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#string-operations" id="toc-string-operations" class="nav-link" data-scroll-target="#string-operations">String operations</a></li>
   </ul></li>
   <li><a href="#changing-types" id="toc-changing-types" class="nav-link" data-scroll-target="#changing-types">Changing types</a></li>
+  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises">Exercises</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -409,7 +410,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <pre><code>[1] "logical"</code></pre>
 </div>
 </div>
-<p>Notice that the code above does produce an object of class <code>logical</code> but it stores only <code>NA</code>. Some other things will work however - you can convert numeric values into logical ones. <code>0</code> will be converted to <code>FALSE</code> and everything else into <code>TRUE</code>.</p>
+<p>Notice that the code above does produce an object of class <code>logical</code> but it stores only <code>NA</code>. This can be sometimes tricky because you might not know that something went wrongSome other things will work however - you can convert numeric values into logical ones. <code>0</code> will be converted to <code>FALSE</code> and everything else into <code>TRUE</code>.</p>
+</section>
+<section id="exercises" class="level2">
+<h2 class="anchored" data-anchor-id="exercises">Exercises</h2>
+<ol type="1">
+<li>Test if the expression below is a tautology (true no matter what the truth value of <code>p</code> and <code>q</code>):<br>
+<code>!(p &amp; q) | !(p | !q)</code></li>
+<li>Create 5 objects: <code>a</code>, <code>b</code>, <code>c</code>, <code>d</code>, <code>e</code> and assign them values <code>1</code>, <code>15</code>, <code>3</code>, <code>4.5</code>, <code>6</code>. Calculate the mean of all these elements and then calculate the sum of squared differences of each value from the mean.</li>
+<li>What is the result of comparison <code>TRUE == "TRUE"</code>? Why?</li>
+</ol>
 
 
 </section>
