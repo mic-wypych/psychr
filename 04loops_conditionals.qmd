@@ -208,3 +208,4 @@ bench
     ![](images/the-prisoners-dilemma-using-game-theory-to-achieve-the-optimal-solution.jpg){width="400"}
 2.  Create a for loop that will print out the first 50 numbers from the Fibonacci sequence
 3.  Given the `iris` dataframe (you can load it with `data("iris")` loop over all of its columns and calculate the mean of every numeric column
+4.  Create a vector of numbers randomly drawn from a normal distribution with a mean of 2 and standard deviation 0.5. Loop over a sequence of 100 numbers from the minimum to the maximum of the vector you created. For each value in the sequence calculate the sum of squared differences from each value in the vector. Store all the sums in a new vector. Which value in the sequence minimizes the sum of squared distances?

@@ -123,4 +123,11 @@ correct_type
 class(correct_type)
 ```
 
-Notice that the code above does produce an object of class `logical` but it stores only `NA`. Some other things will work however - you can convert numeric values into logical ones. `0` will be converted to `FALSE` and everything else into `TRUE`.
+Notice that the code above does produce an object of class `logical` but it stores only `NA`. This can be sometimes tricky because you might not know that something went wrongSome other things will work however - you can convert numeric values into logical ones. `0` will be converted to `FALSE` and everything else into `TRUE`.
+
+## Exercises
+
+1.  Test if the expression below is a tautology (true no matter what the truth value of `p` and `q`): \
+    `!(p & q) | !(p | !q)`
+2.  Create 5 objects: `a`, `b`, `c`, `d`, `e` and assign them values `1`, `15`, `3`, `4.5`, `6`. Calculate the mean of all these elements and then calculate the sum of squared differences of each value from the mean.
+3.  What is the result of comparison `TRUE == "TRUE"`? Why?

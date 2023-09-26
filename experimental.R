@@ -9,6 +9,21 @@ v2 <- rep(c("a","b","c"), 1e5)
 
 microbenchmark(c(v1,v2), append(v1,v2))
 
+
+## homework ideas
+
+#' can I make some simple math problem (like probabilities stuff) and make students code it in R?
+#' 
+#' Something like: Suppose you are interested in assessing how effective a given drug is
+#' You have the following data: Out of 900 people who took the drug 657 got better
+#' Out of 1000 people who did not take the drug, 540 got better. Represent this information
+#' as a dataframe with columns coding those who took a drug or didn't take it and rows representing those who got better or not.
+#' Next calculate the percentage of people who got better in the drug and no drug conditions.
+
+
+#' Create a 
+#' 
+
 #simulate data
 
 y <- rnorm(10000)

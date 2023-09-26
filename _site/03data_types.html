@@ -224,6 +224,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#matrices" id="toc-matrices" class="nav-link" data-scroll-target="#matrices">Matrices</a></li>
   <li><a href="#data-frames" id="toc-data-frames" class="nav-link" data-scroll-target="#data-frames">Data frames</a></li>
   <li><a href="#lists" id="toc-lists" class="nav-link" data-scroll-target="#lists">Lists</a></li>
+  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises">Exercises</a></li>
   </ul>
 </nav>
 </nav>
@@ -292,20 +293,33 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <pre><code>[1] "character"</code></pre>
 </div>
 </div>
+<p>You can get a brief summary of a given vector with <code>summary()</code>. It will give slightly different information depending on what type of values is stored in a given vector:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(long_vector)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+   1.00    3.25    5.50    5.50    7.75   10.00 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(my_vector)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   Length     Class      Mode 
+        3 character character </code></pre>
+</div>
+</div>
 <p>You can make pretty much the same operations on vectors as on single values. One of the great features of R is that by default it will make operations element wise - if you try to add two vectors together then the first element from vector 1 will be added to first element of vector 2 and so on (the fancy name for this is vectorization).</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>numbers <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>)</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>numbers2 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">6</span>,<span class="dv">7</span>,<span class="dv">8</span>,<span class="dv">9</span>,<span class="dv">10</span>)</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>numbers <span class="sc">+</span> numbers2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>numbers <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>numbers2 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">6</span>,<span class="dv">7</span>,<span class="dv">8</span>,<span class="dv">9</span>,<span class="dv">10</span>)</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>numbers <span class="sc">+</span> numbers2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1]  7  9 11 13 15</code></pre>
 </div>
 </div>
 <p>If the vectors have different lengths then R will start to recycle values from the shorter vectors. But it will output a warning if the length of one vector is not a multiple of the other vector.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>short_v <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>)</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>long_v <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>)</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>short_v <span class="sc">+</span> long_v</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>short_v <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>long_v <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>)</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>short_v <span class="sc">+</span> long_v</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning in short_v + long_v: długość dłuszego obiektu nie jest wielokrotnością
 długości krótszego obiektu</code></pre>
@@ -316,28 +330,58 @@ długości krótszego obiektu</code></pre>
 </div>
 <p>If you want to join two vectors together you can do it in 2 ways: the first one is with <code>c()</code> just like creating a new vector (and in fact it will simply create a new vector!). The other one is with <code>append()</code>. The first argument is the vector you want to append to and the second argument is the vector you want to append. <code>append()</code> also allows you to specify where to append the second vector with <code>after</code> argument that requires an index so you can put it e.g.&nbsp;inside the first vector rather than at the end</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">append</span>(long_v, short_v, <span class="at">after =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">append</span>(long_v, short_v, <span class="at">after =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 1 2 1 2 3 3 4 5</code></pre>
 </div>
 </div>
-<p>Last thing about vectors is that they can be named: each element can have a name. This can be especially useful e.g.&nbsp;when the vector is a result of some statistical operations and you want to make it easier to understand which number means what (e.g.&nbsp;you want to put together the mean, median and mode in 1 vector). You can add names to elements in a vector simply with a <code>=</code>:</p>
+<p>Another thing about vectors is that they can be named: each element can have a name. This can be especially useful e.g.&nbsp;when the vector is a result of some statistical operations and you want to make it easier to understand which number means what (e.g.&nbsp;you want to put together the mean, median and mode in 1 vector). You can add names to elements in a vector simply with a <code>=</code>:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>named_vector <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"element one"</span> <span class="ot">=</span> <span class="dv">1</span>, <span class="st">"element two"</span> <span class="ot">=</span> <span class="dv">2</span>)</span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>named_vector</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>named_vector <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"element one"</span> <span class="ot">=</span> <span class="dv">1</span>, <span class="st">"element two"</span> <span class="ot">=</span> <span class="dv">2</span>)</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>named_vector</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>element one element two 
           1           2 </code></pre>
 </div>
 </div>
+<p>Before we move on to factors lets introduce a few functions that can be useful for creating vectors:</p>
+<ol type="1">
+<li><p><code>rep()</code> function allows you to repeat a given value or a vector n times. You can create large vectors with it easily:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>long_v <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>), <span class="dv">50</span>)</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(long_v)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+      1       1       2       2       3       3 </code></pre>
+</div>
+</div></li>
+<li><p><code>seq()</code> allows you to create a sequence of numbers from some number to some number. You can either specify how long the sequence is to be and R will figure out the distances between numbers (<code>lenght.out</code> argument) or you can specify the distances between numbers with <code>by</code> argument and R will figure out the length of a resulting vector.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>seq_v <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">1</span>, <span class="at">length.out =</span> <span class="dv">100</span>)</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(seq_v)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+   0.00    0.25    0.50    0.50    0.75    1.00 </code></pre>
+</div>
+</div></li>
+<li><p><code>rnorm()</code> allows you to draw random numbers from a normal distribution with a specified mean and standard deviation (there is actually a whole family of drawing numbers from different distributions e.g.&nbsp;<code>rbinom()</code> for drawing from binomial distribution or <code>rbeta()</code> for drawing from beta distribution):</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>norm_v <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">100</span>, <span class="at">mean =</span> <span class="dv">5</span>, <span class="at">sd =</span> <span class="dv">2</span>)</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(norm_v)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+-0.5497  3.7977  5.0062  5.0760  6.3953  9.7307 </code></pre>
+</div>
+</div></li>
+</ol>
 </section>
 <section id="factors" class="level2">
 <h2 class="anchored" data-anchor-id="factors">Factors</h2>
 <p>Factors are much like vectors except that they are used for storing categorical values - they have levels. You can store variables such as country or experimental condition of participants in a factor. You can create a factor by calling <code>factor()</code> and passing it a vector as an argument.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>my_vector <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">'a'</span>, <span class="st">'b'</span>, <span class="st">'a'</span>, <span class="st">'b'</span>)</span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>my_factor <span class="ot">&lt;-</span> <span class="fu">factor</span>(my_vector)</span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>my_factor</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>my_vector <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">'a'</span>, <span class="st">'b'</span>, <span class="st">'a'</span>, <span class="st">'b'</span>)</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>my_factor <span class="ot">&lt;-</span> <span class="fu">factor</span>(my_vector)</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>my_factor</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] a b a b
 Levels: a b</code></pre>
@@ -345,9 +389,9 @@ Levels: a b</code></pre>
 </div>
 <p>Factors can also have ordered levels. You can make an ordered factor by setting <code>ordered = T</code> argument when creating a factor. Notice how the output looks different now: it includes information on the order.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>ordered_vec <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">'low'</span>, <span class="st">'high'</span>, <span class="st">'high'</span>, <span class="st">'low'</span>, <span class="st">'low'</span>)</span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>ordered_fac <span class="ot">&lt;-</span> <span class="fu">factor</span>(ordered_vec, <span class="at">ordered =</span> T)</span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>ordered_fac</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>ordered_vec <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">'low'</span>, <span class="st">'high'</span>, <span class="st">'high'</span>, <span class="st">'low'</span>, <span class="st">'low'</span>)</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>ordered_fac <span class="ot">&lt;-</span> <span class="fu">factor</span>(ordered_vec, <span class="at">ordered =</span> T)</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>ordered_fac</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] low  high high low  low 
 Levels: high &lt; low</code></pre>
@@ -355,9 +399,9 @@ Levels: high &lt; low</code></pre>
 </div>
 <p>You can also manually set the levels of a factor. You can do it when creating the factor. Notice that for ordered factor the order in which you pass the levels will determine the order of levels in the factor.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>ordered_vec <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">'low'</span>, <span class="st">'high'</span>, <span class="st">'high'</span>, <span class="st">'low'</span>, <span class="st">'low'</span>)</span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>ordered_fac <span class="ot">&lt;-</span> <span class="fu">factor</span>(ordered_vec, <span class="at">ordered =</span> T, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">'low'</span>, <span class="st">'high'</span>, <span class="st">'medium'</span>))</span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>ordered_fac</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>ordered_vec <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">'low'</span>, <span class="st">'high'</span>, <span class="st">'high'</span>, <span class="st">'low'</span>, <span class="st">'low'</span>)</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>ordered_fac <span class="ot">&lt;-</span> <span class="fu">factor</span>(ordered_vec, <span class="at">ordered =</span> T, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">'low'</span>, <span class="st">'high'</span>, <span class="st">'medium'</span>))</span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>ordered_fac</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] low  high high low  low 
 Levels: low &lt; high &lt; medium</code></pre>
@@ -368,9 +412,9 @@ Levels: low &lt; high &lt; medium</code></pre>
 <h2 class="anchored" data-anchor-id="matrices">Matrices</h2>
 <p>Matrices are a bit like vectors but they have two dimensions. They have rows and columns but treat them in the same way. Because of this they can store only one type of values (much like vectors). You can create a matrix from scratch with the <code>matrix()</code> function. This function takes a vectors of values as its input (these are the values we will fill our matrix with) and additional information on how the matrix has to look - how many columns and rows it should have and whether to fill the matrix with values by rows or columns</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>numbered_vector <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>,<span class="dv">7</span>,<span class="dv">8</span>,<span class="dv">9</span>)</span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>my_matrix <span class="ot">&lt;-</span> <span class="fu">matrix</span>(numbered_vector, <span class="at">nrow =</span> <span class="dv">3</span>, <span class="at">ncol =</span> <span class="dv">3</span>)</span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>my_matrix</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>numbered_vector <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>,<span class="dv">7</span>,<span class="dv">8</span>,<span class="dv">9</span>)</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>my_matrix <span class="ot">&lt;-</span> <span class="fu">matrix</span>(numbered_vector, <span class="at">nrow =</span> <span class="dv">3</span>, <span class="at">ncol =</span> <span class="dv">3</span>)</span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>my_matrix</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>     [,1] [,2] [,3]
 [1,]    1    4    7
@@ -380,9 +424,9 @@ Levels: low &lt; high &lt; medium</code></pre>
 </div>
 <p>You can also create a matrix by ‘glueing’ vectors together. You can bind them either as rows (<code>rbind()</code> function) or by columns (<code>cbind()</code> function). Notice that the names of the vectors will be used either as names of rows or columns.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>vec1 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>)</span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>vec2 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>)</span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cbind</span>(vec1, vec2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>vec1 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>)</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>vec2 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>)</span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cbind</span>(vec1, vec2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>     vec1 vec2
 [1,]    1    4
@@ -392,16 +436,26 @@ Levels: low &lt; high &lt; medium</code></pre>
 </div>
 <p>Since we have two dimensions subsetting matrices can work both on rows and columns. The general idea is still the same but we have to specify whether we are subsetting rows or columns. Rows always come first, columns second separated by a comma like this <code>matrix[rows,columns]</code>. You can select ranges of rows or columns just like in a vector.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>my_matrix[<span class="dv">2</span>,<span class="dv">2</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>my_matrix[<span class="dv">2</span>,<span class="dv">2</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 5</code></pre>
 </div>
 </div>
 <p>If you want to select all rows or columns you can leave the space blank. Remember to keep the comma though!</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>my_matrix[,<span class="dv">3</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>my_matrix[,<span class="dv">3</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 7 8 9</code></pre>
+</div>
+</div>
+<p>Operations on matrices follow similar rules like operations on vectors - they are element-wise by default (note that they are not your classical linear algebra operations!). E.g. if you multiply a matrix by a vector each row from the matrix will be multiplied by a given element from the vector (1st row by 1st value etc):</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>my_matrix <span class="sc">*</span> vec1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     [,1] [,2] [,3]
+[1,]    1    4    7
+[2,]    4   10   16
+[3,]    9   18   27</code></pre>
 </div>
 </div>
 </section>
@@ -410,13 +464,13 @@ Levels: low &lt; high &lt; medium</code></pre>
 <p>In a day to day analysis you will likely work with data frames most of the time. A data frame is like a matrix in that it has rows and columns but can store different types of values in each column (so that e.g.&nbsp;you can have some variables that are numeric and others that are text). A different way of thinking about data frames is as a list of vectors of the same length with each vector representing a different variable. Each row represents a different observation (e.g.&nbsp;participant).</p>
 <p>You can create a data frame with <code>data.frame()</code> function passing all the variables as arguments. Lets create 3 vectors: author, title and year.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>author <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">'Allport'</span>, <span class="st">'Heider'</span>, <span class="st">'Lewin'</span>, <span class="st">'Allport'</span>, <span class="st">'Heider'</span>)</span>
-<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>title <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">'Nature of Prejudice'</span>, <span class="st">'Psychology of interpersonal relations'</span>,</span>
-<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>           <span class="st">'Principles of Topological Psychology'</span>, <span class="st">'Psychology of Rumor'</span>, <span class="st">'The life of a psychologist: An autobiography'</span>)</span>
-<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>year <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1954</span>, <span class="dv">1958</span>, <span class="dv">1936</span>, <span class="dv">1947</span>, <span class="dv">1983</span>)</span>
-<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>psych_books <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(author, title, year)</span>
-<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a>psych_books</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>author <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">'Allport'</span>, <span class="st">'Heider'</span>, <span class="st">'Lewin'</span>, <span class="st">'Allport'</span>, <span class="st">'Heider'</span>)</span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>title <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">'Nature of Prejudice'</span>, <span class="st">'Psychology of interpersonal relations'</span>,</span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>           <span class="st">'Principles of Topological Psychology'</span>, <span class="st">'Psychology of Rumor'</span>, <span class="st">'The life of a psychologist: An autobiography'</span>)</span>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a>year <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1954</span>, <span class="dv">1958</span>, <span class="dv">1936</span>, <span class="dv">1947</span>, <span class="dv">1983</span>)</span>
+<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-6"><a href="#cb44-6" aria-hidden="true" tabindex="-1"></a>psych_books <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(author, title, year)</span>
+<span id="cb44-7"><a href="#cb44-7" aria-hidden="true" tabindex="-1"></a>psych_books</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   author                                        title year
 1 Allport                          Nature of Prejudice 1954
@@ -429,17 +483,17 @@ Levels: low &lt; high &lt; medium</code></pre>
 <p>Subsetting data frames works the same way as matrices. You can subset both on rows and columns. An important thing to remember (and one of the reasons a lot of people switch to tibbles which are kind of data frames+. We’ll get to tibbles some time in the future) is that if you subset a single column the result will be a vector and not a dataframe. This sometimes is annoying if you are designing something that is supposed to work on data frames specifically.</p>
 <p>There is one additional way of subsetting a data frame. Subsetting variables based on their position is tiresome because we rarely remember the order of all the columns (especially as our data frames get bigger). You can select a single variable using <code>$</code>:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>psych_books<span class="sc">$</span>author</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>psych_books<span class="sc">$</span>author</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "Allport" "Heider"  "Lewin"   "Allport" "Heider" </code></pre>
 </div>
 </div>
 <p>Using the <code>$</code> operator reflects a way of thinking about datasets that is pretty common: data frames are ordered collections of variables and each variable has its name. You can also use <code>$</code> to create new variables. Just assign a vector of values to a new name in your dataframe:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>psych_books<span class="sc">$</span>discipline <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">'intergroup relations'</span>, <span class="st">'social psychology'</span>,</span>
-<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>                            <span class="st">'general psychology'</span>, <span class="st">'social psychology'</span>,</span>
-<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>                            <span class="st">'biography'</span>)</span>
-<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>psych_books</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>psych_books<span class="sc">$</span>discipline <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">'intergroup relations'</span>, <span class="st">'social psychology'</span>,</span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>                            <span class="st">'general psychology'</span>, <span class="st">'social psychology'</span>,</span>
+<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a>                            <span class="st">'biography'</span>)</span>
+<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a>psych_books</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   author                                        title year
 1 Allport                          Nature of Prejudice 1954
@@ -457,8 +511,8 @@ Levels: low &lt; high &lt; medium</code></pre>
 </div>
 <p>Remember how we talked about element-wise operations on vectors? You can leverage it to easily create new variables that are results of operations on other variables. Thanks to this you can add a whole new variable that is a result of a mathematical operation in just one line (imagine adding a variable that is a sum of all points from a quiz for each student). Here’s an example if we wanted to calculate how many years ago each book from our data frame was published:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>psych_books<span class="sc">$</span>book_age <span class="ot">&lt;-</span> <span class="dv">2022</span> <span class="sc">-</span> psych_books<span class="sc">$</span>year</span>
-<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>psych_books</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>psych_books<span class="sc">$</span>book_age <span class="ot">&lt;-</span> <span class="dv">2022</span> <span class="sc">-</span> psych_books<span class="sc">$</span>year</span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>psych_books</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   author                                        title year
 1 Allport                          Nature of Prejudice 1954
@@ -474,16 +528,25 @@ Levels: low &lt; high &lt; medium</code></pre>
 5            biography       39</code></pre>
 </div>
 </div>
+<p>You can also subset data frames based on condition. Lets say we want to find out which psychology books in our dataset are really old, say above 70. We can subset <code>psych_books</code> using <code>[]</code> but we need to add one more thing to specify our condition - we need to tell R which rows are the ones that fulfill our condition. We can do it with <code>which()</code>. It needs the condition as argument and will return numbers of rows from the data frame that fulfill the condition. We just need to put <code>which()</code> inside our subsetting to get the rows we want:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>psych_books[<span class="fu">which</span>(psych_books<span class="sc">$</span>book_age <span class="sc">&gt;</span> <span class="dv">70</span>),]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   author                                title year         discipline book_age
+3   Lewin Principles of Topological Psychology 1936 general psychology       86
+4 Allport                  Psychology of Rumor 1947  social psychology       75</code></pre>
+</div>
+</div>
 </section>
 <section id="lists" class="level2">
 <h2 class="anchored" data-anchor-id="lists">Lists</h2>
-<p>Lists are the final type of basic data in R we will discuss here. They are the most versatile ones - they can store anything inside of them: single values, vectors, matrices, dataframes or even other lists! One important feature of lists is that they are ordered: you can access their elements by position. So you can think of lists as collections of objects but there aren’t really limits to what these objects are (in fact dataframes are very specific lists: they are collections of variables that have the same length and form a nice rectangular table). Lists are created with <code>list()</code>. Lets create a list of the plants in a house along with a value storing information on how many days ago did we last water them:</p>
+<p>Lists are the final type of basic data in R we will discuss here. They are the most versatile ones - they can store anything inside of them: single values, vectors, matrices, dataframes or even other lists! So they have 1 dimension but can store anything inside them. One important feature of lists is that they are ordered: you can access their elements by position. So you can think of lists as collections of objects but there aren’t really limits to what these objects are (in fact data frames are very specific lists: they are collections of variables that have the same length and form a nice rectangular table). Lists are created with <code>list()</code>. Lets create a list of the plants in a house along with a value storing information on how many days ago did we last water them:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>list_of_objects <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
-<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">plants =</span> <span class="fu">c</span>(<span class="st">'Calathea'</span>, <span class="st">'Chamedora'</span>, <span class="st">'Pilea'</span>, <span class="st">'Philodendron'</span>),</span>
-<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">days_since_watering =</span> <span class="dv">5</span></span>
-<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a>list_of_objects</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>list_of_objects <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">plants =</span> <span class="fu">c</span>(<span class="st">'Calathea'</span>, <span class="st">'Chamedora'</span>, <span class="st">'Pilea'</span>, <span class="st">'Philodendron'</span>),</span>
+<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">days_since_watering =</span> <span class="dv">5</span></span>
+<span id="cb54-4"><a href="#cb54-4" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb54-5"><a href="#cb54-5" aria-hidden="true" tabindex="-1"></a>list_of_objects</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>$plants
 [1] "Calathea"     "Chamedora"    "Pilea"        "Philodendron"
@@ -492,26 +555,34 @@ $days_since_watering
 [1] 5</code></pre>
 </div>
 </div>
-<p>You might encounter lists if you need to store a number of different things together. E.g. results of many statistical analyses are stored in lists. In fact as you dive deeper into R you will start to encounter more and more lists because they are very versatile.</p>
+<p>You might encounter lists if you need to store a number of different things together. E.g. results of many statistical analyses are stored in lists because they might contain both information about the model, data and results. In fact as you dive deeper into R you will start to encounter more and more lists because they are very versatile.</p>
 <p>You can access objects stored in lists in a few ways. You can use the <code>[]</code> you used for all other types of data. An important feature of this type of subsetting is that the result will always be a list (even if it has only 1 element). The other option is to use double square brackets <code>[[]]</code>. This will extract the object inside a list so the result won’t be a list (you can think of it as ‘getting deeper’ into the list to extract the exact element you want).</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>list_of_objects[<span class="dv">1</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a>list_of_objects[<span class="dv">1</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>$plants
 [1] "Calathea"     "Chamedora"    "Pilea"        "Philodendron"</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>list_of_objects[[<span class="dv">1</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a>list_of_objects[[<span class="dv">1</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "Calathea"     "Chamedora"    "Pilea"        "Philodendron"</code></pre>
 </div>
 </div>
-<p>If the elements in your list are named you can also use <code>$</code> to extract them.\</p>
+<p>If the elements in your list are named you can also use <code>$</code> to extract them.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>list_of_objects<span class="sc">$</span>days_since_watering</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a>list_of_objects<span class="sc">$</span>days_since_watering</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 5</code></pre>
 </div>
 </div>
+</section>
+<section id="exercises" class="level2">
+<h2 class="anchored" data-anchor-id="exercises">Exercises</h2>
+<ol type="1">
+<li>Suppose you ran a survey among your friends to what extent they agree with a statement “I like pineapples” and got 6 answers: “agree”, “disagree”, “agree”, “somewhat agree”, “somewhat disagree”, “disagree”. Choose the most appropriate type of object to store this information and save it as <code>answers</code>.</li>
+<li>Create <code>v1</code> vector as 500 random numbers from normal distribution with mean of 3 and standard deviation of 1 and a <code>v2</code> vector as 500 random numbers from normal distribution with mean of 2.5 and standard deviation of 1.5. Append <code>v2</code> to <code>v1</code> to create one vector with 1000 values and save it as <code>v4</code>. Create a <code>v3</code> vector by repeating <code>c("a", "b")</code> 500 times. Put together <code>v4</code> and <code>v3</code> as a dataframe. Then calculate which rows: <code>a</code> or <code>b</code> has a higher mean of <code>v4</code>?</li>
+<li>Suppose you are interested in assessing how effective a given drug is. You have the following data: Out of 900 people who took the drug 657 got better. Out of 1000 people who did not take the drug, 540 got better. Represent this information as a matrix with columns coding those who took a drug or didn’t take it and rows representing those who got better or not. Next calculate the percentage of people who got better in the drug and no drug conditions.</li>
+</ol>
 
 
 </section>
