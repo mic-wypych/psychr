@@ -32,18 +32,6 @@ website:
             text: Vizualization vol 1
           - href: 10data_viz_2.qmd
             text: Vizualization vol 2
-          - href: 11organizingwork.qmd
-            text: organizing work
-      - text: "Statistics"
-        menu: 
-          - href: 12eda.qmd
-            text: Exploratory analysis
-          - href: 16regression.qmd
-            text: Linear models
-          - href: 18statistical_control.qmd
-            text: Covariates
-          - href: 19postprocessing.qmd
-            text: Postprocessing models
         
           
   search: 
