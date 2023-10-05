@@ -171,33 +171,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <a class="dropdown-item" href="./10data_viz_2.html" rel="" target="">
  <span class="dropdown-text">Vizualization vol 2</span></a>
   </li>  
-        <li>
-    <a class="dropdown-item" href="./11organizingwork.html" rel="" target="">
- <span class="dropdown-text">organizing work</span></a>
-  </li>  
-    </ul>
-  </li>
-  <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-statistics" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
- <span class="menu-text">Statistics</span>
-    </a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-statistics">    
-        <li>
-    <a class="dropdown-item" href="./12eda.html" rel="" target="">
- <span class="dropdown-text">Exploratory analysis</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="./16regression.html" rel="" target="">
- <span class="dropdown-text">Linear models</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="./18statistical_control.html" rel="" target="">
- <span class="dropdown-text">Covariates</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="./19postprocessing.html" rel="" target="">
- <span class="dropdown-text">Postprocessing models</span></a>
-  </li>  
     </ul>
   </li>
 </ul>
@@ -449,12 +422,12 @@ character</code></pre>
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>bench</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Unit: milliseconds
-                                               expr    min     lq     mean
- for (i in 1:ncol(df)) {     print(mean(df[, i])) } 3.1151 3.2686 3.413681
-                                 apply(df, 2, mean) 6.2055 7.0101 7.457318
+                                               expr    min      lq     mean
+ for (i in 1:ncol(df)) {     print(mean(df[, i])) } 3.2639 3.32440 3.437340
+                                 apply(df, 2, mean) 6.1658 6.83035 7.248267
   median      uq    max neval
- 3.40325 3.58965 3.7958   100
- 7.03820 7.09780 9.8485   100</code></pre>
+ 3.39520 3.51235 3.8096   100
+ 6.91795 6.96895 9.7372   100</code></pre>
 </div>
 </div>
 </section>
