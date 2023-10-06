@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -94,7 +128,7 @@ ul.task-list li input[type="checkbox"] {
   </li>  
         <li>
     <a class="dropdown-item" href="./02basic_data.html" rel="" target="">
- <span class="dropdown-text">Basic data</span></a>
+ <span class="dropdown-text">Basic objects</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="./03data_types.html" rel="" target="">
@@ -135,37 +169,6 @@ ul.task-list li input[type="checkbox"] {
     <a class="dropdown-item" href="./10data_viz_2.html" rel="" target="">
  <span class="dropdown-text">Vizualization vol 2</span></a>
   </li>  
-        <li>
-    <a class="dropdown-item" href="./11organizingwork.html" rel="" target="">
- <span class="dropdown-text">organizing work</span></a>
-  </li>  
-    </ul>
-  </li>
-  <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-statistics" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
- <span class="menu-text">Statistics</span>
-    </a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-statistics">    
-        <li>
-    <a class="dropdown-item" href="./12eda.html" rel="" target="">
- <span class="dropdown-text">Exploratory analysis</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="./13t-tests.html" rel="" target="">
- <span class="dropdown-text">T tests</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="./14anova.html" rel="" target="">
- <span class="dropdown-text">Anovas</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="./15correlations.html" rel="" target="">
- <span class="dropdown-text">Correlations</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="./16regression.html" rel="" target="">
- <span class="dropdown-text">Regression</span></a>
-  </li>  
     </ul>
   </li>
 </ul>
@@ -189,7 +192,11 @@ ul.task-list li input[type="checkbox"] {
    
   <ul>
   <li><a href="#getting-the-basic-information-about-a-dataset" id="toc-getting-the-basic-information-about-a-dataset" class="nav-link active" data-scroll-target="#getting-the-basic-information-about-a-dataset">getting the basic information about a dataset</a></li>
-  <li><a href="#exploring-via-plots" id="toc-exploring-via-plots" class="nav-link" data-scroll-target="#exploring-via-plots">Exploring via plots</a></li>
+  <li><a href="#exploring-via-plots" id="toc-exploring-via-plots" class="nav-link" data-scroll-target="#exploring-via-plots">Exploring via plots</a>
+  <ul class="collapse">
+  <li><a href="#a-cautionary-tale-the-boring-way" id="toc-a-cautionary-tale-the-boring-way" class="nav-link" data-scroll-target="#a-cautionary-tale-the-boring-way">A cautionary tale the boring way</a></li>
+  <li><a href="#a-cautionary-tale-the-fun-way" id="toc-a-cautionary-tale-the-fun-way" class="nav-link" data-scroll-target="#a-cautionary-tale-the-fun-way">A cautionary tale the fun way</a></li>
+  </ul></li>
   <li><a href="#reliabilities" id="toc-reliabilities" class="nav-link" data-scroll-target="#reliabilities">reliabilities</a></li>
   </ul>
 </nav>
@@ -218,30 +225,137 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<ul>
-<li><p>Some introduction on moving on to section about data analysis.</p></li>
-<li><p>Exploring and cleaning data is often a necessary and fairly long process</p></li>
-</ul>
-<p>Why even bother with it?</p>
-<p>It is a necessary steps because there is a near-infinite number of things that can go wrong when preparing the data from errors in how data was coded to errors in preprocessing or loading the files. Lots of things can also happen that can make analysis or drawing conclusions difficult (like how reliable are your scales, are the items recoded correctly etc.)</p>
-<ul>
-<li>discuss some common problems e.g.&nbsp;in qualtrics?</li>
-</ul>
+<p>Usually once you get the data for your analysis the first thing you want to do is get to know it and briefly browse through it to know e.g.&nbsp;what variables are in the dataset, how many observations you have etc. You might feel the urge to jump right into answering your key research questions. After all, usually data collection is a laborious and tiring process and you are so curious to check what the results are! But it’s best to set aside the main analyses for a moment and first take a closer look at the data. Why? It is a necessary steps because there is a near-infinite number of things that can go wrong when preparing the data from errors in how data was coded to errors in preprocessing or loading the files. Lots of things can also happen that can make analysis or drawing conclusions difficult. These can range from issues with your measures (e.g.&nbsp;reliability) through unexpected behaviour of participants during the study (e.g.&nbsp;non-compliance, reactance, purposufely giving ridiculous answers) all the way to errors in the data (e.g.&nbsp;items not recoded or errors in coding, values out of range etc.).</p>
 <section id="getting-the-basic-information-about-a-dataset" class="level2">
 <h2 class="anchored" data-anchor-id="getting-the-basic-information-about-a-dataset">getting the basic information about a dataset</h2>
+<p>How to best get to know a new dataset? You can work with datasets from various sources. If it’s your study that you’re analyzing, then you probably know everything about the variables that should be in it, how many particiapnts took part in the study, how variables are coded etc. However, you might also be working with datasets provided by other people (e.g.&nbsp;by a colleague who ran the study, by a company, or you got the data from an open repository). In these situation it is crucial that you can get to know your data. Many of such datasets will have a codebook available which should describe it in detail. Unfortunately that is not always the case (codebook is like documentation - super important but nobody wants to do it). If a codebook is available, read it (this still does not allow you to skip checking for potential errors/problems with the data). If you don’t have a codebook you need to check everything yourself. Fortunately there is a lot of functions in R that make it a lot easier.</p>
+<p>Lets starts with just general first look at the data. We might want to see how many observations we have, how many columns there are, and the names and types of columns. <code>dplyr</code> has a very nice function for it called <code>glimpse()</code>. It’s more concise than <code>str()</code> but gives you more information than e.g.&nbsp;<code>head()</code>. Lets load our dataset and have a firsty look at it!</p>
 <ul>
-<li><p>if you have it, start with any documentation on the dataset (like codebooks etc.)</p></li>
-<li><p>Getting basic info on the data: glimpse etc.</p></li>
-<li><p>Describe from psych package</p></li>
+<li><p>Getting basic info on the data: glimpse etc.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+✔ dplyr     1.1.1     ✔ readr     2.1.4
+✔ forcats   1.0.0     ✔ stringr   1.5.0
+✔ ggplot2   3.4.2     ✔ tibble    3.2.1
+✔ lubridate 1.9.2     ✔ tidyr     1.3.0
+✔ purrr     1.0.1     
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
+</div>
+</div>
+<p>The <code>psych</code> package also has a pretty useful function that can give you multiple summaries very quickly. It’s called <code>describe()</code>. It takes a data frame or a matrix as an argument and can provide a lot of summary statistics for numeric variables such as the mean, median, standard deviation, standard error, skew, kurtosis and quantiles. You can specify which of these you want by setting additional arguments.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(psych)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Dołączanie pakietu: 'psych'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Następujące obiekty zostały zakryte z 'package:ggplot2':
+
+    %+%, alpha</code></pre>
+</div>
+</div>
+<p>Sometimes you want summary statistics grouped by some categorical variable (e.g.&nbsp;experimental condition). You can do it with <code>describe.by()</code> from <code>psych</code> package. It works the same way as <code>describe()</code> you just need to provide the <code>group</code> argument which tells R what variable to split the dataset by.</p></li>
 <li><p>Getting information on categorical variables</p></li>
 </ul>
 </section>
 <section id="exploring-via-plots" class="level2">
 <h2 class="anchored" data-anchor-id="exploring-via-plots">Exploring via plots</h2>
 <p>Why plotting data is always important</p>
-<p>A cautionary tale the boring way: Anscombe quartet</p>
-<p>The fun way: Gorilla in the data</p>
-<p>The key takeaway is that a lot of things that are wrong or at least problematic can be immediately spotted when you plot the data. e.g.&nbsp;in when comparing two conditions of an experiment you might spot that the whole effect is driven but just a few outliers.</p>
+<section id="a-cautionary-tale-the-boring-way" class="level3">
+<h3 class="anchored" data-anchor-id="a-cautionary-tale-the-boring-way">A cautionary tale the boring way</h3>
+<p>One of the reasons why plotting is very important and useful is that all sorts of data can provide you the same point estimate (like a mean or a regression slope). The most common example is the Anscombe quartet. It’s a set of 4 datasets with x and y variable each. Each of these have exactly the same correlation coefficient between x and y so you might be tempted to say they are pretty much the same, right? But if you plot them you’ll see this:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/paste-E216A64B.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+<p>Even though the regression line is the same on each plot you can immediately see that it makes sense only in the first one (top left). The top right one shows a quadratic and not a linear relation. The bottom left one clearly has an outlier that drives the regression line to be steeper. And the bottom right one shows pretty much no relation because entire variation in x is driven by a single data point. If we didn’t plot the data we wouldn’t realize just how different these datasets are. You could discover this in some numerical way (e.g.&nbsp;looking at regression diagnostics) but plotting makes it much faster and allows you to immediately spot the problem.</p>
+</section>
+<section id="a-cautionary-tale-the-fun-way" class="level3">
+<h3 class="anchored" data-anchor-id="a-cautionary-tale-the-fun-way">A cautionary tale the fun way</h3>
+<p>There is a more fun way to see the same point that was made by Anscombe. We’ll look at an experiment that was conducted to test how displaying information in the media affects attitude towards migrants. The researchers showed participants either a negative article or a neutral one and measured attitudes towards migrants. They also measured general exposure to the media (ie how much media does one consume) because they were interested in the relation between media consumption and attitudes towards migrants. They also recorded gender and age of participants. Lets load the dat</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 1,700
+Columns: 5
+$ gender         &lt;chr&gt; "female", "male", "male", "female", "female", "female",…
+$ age            &lt;dbl&gt; 35, 35, 38, 18, 44, 50, 58, 53, 45, 35, 20, 58, 34, 35,…
+$ condition      &lt;chr&gt; "control", "control", "control", "experimental", "contr…
+$ media_exposure &lt;dbl&gt; 9.82, 9.54, 5.00, 9.22, 8.54, 6.60, 5.04, 4.54, 5.92, 1…
+$ att_migrants   &lt;dbl&gt; 6.12, -0.62, -2.12, 5.68, 6.00, 0.54, 5.70, 7.04, 6.12,…</code></pre>
+</div>
+</div>
+<p>Lets look at some summary statistics first:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>experiment <span class="sc">%&gt;%</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(condition) <span class="sc">%&gt;%</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean_att =</span> <span class="fu">mean</span>(att_migrants),</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">se_att =</span> <span class="fu">sd</span>(att_migrants)<span class="sc">/</span><span class="fu">sqrt</span>(<span class="fu">n</span>())) <span class="sc">%&gt;%</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  knitr<span class="sc">::</span><span class="fu">kable</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;">condition</th>
+<th style="text-align: right;">mean_att</th>
+<th style="text-align: right;">se_att</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">control</td>
+<td style="text-align: right;">3.172235</td>
+<td style="text-align: right;">0.1107740</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">experimental</td>
+<td style="text-align: right;">3.149035</td>
+<td style="text-align: right;">0.1085498</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>Well, it does not look like there are any meaningful differences between the conditions. We can also plot these differences:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>experiment <span class="sc">%&gt;%</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> condition, <span class="at">y =</span> att_migrants)) <span class="sc">+</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_summary</span>(<span class="at">fun.data =</span> <span class="st">"mean_se"</span>, <span class="at">geom =</span> <span class="st">"pointrange"</span>) <span class="sc">+</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_cartesian</span>(<span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">5</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="12eda_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>This is a bit disappointing. We could say that we did not reject the null hypothesis and there is no support in the data that reading a negative article affect attitudes towards migrants relative to reading a neutral article. Lets at least look at the correlation between media exposure and attitude towards migrants. Maybe there is something interesting there? We can use the <code>cor()</code> function for it:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(experiment<span class="sc">$</span>media_exposure, experiment<span class="sc">$</span>att_migrants)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] -0.2702737</code></pre>
+</div>
+</div>
+<p>Well the correlation seems negative and it definitely is not small. Maybe we are finally on to something! So lets finally plot the data to see how it looks like:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>experiment <span class="sc">%&gt;%</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> media_exposure, <span class="at">y =</span> att_migrants)) <span class="sc">+</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="12eda_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Whoops! This obviously makes no sense. We get a plot of a gorilla. This dataset is fabricated! This example is taken fully from a paper: Yanai, I, Lercher, M. (2020). A Hypothesis is a liability. <em>Genome Biology</em>, 21, 231. What they did was provide students with a very similar dataset as above and randomly assign their students into one of two condition: half the students were asked to test a specific hypothesis and half to just analyze the dataset. The researchers were interested how many students would find the gorilla. They found (although the sample was small) that students who were asked to test specific hypothesis were less likely to find the gorilla in the data than the students that were not assigned a specific hypothesis to test. This of course dos not mean we should throw hypotheses away. However it shows that being too focused on testing very specific things with our data we can miss some really big errors and unless we explore the data properly we might make terrible mistakes.</p>
+<p>The key takeaway is that a lot of things that are wrong or at least problematic can be immediately spotted when you plot the data. e.g.&nbsp;in when comparing two conditions of an experiment you might spot that the whole effect is driven but just a few outliers. Or that some values are out of range. There are of course limits to what a plot can provide (if you want to quantify then you need more than a plot) but they often work very well for initial screening.</p>
+<p>Another important takeaway is that good exploratory data analysis makes detecting both errors and fraud much easier.</p>
+</section>
 </section>
 <section id="reliabilities" class="level2">
 <h2 class="anchored" data-anchor-id="reliabilities">reliabilities</h2>
