@@ -243,7 +243,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="the-flow-of-code" class="level1">
 <h1>The flow of code</h1>
-<p>Now you know how to create different kinds of objects and how to perform simple operations with them. However, very often you want to add more control over how operations are ran in R. You might want to execute a command only if a condition is satisfied. Or you might want to make the same operations for a number of elements. These are the kinds of situations for which you want to use flow control. What this refers to is basically altering how the code is executed. In a regular situations all commands from your script are executed from the first line all the way down to the last line. Flow control alters that either by specifying conditinal statements that tell R to execute a given chunk of code only if a condition is met or by using loops that repeat a given chunk of code.</p>
+<p>Now you know how to create different kinds of objects and how to perform simple operations with them. However, very often you want to add more control over how operations are ran in R. You might want to execute a command only if a condition is satisfied. Or you might want to make the same operations for a number of elements. These are the kinds of situations for which you want to use flow control. What this refers to is basically altering how the code is executed. In a regular situations all commands from your script are executed from the first line all the way down to the last line. Flow control alters that either by specifying condiotinal statements that tell R to execute a given chunk of code only if a condition is met or by using loops that repeat a given chunk of code.</p>
 <section id="conditional-statements" class="level2">
 <h2 class="anchored" data-anchor-id="conditional-statements">Conditional statements</h2>
 <p>Another way conditional statements are referred to which may be more intuitive are if else statements. They allow you to tell R to execute given chunk of code if a condition is met and to do something else if the condition is not met.</p>
@@ -335,8 +335,52 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Now each <code>i</code> is a number from 1 to thew length of <code>object</code> and we access each element of <code>object</code> by using a proper (<code>ith</code>) index. Which way of running a for loop you choose might depend on the context. looping explicitly over elements of an object rather than indexes can be more intuitive but imagine you don’t want to do something to every element of an object but only to to a subset (e.g.&nbsp;from 3rd inwards). Doing it with indexes is easier. Generally the best approach is to think what you need first and write code code second, not the other way around.</p>
+<p>Lets say we want to get a geometric sequence which starts from 1 and in which each next number is the previous number times 1.5. We can easily create the first 20 numbers from that sequence with a for loop:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(microbenchmark)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>v <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>)  {</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  v[i<span class="sc">+</span><span class="dv">1</span>] <span class="ot">&lt;-</span> v[i]<span class="sc">*</span><span class="fl">1.5</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>v</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1]    1.00000    1.50000    2.25000    3.37500    5.06250    7.59375
+ [7]   11.39062   17.08594   25.62891   38.44336   57.66504   86.49756
+[13]  129.74634  194.61951  291.92926  437.89389  656.84084  985.26125
+[19] 1477.89188 2216.83782 3325.25673</code></pre>
+</div>
+</div>
+<p>Lets look at another example. sThere is a dataset available in R on airquality in New York City called <code>airquality</code>. It stores information on ozone, sun, wind and temperature from 5 months. One of the things that might be of interest when looking at the dataset is what was the average value of each of the variables informing on airquality. Lets first look at the dataset:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">"airquality"</span>)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> airquality</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(d)</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(d)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  Ozone Solar.R Wind Temp Month Day
+1    41     190  7.4   67     5   1
+2    36     118  8.0   72     5   2
+3    12     149 12.6   74     5   3
+4    18     313 11.5   62     5   4
+7    23     299  8.6   65     5   7
+8    19      99 13.8   59     5   8</code></pre>
+</div>
+</div>
+<p>The first 4 columns are of interest here. We can loop over these columns and for each calculate their mean and append it to the vector of results (which we need to create before starting the loop). Just to be sure which value is the mean of which variable we can name the elements of the resulting vector with names of the columns after the for loop:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="fu">c</span>()</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (v <span class="cf">in</span> d[,<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>]) {</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  m <span class="ot">&lt;-</span> <span class="fu">mean</span>(v)</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>  results <span class="ot">&lt;-</span> <span class="fu">c</span>(results, m)</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(results) <span class="ot">&lt;-</span> <span class="fu">colnames</span>(d[,<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>])</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>results</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>    Ozone   Solar.R      Wind      Temp 
+ 42.09910 184.80180   9.93964  77.79279 </code></pre>
+</div>
 </div>
 </section>
 <section id="while-loops" class="level3">
@@ -344,20 +388,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>While loops will keep executing a given chunk of code as long as some condition is met. They aren’t very common in R, at least not until you start building your own algorithms or simulations from scratch. However, it’s worth knowing what they are in case you encounter them.</p>
 <p>We can use a while loop to make a very simple simulation. Lets say we want to see how temperatures change from a given temperature (lets say 20 degrees Celsius) across time and that we represent time by some random change from each previous temperature. We can create a vector with such predicted temperatures and see how long it takes for it to reach a certain level (lets say 30 degrees Celsius). We represent the change by adding a random value from a normal distribution with mean = .05 and standard deviation = .5 (this is what the <code>rnorm(1,.05,.5)</code> does). The while loop would look something like this: We first create the initial value and a vector to store all temperatures and next we keep adding the random value to our temperature and storing all temperatures until it reaches 30. The last line tells R to plot all the temperatures as a line plot. This is of course a very, very, very simplistic simulation (temperatures don’t change in such a simple way) but it works to show you the idea behind while loops. We can then calculate e.g.&nbsp;how long it took for the temperature to reach a certain level.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>C <span class="ot">&lt;-</span> <span class="dv">20</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">20</span>)</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> (C <span class="sc">&lt;</span> <span class="dv">30</span>) {</span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  C <span class="ot">&lt;-</span> C <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">1</span>,.<span class="dv">05</span>,.<span class="dv">5</span>)</span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  results <span class="ot">&lt;-</span> <span class="fu">c</span>(results, C)</span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(results, <span class="at">type =</span> <span class="st">'line'</span>, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">col=</span><span class="dv">4</span>, <span class="at">xlab =</span> <span class="st">"days"</span>, <span class="at">ylab =</span> <span class="st">"temperature"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>C <span class="ot">&lt;-</span> <span class="dv">20</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">20</span>)</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> (C <span class="sc">&lt;</span> <span class="dv">30</span>) {</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  C <span class="ot">&lt;-</span> C <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">1</span>,.<span class="dv">05</span>,.<span class="dv">5</span>)</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>  results <span class="ot">&lt;-</span> <span class="fu">c</span>(results, C)</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(results, <span class="at">type =</span> <span class="st">'line'</span>, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">col=</span><span class="dv">4</span>, <span class="at">xlab =</span> <span class="st">"days"</span>, <span class="at">ylab =</span> <span class="st">"temperature"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning in plot.xy(xy, type, ...): plot type 'line' will be truncated to first
 character</code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="04loops_conditionals_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid" width="672"></p>
+<p><img src="04loops_conditionals_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>Because while loops do not have a fixed number of iteration they can potentially run infinitely. This is usually not something we want so it’s a good idea to make sure that your while loop eventually stops. In case you do get stuck in an infinite loop you can press <code>Esc</code> in your console and this should make RStudio stop the loop by force.</p>
@@ -379,13 +423,13 @@ character</code></pre>
 <h3 class="anchored" data-anchor-id="example-1">Example 1:</h3>
 <p>Imagine you are working with a list in R. You want to get information on how many elements each object in the list has. <code>sapply</code> makes it very easy:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>my_list <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="dv">1</span><span class="sc">:</span><span class="dv">50</span>,</span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sample</span>(<span class="dv">300</span>, <span class="dv">5</span>),</span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(<span class="st">"random"</span>, <span class="st">"vector"</span>)</span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="fu">sapply</span>(my_list, length)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>my_list <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="dv">1</span><span class="sc">:</span><span class="dv">50</span>,</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sample</span>(<span class="dv">300</span>, <span class="dv">5</span>),</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(<span class="st">"random"</span>, <span class="st">"vector"</span>)</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a><span class="fu">sapply</span>(my_list, length)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 50  5  2</code></pre>
 </div>
@@ -393,20 +437,17 @@ character</code></pre>
 </section>
 <section id="example-2" class="level3">
 <h3 class="anchored" data-anchor-id="example-2">Example 2:</h3>
-<p>There is a dataset available in R on airquality in New York City called <code>airquality</code>. It stores information on ozone, sun, wind and temperature from 5 months One of the things that might be of interest when looking at the dataset is what was the average value of each of the variables informing on airquality:</p>
+<p>Remember the airquality dataset and calculating the mean of each numeric variable? We can achieve the same thing with <code>apply()</code> instead of a for loop:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">"airquality"</span>)</span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> airquality</span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(d)</span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="fu">apply</span>(d[,<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>], <span class="dv">2</span>, mean)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">apply</span>(d[,<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>], <span class="dv">2</span>, mean)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>    Ozone   Solar.R      Wind      Temp 
  42.09910 184.80180   9.93964  77.79279 </code></pre>
 </div>
 </div>
-<p>Notice that the means calculated above are global means from the entire dataset. What is probably much more sensible is a mean for each month. There is one additional trick needed here. <code>Tapply</code> won’t allow us to split a number of columns by some vector and perform a given operation on each of the columns. That’s because <code>tapply</code> works on vectors. In order to get monthly means for all 4 columns we need to combine <code>apply</code> with <code>tapply.</code> What we need to do is start with apply and loop over the 4 columns of interest and for each of them use tapply that will split a given column by month and calculate the means. Combining functions can get us really far if only we give some thought to what each function does (including what are its inputs and outputs) and what we really need to do.</p>
+<p>Notice that the means calculated above are global means from the entire dataset. What is probably much more sensible is a mean for each month. There is one additional trick needed here. <code>Tapply</code> won’t allow us to split a number of columns by some vector and perform a given operation on each of the columns. That’s because <code>tapply</code> works on vectors. In order to get monthly means for all 4 columns we need to combine <code>apply</code> with <code>tapply.</code> What we need to do is start with apply and loop over the 4 columns of interest and for each of them use tapply that will split a given column by month and calculate the means. Combining functions can get us really far if only we give some thought to what each function does (including what are its inputs and outputs) and what we really need to do. notice that <code>tapply()</code> is preceded by <code>function(x)</code>. We’ll learn more about them when looking at functions but for now think about it as an expression that allows us to specify some function that takes <code>x</code> as its main argument (in this case these are going to be columns from the <code>airquality</code> dataset) and apply some custom function to it.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">apply</span>(d[,<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>], <span class="dv">2</span>, <span class="cf">function</span>(x) <span class="fu">tapply</span>(x, d<span class="sc">$</span>Month, mean))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">apply</span>(d[,<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>], <span class="dv">2</span>, <span class="cf">function</span>(x) <span class="fu">tapply</span>(x, d<span class="sc">$</span>Month, mean))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>     Ozone  Solar.R      Wind     Temp
 5 24.12500 182.0417 11.504167 66.45833
@@ -419,17 +460,18 @@ character</code></pre>
 <p>One important thing about apply functions is that they are generally faster than explicit for loops. Same thing goes for vectorized code as well - it’s faster than a for loop. We can make a simple comparison by using the <code>microbenchmark</code> package to make the same thing with a for loop and <code>apply()</code> function. We’ll save it as <code>bench</code></p>
 <p>Now if we look at the results:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>bench</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>bench</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Unit: milliseconds
                                                expr    min      lq     mean
- for (i in 1:ncol(df)) {     print(mean(df[, i])) } 3.2639 3.32440 3.437340
-                                 apply(df, 2, mean) 6.1658 6.83035 7.248267
-  median      uq    max neval
- 3.39520 3.51235 3.8096   100
- 6.91795 6.96895 9.7372   100</code></pre>
+ for (i in 1:ncol(df)) {     print(mean(df[, i])) } 3.9203 4.42760 4.795962
+                                 apply(df, 2, mean) 5.9338 7.24075 8.353874
+  median      uq     max neval
+ 4.70075 5.03665  6.9813   100
+ 7.67950 8.33430 14.8779   100</code></pre>
 </div>
 </div>
+<p>You can see that <code>apply()</code> is much faster than a for loop.</p>
 </section>
 </section>
 <section id="exercises" class="level2">
