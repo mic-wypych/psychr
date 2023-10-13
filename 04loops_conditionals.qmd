@@ -5,7 +5,7 @@ author: "Michal Wypych"
 
 # The flow of code
 
-Now you know how to create different kinds of objects and how to perform simple operations with them. However, very often you want to add more control over how operations are ran in R. You might want to execute a command only if a condition is satisfied. Or you might want to make the same operations for a number of elements. These are the kinds of situations for which you want to use flow control. What this refers to is basically altering how the code is executed. In a regular situations all commands from your script are executed from the first line all the way down to the last line. Flow control alters that either by specifying conditinal statements that tell R to execute a given chunk of code only if a condition is met or by using loops that repeat a given chunk of code.
+Now you know how to create different kinds of objects and how to perform simple operations with them. However, very often you want to add more control over how operations are ran in R. You might want to execute a command only if a condition is satisfied. Or you might want to make the same operations for a number of elements. These are the kinds of situations for which you want to use flow control. What this refers to is basically altering how the code is executed. In a regular situations all commands from your script are executed from the first line all the way down to the last line. Flow control alters that either by specifying condiotinal statements that tell R to execute a given chunk of code only if a condition is met or by using loops that repeat a given chunk of code.
 
 ## Conditional statements
 
@@ -107,10 +107,40 @@ for (i in 1:length(object)) {
 
 Now each `i` is a number from 1 to thew length of `object` and we access each element of `object` by using a proper (`ith`) index. Which way of running a for loop you choose might depend on the context. looping explicitly over elements of an object rather than indexes can be more intuitive but imagine you don't want to do something to every element of an object but only to to a subset (e.g. from 3rd inwards). Doing it with indexes is easier. Generally the best approach is to think what you need first and write code code second, not the other way around.
 
+Lets say we want to get a geometric sequence which starts from 1 and in which each next number is the previous number times 1.5. We can easily create the first 20 numbers from that sequence with a for loop:
+
 ```{r}
-library(microbenchmark)
+v <- c(1)
+
+for (i in 1:20)  {
+  v[i+1] <- v[i]*1.5
+}
+v
+```
+
+Lets look at another example. sThere is a dataset available in R on airquality in New York City called `airquality`. It stores information on ozone, sun, wind and temperature from 5 months. One of the things that might be of interest when looking at the dataset is what was the average value of each of the variables informing on airquality. Lets first look at the dataset:
+
+```{r}
+data("airquality")
+d <- airquality
+d <- na.omit(d)
+
+head(d)
+```
+
+The first 4 columns are of interest here. We can loop over these columns and for each calculate their mean and append it to the vector of results (which we need to create before starting the loop). Just to be sure which value is the mean of which variable we can name the elements of the resulting vector with names of the columns after the for loop:
+
+```{r}
 
 
+results <- c()
+
+for (v in d[,1:4]) {
+  m <- mean(v)
+  results <- c(results, m)
+}
+names(results) <- colnames(d[,1:4])
+results
 ```
 
 ### While loops
@@ -166,16 +196,14 @@ sapply(my_list, length)
 
 ### Example 2:
 
-There is a dataset available in R on airquality in New York City called `airquality`. It stores information on ozone, sun, wind and temperature from 5 months One of the things that might be of interest when looking at the dataset is what was the average value of each of the variables informing on airquality:
+Remember the airquality dataset and calculating the mean of each numeric variable? We can achieve the same thing with `apply()` instead of a for loop:
 
 ```{r}
-data("airquality")
-d <- airquality
-d <- na.omit(d)
+
 apply(d[,1:4], 2, mean)
 ```
 
-Notice that the means calculated above are global means from the entire dataset. What is probably much more sensible is a mean for each month. There is one additional trick needed here. `Tapply` won't allow us to split a number of columns by some vector and perform a given operation on each of the columns. That's because `tapply` works on vectors. In order to get monthly means for all 4 columns we need to combine `apply` with `tapply.` What we need to do is start with apply and loop over the 4 columns of interest and for each of them use tapply that will split a given column by month and calculate the means. Combining functions can get us really far if only we give some thought to what each function does (including what are its inputs and outputs) and what we really need to do.
+Notice that the means calculated above are global means from the entire dataset. What is probably much more sensible is a mean for each month. There is one additional trick needed here. `Tapply` won't allow us to split a number of columns by some vector and perform a given operation on each of the columns. That's because `tapply` works on vectors. In order to get monthly means for all 4 columns we need to combine `apply` with `tapply.` What we need to do is start with apply and loop over the 4 columns of interest and for each of them use tapply that will split a given column by month and calculate the means. Combining functions can get us really far if only we give some thought to what each function does (including what are its inputs and outputs) and what we really need to do. notice that `tapply()` is preceded by `function(x)`. We'll learn more about them when looking at functions but for now think about it as an expression that allows us to specify some function that takes `x` as its main argument (in this case these are going to be columns from the `airquality` dataset) and apply some custom function to it.
 
 ```{r}
 apply(d[,1:4], 2, function(x) tapply(x, d$Month, mean))
@@ -201,6 +229,8 @@ Now if we look at the results:
 
 bench
 ```
+
+You can see that `apply()` is much faster than a for loop.
 
 ## Exercises
 
