@@ -230,5 +230,75 @@ list_of_objects$days_since_watering
 ## Exercises
 
 1.  Suppose you ran a survey among your friends to what extent they agree with a statement "I like pineapples" and got 6 answers: "agree", "disagree", "agree", "somewhat agree", "somewhat disagree", "disagree". Choose the most appropriate type of object to store this information and save it as `answers`.
+
+    ```{r results = "hide"}
+    #| code-fold: true
+    #| code-summary: "exercise 1"
+
+    #' We need a data structure that can store a categorical variable with various levels.
+    #'  These levels also have some order to them. The best structure to store the answers is
+    #'   an ordered factor. We can create it by turning a vector into a factor,
+    #'    setting ordered argument to TRUE and specifying the levels of values.
+
+
+    pinapple_factor <- factor(c("agree", "disagree", "agree", "somewhat agree", "somewhat disagree", "disagree"), ordered = TRUE, levels = c("disagree", "somewhat disagree", "somewhat agree", "agree"))
+    pinapple_factor
+    ```
+
 2.  Create `v1` vector as 500 random numbers from normal distribution with mean of 3 and standard deviation of 1 and a `v2` vector as 500 random numbers from normal distribution with mean of 2.5 and standard deviation of 1.5. Append `v2` to `v1` to create one vector with 1000 values and save it as `v4`. Create a `v3` vector by repeating `c("a", "b")` 500 times. Put together `v4` and `v3` as a dataframe. Then calculate which rows: `a` or `b` has a higher mean of `v4`?
+
+    ```{r results = "hide"}
+    #| code-fold: true
+    #| code-summary: "exercise 2"
+
+
+    #' We need to create 2 vectors, put them into a data frame and then calculate means for
+    #' subsetted data frame. We can create v4 by using rnorm() with appropriate arguments twice
+    #' and putting the resulting vectors together into v4.
+    #' v3 can be created with rep() function to repeat vector c("a", "b") 500 times.
+    #' Then we need to put v3 and v4 into a dataframe with data.frame and save it as e.g. df.
+    #' Finally we need to calculate 2 means on subsetted dataframes. We can use which() inside
+    #' df[] to get the rows that match our condition (v1 == "a" or v1 == "b") and get the mean
+    #' of v4 from the subsetted data frames.
+
+    v1 <- rnorm(500, 3, 1)
+    v2 <- rnorm(500, 2.5, 1.5)
+
+    v4 <- c(v1, v2)
+
+    v3 <- rep(c("a", "b"), 500)
+
+    df <- data.frame(v3, v4)
+
+    mean(df[which(df$v3 == "a"), "v4"])
+    mean(df[which(df$v3 == "b"), "v4"])
+
+    ```
+
 3.  Suppose you are interested in assessing how effective a given drug is. You have the following data: Out of 900 people who took the drug 657 got better. Out of 1000 people who did not take the drug, 540 got better. Represent this information as a matrix with columns coding those who took a drug or didn't take it and rows representing those who got better or not. Next calculate the percentage of people who got better in the drug and no drug conditions.
+
+    ```{r results = "hide"}
+    #| code-fold: true
+    #| code-summary: "exercise 3"
+
+    # we have all the information that we just need to put into a matrix.
+    # Remember that columns are supposed to code whether someone took the drug or not 
+    # (so 1st column should sum to 900 and second to 1000) and rows code whether someone got better or not.
+    # We can get all the necesary values into the vector: we know how many people took the drug or
+    #not and how many got better in each condition. We can substract the appropriate numbers 
+    # to get how many people took (or didn't take) the drug and did not get better
+    # we then need to create a column with 2 rows and carefully set the byrow argument
+    # so that it will match our input vector.
+
+    # Finally to get the percentages we need to divide values from the first row and appropriate column by the sum of appropriate column.
+
+
+
+    trial_matrix <- matrix(c(657, 900-657, 540, 1000 - 540), nrow = 2, byrow = F)
+
+    got_better_drug_percent <- trial_matrix[1,1]/sum(trial_matrix[,1])
+    got_better_nodrug_percent <- trial_matrix[1,2]/sum(trial_matrix[,2])
+
+    got_better_drug_percent
+    got_better_nodrug_percent
+    ```

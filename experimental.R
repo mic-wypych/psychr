@@ -127,3 +127,9 @@ midwest %>%
 data("cms_patient_experience")
 d
 glimpse(cms_patient_experience)
+
+
+iris
+
+
+apply(iris[,sapply(iris, is.numeric)], 2, mean)

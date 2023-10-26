@@ -170,33 +170,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <a class="dropdown-item" href="./10data_viz_2.html" rel="" target="">
  <span class="dropdown-text">Vizualization vol 2</span></a>
   </li>  
-        <li>
-    <a class="dropdown-item" href="./11organizingwork.html" rel="" target="">
- <span class="dropdown-text">organizing work</span></a>
-  </li>  
-    </ul>
-  </li>
-  <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-statistics" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
- <span class="menu-text">Statistics</span>
-    </a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-statistics">    
-        <li>
-    <a class="dropdown-item" href="./12eda.html" rel="" target="">
- <span class="dropdown-text">Exploratory analysis</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="./16regression.html" rel="" target="">
- <span class="dropdown-text">Linear models</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="./18statistical_control.html" rel="" target="">
- <span class="dropdown-text">Covariates</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="./19postproxessing.qmd" rel="" target="">
- <span class="dropdown-text">Postprocessing models</span></a>
-  </li>  
     </ul>
   </li>
 </ul>
@@ -370,7 +343,7 @@ długości krótszego obiektu</code></pre>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(norm_v)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
--0.5497  3.7977  5.0062  5.0760  6.3953  9.7307 </code></pre>
+-0.9532  3.6011  5.1754  5.0126  6.4056 10.0213 </code></pre>
 </div>
 </div></li>
 </ol>
@@ -579,9 +552,72 @@ $days_since_watering
 <section id="exercises" class="level2">
 <h2 class="anchored" data-anchor-id="exercises">Exercises</h2>
 <ol type="1">
-<li>Suppose you ran a survey among your friends to what extent they agree with a statement “I like pineapples” and got 6 answers: “agree”, “disagree”, “agree”, “somewhat agree”, “somewhat disagree”, “disagree”. Choose the most appropriate type of object to store this information and save it as <code>answers</code>.</li>
-<li>Create <code>v1</code> vector as 500 random numbers from normal distribution with mean of 3 and standard deviation of 1 and a <code>v2</code> vector as 500 random numbers from normal distribution with mean of 2.5 and standard deviation of 1.5. Append <code>v2</code> to <code>v1</code> to create one vector with 1000 values and save it as <code>v4</code>. Create a <code>v3</code> vector by repeating <code>c("a", "b")</code> 500 times. Put together <code>v4</code> and <code>v3</code> as a dataframe. Then calculate which rows: <code>a</code> or <code>b</code> has a higher mean of <code>v4</code>?</li>
-<li>Suppose you are interested in assessing how effective a given drug is. You have the following data: Out of 900 people who took the drug 657 got better. Out of 1000 people who did not take the drug, 540 got better. Represent this information as a matrix with columns coding those who took a drug or didn’t take it and rows representing those who got better or not. Next calculate the percentage of people who got better in the drug and no drug conditions.</li>
+<li><p>Suppose you ran a survey among your friends to what extent they agree with a statement “I like pineapples” and got 6 answers: “agree”, “disagree”, “agree”, “somewhat agree”, “somewhat disagree”, “disagree”. Choose the most appropriate type of object to store this information and save it as <code>answers</code>.</p>
+<div class="cell">
+<details>
+<summary>exercise 1</summary>
+<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="co">#' We need a data structure that can store a categorical variable with various levels.</span></span>
+<span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a><span class="co">#'  These levels also have some order to them. The best structure to store the answers is</span></span>
+<span id="cb62-3"><a href="#cb62-3" aria-hidden="true" tabindex="-1"></a><span class="co">#'   an ordered factor. We can create it by turning a vector into a factor,</span></span>
+<span id="cb62-4"><a href="#cb62-4" aria-hidden="true" tabindex="-1"></a><span class="co">#'    setting ordered argument to TRUE and specifying the levels of values.</span></span>
+<span id="cb62-5"><a href="#cb62-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb62-6"><a href="#cb62-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb62-7"><a href="#cb62-7" aria-hidden="true" tabindex="-1"></a>pinapple_factor <span class="ot">&lt;-</span> <span class="fu">factor</span>(<span class="fu">c</span>(<span class="st">"agree"</span>, <span class="st">"disagree"</span>, <span class="st">"agree"</span>, <span class="st">"somewhat agree"</span>, <span class="st">"somewhat disagree"</span>, <span class="st">"disagree"</span>), <span class="at">ordered =</span> <span class="cn">TRUE</span>, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"disagree"</span>, <span class="st">"somewhat disagree"</span>, <span class="st">"somewhat agree"</span>, <span class="st">"agree"</span>))</span>
+<span id="cb62-8"><a href="#cb62-8" aria-hidden="true" tabindex="-1"></a>pinapple_factor</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div></li>
+<li><p>Create <code>v1</code> vector as 500 random numbers from normal distribution with mean of 3 and standard deviation of 1 and a <code>v2</code> vector as 500 random numbers from normal distribution with mean of 2.5 and standard deviation of 1.5. Append <code>v2</code> to <code>v1</code> to create one vector with 1000 values and save it as <code>v4</code>. Create a <code>v3</code> vector by repeating <code>c("a", "b")</code> 500 times. Put together <code>v4</code> and <code>v3</code> as a dataframe. Then calculate which rows: <code>a</code> or <code>b</code> has a higher mean of <code>v4</code>?</p>
+<div class="cell">
+<details>
+<summary>exercise 2</summary>
+<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="co">#' We need to create 2 vectors, put them into a data frame and then calculate means for</span></span>
+<span id="cb63-2"><a href="#cb63-2" aria-hidden="true" tabindex="-1"></a><span class="co">#' subsetted data frame. We can create v4 by using rnorm() with appropriate arguments twice</span></span>
+<span id="cb63-3"><a href="#cb63-3" aria-hidden="true" tabindex="-1"></a><span class="co">#' and putting the resulting vectors together into v4.</span></span>
+<span id="cb63-4"><a href="#cb63-4" aria-hidden="true" tabindex="-1"></a><span class="co">#' v3 can be created with rep() function to repeat vector c("a", "b") 500 times.</span></span>
+<span id="cb63-5"><a href="#cb63-5" aria-hidden="true" tabindex="-1"></a><span class="co">#' Then we need to put v3 and v4 into a dataframe with data.frame and save it as e.g. df.</span></span>
+<span id="cb63-6"><a href="#cb63-6" aria-hidden="true" tabindex="-1"></a><span class="co">#' Finally we need to calculate 2 means on subsetted dataframes. We can use which() inside</span></span>
+<span id="cb63-7"><a href="#cb63-7" aria-hidden="true" tabindex="-1"></a><span class="co">#' df[] to get the rows that match our condition (v1 == "a" or v1 == "b") and get the mean</span></span>
+<span id="cb63-8"><a href="#cb63-8" aria-hidden="true" tabindex="-1"></a><span class="co">#' of v4 from the subsetted data frames.</span></span>
+<span id="cb63-9"><a href="#cb63-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb63-10"><a href="#cb63-10" aria-hidden="true" tabindex="-1"></a>v1 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">500</span>, <span class="dv">3</span>, <span class="dv">1</span>)</span>
+<span id="cb63-11"><a href="#cb63-11" aria-hidden="true" tabindex="-1"></a>v2 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">500</span>, <span class="fl">2.5</span>, <span class="fl">1.5</span>)</span>
+<span id="cb63-12"><a href="#cb63-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb63-13"><a href="#cb63-13" aria-hidden="true" tabindex="-1"></a>v4 <span class="ot">&lt;-</span> <span class="fu">c</span>(v1, v2)</span>
+<span id="cb63-14"><a href="#cb63-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb63-15"><a href="#cb63-15" aria-hidden="true" tabindex="-1"></a>v3 <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"a"</span>, <span class="st">"b"</span>), <span class="dv">500</span>)</span>
+<span id="cb63-16"><a href="#cb63-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb63-17"><a href="#cb63-17" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(v3, v4)</span>
+<span id="cb63-18"><a href="#cb63-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb63-19"><a href="#cb63-19" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(df[<span class="fu">which</span>(df<span class="sc">$</span>v3 <span class="sc">==</span> <span class="st">"a"</span>), <span class="st">"v4"</span>])</span>
+<span id="cb63-20"><a href="#cb63-20" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(df[<span class="fu">which</span>(df<span class="sc">$</span>v3 <span class="sc">==</span> <span class="st">"b"</span>), <span class="st">"v4"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div></li>
+<li><p>Suppose you are interested in assessing how effective a given drug is. You have the following data: Out of 900 people who took the drug 657 got better. Out of 1000 people who did not take the drug, 540 got better. Represent this information as a matrix with columns coding those who took a drug or didn’t take it and rows representing those who got better or not. Next calculate the percentage of people who got better in the drug and no drug conditions.</p>
+<div class="cell">
+<details>
+<summary>exercise 3</summary>
+<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="co"># we have all the information that we just need to put into a matrix.</span></span>
+<span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Remember that columns are supposed to code whether someone took the drug or not </span></span>
+<span id="cb64-3"><a href="#cb64-3" aria-hidden="true" tabindex="-1"></a><span class="co"># (so 1st column should sum to 900 and second to 1000) and rows code whether someone got better or not.</span></span>
+<span id="cb64-4"><a href="#cb64-4" aria-hidden="true" tabindex="-1"></a><span class="co"># We can get all the necesary values into the vector: we know how many people took the drug or</span></span>
+<span id="cb64-5"><a href="#cb64-5" aria-hidden="true" tabindex="-1"></a><span class="co">#not and how many got better in each condition. We can substract the appropriate numbers </span></span>
+<span id="cb64-6"><a href="#cb64-6" aria-hidden="true" tabindex="-1"></a><span class="co"># to get how many people took (or didn't take) the drug and did not get better</span></span>
+<span id="cb64-7"><a href="#cb64-7" aria-hidden="true" tabindex="-1"></a><span class="co"># we then need to create a column with 2 rows and carefully set the byrow argument</span></span>
+<span id="cb64-8"><a href="#cb64-8" aria-hidden="true" tabindex="-1"></a><span class="co"># so that it will match our input vector.</span></span>
+<span id="cb64-9"><a href="#cb64-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-10"><a href="#cb64-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Finally to get the percentages we need to divide values from the first row and appropriate column by the sum of appropriate column.</span></span>
+<span id="cb64-11"><a href="#cb64-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-12"><a href="#cb64-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-13"><a href="#cb64-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-14"><a href="#cb64-14" aria-hidden="true" tabindex="-1"></a>trial_matrix <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">657</span>, <span class="dv">900-657</span>, <span class="dv">540</span>, <span class="dv">1000</span> <span class="sc">-</span> <span class="dv">540</span>), <span class="at">nrow =</span> <span class="dv">2</span>, <span class="at">byrow =</span> F)</span>
+<span id="cb64-15"><a href="#cb64-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-16"><a href="#cb64-16" aria-hidden="true" tabindex="-1"></a>got_better_drug_percent <span class="ot">&lt;-</span> trial_matrix[<span class="dv">1</span>,<span class="dv">1</span>]<span class="sc">/</span><span class="fu">sum</span>(trial_matrix[,<span class="dv">1</span>])</span>
+<span id="cb64-17"><a href="#cb64-17" aria-hidden="true" tabindex="-1"></a>got_better_nodrug_percent <span class="ot">&lt;-</span> trial_matrix[<span class="dv">1</span>,<span class="dv">2</span>]<span class="sc">/</span><span class="fu">sum</span>(trial_matrix[,<span class="dv">2</span>])</span>
+<span id="cb64-18"><a href="#cb64-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-19"><a href="#cb64-19" aria-hidden="true" tabindex="-1"></a>got_better_drug_percent</span>
+<span id="cb64-20"><a href="#cb64-20" aria-hidden="true" tabindex="-1"></a>got_better_nodrug_percent</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div></li>
 </ol>
 
 
