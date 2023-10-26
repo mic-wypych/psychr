@@ -232,8 +232,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>How to best get to know a new dataset? You can work with datasets from various sources. If it’s your study that you’re analyzing, then you probably know everything about the variables that should be in it, how many particiapnts took part in the study, how variables are coded etc. However, you might also be working with datasets provided by other people (e.g.&nbsp;by a colleague who ran the study, by a company, or you got the data from an open repository). In these situation it is crucial that you can get to know your data. Many of such datasets will have a codebook available which should describe it in detail. Unfortunately that is not always the case (codebook is like documentation - super important but nobody wants to do it). If a codebook is available, read it (this still does not allow you to skip checking for potential errors/problems with the data). If you don’t have a codebook you need to check everything yourself. Fortunately there is a lot of functions in R that make it a lot easier.</p>
 <p>Lets starts with just general first look at the data. We might want to see how many observations we have, how many columns there are, and the names and types of columns. <code>dplyr</code> has a very nice function for it called <code>glimpse()</code>. It’s more concise than <code>str()</code> but gives you more information than e.g.&nbsp;<code>head()</code>. Lets load our dataset and have a firsty look at it!</p>
 <ul>
-<li><p>Getting basic info on the data: glimpse etc.</p>
-<div class="cell">
+<li><div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
@@ -247,9 +246,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 ✖ dplyr::lag()    masks stats::lag()
 ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">#what dataset do I want for this? Some dataset that I tinkered with?</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">#what dataset do I want for this? Some dataset that I tinkered with?</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co">#' Should I load a dataset I have?</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co">#' Can I easily do it? Which dataset could I use for that purpose?</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>The <code>psych</code> package also has a pretty useful function that can give you multiple summaries very quickly. It’s called <code>describe()</code>. It takes a data frame or a matrix as an argument and can provide a lot of summary statistics for numeric variables such as the mean, median, standard deviation, standard error, skew, kurtosis and quantiles. You can specify which of these you want by setting additional arguments.</p>
+<p>The <code>psych</code> package also has a pretty useful function that can give you multiple summaries very quickly. It’s called <code>describe()</code>. It takes a data frame or a matrix as an argument and can provide a lot of summary statistics for numeric variables such as the mean, median, standard deviation, standard error, skew, kurtosis and quantiles. You can specify which of these you want by setting additional arguments.d</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(psych)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
@@ -263,8 +264,8 @@ Attaching package: 'psych'</code></pre>
 </div>
 </div>
 <p>Sometimes you want summary statistics grouped by some categorical variable (e.g.&nbsp;experimental condition). You can do it with <code>describe.by()</code> from <code>psych</code> package. It works the same way as <code>describe()</code> you just need to provide the <code>group</code> argument which tells R what variable to split the dataset by.</p></li>
-<li><p>Getting information on categorical variables</p></li>
 </ul>
+<p>You might also want to get some summary statistics of categorical variables. The simplest way to do it is with <code>table()</code> which allows you to get counts or cross tabulations of categorical variables.</p>
 </section>
 <section id="exploring-via-plots" class="level2">
 <h2 class="anchored" data-anchor-id="exploring-via-plots">Exploring via plots</h2>
@@ -281,7 +282,7 @@ Attaching package: 'psych'</code></pre>
 </section>
 <section id="a-cautionary-tale-the-fun-way" class="level3">
 <h3 class="anchored" data-anchor-id="a-cautionary-tale-the-fun-way">A cautionary tale the fun way</h3>
-<p>There is a more fun way to see the same point that was made by Anscombe. We’ll look at an experiment that was conducted to test how displaying information in the media affects attitude towards migrants. The researchers showed participants either a negative article or a neutral one and measured attitudes towards migrants. They also measured general exposure to the media (ie how much media does one consume) because they were interested in the relation between media consumption and attitudes towards migrants. They also recorded gender and age of participants. Lets load the dat</p>
+<p>There is a more fun way to see the same point that was made by Anscombe. We’ll look at an experiment that was conducted to test how displaying information in the media affects attitude towards migrants. The researchers showed participants either a negative article or a neutral one and measured attitudes towards migrants. They also measured general exposure to the media (ie how much media does one consume) because they were interested in the relation between media consumption and attitudes towards migrants. They also recorded gender and age of participants. Lets load the data:</p>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code>Rows: 1,700
@@ -331,7 +332,7 @@ $ att_migrants   &lt;dbl&gt; 6.12, -0.62, -2.12, 5.68, 6.00, 0.54, 5.70, 7.04, 6
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_summary</span>(<span class="at">fun.data =</span> <span class="st">"mean_se"</span>, <span class="at">geom =</span> <span class="st">"pointrange"</span>) <span class="sc">+</span></span>
 <span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_cartesian</span>(<span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">5</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="12eda_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
+<p><img src="12eda_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>This is a bit disappointing. We could say that we did not reject the null hypothesis and there is no support in the data that reading a negative article affect attitudes towards migrants relative to reading a neutral article. Lets at least look at the correlation between media exposure and attitude towards migrants. Maybe there is something interesting there? We can use the <code>cor()</code> function for it:</p>
@@ -351,7 +352,7 @@ $ att_migrants   &lt;dbl&gt; 6.12, -0.62, -2.12, 5.68, 6.00, 0.54, 5.70, 7.04, 6
 <pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="12eda_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="672"></p>
+<p><img src="12eda_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>Whoops! This obviously makes no sense. We get a plot of a gorilla. This dataset is fabricated! This example is taken fully from a paper: Yanai, I, Lercher, M. (2020). A Hypothesis is a liability. <em>Genome Biology</em>, 21, 231. What they did was provide students with a very similar dataset as above and randomly assign their students into one of two condition: half the students were asked to test a specific hypothesis and half to just analyze the dataset. The researchers were interested how many students would find the gorilla. They found (although the sample was small) that students who were asked to test specific hypothesis were less likely to find the gorilla in the data than the students that were not assigned a specific hypothesis to test. This of course dos not mean we should throw hypotheses away. However it shows that being too focused on testing very specific things with our data we can miss some really big errors and unless we explore the data properly we might make terrible mistakes.</p>
