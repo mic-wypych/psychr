@@ -55,7 +55,7 @@ Even though the regression line is the same on each plot you can immediately see
 There is a more fun way to see the same point that was made by Anscombe. We'll look at an experiment that was conducted to test how displaying information in the media affects attitude towards migrants. The researchers showed participants either a negative article or a neutral one and measured attitudes towards migrants. They also measured general exposure to the media (ie how much media does one consume) because they were interested in the relation between media consumption and attitudes towards migrants. They also recorded gender and age of participants. Lets load the data:
 
 ```{r echo=FALSE, message=FALSE}
-experiment <- read_csv("datasets/att_experiment.csv")
+experiment <- read_csv("data/att_experiment.csv")
 glimpse(experiment)
 ```
 

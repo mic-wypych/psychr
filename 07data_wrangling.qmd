@@ -184,7 +184,7 @@ storms %>%
 
 Notice that the shape of the dataset has changed now. The columns are now the summaries and not the original variables.
 
-### Grouping rows 
+### Grouping rows
 
 So far we have been calculating things on entire datasets. In many situations you want to calculate something separately for each level of a categorical variable (much like `tapply()` earlier). To group a dataset we can use `group_by()`. You can also group by multiple variables at once by separating them by a coma. R will group by the first variable and then by the second etc. This is especially useful for creating summaries. E.g. if we want to get average wind speed for each storm we can easily do it:
 
