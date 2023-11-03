@@ -12,7 +12,7 @@ We'll learn seaparting and uniting variables by looking at a dataset aboutScooby
 ```{r}
 library(tidyverse)
 
-scooby <- read_csv("datasets/scooby.csv")
+scooby <- read_csv("data/scooby.csv")
 ```
 
 ## Separating and uniting variables
@@ -79,9 +79,9 @@ In many situations the information that you need is not stored in a single datas
 To look at joining data we'll use 3 datasets that contain information about [United Nations Roll calls.](https://doi.org/10.7910/DVN/LEJUQZ) The data comes from [Harvard Dataverse](https://dataverse.harvard.edu/dataset.xhtml?persistentId=hdl:1902.1/12379).
 
 ```{r}
-issues <- read_csv("datasets/issues.csv")
-roll_calls <- read_csv("datasets/roll_calls.csv")
-votes <- read_csv("datasets/unvotes.csv")
+issues <- read_csv("data/issues.csv")
+roll_calls <- read_csv("data/roll_calls.csv")
+votes <- read_csv("data/unvotes.csv")
 ```
 
 The first dataset, `issues` stores information on the roll call id: `rcid` variable (what we will be joining on) and the name of the issue a given roll call was about:
