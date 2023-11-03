@@ -440,18 +440,18 @@ $ hurricane_force_diameter     &lt;int&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, N
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_sample</span>(<span class="at">n =</span> <span class="dv">100</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 100 × 13
-   name       year month   day  hour   lat  long status  category  wind pressure
-   &lt;chr&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;fct&gt;      &lt;dbl&gt; &lt;int&gt;    &lt;int&gt;
- 1 Nicole     2016    10    17    18  41.8 -43.6 hurric…        1    65      966
- 2 Harvey     2017     8    29     0  28.2 -95.4 tropic…       NA    40      996
- 3 Hortense   1996     9     4     6  14.7 -45.4 tropic…       NA    30     1006
- 4 Igor       2010     9    21    12  44.8 -54.4 hurric…        1    65      955
- 5 Rafael     2012    10    14     6  18.9 -63.6 tropic…       NA    45     1003
- 6 Bertha     2020     5    27    12  32.6 -79.5 tropic…       NA    45     1005
- 7 Gert       1999     9    13    12  15.9 -39.2 hurric…        1    65      984
- 8 Claudette  1991     9     9     0  31.9 -62.5 hurric…        1    80      972
- 9 Jose       2017     9    21     0  39.4 -68.5 tropic…       NA    55      979
-10 Bill       2009     8    24    18  50   -41.2 extrat…       NA    60      980
+   name     year month   day  hour   lat  long status    category  wind pressure
+   &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;fct&gt;        &lt;dbl&gt; &lt;int&gt;    &lt;int&gt;
+ 1 Hanna    2008     9     5    12  28.2 -78.5 tropical…       NA    55      980
+ 2 Ten      2005     8    17     0  16.1 -54.1 other low       NA    25     1010
+ 3 Cindy    2017     6    22    18  31.6 -93.8 tropical…       NA    35      996
+ 4 Felix    1995     8    20    12  35.4 -68.2 tropical…       NA    60      982
+ 5 Frances  1980     9     7     6  12.9 -23.2 tropical…       NA    45      998
+ 6 Henri    1985     9    24     6  38.2 -74   tropical…       NA    35     1005
+ 7 Nana     1990    10    16    18  22.1 -62.1 tropical…       NA    35     1005
+ 8 Dean     2007     8    23     0  20.5 -99   tropical…       NA    30      998
+ 9 Kyle     2008     9    30    12  48.1 -60.8 extratro…       NA    25     1005
+10 Gloria   1985     9    17    12  14.6 -28.3 tropical…       NA    35     1007
 # ℹ 90 more rows
 # ℹ 2 more variables: tropicalstorm_force_diameter &lt;int&gt;,
 #   hurricane_force_diameter &lt;int&gt;</code></pre>
