@@ -275,7 +275,7 @@ You can see that `apply()` is much faster than a for loop.
 
 2.  Create a for loop that will print out the first 50 numbers from the Fibonacci sequence
 
-    ```{r include = FALSE}
+    ```{r result="hide"}
     #| code-fold: true
     #| code-summary: "exercise 2"
 

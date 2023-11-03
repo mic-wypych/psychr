@@ -1,5 +1,5 @@
 ---
-title: "loading_data"
+title: "Loading data"
 ---
 
 ## Loading data in R
@@ -20,7 +20,7 @@ We'll start with loading what are called flat files: csv (short for comma separa
 Not very readable right? There are 2 packages with similar functions for loading .csv and .tsv files: `utils` and `readr`. We\`ll load the [gapminder population data](https://www.gapminder.org/data/) saved as a .csv file:
 
 ```{r}
-df1 <- read.csv("datasets/pop.csv")
+df1 <- read.csv("data/pop.csv")
 head(df)
 ```
 
@@ -28,7 +28,7 @@ Using the `readr` package is very similar:
 
 ```{r}
 library(readr)
-df2 <- read_csv("datasets/pop.csv")
+df2 <- read_csv("data/pop.csv")
 head(df2)
 ```
 
@@ -52,7 +52,7 @@ To look at loading .sav files we'll use a trimmed version (the whole file is hug
 
 ```{r}
 library(foreign)
-df_foreign <- read.spss("datasets/WVS6.sav", to.data.frame = TRUE)
+df_foreign <- read.spss("data/WVS6.sav", to.data.frame = TRUE)
 ```
 
 Once we have the data loaded lets see what types of values we have.
@@ -67,7 +67,7 @@ Haven package deals differently with loading labeled variables. It introduces a 
 
 ```{r}
 library(haven)
-df_haven <- read_spss("datasets/WVS6.sav")
+df_haven <- read_spss("data/WVS6.sav")
 ```
 
 Now that we have loaded the dataset, lets look at the types of variables we have.
@@ -96,13 +96,13 @@ The main difference in excel files is that they can store multiple sheets in one
 ```{r}
 library(readxl)
 
-excel_sheets("datasets/pop.xlsx")
+excel_sheets("data/pop.xlsx")
 ```
 
 Once we know the sheet names we can load the one that interests us. We need to specify the path to the file and which sheet we want to load. There are of course many other arguments that give additional control over what is loaded but they are quite similar to other loading functions. You can read more on them in the documentation of the function. If you need to load multiple sheets you can save the sheet names as an object and then loop over them using `lapply()`.
 
 ```{r}
-df_excel <- read_excel("datasets/pop.xlsx", sheet = "pop")
+df_excel <- read_excel("data/pop.xlsx", sheet = "pop")
 ```
 
 Now we can look at the top of the file:
@@ -137,6 +137,6 @@ nasa
 
 ## exercises
 
-1.  loading a flat file
-2.  loading excel
-3.  loading json
+1.  Download the data from the link [here](data/experiment_read_attention.csv). Load the dataset, make sure that each variable is loaded with the proper format. Next, calculate the summary statistics (means and standard deviations) of `attention` variable in each experimental condition.
+2.  Download an excel file from [here](data/geo_scores.xslsx). Load it and put all sheets together into one data frame. Can you automate the process e.g. using a loop?
+3.  Use the The Metropolitan Museum of Art API to load a json that stores information on IDs of all works by Magdalena Abakanowicz available in the API. The API documentation can be found here: <https://metmuseum.github.io/>. Next use the extracted IDs to load information on each of Abakanowicz's artworks.

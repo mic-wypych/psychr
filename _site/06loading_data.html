@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>r_website - loading_data</title>
+<title>r_website - Loading data</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -213,7 +213,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">loading_data</h1>
+<h1 class="title">Loading data</h1>
 </div>
 
 
@@ -243,7 +243,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><img src="images/csv_file_example-01.png" class="img-fluid"></p>
 <p>Not very readable right? There are 2 packages with similar functions for loading .csv and .tsv files: <code>utils</code> and <code>readr</code>. We`ll load the <a href="https://www.gapminder.org/data/">gapminder population data</a> saved as a .csv file:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>df1 <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"datasets/pop.csv"</span>)</span>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>df1 <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/pop.csv"</span>)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>                                              
@@ -258,7 +258,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Using the <code>readr</code> package is very similar:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>df2 <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"datasets/pop.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>df2 <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/pop.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Rows: 197 Columns: 302
 ── Column specification ────────────────────────────────────────────────────────
@@ -302,7 +302,7 @@ chr (302): country, 1800, 1801, 1802, 1803, 1804, 1805, 1806, 1807, 1808, 18...
 <p>To look at loading .sav files we’ll use a trimmed version (the whole file is huge and we don’t need it) of <a href="https://www.worldvaluessurvey.org/WVSDocumentationWV6.jsp">World Value Survey wave 6</a>:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(foreign)</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>df_foreign <span class="ot">&lt;-</span> <span class="fu">read.spss</span>(<span class="st">"datasets/WVS6.sav"</span>, <span class="at">to.data.frame =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>df_foreign <span class="ot">&lt;-</span> <span class="fu">read.spss</span>(<span class="st">"data/WVS6.sav"</span>, <span class="at">to.data.frame =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Once we have the data loaded lets see what types of values we have.</p>
 <div class="cell">
@@ -320,7 +320,7 @@ chr (302): country, 1800, 1801, 1802, 1803, 1804, 1805, 1806, 1807, 1808, 18...
 <p>Haven package deals differently with loading labeled variables. It introduces a new type of variable: haven-labelled data. It is capable of storing both numeric values and labels attached to it by adding an attribute to the variable with labels. You can load a file in <code>haven</code> using <code>read_spss()</code> (notice the underscore).</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(haven)</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>df_haven <span class="ot">&lt;-</span> <span class="fu">read_spss</span>(<span class="st">"datasets/WVS6.sav"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>df_haven <span class="ot">&lt;-</span> <span class="fu">read_spss</span>(<span class="st">"data/WVS6.sav"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Now that we have loaded the dataset, lets look at the types of variables we have.</p>
 <div class="cell">
@@ -389,14 +389,14 @@ chr (302): country, 1800, 1801, 1802, 1803, 1804, 1805, 1806, 1807, 1808, 18...
 <div class="cell">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="fu">excel_sheets</span>(<span class="st">"datasets/pop.xlsx"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="fu">excel_sheets</span>(<span class="st">"data/pop.xlsx"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "pop"</code></pre>
 </div>
 </div>
 <p>Once we know the sheet names we can load the one that interests us. We need to specify the path to the file and which sheet we want to load. There are of course many other arguments that give additional control over what is loaded but they are quite similar to other loading functions. You can read more on them in the documentation of the function. If you need to load multiple sheets you can save the sheet names as an object and then loop over them using <code>lapply()</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>df_excel <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"datasets/pop.xlsx"</span>, <span class="at">sheet =</span> <span class="st">"pop"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>df_excel <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"data/pop.xlsx"</span>, <span class="at">sheet =</span> <span class="st">"pop"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Now we can look at the top of the file:</p>
 <div class="cell">
@@ -441,36 +441,30 @@ chr (302): country, 1800, 1801, 1802, 1803, 1804, 1805, 1806, 1807, 1808, 18...
 <div class="cell">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>nasa</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>$people
-                 name    craft
-1    Sergey Prokopyev      ISS
-2      Dmitry Petelin      ISS
-3         Frank Rubio      ISS
-4        Jing Haiping Tiangong
-5         Gui Haichow Tiangong
-6         Zhu Yangzhu Tiangong
-7     Jasmin Moghbeli      ISS
-8    Andreas Mogensen      ISS
-9    Satoshi Furukawa      ISS
-10 Konstantin Borisov      ISS
-11     Oleg Kononenko      ISS
-12       Nikolai Chub      ISS
-13       Loral O'Hara      ISS
+<pre><code>$message
+[1] "success"
+
+$people
+                name craft
+1    Jasmin Moghbeli   ISS
+2   Andreas Mogensen   ISS
+3   Satoshi Furukawa   ISS
+4 Konstantin Borisov   ISS
+5     Oleg Kononenko   ISS
+6       Nikolai Chub   ISS
+7       Loral O'Hara   ISS
 
 $number
-[1] 13
-
-$message
-[1] "success"</code></pre>
+[1] 7</code></pre>
 </div>
 </div>
 </section>
 <section id="exercises" class="level2">
 <h2 class="anchored" data-anchor-id="exercises">exercises</h2>
 <ol type="1">
-<li>loading a flat file</li>
-<li>loading excel</li>
-<li>loading json</li>
+<li>Download the data from the link <a href="data/experiment_read_attention.csv">here</a>. Load the dataset, make sure that each variable is loaded with the proper format. Next, calculate the summary statistics (means and standard deviations) of <code>attention</code> variable in each experimental condition.</li>
+<li>Download an excel file from <a href="data/geo_scores.xslsx">here</a>. Load it and put all sheets together into one data frame. Can you automate the process e.g.&nbsp;using a loop?</li>
+<li>Use the The Metropolitan Museum of Art API to load a json that stores information on IDs of all works by Magdalena Abakanowicz available in the API. The API documentation can be found here: <a href="https://metmuseum.github.io/" class="uri">https://metmuseum.github.io/</a>. Next use the extracted IDs to load information on each of Abakanowicz’s artworks.</li>
 </ol>
 
 

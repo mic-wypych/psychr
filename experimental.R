@@ -133,3 +133,77 @@ iris
 
 
 apply(iris[,sapply(iris, is.numeric)], 2, mean)
+
+
+
+library(jsonlite)
+
+read_json("https://collectionapi.metmuseum.org/public/collection/v1/search?q=Abakanowicz", simplifyVector = T)
+
+
+#create some data
+
+condition <- rep(c("exp", "control"), 100)
+gender_pop <- rep(c("male", "female"),100)
+gender<- sample(gender_pop, 100, replace = T)
+age <- round(rnorm(100, 50, 15), 0)
+attention <- ifelse(condition == "exp",  sample(1:6, 100, replace = T, prob = c(.05,.1,.2,.2,.3,.15)), sample(1:6, 100, replace = T, prob = c(.15,.3,.2,.2,.1,.05)))
+reading <- 
+
+flat_for_load <- data.frame(condition, attention, gender, age)
+write.csv(flat_for_load, "data/experiment_read_attention.csv")
+
+
+#create excelk data
+#data split by some countries?
+
+#sheet 1
+state <- rep("PL", 350)
+score_1 <- rnorm(350, 100, 15)
+city <- sample(c("Rural", "City below 20k", "City between 20k and 50k", "City aboe 50k"), 350, replace = T)
+score_2 <- rnorm(350, 50, 6.3)
+n_obs <- rbinom(350, 3, .3)
+
+sheet_1 <- data.frame(state, score_1, city, score_2, n_obs)
+#sheet 2
+state <- rep("DE", 430)
+score_1 <- rnorm(430, 105, 13)
+city <- sample(c("Rural", "City below 20k", "City between 20k and 50k", "City aboe 50k"), 430, replace = T)
+score_2 <- rnorm(430, 43, 7.3)
+n_obs <- rbinom(430, 3, .5)
+
+sheet_2 <- data.frame(state, score_1, city, score_2, n_obs)
+
+# sheet 3
+N <- 133
+state <- rep("SK", N)
+score_1 <- rnorm(N, 93, 10.6)
+city <- sample(c("Rural", "City below 20k", "City between 20k and 50k", "City aboe 50k"), N, replace = T)
+score_2 <- rnorm(N, 51, 8.1)
+n_obs <- rbinom(N, 3, .2)
+
+sheet_3 <- data.frame(state, score_1, city, score_2, n_obs)
+
+#sheet 4
+N <- 542
+state <- rep("FR", N)
+score_1 <- rnorm(N, 99, 6.4)
+city <- sample(c("Rural", "City below 20k", "City between 20k and 50k", "City aboe 50k"), N, replace = T)
+score_2 <- rnorm(N, 57, 4.3)
+n_obs <- rbinom(N, 3, .7)
+
+sheet_4 <- data.frame(state, score_1, city, score_2, n_obs)
+
+#sheet 5
+N <- 97
+state <- rep("CH", N)
+score_1 <- rnorm(N, 103, 11)
+city <- sample(c("Rural", "City below 20k", "City between 20k and 50k", "City aboe 50k"), N, replace = T)
+score_2 <- rnorm(N, 53, 7.6)
+n_obs <- rbinom(N, 3, .4)
+
+sheet_5 <- data.frame(state, score_1, city, score_2, n_obs)
+
+
+library(writexl)
+write_xlsx(list("PL" = sheet_1, "DE" = sheet_2, "SK" = sheet_3, "FR" = sheet_4, "CH" = sheet_5), path = "data/geo_scores.xlsx")
