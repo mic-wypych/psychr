@@ -251,7 +251,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 ✖ dplyr::lag()    masks stats::lag()
 ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>scooby <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"datasets/scooby.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>scooby <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/scooby.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>New names:
 Rows: 603 Columns: 76
@@ -362,7 +362,7 @@ Specify the column types or set `show_col_types = FALSE` to quiet this message.
 <p>In many situations the information that you need is not stored in a single dataset but in multiple ones. For example you might be working on a longitudinal study and each wave is saved in a separate dataset. Another common situation in which data is stored in multiple files (or tables) is to reduce redundancies. Imagine you store information about book authors and the books they published. You have some information about each author like the date of birth, nationality, awards etc. and some information about each book like the title, release date and genre. If you wanted to store it all in one table keeping 1 book per row would probably be most natural. However, then you would need to duplicate information about authors for every book they published. If the dataset is big this might prove to be a real issue. It might be easier to keep 1 table with author information and another table with book information which would also include 1 column to map books to authors. When working on both datasets you might want to join these two tables.</p>
 <p>To look at joining data we’ll use 3 datasets that contain information about <a href="https://doi.org/10.7910/DVN/LEJUQZ">United Nations Roll calls.</a> The data comes from <a href="https://dataverse.harvard.edu/dataset.xhtml?persistentId=hdl:1902.1/12379">Harvard Dataverse</a>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>issues <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"datasets/issues.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>issues <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/issues.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Rows: 5745 Columns: 3
 ── Column specification ────────────────────────────────────────────────────────
@@ -373,7 +373,7 @@ dbl (1): rcid
 ℹ Use `spec()` to retrieve the full column specification for this data.
 ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>roll_calls <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"datasets/roll_calls.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>roll_calls <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/roll_calls.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Rows: 6202 Columns: 9
 ── Column specification ────────────────────────────────────────────────────────
@@ -385,7 +385,7 @@ date (1): date
 ℹ Use `spec()` to retrieve the full column specification for this data.
 ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>votes <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"datasets/unvotes.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>votes <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/unvotes.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Rows: 869937 Columns: 4
 ── Column specification ────────────────────────────────────────────────────────
