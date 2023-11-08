@@ -138,5 +138,5 @@ nasa
 ## exercises
 
 1.  Download the data from the link [here](data/experiment_read_attention.csv). Load the dataset, make sure that each variable is loaded with the proper format. Next, calculate the summary statistics (means and standard deviations) of `attention` variable in each experimental condition.
-2.  Download an excel file from [here](data/geo_scores.xslsx). Load it and put all sheets together into one data frame. Can you automate the process e.g. using a loop?
+2.  Download an excel file from [here](data/geo_scores.xlsx). Load it and put all sheets together into one data frame. Can you automate the process e.g. using a loop?
 3.  Use the The Metropolitan Museum of Art API to load a json that stores information on IDs of all works by Magdalena Abakanowicz available in the API. The API documentation can be found here: <https://metmuseum.github.io/>. Next use the extracted IDs to load information on each of Abakanowicz's artworks.

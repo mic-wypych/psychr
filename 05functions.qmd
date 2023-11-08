@@ -117,7 +117,7 @@ n_larger/length_2
 
     1.  var_1
     2.  var_2
-    3.   var_2
+    3.  var_2
 
 4.  Change each of the "moving parts" in the code chunk into appropriate argument
 
@@ -217,4 +217,116 @@ There are at least two ways of dealing with this problem. The first one is to be
 
 -   Remember the for loop that generated *n* first numbers from Fibonacci sequence from the class on loops? Now turn it into a function that will return from *ith* to *jth* Fibonacci number. Document the function properly so it is clear what it does
 
+    ```{r results = "hide"}
+    #| code-fold: true
+    #| code-summary: "exercise 1"
+
+    #' Recall our code for generating 50 numbers from Fibonacci sequence:
+
+    x <- c(0,1)
+
+    for(i in 3:50) {
+      x[i] <- x[i-1] + x[i-2]
+    }
+
+    #' What we need to do now is wrap this in a function that will generate numbers from Fibonacci sequence and select from ith to jth number.
+    #' We'll need 2 arguments: starting and ending number
+    #' Next we'll need to generate numbers from Fibonacci sequence up to jth number
+    #' Finally we'll need to subset the resulting vector from ith number
+    #' We also need one more modification: the loop own't give us onyl the first or second number
+    #' because the subsetting won't work there. We just need an if else statement that will test if the jth number is 1 or 2 and return proper result if yes.
+
+    get_fibonacci <- function(i,j) {
+      x <- c(0,1)
+      
+      if (j == 1) {
+        result <- x[1]
+        return(result)
+      } else if (j == 2) {
+        result <- x
+        return(result[i:j])
+      }
+      
+      
+      for(k in 3:j) {
+      x[k] <- x[k-1] + x[k-2]
+    }
+      result <- x[i:j]
+      return(result)
+    }
+    ```
+
 -   Create a function that calculates a mode of a vector. Consider potential edge cases and provide tests that show your function behaves properly
+
+    ```{r results = "hide"}
+    #| code-fold: true
+    #| code-summary: "exercise 2"
+
+    #' A mode of a vector is its most common value.
+    #' One way to try and get a mode of a vector would be to get frequencies of every value in the vector,
+    #' sort them in descending order and then extract the first value. We can do it with table() to get counts
+    #' sort() with decreasing = TRUE to sort. There are just two problems, one small and another bigger:
+    #' 1. table() will return a named vector of values - what we'll get is the highest count and not really
+    #' the value with highest counts. We can fix it by calling names() on the result of table() and sort()
+    #' to get the values rather than counts.
+    #' 2. What if there are two modes? In such cases extracting the highest value won't work because we'll
+    #' only get one mode. We'll need to adjust for this somehow. One way to do it would be to first
+    #' extract the first highest value and then loop over the remaining values. In each iteration of the loop
+    #'we want to test if the ith value is equal to the highest value. If yes - we have another mode and we
+    #' append it to results. If no - we got all modes and we can close the loop. One more thing to consider
+    #' here is whether this loop should run every time? What if we get a vector with just one type of values
+    #' e.g. c(1,1,1,1)? Or an empty vector? The result of table() will have length of 1 so we can't loop over
+    #' all the other elements except for the mos common one because there is just one element.
+    #'  We need to test if length of the sorted counts have at least 2 elements and run the loop if yes.
+    #' 
+    #' Other things we might want to test are: what if we get missing values? 
+    #' Table() will remove them by default and not return counts of NAs. What if we provide an empty vector?
+    #' Again, table() has a default behavior - it will return an empty table that will be turned to NULL when
+    #' we try to get the names. Are these the behaviors we want for our function?
+    #' If not then we need to adjust accordingly.
+    #' There might be other edge cases but these should suffice to get you thinking about what you might encounter when designing functions
+
+
+
+    mode <- function(factor){
+      #get sorted counts of factor
+      sorted <- sort(table(factor), decreasing = T)
+      
+      #extract highest counts
+      largest <- sorted[1]
+      
+      if (length(sorted) >= 2) {
+         #loop over remaining values
+      for (i in 2:length(sorted)) {
+        
+        #test if next count is equal to highest count
+        if(sorted[i] == largest[1]) {
+          #append next mode
+          largest <- c(largest, sorted[i])
+        } else {
+          #if next count is not equal - end the loop
+          break
+        }
+      }
+      }
+      
+     
+      #get names of all the modes to return modes rather than their counts
+      largest <- names(sorted[1:length(largest)])
+      #return results
+      return(largest)
+    }
+
+    #some checks: simple case, two modes, empty vector, missing values
+    simple_v <- c(1,1,1,2,3,2)
+    two_modes_v <- c(1,1,1,2,2,2)
+    empty_v <- c()
+    missing_v <- c(1,2,1,NA,NA,NA)
+    one_type_v <- c("a", "a")
+
+    mode(simple_v)
+    mode(two_modes_v)
+    mode(empty_v)
+    mode(missing_v)
+    mode(one_type_v)
+    ```

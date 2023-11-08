@@ -207,3 +207,26 @@ sheet_5 <- data.frame(state, score_1, city, score_2, n_obs)
 
 library(writexl)
 write_xlsx(list("PL" = sheet_1, "DE" = sheet_2, "SK" = sheet_3, "FR" = sheet_4, "CH" = sheet_5), path = "data/geo_scores.xlsx")
+
+
+
+
+get_fibonacci <- function(i,j) {
+  x <- c(0,1)
+  
+  if (j == 1) {
+    result <- x[1]
+    return(result)
+  } else if (j == 2) {
+    result <- x
+    return(result)
+  }
+  
+  
+  for(k in 3:j) {
+    x[k] <- x[k-1] + x[k-2]
+  }
+  result <- x[i:j]
+  return(result)
+}
+get_fibonacci(1,4)
