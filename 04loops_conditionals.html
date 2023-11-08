@@ -463,12 +463,12 @@ character</code></pre>
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>bench</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Unit: milliseconds
-                                               expr    min     lq     mean
- for (i in 1:ncol(df)) {     print(mean(df[, i])) } 3.1141 3.2223 3.357127
-                                 apply(df, 2, mean) 5.5878 6.9913 8.077228
-  median      uq     max neval
- 3.32290 3.48770  3.9299   100
- 7.02895 7.08165 65.2431   100</code></pre>
+                                               expr      min       lq     mean
+ for (i in 1:ncol(df)) {     print(mean(df[, i])) } 3.223217 3.353756 3.519349
+                                 apply(df, 2, mean) 5.314755 5.925929 7.308412
+   median       uq       max neval
+ 3.541135 3.682322  3.865444   100
+ 5.953355 6.009329 65.660979   100</code></pre>
 </div>
 </div>
 <p>You can see that <code>apply()</code> is much faster than a for loop.</p>
