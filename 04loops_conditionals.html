@@ -173,6 +173,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>  
     </ul>
   </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-analyzing-data" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Analyzing data</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-analyzing-data">    
+        <li>
+    <a class="dropdown-item" href="./12eda.html" rel="" target="">
+ <span class="dropdown-text">Exploratory analysis</span></a>
+  </li>  
+    </ul>
+  </li>
 </ul>
             <div class="quarto-navbar-tools ms-auto">
   <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
@@ -464,11 +475,11 @@ character</code></pre>
 <div class="cell-output cell-output-stdout">
 <pre><code>Unit: milliseconds
                                                expr      min       lq     mean
- for (i in 1:ncol(df)) {     print(mean(df[, i])) } 3.223217 3.353756 3.519349
-                                 apply(df, 2, mean) 5.314755 5.925929 7.308412
+ for (i in 1:ncol(df)) {     print(mean(df[, i])) } 3.189685 3.273231 3.402997
+                                 apply(df, 2, mean) 4.709683 5.261087 6.439755
    median       uq       max neval
- 3.541135 3.682322  3.865444   100
- 5.953355 6.009329 65.660979   100</code></pre>
+ 3.343522 3.474923  3.881376   100
+ 5.295171 5.350530 64.075549   100</code></pre>
 </div>
 </div>
 <p>You can see that <code>apply()</code> is much faster than a for loop.</p>

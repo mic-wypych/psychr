@@ -1,87 +1,87 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://github.com/mic-wypych/psychr/04loops_conditionals.html</loc>
-    <lastmod>2023-11-08T13:29:54.087Z</lastmod>
-  </url>
-  <url>
-    <loc>https://github.com/mic-wypych/psychr/06loading_data.html</loc>
-    <lastmod>2023-11-08T13:29:03.459Z</lastmod>
-  </url>
-  <url>
-    <loc>https://github.com/mic-wypych/psychr/05functions.html</loc>
-    <lastmod>2023-11-08T13:28:14.723Z</lastmod>
-  </url>
-  <url>
-    <loc>https://github.com/mic-wypych/psychr/14anova.html</loc>
-    <lastmod>2023-11-08T13:27:50.898Z</lastmod>
+    <loc>https://github.com/mic-wypych/psychr/15correlations.html</loc>
+    <lastmod>2023-11-20T16:16:01.051Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/mic-wypych/psychr/13t-tests.html</loc>
-    <lastmod>2023-11-08T13:27:50.358Z</lastmod>
+    <lastmod>2023-11-20T16:15:37.619Z</lastmod>
   </url>
   <url>
-    <loc>https://github.com/mic-wypych/psychr/about.html</loc>
-    <lastmod>2023-11-08T13:27:49.774Z</lastmod>
-  </url>
-  <url>
-    <loc>https://github.com/mic-wypych/psychr/09data_viz_1.html</loc>
-    <lastmod>2023-11-08T13:27:03.542Z</lastmod>
-  </url>
-  <url>
-    <loc>https://github.com/mic-wypych/psychr/10data_viz_2.html</loc>
-    <lastmod>2023-11-08T13:26:31.186Z</lastmod>
-  </url>
-  <url>
-    <loc>https://github.com/mic-wypych/psychr/16regression.html</loc>
-    <lastmod>2023-11-08T13:25:35.102Z</lastmod>
+    <loc>https://github.com/mic-wypych/psychr/04loops_conditionals.html</loc>
+    <lastmod>2023-11-20T16:15:12.731Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/mic-wypych/psychr/08join_restructure.html</loc>
-    <lastmod>2023-11-08T13:24:48.805Z</lastmod>
+    <lastmod>2023-11-20T16:14:24.559Z</lastmod>
   </url>
   <url>
-    <loc>https://github.com/mic-wypych/psychr/15correlations.html</loc>
-    <lastmod>2023-11-08T13:24:22.165Z</lastmod>
+    <loc>https://github.com/mic-wypych/psychr/about.html</loc>
+    <lastmod>2023-11-20T16:13:34.703Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/mic-wypych/psychr/06loading_data.html</loc>
+    <lastmod>2023-11-20T16:13:11.608Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/mic-wypych/psychr/17linear_models.html</loc>
-    <lastmod>2023-11-08T13:24:22.753Z</lastmod>
-  </url>
-  <url>
-    <loc>https://github.com/mic-wypych/psychr/02basic_data.html</loc>
-    <lastmod>2023-11-08T13:25:12.005Z</lastmod>
-  </url>
-  <url>
-    <loc>https://github.com/mic-wypych/psychr/07data_wrangling.html</loc>
-    <lastmod>2023-11-08T13:25:59.938Z</lastmod>
-  </url>
-  <url>
-    <loc>https://github.com/mic-wypych/psychr/index.html</loc>
-    <lastmod>2023-11-08T13:26:31.458Z</lastmod>
-  </url>
-  <url>
-    <loc>https://github.com/mic-wypych/psychr/01r_intro.html</loc>
-    <lastmod>2023-11-08T13:27:26.874Z</lastmod>
+    <lastmod>2023-11-20T16:12:46.304Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/mic-wypych/psychr/19postprocessing.html</loc>
-    <lastmod>2023-11-08T13:27:50.110Z</lastmod>
-  </url>
-  <url>
-    <loc>https://github.com/mic-wypych/psychr/18statistical_control.html</loc>
-    <lastmod>2023-11-08T13:27:50.650Z</lastmod>
-  </url>
-  <url>
-    <loc>https://github.com/mic-wypych/psychr/11organizingwork.html</loc>
-    <lastmod>2023-11-08T13:27:51.150Z</lastmod>
-  </url>
-  <url>
-    <loc>https://github.com/mic-wypych/psychr/03data_types.html</loc>
-    <lastmod>2023-11-08T13:28:38.355Z</lastmod>
+    <lastmod>2023-11-20T16:12:14.192Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/mic-wypych/psychr/12eda.html</loc>
-    <lastmod>2023-11-08T13:29:29.075Z</lastmod>
+    <lastmod>2023-11-20T16:12:13.628Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/mic-wypych/psychr/14anova.html</loc>
+    <lastmod>2023-11-20T16:11:08.420Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/mic-wypych/psychr/10data_viz_2.html</loc>
+    <lastmod>2023-11-20T16:10:44.768Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/mic-wypych/psychr/16regression.html</loc>
+    <lastmod>2023-11-20T16:11:08.156Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/mic-wypych/psychr/01r_intro.html</loc>
+    <lastmod>2023-11-20T16:11:31.652Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/mic-wypych/psychr/index.html</loc>
+    <lastmod>2023-11-20T16:12:13.884Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/mic-wypych/psychr/09data_viz_1.html</loc>
+    <lastmod>2023-11-20T16:12:46.020Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/mic-wypych/psychr/18statistical_control.html</loc>
+    <lastmod>2023-11-20T16:12:46.576Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/mic-wypych/psychr/11organizingwork.html</loc>
+    <lastmod>2023-11-20T16:13:11.876Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/mic-wypych/psychr/03data_types.html</loc>
+    <lastmod>2023-11-20T16:13:58.395Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/mic-wypych/psychr/05functions.html</loc>
+    <lastmod>2023-11-20T16:14:48.011Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/mic-wypych/psychr/07data_wrangling.html</loc>
+    <lastmod>2023-11-20T16:15:37.355Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/mic-wypych/psychr/02basic_data.html</loc>
+    <lastmod>2023-11-20T16:16:00.791Z</lastmod>
   </url>
 </urlset>

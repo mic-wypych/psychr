@@ -173,6 +173,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>  
     </ul>
   </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-analyzing-data" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Analyzing data</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-analyzing-data">    
+        <li>
+    <a class="dropdown-item" href="./12eda.html" rel="" target="">
+ <span class="dropdown-text">Exploratory analysis</span></a>
+  </li>  
+    </ul>
+  </li>
 </ul>
             <div class="quarto-navbar-tools ms-auto">
   <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
@@ -442,16 +453,16 @@ $ hurricane_force_diameter     &lt;int&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, N
 <pre><code># A tibble: 100 × 13
    name     year month   day  hour   lat  long status    category  wind pressure
    &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;fct&gt;        &lt;dbl&gt; &lt;int&gt;    &lt;int&gt;
- 1 David    1979     8    28     6  12.5 -54.4 hurricane        4   125      941
- 2 Henri    1979     9    17    12  20.4 -94.3 hurricane        1    75      983
- 3 Paula    2010    10    11    18  15.7 -83.8 tropical…       NA    60     1001
- 4 Eloise   1975     9    20     6  19.8 -83.4 tropical…       NA    35     1000
- 5 Bertha   2008     7    21     0  55.1 -31   extratro…       NA    50      990
- 6 Melissa  2013    11    17     6  24.3 -52.7 extratro…       NA    35     1005
- 7 Grace    2009     9    28    12  44   -40.3 extratro…       NA    45      992
- 8 Joyce    2018     9    19     6  30   -28.5 other low       NA    20     1010
- 9 Gustav   2008     8    30     0  19.2 -80   hurricane        1    75      975
-10 Dennis   1987     9    19    18  28.5 -57.4 tropical…       NA    25     1012
+ 1 Fifteen  2007    10    14     6  33.7 -48.3 other low       NA    25     1012
+ 2 Jerry    2013     9    28     6  22.2 -50.3 other low       NA    30     1012
+ 3 Oscar    2018    10    27     0  26.4 -45.3 subtropi…       NA    40     1005
+ 4 Gert     2005     7    24    12  21   -95.8 tropical…       NA    35     1008
+ 5 Ana      2015     5    11    12  36.2 -77.3 tropical…       NA    30     1012
+ 6 Danny    1997     7    16    18  27.5 -92.5 tropical…       NA    30     1013
+ 7 Gert     2017     8    17    18  44   -48   extratro…       NA    50      988
+ 8 Allison  2001     6     8     0  30.9 -95.6 tropical…       NA    15     1002
+ 9 Isidore  2002     9    17    12  15.9 -76.8 tropical…       NA    30     1008
+10 Otto     2004    11    27     0  26.8 -43.2 extratro…       NA    35     1000
 # ℹ 90 more rows
 # ℹ 2 more variables: tropicalstorm_force_diameter &lt;int&gt;,
 #   hurricane_force_diameter &lt;int&gt;</code></pre>
