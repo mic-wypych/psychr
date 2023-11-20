@@ -21,7 +21,7 @@ wine <- read_csv("data/wine.csv")
 glimpse(wine)
 ```
 
-There's plenty of variables but we will focus on 3: country (where the vineyard is located), points (score awarded by reviewer) and price (price of the wine). There is a number of things we might want to look at to get to know the data better. Lets start with the numeric columns. A good point to start is to look at some summary statistics like means, standard deviations, minimum and maximum values.
+There's plenty of variables but we will focus on 3: country (where the vineyard is located), points (score awarded by reviewer) and price (price of the wine). There is a number of things we might want to look at to get to know the data better. Lets start with the numeric columns. A good point to start is to look at some summary statistics like means, standard deviations, minimum and maximum values (we'll use `knitr::kable()` just to make the table look nicer in the output).
 
 ```{r warning=FALSE}
 wine <- wine %>%
@@ -115,6 +115,7 @@ wine %>%
   filter(country %in% c("US", "Italy", "France")) %>%
   ggplot(aes(x = points, y = price)) +
   geom_point(alpha = .4) +
+  geom_smooth() +
   facet_wrap(~country)
 ```
 
