@@ -171,6 +171,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>  
     </ul>
   </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-analyzing-data" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Analyzing data</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-analyzing-data">    
+        <li>
+    <a class="dropdown-item" href="./12eda.html" rel="" target="">
+ <span class="dropdown-text">Exploratory analysis</span></a>
+  </li>  
+    </ul>
+  </li>
 </ul>
             <div class="quarto-navbar-tools ms-auto">
   <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
@@ -197,7 +208,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#a-cautionary-tale-the-boring-way" id="toc-a-cautionary-tale-the-boring-way" class="nav-link" data-scroll-target="#a-cautionary-tale-the-boring-way">A cautionary tale the boring way</a></li>
   <li><a href="#a-cautionary-tale-the-fun-way" id="toc-a-cautionary-tale-the-fun-way" class="nav-link" data-scroll-target="#a-cautionary-tale-the-fun-way">A cautionary tale the fun way</a></li>
   </ul></li>
-  <li><a href="#reliabilities" id="toc-reliabilities" class="nav-link" data-scroll-target="#reliabilities">reliabilities</a></li>
+  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises">Exercises</a></li>
   </ul>
 </nav>
 </nav>
@@ -225,13 +236,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
-<p>Usually once you get the data for your analysis the first thing you want to do is get to know it and briefly browse through it to know e.g.&nbsp;what variables are in the dataset, how many observations you have etc. You might feel the urge to jump right into answering your key research questions. After all, usually data collection is a laborious and tiring process and you are so curious to check what the results are! But it’s best to set aside the main analyses for a moment and first take a closer look at the data. Why? It is a necessary steps because there is a near-infinite number of things that can go wrong when preparing the data from errors in how data was coded to errors in preprocessing or loading the files. Lots of things can also happen that can make analysis or drawing conclusions difficult. These can range from issues with your measures (e.g.&nbsp;reliability) through unexpected behaviour of participants during the study (e.g.&nbsp;non-compliance, reactance, purposufely giving ridiculous answers) all the way to errors in the data (e.g.&nbsp;items not recoded or errors in coding, values out of range etc.).</p>
+<p>Usually once you get the data for your analysis the first thing you want to do is get to know it and briefly browse through it to know e.g.&nbsp;what variables are in the dataset, how many observations you have etc. You might feel the urge to jump right into answering your key research questions. After all, usually data collection is a laborious and tiring process and you are so curious to check what the results are! But it’s best to set aside the main analyses for a moment and first take a closer look at the data. Why? It is a necessary steps because there is a near-infinite number of things that can go wrong when preparing the data from errors in how data was coded to errors in preprocessing or loading the files. Lots of things can also happen that can make analysis or drawing conclusions difficult. These can range from issues with your measures (e.g.&nbsp;reliability) through unexpected behaviour of participants during the study (e.g.&nbsp;non-compliance, reactance, purposufely giving ridiculous answers) all the way to errors in the data (e.g.&nbsp;items not recoded or errors in coding, values out of range etc.). Generally exploring the data is not so much about writing/using proper functions but about thinking what could possibly be off with the data to prepare yourself before further analyses.</p>
 <section id="getting-the-basic-information-about-a-dataset" class="level2">
 <h2 class="anchored" data-anchor-id="getting-the-basic-information-about-a-dataset">getting the basic information about a dataset</h2>
 <p>How to best get to know a new dataset? You can work with datasets from various sources. If it’s your study that you’re analyzing, then you probably know everything about the variables that should be in it, how many particiapnts took part in the study, how variables are coded etc. However, you might also be working with datasets provided by other people (e.g.&nbsp;by a colleague who ran the study, by a company, or you got the data from an open repository). In these situation it is crucial that you can get to know your data. Many of such datasets will have a codebook available which should describe it in detail. Unfortunately that is not always the case (codebook is like documentation - super important but nobody wants to do it). If a codebook is available, read it (this still does not allow you to skip checking for potential errors/problems with the data). If you don’t have a codebook you need to check everything yourself. Fortunately there is a lot of functions in R that make it a lot easier.</p>
-<p>Lets starts with just general first look at the data. We might want to see how many observations we have, how many columns there are, and the names and types of columns. <code>dplyr</code> has a very nice function for it called <code>glimpse()</code>. It’s more concise than <code>str()</code> but gives you more information than e.g.&nbsp;<code>head()</code>. Lets load our dataset and have a firsty look at it!</p>
-<ul>
-<li><div class="cell">
+<p>Lets starts with just general first look at the data. We might want to see how many observations we have, how many columns there are, and the names and types of columns. <code>dplyr</code> has a very nice function for it called <code>glimpse()</code>. It’s more concise than <code>str()</code> but gives you more information than e.g.&nbsp;<code>head()</code>. Lets load our dataset and have a firsty look at it! We will work with a dataset on wine reviews (the original dataset and its documentation can be found <a href="https://www.kaggle.com/datasets/zynicide/wine-reviews">here</a>). The dataset has information on country and region of the vineyard, points awarded by reviewers and the price of the wine, as well as variety of the wine.</p>
+<p>Lets load the dataset, set some base theme for the plots and look at the variables in the dataset:</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
@@ -245,13 +256,135 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 ✖ dplyr::lag()    masks stats::lag()
 ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">#what dataset do I want for this? Some dataset that I tinkered with?</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co">#' Should I load a dataset I have?</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co">#' Can I easily do it? Which dataset could I use for that purpose?</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_set</span>(<span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">15</span>))</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>wine <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/wine.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>New names:
+Rows: 150930 Columns: 11
+── Column specification
+──────────────────────────────────────────────────────── Delimiter: "," chr
+(8): country, description, designation, province, region_1, region_2, va... dbl
+(3): ...1, points, price
+ℹ Use `spec()` to retrieve the full column specification for this data. ℹ
+Specify the column types or set `show_col_types = FALSE` to quiet this message.
+• `` -&gt; `...1`</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(wine)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 150,930
+Columns: 11
+$ ...1        &lt;dbl&gt; 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, …
+$ country     &lt;chr&gt; "US", "Spain", "US", "US", "France", "Spain", "Spain", "Sp…
+$ description &lt;chr&gt; "This tremendous 100% varietal wine hails from Oakville an…
+$ designation &lt;chr&gt; "Martha's Vineyard", "Carodorum Selección Especial Reserva…
+$ points      &lt;dbl&gt; 96, 96, 96, 96, 95, 95, 95, 95, 95, 95, 95, 95, 95, 95, 95…
+$ price       &lt;dbl&gt; 235, 110, 90, 65, 66, 73, 65, 110, 65, 60, 80, 48, 48, 90,…
+$ province    &lt;chr&gt; "California", "Northern Spain", "California", "Oregon", "P…
+$ region_1    &lt;chr&gt; "Napa Valley", "Toro", "Knights Valley", "Willamette Valle…
+$ region_2    &lt;chr&gt; "Napa", NA, "Sonoma", "Willamette Valley", NA, NA, NA, NA,…
+$ variety     &lt;chr&gt; "Cabernet Sauvignon", "Tinta de Toro", "Sauvignon Blanc", …
+$ winery      &lt;chr&gt; "Heitz", "Bodega Carmen Rodríguez", "Macauley", "Ponzi", "…</code></pre>
+</div>
+</div>
+<p>There’s plenty of variables but we will focus on 3: country (where the vineyard is located), points (score awarded by reviewer) and price (price of the wine). There is a number of things we might want to look at to get to know the data better. Lets start with the numeric columns. A good point to start is to look at some summary statistics like means, standard deviations, minimum and maximum values.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>wine <span class="ot">&lt;-</span> wine <span class="sc">%&gt;%</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span><span class="st">`</span><span class="at">...1</span><span class="st">`</span>)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>wine <span class="sc">%&gt;%</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="fu">across</span>(is.numeric, <span class="at">.fns =</span> <span class="fu">list</span>(<span class="at">mean =</span> <span class="sc">~</span><span class="fu">mean</span>(.x, <span class="at">na.rm =</span> T), </span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>                                           <span class="at">sd =</span> <span class="sc">~</span><span class="fu">sd</span>(.x, <span class="at">na.rm =</span> T),</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>                                           <span class="at">min =</span> <span class="sc">~</span><span class="fu">min</span>(.x, <span class="at">na.rm =</span> T), </span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>                                           <span class="at">max =</span> <span class="sc">~</span><span class="fu">max</span>(.x, <span class="at">na.rm =</span> T)))) <span class="sc">%&gt;%</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>  knitr<span class="sc">::</span><span class="fu">kable</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<colgroup>
+<col style="width: 14%">
+<col style="width: 11%">
+<col style="width: 13%">
+<col style="width: 13%">
+<col style="width: 13%">
+<col style="width: 10%">
+<col style="width: 11%">
+<col style="width: 11%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: right;">points_mean</th>
+<th style="text-align: right;">points_sd</th>
+<th style="text-align: right;">points_min</th>
+<th style="text-align: right;">points_max</th>
+<th style="text-align: right;">price_mean</th>
+<th style="text-align: right;">price_sd</th>
+<th style="text-align: right;">price_min</th>
+<th style="text-align: right;">price_max</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">87.88842</td>
+<td style="text-align: right;">3.222392</td>
+<td style="text-align: right;">80</td>
+<td style="text-align: right;">100</td>
+<td style="text-align: right;">33.13148</td>
+<td style="text-align: right;">36.32254</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">2300</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>It seems that no values are out out range as the documentation says that <code>points</code> should be between 1 and 100 and the price seems reasonable as well - from 4 to 2300. Perhaps surprisingly the lowest rating is 80 - this is fairly high for a 1 to 100 scale!</p>
+<p>We can also look at other variables that aren’t numeric - lets look at the country variable as an example. Lets see which countries are available and for which countries we have the most reviews. We can do it by combining <code>count()</code> with <code>arrange()</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>wine <span class="sc">%&gt;%</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(country) <span class="sc">%&gt;%</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(n))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 49 × 2
+   country         n
+   &lt;chr&gt;       &lt;int&gt;
+ 1 US          62397
+ 2 Italy       23478
+ 3 France      21098
+ 4 Spain        8268
+ 5 Chile        5816
+ 6 Argentina    5631
+ 7 Portugal     5322
+ 8 Australia    4957
+ 9 New Zealand  3320
+10 Austria      3057
+# ℹ 39 more rows</code></pre>
+</div>
+</div>
+<p>If we just want to get information on which countries are in the data we can use <code>unique()</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(wine<span class="sc">$</span>country)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "US"                     "Spain"                  "France"                
+ [4] "Italy"                  "New Zealand"            "Bulgaria"              
+ [7] "Argentina"              "Australia"              "Portugal"              
+[10] "Israel"                 "South Africa"           "Greece"                
+[13] "Chile"                  "Morocco"                "Romania"               
+[16] "Germany"                "Canada"                 "Moldova"               
+[19] "Hungary"                "Austria"                "Croatia"               
+[22] "Slovenia"               NA                       "India"                 
+[25] "Turkey"                 "Macedonia"              "Lebanon"               
+[28] "Serbia"                 "Uruguay"                "Switzerland"           
+[31] "Albania"                "Bosnia and Herzegovina" "Brazil"                
+[34] "Cyprus"                 "Lithuania"              "Japan"                 
+[37] "China"                  "South Korea"            "Ukraine"               
+[40] "England"                "Mexico"                 "Georgia"               
+[43] "Montenegro"             "Luxembourg"             "Slovakia"              
+[46] "Czech Republic"         "Egypt"                  "Tunisia"               
+[49] "US-France"             </code></pre>
+</div>
 </div>
 <p>The <code>psych</code> package also has a pretty useful function that can give you multiple summaries very quickly. It’s called <code>describe()</code>. It takes a data frame or a matrix as an argument and can provide a lot of summary statistics for numeric variables such as the mean, median, standard deviation, standard error, skew, kurtosis and quantiles. You can specify which of these you want by setting additional arguments.d</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(psych)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(psych)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>
 Dołączanie pakietu: 'psych'</code></pre>
@@ -261,14 +394,319 @@ Dołączanie pakietu: 'psych'</code></pre>
 
     %+%, alpha</code></pre>
 </div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>wine <span class="sc">%&gt;%</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="fu">where</span>(is.numeric)) <span class="sc">%&gt;%</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">describe</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  knitr<span class="sc">::</span><span class="fu">kable</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<colgroup>
+<col style="width: 6%">
+<col style="width: 4%">
+<col style="width: 6%">
+<col style="width: 8%">
+<col style="width: 9%">
+<col style="width: 6%">
+<col style="width: 8%">
+<col style="width: 7%">
+<col style="width: 3%">
+<col style="width: 4%">
+<col style="width: 5%">
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 9%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: right;">vars</th>
+<th style="text-align: right;">n</th>
+<th style="text-align: right;">mean</th>
+<th style="text-align: right;">sd</th>
+<th style="text-align: right;">median</th>
+<th style="text-align: right;">trimmed</th>
+<th style="text-align: right;">mad</th>
+<th style="text-align: right;">min</th>
+<th style="text-align: right;">max</th>
+<th style="text-align: right;">range</th>
+<th style="text-align: right;">skew</th>
+<th style="text-align: right;">kurtosis</th>
+<th style="text-align: right;">se</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">points</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">150930</td>
+<td style="text-align: right;">87.88842</td>
+<td style="text-align: right;">3.222392</td>
+<td style="text-align: right;">88</td>
+<td style="text-align: right;">87.84567</td>
+<td style="text-align: right;">2.9652</td>
+<td style="text-align: right;">80</td>
+<td style="text-align: right;">100</td>
+<td style="text-align: right;">20</td>
+<td style="text-align: right;">0.1428298</td>
+<td style="text-align: right;">-0.2864823</td>
+<td style="text-align: right;">0.0082945</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">price</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">137235</td>
+<td style="text-align: right;">33.13148</td>
+<td style="text-align: right;">36.322536</td>
+<td style="text-align: right;">24</td>
+<td style="text-align: right;">27.33739</td>
+<td style="text-align: right;">14.8260</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">2300</td>
+<td style="text-align: right;">2296</td>
+<td style="text-align: right;">11.8198417</td>
+<td style="text-align: right;">372.8051184</td>
+<td style="text-align: right;">0.0980491</td>
+</tr>
+</tbody>
+</table>
 </div>
-<p>Sometimes you want summary statistics grouped by some categorical variable (e.g.&nbsp;experimental condition). You can do it with <code>describe.by()</code> from <code>psych</code> package. It works the same way as <code>describe()</code> you just need to provide the <code>group</code> argument which tells R what variable to split the dataset by.</p></li>
-</ul>
-<p>You might also want to get some summary statistics of categorical variables. The simplest way to do it is with <code>table()</code> which allows you to get counts or cross tabulations of categorical variables.</p>
+</div>
+<p>Sometimes you want summary statistics grouped by some categorical variable (e.g.&nbsp;experimental condition). You can do it with <code>describe.by()</code> from <code>psych</code> package. It works the same way as <code>describe()</code> you just need to provide the <code>group</code> argument which tells R what variable to split the dataset by. Lets look at a subset of countries (since there are so many!): USA, Italy and France:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">describeBy</span>(price <span class="sc">+</span> points <span class="sc">~</span> country, <span class="at">data =</span> wine[<span class="fu">which</span>(wine<span class="sc">$</span>country <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"US"</span>, <span class="st">"Italy"</span>, <span class="st">"France"</span>)),], <span class="at">mat=</span><span class="cn">TRUE</span>)<span class="sc">%&gt;%</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  knitr<span class="sc">::</span><span class="fu">kable</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<colgroup>
+<col style="width: 6%">
+<col style="width: 4%">
+<col style="width: 5%">
+<col style="width: 4%">
+<col style="width: 4%">
+<col style="width: 7%">
+<col style="width: 8%">
+<col style="width: 5%">
+<col style="width: 7%">
+<col style="width: 6%">
+<col style="width: 3%">
+<col style="width: 4%">
+<col style="width: 4%">
+<col style="width: 9%">
+<col style="width: 9%">
+<col style="width: 8%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: left;">item</th>
+<th style="text-align: left;">group1</th>
+<th style="text-align: right;">vars</th>
+<th style="text-align: right;">n</th>
+<th style="text-align: right;">mean</th>
+<th style="text-align: right;">sd</th>
+<th style="text-align: right;">median</th>
+<th style="text-align: right;">trimmed</th>
+<th style="text-align: right;">mad</th>
+<th style="text-align: right;">min</th>
+<th style="text-align: right;">max</th>
+<th style="text-align: right;">range</th>
+<th style="text-align: right;">skew</th>
+<th style="text-align: right;">kurtosis</th>
+<th style="text-align: right;">se</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">price1</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">France</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">14785</td>
+<td style="text-align: right;">45.61988</td>
+<td style="text-align: right;">69.697060</td>
+<td style="text-align: right;">25</td>
+<td style="text-align: right;">32.55541</td>
+<td style="text-align: right;">16.3086</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">2300</td>
+<td style="text-align: right;">2295</td>
+<td style="text-align: right;">9.3637885</td>
+<td style="text-align: right;">174.0621606</td>
+<td style="text-align: right;">0.5731968</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">price2</td>
+<td style="text-align: left;">2</td>
+<td style="text-align: left;">Italy</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">18784</td>
+<td style="text-align: right;">37.54791</td>
+<td style="text-align: right;">37.067869</td>
+<td style="text-align: right;">25</td>
+<td style="text-align: right;">31.23556</td>
+<td style="text-align: right;">16.3086</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">900</td>
+<td style="text-align: right;">895</td>
+<td style="text-align: right;">5.7314418</td>
+<td style="text-align: right;">64.9905166</td>
+<td style="text-align: right;">0.2704603</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">price3</td>
+<td style="text-align: left;">3</td>
+<td style="text-align: left;">US</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">62139</td>
+<td style="text-align: right;">33.65381</td>
+<td style="text-align: right;">24.891343</td>
+<td style="text-align: right;">28</td>
+<td style="text-align: right;">30.06270</td>
+<td style="text-align: right;">14.8260</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">2013</td>
+<td style="text-align: right;">2009</td>
+<td style="text-align: right;">11.3983381</td>
+<td style="text-align: right;">674.5951508</td>
+<td style="text-align: right;">0.0998542</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">points1</td>
+<td style="text-align: left;">4</td>
+<td style="text-align: left;">France</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">21098</td>
+<td style="text-align: right;">88.92587</td>
+<td style="text-align: right;">3.199695</td>
+<td style="text-align: right;">89</td>
+<td style="text-align: right;">88.88436</td>
+<td style="text-align: right;">2.9652</td>
+<td style="text-align: right;">80</td>
+<td style="text-align: right;">100</td>
+<td style="text-align: right;">20</td>
+<td style="text-align: right;">0.1288524</td>
+<td style="text-align: right;">-0.3625780</td>
+<td style="text-align: right;">0.0220287</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">points2</td>
+<td style="text-align: left;">5</td>
+<td style="text-align: left;">Italy</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">23478</td>
+<td style="text-align: right;">88.41366</td>
+<td style="text-align: right;">2.728914</td>
+<td style="text-align: right;">88</td>
+<td style="text-align: right;">88.31820</td>
+<td style="text-align: right;">2.9652</td>
+<td style="text-align: right;">80</td>
+<td style="text-align: right;">100</td>
+<td style="text-align: right;">20</td>
+<td style="text-align: right;">0.3800496</td>
+<td style="text-align: right;">0.1094096</td>
+<td style="text-align: right;">0.0178098</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">points3</td>
+<td style="text-align: left;">6</td>
+<td style="text-align: left;">US</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">62397</td>
+<td style="text-align: right;">87.81879</td>
+<td style="text-align: right;">3.410294</td>
+<td style="text-align: right;">88</td>
+<td style="text-align: right;">87.77596</td>
+<td style="text-align: right;">2.9652</td>
+<td style="text-align: right;">80</td>
+<td style="text-align: right;">100</td>
+<td style="text-align: right;">20</td>
+<td style="text-align: right;">0.1404701</td>
+<td style="text-align: right;">-0.5299118</td>
+<td style="text-align: right;">0.0136524</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </section>
 <section id="exploring-via-plots" class="level2">
 <h2 class="anchored" data-anchor-id="exploring-via-plots">Exploring via plots</h2>
-<p>Why plotting data is always important</p>
+<p>Doing numeric exploration is always useful and can give you plenty of information about a dataset but in many situations a plot makes exploration much easier. It allows you to immediately spot certain problems like implausible outliers, weird (e.g.&nbsp;censored) distributions or types of relations (is it linear? quadratic? Does it make sense at all?). Lets look at some quick summaries of our variables with plots. We can start by simple histograms of numeric variables and a scatterplot to show the relation between</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>wine <span class="sc">%&gt;%</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(price, points) <span class="sc">%&gt;%</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">everything</span>(), <span class="at">names_to =</span> <span class="st">"var"</span>, <span class="at">values_to =</span> <span class="st">"value"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> value)) <span class="sc">+</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">30</span>) <span class="sc">+</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>var, <span class="at">scales =</span> <span class="st">"free"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 13695 rows containing non-finite values (`stat_bin()`).</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="12eda_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>We can see that <code>points</code> is a nicely normal distribution while the <code>price</code> variable is heavily skewed (which is to be expected). Lets look at the scatterplot of the two:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>wine <span class="sc">%&gt;%</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> points, <span class="at">y =</span> price)) <span class="sc">+</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> .<span class="dv">4</span>) <span class="sc">+</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using method = 'gam' and formula = 'y ~ s(x, bs = "cs")'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 13695 rows containing non-finite values (`stat_smooth()`).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 13695 rows containing missing values (`geom_point()`).</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="12eda_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Another good idea might be looktng at price and scores e.g.&nbsp;in different countries. Lets focus again on a subset of countries: US, Italy and France.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>wine <span class="sc">%&gt;%</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(country <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"US"</span>, <span class="st">"Italy"</span>, <span class="st">"France"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> country, <span class="at">y =</span> price)) <span class="sc">+</span></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_violin</span>() <span class="sc">+</span></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">width =</span> .<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 11265 rows containing non-finite values (`stat_ydensity()`).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 11265 rows containing non-finite values (`stat_boxplot()`).</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="12eda_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>wine <span class="sc">%&gt;%</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(country <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"US"</span>, <span class="st">"Italy"</span>, <span class="st">"France"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> country, <span class="at">y =</span> points)) <span class="sc">+</span></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_violin</span>() <span class="sc">+</span></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">width =</span> .<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="12eda_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>And the relation between points and price in each of the three countries:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>wine <span class="sc">%&gt;%</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(country <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"US"</span>, <span class="st">"Italy"</span>, <span class="st">"France"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> points, <span class="at">y =</span> price)) <span class="sc">+</span></span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> .<span class="dv">4</span>) <span class="sc">+</span></span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>country)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 11265 rows containing missing values (`geom_point()`).</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="12eda_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Looks like the rise in price for the highest scored wines is driven especially by French wines.</p>
 <section id="a-cautionary-tale-the-boring-way" class="level3">
 <h3 class="anchored" data-anchor-id="a-cautionary-tale-the-boring-way">A cautionary tale the boring way</h3>
 <p>One of the reasons why plotting is very important and useful is that all sorts of data can provide you the same point estimate (like a mean or a regression slope). The most common example is the Anscombe quartet. It’s a set of 4 datasets with x and y variable each. Each of these have exactly the same correlation coefficient between x and y so you might be tempted to say they are pretty much the same, right? But if you plot them you’ll see this:</p>
@@ -295,11 +733,11 @@ $ att_migrants   &lt;dbl&gt; 6.12, -0.62, -2.12, 5.68, 6.00, 0.54, 5.70, 7.04, 6
 </div>
 <p>Lets look at some summary statistics first:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>experiment <span class="sc">%&gt;%</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(condition) <span class="sc">%&gt;%</span></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean_att =</span> <span class="fu">mean</span>(att_migrants),</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">se_att =</span> <span class="fu">sd</span>(att_migrants)<span class="sc">/</span><span class="fu">sqrt</span>(<span class="fu">n</span>())) <span class="sc">%&gt;%</span></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  knitr<span class="sc">::</span><span class="fu">kable</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>experiment <span class="sc">%&gt;%</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(condition) <span class="sc">%&gt;%</span></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean_att =</span> <span class="fu">mean</span>(att_migrants),</span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">se_att =</span> <span class="fu">sd</span>(att_migrants)<span class="sc">/</span><span class="fu">sqrt</span>(<span class="fu">n</span>())) <span class="sc">%&gt;%</span></span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>  knitr<span class="sc">::</span><span class="fu">kable</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <table class="table table-sm table-striped small">
 <thead>
@@ -326,42 +764,44 @@ $ att_migrants   &lt;dbl&gt; 6.12, -0.62, -2.12, 5.68, 6.00, 0.54, 5.70, 7.04, 6
 </div>
 <p>Well, it does not look like there are any meaningful differences between the conditions. We can also plot these differences:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>experiment <span class="sc">%&gt;%</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> condition, <span class="at">y =</span> att_migrants)) <span class="sc">+</span></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_summary</span>(<span class="at">fun.data =</span> <span class="st">"mean_se"</span>, <span class="at">geom =</span> <span class="st">"pointrange"</span>) <span class="sc">+</span></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_cartesian</span>(<span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">5</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>experiment <span class="sc">%&gt;%</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> condition, <span class="at">y =</span> att_migrants)) <span class="sc">+</span></span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_summary</span>(<span class="at">fun.data =</span> <span class="st">"mean_se"</span>, <span class="at">geom =</span> <span class="st">"pointrange"</span>) <span class="sc">+</span></span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_cartesian</span>(<span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">5</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="12eda_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="672"></p>
+<p><img src="12eda_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>This is a bit disappointing. We could say that we did not reject the null hypothesis and there is no support in the data that reading a negative article affect attitudes towards migrants relative to reading a neutral article. Lets at least look at the correlation between media exposure and attitude towards migrants. Maybe there is something interesting there? We can use the <code>cor()</code> function for it:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(experiment<span class="sc">$</span>media_exposure, experiment<span class="sc">$</span>att_migrants)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(experiment<span class="sc">$</span>media_exposure, experiment<span class="sc">$</span>att_migrants)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] -0.2702737</code></pre>
 </div>
 </div>
 <p>Well the correlation seems negative and it definitely is not small. Maybe we are finally on to something! So lets finally plot the data to see how it looks like:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>experiment <span class="sc">%&gt;%</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> media_exposure, <span class="at">y =</span> att_migrants)) <span class="sc">+</span></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>experiment <span class="sc">%&gt;%</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> media_exposure, <span class="at">y =</span> att_migrants)) <span class="sc">+</span></span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="12eda_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid" width="672"></p>
+<p><img src="12eda_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>Whoops! This obviously makes no sense. We get a plot of a gorilla. This dataset is fabricated! This example is taken fully from a paper: Yanai, I, Lercher, M. (2020). A Hypothesis is a liability. <em>Genome Biology</em>, 21, 231. What they did was provide students with a very similar dataset as above and randomly assign their students into one of two condition: half the students were asked to test a specific hypothesis and half to just analyze the dataset. The researchers were interested how many students would find the gorilla. They found (although the sample was small) that students who were asked to test specific hypothesis were less likely to find the gorilla in the data than the students that were not assigned a specific hypothesis to test. This of course dos not mean we should throw hypotheses away. However it shows that being too focused on testing very specific things with our data we can miss some really big errors and unless we explore the data properly we might make terrible mistakes.</p>
 <p>The key takeaway is that a lot of things that are wrong or at least problematic can be immediately spotted when you plot the data. e.g.&nbsp;in when comparing two conditions of an experiment you might spot that the whole effect is driven but just a few outliers. Or that some values are out of range. There are of course limits to what a plot can provide (if you want to quantify then you need more than a plot) but they often work very well for initial screening.</p>
-<p>Another important takeaway is that good exploratory data analysis makes detecting both errors and fraud much easier.</p>
 </section>
 </section>
-<section id="reliabilities" class="level2">
-<h2 class="anchored" data-anchor-id="reliabilities">reliabilities</h2>
-<p>-getting reliability analysis with alpha()</p>
+<section id="exercises" class="level2">
+<h2 class="anchored" data-anchor-id="exercises">Exercises</h2>
+<ol type="1">
+<li>Look at the dataset and its codebook. Try to validate it and make sure all variables are coded correctly</li>
+<li>Explore the data with plots - does the data look ok?</li>
+</ol>
 
 
 </section>

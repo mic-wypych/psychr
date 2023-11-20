@@ -2,45 +2,123 @@
 title: "Exploratory Data Analysis"
 ---
 
-Usually once you get the data for your analysis the first thing you want to do is get to know it and briefly browse through it to know e.g. what variables are in the dataset, how many observations you have etc. You might feel the urge to jump right into answering your key research questions. After all, usually data collection is a laborious and tiring process and you are so curious to check what the results are! But it's best to set aside the main analyses for a moment and first take a closer look at the data. Why? It is a necessary steps because there is a near-infinite number of things that can go wrong when preparing the data from errors in how data was coded to errors in preprocessing or loading the files. Lots of things can also happen that can make analysis or drawing conclusions difficult. These can range from issues with your measures (e.g. reliability) through unexpected behaviour of participants during the study (e.g. non-compliance, reactance, purposufely giving ridiculous answers) all the way to errors in the data (e.g. items not recoded or errors in coding, values out of range etc.).
+Usually once you get the data for your analysis the first thing you want to do is get to know it and briefly browse through it to know e.g. what variables are in the dataset, how many observations you have etc. You might feel the urge to jump right into answering your key research questions. After all, usually data collection is a laborious and tiring process and you are so curious to check what the results are! But it's best to set aside the main analyses for a moment and first take a closer look at the data. Why? It is a necessary steps because there is a near-infinite number of things that can go wrong when preparing the data from errors in how data was coded to errors in preprocessing or loading the files. Lots of things can also happen that can make analysis or drawing conclusions difficult. These can range from issues with your measures (e.g. reliability) through unexpected behaviour of participants during the study (e.g. non-compliance, reactance, purposufely giving ridiculous answers) all the way to errors in the data (e.g. items not recoded or errors in coding, values out of range etc.). Generally exploring the data is not so much about writing/using proper functions but about thinking what could possibly be off with the data to prepare yourself before further analyses.
 
 ## getting the basic information about a dataset
 
 How to best get to know a new dataset? You can work with datasets from various sources. If it's your study that you're analyzing, then you probably know everything about the variables that should be in it, how many particiapnts took part in the study, how variables are coded etc. However, you might also be working with datasets provided by other people (e.g. by a colleague who ran the study, by a company, or you got the data from an open repository). In these situation it is crucial that you can get to know your data. Many of such datasets will have a codebook available which should describe it in detail. Unfortunately that is not always the case (codebook is like documentation - super important but nobody wants to do it). If a codebook is available, read it (this still does not allow you to skip checking for potential errors/problems with the data). If you don't have a codebook you need to check everything yourself. Fortunately there is a lot of functions in R that make it a lot easier.
 
-Lets starts with just general first look at the data. We might want to see how many observations we have, how many columns there are, and the names and types of columns. `dplyr` has a very nice function for it called `glimpse()`. It's more concise than `str()` but gives you more information than e.g. `head()`. Lets load our dataset and have a firsty look at it!
+Lets starts with just general first look at the data. We might want to see how many observations we have, how many columns there are, and the names and types of columns. `dplyr` has a very nice function for it called `glimpse()`. It's more concise than `str()` but gives you more information than e.g. `head()`. Lets load our dataset and have a firsty look at it! We will work with a dataset on wine reviews (the original dataset and its documentation can be found [here](https://www.kaggle.com/datasets/zynicide/wine-reviews)). The dataset has information on country and region of the vineyard, points awarded by reviewers and the price of the wine, as well as variety of the wine.
 
--   
-
-    ```{r}
-    library(tidyverse)
-    #what dataset do I want for this? Some dataset that I tinkered with?
-    #' Should I load a dataset I have?
-    #' Can I easily do it? Which dataset could I use for that purpose?
-    ```
-
-    The `psych` package also has a pretty useful function that can give you multiple summaries very quickly. It's called `describe()`. It takes a data frame or a matrix as an argument and can provide a lot of summary statistics for numeric variables such as the mean, median, standard deviation, standard error, skew, kurtosis and quantiles. You can specify which of these you want by setting additional arguments.d
-
-    ```{r}
-    library(psych)
-    ```
-
-    Sometimes you want summary statistics grouped by some categorical variable (e.g. experimental condition). You can do it with `describe.by()` from `psych` package. It works the same way as `describe()` you just need to provide the `group` argument which tells R what variable to split the dataset by.
-
-    ```{r}
-
-
-    ```
-
-You might also want to get some summary statistics of categorical variables. The simplest way to do it is with `table()` which allows you to get counts or cross tabulations of categorical variables.
+Lets load the dataset, set some base theme for the plots and look at the variables in the dataset:
 
 ```{r}
+library(tidyverse)
+
+theme_set(theme_minimal(base_size = 15))
+
+wine <- read_csv("data/wine.csv")
+glimpse(wine)
+```
+
+There's plenty of variables but we will focus on 3: country (where the vineyard is located), points (score awarded by reviewer) and price (price of the wine). There is a number of things we might want to look at to get to know the data better. Lets start with the numeric columns. A good point to start is to look at some summary statistics like means, standard deviations, minimum and maximum values.
+
+```{r warning=FALSE}
+wine <- wine %>%
+  select(-`...1`)
+wine %>%
+  summarize(across(is.numeric, .fns = list(mean = ~mean(.x, na.rm = T), 
+                                           sd = ~sd(.x, na.rm = T),
+                                           min = ~min(.x, na.rm = T), 
+                                           max = ~max(.x, na.rm = T)))) %>%
+  knitr::kable()
+```
+
+It seems that no values are out out range as the documentation says that `points` should be between 1 and 100 and the price seems reasonable as well - from 4 to 2300. Perhaps surprisingly the lowest rating is 80 - this is fairly high for a 1 to 100 scale!
+
+We can also look at other variables that aren't numeric - lets look at the country variable as an example. Lets see which countries are available and for which countries we have the most reviews. We can do it by combining `count()` with `arrange()`.
+
+```{r}
+wine %>%
+  count(country) %>%
+  arrange(desc(n))
+```
+
+If we just want to get information on which countries are in the data we can use `unique()`:
+
+```{r}
+unique(wine$country)
+```
+
+The `psych` package also has a pretty useful function that can give you multiple summaries very quickly. It's called `describe()`. It takes a data frame or a matrix as an argument and can provide a lot of summary statistics for numeric variables such as the mean, median, standard deviation, standard error, skew, kurtosis and quantiles. You can specify which of these you want by setting additional arguments.d
+
+```{r}
+library(psych)
+wine %>%
+  select(where(is.numeric)) %>%
+  describe() %>%
+  knitr::kable()
+```
+
+Sometimes you want summary statistics grouped by some categorical variable (e.g. experimental condition). You can do it with `describe.by()` from `psych` package. It works the same way as `describe()` you just need to provide the `group` argument which tells R what variable to split the dataset by. Lets look at a subset of countries (since there are so many!): USA, Italy and France:
+
+```{r}
+describeBy(price + points ~ country, data = wine[which(wine$country %in% c("US", "Italy", "France")),], mat=TRUE)%>%
+  knitr::kable()
 
 ```
 
 ## Exploring via plots
 
-Why plotting data is always important
+Doing numeric exploration is always useful and can give you plenty of information about a dataset but in many situations a plot makes exploration much easier. It allows you to immediately spot certain problems like implausible outliers, weird (e.g. censored) distributions or types of relations (is it linear? quadratic? Does it make sense at all?). Lets look at some quick summaries of our variables with plots. We can start by simple histograms of numeric variables and a scatterplot to show the relation between
+
+```{r}
+wine %>%
+  select(price, points) %>%
+  pivot_longer(cols = everything(), names_to = "var", values_to = "value") %>%
+  ggplot(aes(x = value)) +
+  geom_histogram(bins = 30) +
+  facet_wrap(~var, scales = "free")
+```
+
+We can see that `points` is a nicely normal distribution while the `price` variable is heavily skewed (which is to be expected). Lets look at the scatterplot of the two:
+
+```{r}
+wine %>%
+  ggplot(aes(x = points, y = price)) +
+  geom_point(alpha = .4) +
+  geom_smooth()
+```
+
+Seems that as the score increases the variability in price goes up as well. especially above 90 points. Another good idea might be looktng at price and scores e.g. in different countries. Lets focus again on a subset of countries: US, Italy and France.
+
+```{r}
+wine %>%
+  filter(country %in% c("US", "Italy", "France")) %>%
+  ggplot(aes(x = country, y = price)) +
+  geom_violin() +
+  geom_boxplot(width = .2)
+```
+
+```{r}
+wine %>%
+  filter(country %in% c("US", "Italy", "France")) %>%
+  ggplot(aes(x = country, y = points)) +
+  geom_violin() +
+  geom_boxplot(width = .2)
+```
+
+And the relation between points and price in each of the three countries:
+
+```{r}
+wine %>%
+  filter(country %in% c("US", "Italy", "France")) %>%
+  ggplot(aes(x = points, y = price)) +
+  geom_point(alpha = .4) +
+  facet_wrap(~country)
+```
+
+Looks like the rise in price for the highest scored wines is driven especially by French wines.
 
 ### A cautionary tale the boring way
 
@@ -97,8 +175,9 @@ Whoops! This obviously makes no sense. We get a plot of a gorilla. This dataset 
 
 The key takeaway is that a lot of things that are wrong or at least problematic can be immediately spotted when you plot the data. e.g. in when comparing two conditions of an experiment you might spot that the whole effect is driven but just a few outliers. Or that some values are out of range. There are of course limits to what a plot can provide (if you want to quantify then you need more than a plot) but they often work very well for initial screening.
 
-Another important takeaway is that good exploratory data analysis makes detecting both errors and fraud much easier.
+## Exercises
 
-## reliabilities
+Download the dataset and its codebook
 
--getting reliability analysis with alpha()
+1.  Look at the dataset and its codebook. Try to validate the data and make sure all variables are coded correctly
+2.  Explore the data with plots - does the data look ok?

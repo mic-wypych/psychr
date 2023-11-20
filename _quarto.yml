@@ -32,6 +32,10 @@ website:
             text: Vizualization vol 1
           - href: 10data_viz_2.qmd
             text: Vizualization vol 2
+      - text: "Analyzing data"
+        menu: 
+          - href: 12eda.qmd
+            text: Exploratory analysis
         
           
   search: 

@@ -143,12 +143,15 @@ read_json("https://collectionapi.metmuseum.org/public/collection/v1/search?q=Aba
 
 #create some data
 
-condition <- rep(c("exp", "control"), 100)
-gender_pop <- rep(c("male", "female"),100)
-gender<- sample(gender_pop, 100, replace = T)
-age <- round(rnorm(100, 50, 15), 0)
-attention <- ifelse(condition == "exp",  sample(1:6, 100, replace = T, prob = c(.05,.1,.2,.2,.3,.15)), sample(1:6, 100, replace = T, prob = c(.15,.3,.2,.2,.1,.05)))
-reading <- 
+condition <- rep(c("exp", "control"), 654)
+gender_pop <- rep(c("male", "female"),654)
+gender<- sample(gender_pop, 654, replace = T)
+age <- round(rnorm(654, 50, 15), 0)
+attention <- ifelse(condition == "exp",  sample(1:6, 654, replace = T, prob = c(.05,.1,.2,.2,.3,.15)), sample(1:6, 654, replace = T, prob = c(.15,.3,.2,.2,.1,.05)))
+reading <- sample(1:7, 654, replace = T, prob = c(.05,.1,.2,.2,.25,.15, .05))
+attitude_1 <- sample(1:7, 654, replace = T, prob = c(.25,.2,.1,.2,.05,.15, .05))
+attitude_2 <- attitude_1 <- sample(1:7, 654, replace = T, prob = c(.275,.2,.1,.2,.05,.15, .025))
+                     
 
 flat_for_load <- data.frame(condition, attention, gender, age)
 write.csv(flat_for_load, "data/experiment_read_attention.csv")
@@ -229,4 +232,37 @@ get_fibonacci <- function(i,j) {
   result <- x[i:j]
   return(result)
 }
-get_fibonacci(1,4)
+get_fibonacci(7,10)
+
+
+
+#### dataset for eda class ----
+
+wine <- read_csv("data/winemag-data_first150k.csv")
+
+
+wine %>%
+  ggplot(aes(x = price, y = country)) +
+  ggdist::stat_halfeye()
+
+
+
+condition <- rep(c("exp", "control"), 327)
+gender_pop <- rep(c("male", "female"),654)
+gender<- sample(gender_pop, 654, replace = T)
+age <- round(rnorm(654, 50, 15), 0)
+attention <- ifelse(condition == "exp",  sample(1:6, 654, replace = T, prob = c(.05,.1,.2,.2,.3,.15)), sample(1:6, 654, replace = T, prob = c(.15,.3,.2,.2,.1,.05)))
+reading <- sample(0:6, 654, replace = T, prob = c(.05,.1,.2,.2,.25,.15, .05))
+attitude_1 <- sample(1:7, 654, replace = T, prob = c(.25,.2,.1,.2,.05,.15, .05))
+attitude_2 <- attitude_1 <- sample(1:7, 654, replace = T, prob = c(.275,.2,.1,.2,.05,.15, .025))
+
+
+flat_for_load <- data.frame(condition, attention, gender, age, reading, attitude_1, attitude_2)
+library(haven)
+
+flat_for_load <- flat_for_load %>%
+  mutate(attitude_1 = haven::labelled(attitude_1, c("Strongly disagree" = 1, "Strongly agree" = 6)),
+         attitude_2 = haven::labelled(attitude_2, c("Strongly disagree" = 1, "Strongly agree" = 6)),
+         reading = haven::labelled(reading, c("never" = 1, "very often" = 6)))
+
+write_sav(flat_for_load, "data/experiment_read_attention2.sav")
