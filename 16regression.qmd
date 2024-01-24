@@ -16,7 +16,7 @@ Housing market example: imagine you work in a real estate agency selling houses.
 
 ## Regression engine
 
-The very idea of making a regression analysis is ultimately an optimization problem. We want to reexpress the relations between variables so as to be able to express one of them as a combination of the other ones.
+The very idea of making a regression analysis is to reexpress the relations between variables so as to be able to express one of them as a combination of the other ones.
 
 Making a guess:
 
@@ -52,13 +52,40 @@ A more general way which we can use to think about linear models is that we are 
 
 $$
 Y_i \sim Normal(\mu_i, \sigma)
-\\ 
+$$
+
+$$
 \mu_i =\alpha
 $$
 
+When we add predictors into the model we will be able to assess how much we can improve over just using the mean of the dependent variable (in fact this is what one of the most commons metrics for assessing linear models is - R squared).
+
 ## Making a simple regression
 
+Now it's time to introduce some data we can work on.
+
+-   which dataset?
+
+```{r message=F}
+library(tidyverse)
+
+```
+
+Lets add the first predictor to our model. The model will then look like this
+
+$$
+Y_i \sim Normal(\mu_i, \sigma)
+$$
+
+$$
+\mu_i =\alpha + \beta_1 * x_1
+$$
+
 Running a regression in R is actually super simple. You can use the `lm()` function to do it.
+
+```{r}
+
+```
 
 -how to look at the results
 

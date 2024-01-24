@@ -48,7 +48,7 @@ format:
     toc: true
     toc-location: left
     page-layout: full
-    highlight-style: nord
+    highlight-style: monokai
 
 execute:
   freeze: auto
