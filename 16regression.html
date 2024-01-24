@@ -250,7 +250,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="regression-engine" class="level2">
 <h2 class="anchored" data-anchor-id="regression-engine">Regression engine</h2>
-<p>The very idea of making a regression analysis is ultimately an optimization problem. We want to reexpress the relations between variables so as to be able to express one of them as a combination of the other ones.</p>
+<p>The very idea of making a regression analysis is to reexpress the relations between variables so as to be able to express one of them as a combination of the other ones.</p>
 <p>Making a guess:</p>
 <p>So, we know we need to optimize our prediction - we want to make the best guess possible. But what does it mean ‘the best guess possible’? We need some rule on what it would mean to make a best guess. Since we are predicting a continuous variable we can calculate how much we miss for every prediction (subtract the actual value from the predicted value) and then choose the one that has the smallest error. This is already a start but we can miss in two ways: we can predict too little or too much. The first one is going to produce a negative error and the other one a positive one. Negative numbers are smaller than positive ones so our rule so far will always favor predicting too little! Fortunately there is a very easy way to deal with this - we can square the errors (there are reasons why squaring is preferred to taking absolute values but they are beyond the scope of this course). Now, we can sum all the squared errors for each observation in our dataset. The prediction that gets the smallest sum of squared errors wins! This is pretty much how the Ordinary Least Squares (OLS) regression works.</p>
 <p>Lets start with the simplest example possible. Lets say we have no other information except our variable that we want to predict. Which value will minimize the sum of squared errors? There’s actually a fancy formula for this because OLS regression has a closed form but perhaps a better way to learn this is to actually make a bunch of guesses and see what happens. This is what simulation is perfect for.</p>
@@ -279,12 +279,28 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>A more general way which we can use to think about linear models is that we are modelling Y as following a normal distribution with mean <span class="math inline">\(\mu\)</span> and variance <span class="math inline">\(\sigma\)</span>. The mean is then determined by the variables we put into the model. If we don’t add anything <span class="math inline">\(\mu\)</span> is going to be the actual mean in our sample. If we start adding variables into the model then <span class="math inline">\(\mu_i\)</span> will be determined by them (that’s why we have the i).</p>
 <p><span class="math display">\[
 Y_i \sim Normal(\mu_i, \sigma)
-\\
+\]</span></p>
+<p><span class="math display">\[
 \mu_i =\alpha
 \]</span></p>
+<p>When we add predictors into the model we will be able to assess how much we can improve over just using the mean of the dependent variable (in fact this is what one of the most commons metrics for assessing linear models is - R squared).</p>
 </section>
 <section id="making-a-simple-regression" class="level2">
 <h2 class="anchored" data-anchor-id="making-a-simple-regression">Making a simple regression</h2>
+<p>Now it’s time to introduce some data we can work on.</p>
+<ul>
+<li>which dataset?</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Lets add the first predictor to our model. The model will then look like this</p>
+<p><span class="math display">\[
+Y_i \sim Normal(\mu_i, \sigma)
+\]</span></p>
+<p><span class="math display">\[
+\mu_i =\alpha + \beta_1 * x_1
+\]</span></p>
 <p>Running a regression in R is actually super simple. You can use the <code>lm()</code> function to do it.</p>
 <p>-how to look at the results</p>
 </section>
