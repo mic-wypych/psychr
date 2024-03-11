@@ -17,7 +17,11 @@ So far we have been working with only 1 independent variable at a time.
 
 -   Basic types of confounds: fork, mediator, collider, descendant. A really good paper on this topic is [here](https://journals.sagepub.com/doi/full/10.1177/25152459221095823).
 
+-   Why throwing things into the model does not work: McElreath Regression, fire dangerous things
+
 -   When should you control?
 
 -   Interpreting coefficients from covariates - should you?\
     For example you might be tempted to interpret the effect of gender which was included in a model as a covariate. But ask yourself - is it the total or direct effect?
+
+-   What does introducing a covariate change about the model?

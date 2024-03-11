@@ -13,14 +13,6 @@ The dataset we will be working with today is
 
 The packages we will be working with today is `broom`, `performance` and (amazing!) `marginaleffects`. The last package also has absolutely incredible documentation so I highly recommend checking out its [website](https://marginaleffects.com/).
 
-## Diagnostics
-
-Here we'll look at some basic diagnostics for regression models.
-
--   Looking at outliers
-
--   Looking at multicollinearity
-
 ## Making predictions
 
 Sometimes you might want to assess the predictions of your model - how well does it predict?
@@ -31,7 +23,7 @@ Sometimes you might want to assess the predictions of your model - how well does
 
 ## Marginal effects
 
-An extremely good and clear introduction to marginal effects with explanation of differences between 2 main packages used for them in R can be found on [Andrew Heiss' blog](https://www.andrewheiss.com/blog/2022/05/20/marginalia/). If you want to dive deeper into this topic I highly recommend you read that blog post.
+An extremely good and clear introduction to marginal effects with explanation of differences between 2 main packages used for them in R can be found on [Andrew Heiss' blog](https://www.andrewheiss.com/blog/2022/05/20/marginalia/). If you want to dive deeper into this topic I highly recommend you read that blog post (as well as documentation of the `marginaleffects` package linked above).
 
 -   What is a marginal effect
 
@@ -41,4 +33,4 @@ An extremely good and clear introduction to marginal effects with explanation of
 
 ## Contrasts
 
-In many situations when you work with categorical variables you are interested in
+In many situations when you work with categorical variables you are interested in specific comparisons or hypotheses.

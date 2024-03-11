@@ -266,3 +266,25 @@ flat_for_load <- flat_for_load %>%
          reading = haven::labelled(reading, c("never" = 1, "very often" = 6)))
 
 write_sav(flat_for_load, "data/experiment_read_attention2.sav")
+
+
+
+#### plotting fit over mean
+
+
+# now put it into a shiny app?
+# the control should be the relation between x and y and how much error is there
+x <- rnorm(10)
+y <- .8*x + rnorm(10, 0, .5)
+my_df <- data.frame(x,y)
+lm1 <- lm(y ~ x, my_df)
+augment(lm1) %>%
+  ggplot(aes(x = x, y = y)) +
+  geom_point(size = 3) +
+  geom_hline(aes(yintercept = mean(y)), color = "firebrick", size = 1.5) +
+  geom_rect(aes(xmin = x, xmax = x + abs(y - mean(y)), ymin = mean(y), ymax = y), alpha = .2, fill = "firebrick") +
+  geom_abline(aes(intercept = coef(lm1)[1], slope = coef(lm1)[2]), color = "navyblue", size = 1.5) +
+  geom_rect(aes(xmin=x, ymin = .fitted, ymax = y, xmax = x + abs(.resid)), alpha = .2, fill = "navyblue") +
+  coord_equal() +
+  labs(title = "Visualizing R squared", subtitle = "The plot shows what R squared is visually.\nThis value (R squared) represents by how much we can improve  prediction over using just the mean of y\nby introducing predictors. The red line is the mean of y and red squares are squared residuals\nwhen we use just the mean to predict y. Blue line is the line from a simple model y ~ x\nand blue squares are residuals from that model. Black dots are raw data points") +
+  theme_classic()

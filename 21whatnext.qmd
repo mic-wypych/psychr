@@ -1,0 +1,48 @@
+---
+title: "What next"
+author: "Michał Wypych"
+---
+
+## What next
+
+## Useful resources
+
+This is a curated list of lots of resources that might be useful on your quant path.
+
+Websites/books:
+
+-   PsyTeachR
+
+-   Telling stories with data
+
+-   Penn materials on R bootcamp e.g. MLMs
+
+-   CenterStats course on SEM
+
+-   Add other MLM stuff
+
+Causal inference stuff:
+
+-   mixtape
+
+-   The Effect
+
+-   McElreath's book and lectures
+
+Blogs:
+
+-   Andrew Heiss
+
+-   Solomon Kurz
+
+-   Vincent Arel Bundock
+
+-   The 100 ci
+
+Podcasts:
+
+-   Quantitude
+
+-   Casual Inference - an Epi/biostats podcast but super interesting for psychologists as well
+
+-   

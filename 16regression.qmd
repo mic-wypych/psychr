@@ -30,7 +30,7 @@ Lets first simulate a bunch of observations from a normal distribution: our depe
 y <- rnorm(1000)
 ```
 
-Next, we'll make a bunch of guesses and see how each of them performs (what is their sum of squared errors)
+Next, we'll make a bunch of guesses in the range from -1 to 1 and see how each of them performs (what is their sum of squared errors).
 
 ```{r}
 sse <- c() #initialize vector to store sum of squared errors
@@ -84,15 +84,23 @@ $$
 Running a regression in R is actually super simple. You can use the `lm()` function to do it.
 
 ```{r}
-
+simple_fit <- lm()
 ```
 
--how to look at the results
+-   compare to the null model, explain R squared
 
 ## Categorical predictors
+
+Simple OLS regression is actually quite flexible in what kinds of predictors it can use. You may have heard some scary stories about normality assumptions like "your predictors and outcome need to be normally distributed". This is nonsense.
+
+You can easily include various categorical predictors into your linear model. The trick is to code them properly.
+
+Remember that the regression coefficient from a linear model tells us what is the predicted difference in Y for 1 unit increase in x? We can use that to code categorical predictors. For those variables that have only 2 levels (e.g. control and experimental condition) you code one as 0 (this level is called the reference category) and the other as 1. Then a 1 unit increase in x is simply the shift from the category coded as 0 to the category coded as 1.
 
 -   What are categorical predictors
 
 -   How R codes categorical predictors
 
--   t-tests, one-way anovas and regressions - it's all the same!
+-   Different ways to code categorical predictors
+
+-   t-tests, one-way between subject anovas and regressions - it's all the same!

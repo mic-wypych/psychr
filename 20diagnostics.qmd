@@ -1,0 +1,27 @@
+---
+title: "model diagnostics"
+---
+
+## you ran a model, what now?
+
+Usually after we run a model, apart from some postprocessing, we want to make some diagnostics - is our model any good? Can we trust it? Some things are not really testable, like model specification, but some others can be assessed, at least to some degree.
+
+## What to include:
+
+-   checking assumptions:
+
+    -   model correctly specified
+
+    -   linearity
+
+    -   homoscedacticity
+
+    -   normal residuals
+
+    -   collinearity
+
+-   outliers, influence etc.
+
+-   Model comparisons? (should they go into postprocessing?)
+
+-   Something on sensitivity analysis?

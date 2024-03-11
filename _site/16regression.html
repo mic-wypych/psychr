@@ -305,6 +305,9 @@ Y_i \sim Normal(\mu_i, \sigma)
 </section>
 <section id="categorical-predictors" class="level2">
 <h2 class="anchored" data-anchor-id="categorical-predictors">Categorical predictors</h2>
+<p>Simple OLS regression is actually quite flexible in what kinds of predictors it can use. You may have heard some scary stories about normality assumptions like “your predictors and outcome need to be normally distributed”. This is nonsense.</p>
+<p>You can easily include various categorical predictors into your linear model. The trick is to code them properly.</p>
+<p>Remember that the regression coefficient from a linear model tells us what is the predicted difference in Y for 1 unit increase in x? We can use that to code categorical predictors. For those variables that have only 2 levels (e.g.&nbsp;control and experimental condition) you code one as 0 (this level is called the reference category) and the other as 1. Then a 1 unit increase in x is simply the shift from the category coded as 0 to the category coded as 1.</p>
 <ul>
 <li><p>What are categorical predictors</p></li>
 <li><p>How R codes categorical predictors</p></li>

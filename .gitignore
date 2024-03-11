@@ -3,5 +3,6 @@
 .RData
 .Ruserdata
 experimental.R
+future_ideas.qmd
 
 /.quarto/
