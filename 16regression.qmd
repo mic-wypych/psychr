@@ -71,6 +71,12 @@ library(tidyverse)
 
 ```
 
+We can start with the null model - a model that has no predictors, just the intercept in it. As we already know this intercept will in fact be the sample mean:
+
+```{r}
+
+```
+
 Lets add the first predictor to our model. The model will then look like this
 
 $$

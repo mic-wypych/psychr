@@ -5,9 +5,20 @@ author: "Michał Wypych"
 
 ## What next
 
+You went the entire course. Congratulations! This website is an opinionated list of resources you can use to further learn R and statistics
+
 ## Useful resources
 
 This is a curated list of lots of resources that might be useful on your quant path.
+
+### Programming
+
+-   [Advanced R](https://adv-r.hadley.nz/): this book delves deeper into R and some of the specifics of this programming language.
+-   [Reproducible analytical pipelines in R:](https://raps-with-r.dev/) this book is a great resource for learning how to make your analyses more reproducible, how to work better with functions in R
+
+### Statistics:
+
+-   
 
 Websites/books:
 
@@ -45,4 +56,4 @@ Podcasts:
 
 -   Casual Inference - an Epi/biostats podcast but super interesting for psychologists as well
 
--   
+-
