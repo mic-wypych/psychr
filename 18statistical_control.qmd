@@ -3,9 +3,11 @@ title: "Statistical control"
 author: "Michał Wypych"
 ---
 
-So far we have been working with only 1 independent variable at a time.
+So far we have been working with only 1 independent variable at a time. It's time to move on to multiple predictors.
 
 ## What is statistical control?
+
+When we include more than one predictor we often say that we are controlling for a number of variables in the model. This innocent-sounding term can actually sometimes cause quite a head ache to wrap your head around it. What does it mean to control for a variable?
 
 -   What does it mean to control for a variable?
 
@@ -13,15 +15,28 @@ So far we have been working with only 1 independent variable at a time.
 
 ## To control or not to control?
 
+Why do we add control variables into the model? We can think about two basic reasons: to make better predictions or to adjust the effect of one variable to account for confounding. The first case is tied to prediction problems - adding additional information should make our predictions better right? The second case has a lot to do with the "correct model specification" assumption for linear models. If there is an important variable that should be included in the model but we did not do it then our effect is going to be biased. Such variables are called confounders.
+
 -   What are confounders
 
 -   Basic types of confounds: fork, mediator, collider, descendant. A really good paper on this topic is [here](https://journals.sagepub.com/doi/full/10.1177/25152459221095823).
+
+## Why can't we just throw everything in and let regression sort it out?
 
 -   Why throwing things into the model does not work: McElreath Regression, fire dangerous things
 
 -   When should you control?
 
+## Interpreting multiple regression
+
 -   Interpreting coefficients from covariates - should you?\
-    For example you might be tempted to interpret the effect of gender which was included in a model as a covariate. But ask yourself - is it the total or direct effect?
+    For example you might be tempted to interpret the effect of gender which was included in a model as a covariate. But ask yourself - is it the total or direct effect? Link the "Control needs causal justification" paper.
+
+You should also be aware that introducing a covariate changes the interpretation of the coefficient for the main variable of interest. This is especially stark in some situations where the variables you put in the model are conceptually linked to each other. Here's an example I've seen somewhere (unfortunately can't find where to give you a link).\
+Imagine you are predicting household income using family size and number of adults in the household. In such a model what does it mean to have an effect of family size while holding number of adults constant? Well, it's the number of kids in the house! So including number of adults into the model completely changes the meaning of the family size variable. What then is the effect of number of adults while holding family size constant? This one then is pretty weird and much harder to interpret. Maybe it's the effect of a kid becoming an adult?
+
+Here's another example from psychology: imagine you are predicting voting intentions using a set of
+
+This shows that throwing random variables into the model not only will probably estimate wrong effects but renders them pretty much uninterpetable
 
 -   What does introducing a covariate change about the model?

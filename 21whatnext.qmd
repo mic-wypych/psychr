@@ -5,11 +5,7 @@ author: "Michał Wypych"
 
 ## What next
 
-You went the entire course. Congratulations! This website is an opinionated list of resources you can use to further learn R and statistics
-
-## Useful resources
-
-This is a curated list of lots of resources that might be useful on your quant path.
+You went the entire course. Congratulations! Finishing a course often leaves one with the strange feeling of "where should I go now?". This website is an opinionated list of resources you can use to further learn R and statistics
 
 ### Programming
 
@@ -18,42 +14,34 @@ This is a curated list of lots of resources that might be useful on your quant p
 
 ### Statistics:
 
--   
+-   [PsyTeachR websites](https://psyteachr.github.io/): they cover a range of topics on statistics from basics to more complicated models. Developed by the PsyTeachR team at the University of Glasgow School of Psychology and Neuroscience. A really nice thing about them is that they provide
 
-Websites/books:
+-   [Telling stories with data](https://tellingstorieswithdata.com/): a great book that covers the entire process of working with data from data acquisition through analysis to communication.
 
--   PsyTeachR
+-   [CenterStats course on SEM](https://centerstat.org/structural-equation-modeling/): this a free 16 hour introductory course on Structural Equation Modelling with applications in R. If you are interested some of the instructors also run [a podcast on statistics.](https://quantitudepod.org/)
 
--   Telling stories with data
+-   [Another course on SEM by Sacha Epskamp](http://sachaepskamp.com/SEM2020): this one goes into more advanced and detailed models but also starts from the basics.
 
--   Penn materials on R bootcamp e.g. MLMs
+-   [Beyond multiple regression](https://bookdown.org/roback/bookdown-BeyondMLR/): this book is a very nice introduction into setting out on the high seas beyond general linear model. It introduces generalized linear models and multilevel models in a really nice way.
 
--   CenterStats course on SEM
+#### Causal inference stuff:
 
--   Add other MLM stuff
+-   [Causal Mixtape](https://mixtape.scunning.com/): a great introductory book on causal inference written in a clear language (though I think mainly with economists in mind so some examples might be a bit strange to non-economists) that introduces the basic terminology, issues and methods used for estimating causal effects.
 
-Causal inference stuff:
+-   [The Effect](https://theeffectbook.net/): another great book on introduction to causal inference. This one is (I think) written more with political scientists in mind.
 
--   mixtape
+-   Richard McElreath's book and [lectures](https://www.youtube.com/playlist?list=PLDcUM9US4XdPz-KxHM4XHt7uUVGWWVSus). This book and set of recorded lectures will make your head spin. It literally changes the way you think about the world, research and statistics. Highly recommend for slow and multiple viewing and reading.
 
--   The Effect
+### Blogs
 
--   McElreath's book and lectures
+Throughout this course I linked several articles from various blogs. Those are often excellent resources for learning new methods or clarifying things. Here is a collection of some of them that I find really useful and worth reading:
 
-Blogs:
+-   [Andrew Heiss](https://www.andrewheiss.com/blog/)
 
--   Andrew Heiss
+-   [Solomon Kurz](https://solomonkurz.netlify.app/blog/)
 
--   Solomon Kurz
+-   [Vincent Arel Bundock](https://arelbundock.com/blog.html)
 
--   Vincent Arel Bundock
+-   [The 100 ci](https://www.the100.ci/)
 
--   The 100 ci
-
-Podcasts:
-
--   Quantitude
-
--   Casual Inference - an Epi/biostats podcast but super interesting for psychologists as well
-
--
+-   [Richard McElreath](https://elevanth.org/)
