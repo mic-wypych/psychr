@@ -1,0 +1,67 @@
+---
+title: "Paradoxes, Artifacts, Jabberwocks"
+author: "Michał Wypych"
+---
+
+```         
+Beware the Jabberwock, my son!
+```
+
+This is a selection of various things you might encounter when running regression models and what might possibly happen. This class is thought as a few examples of statistical analyses that show potential paradoxes and issues you might encounter. It is by no means an exhaustive list (I doubt such a list even exists) but hopefully by going through some examples it will show you some things to be aware of.
+
+## Simpson
+
+The dataset we will be working with comes from `carData` package and stores information on salaries of professors. The question we will be interested in is "Does experience measured in years since phd affect the salary of a professor". Lets load the data and have a look:
+
+```{r}
+library(carData)
+salaries <- carData::Salaries
+glimpse(salaries)
+```
+
+We can go ahead and run a simple model that predicts salary with years since phd:
+
+```{r}
+lm(salary ~ yrs.since.phd, salaries) |>
+  summary()
+```
+
+Ok, looks like each year since phd is related to additional 985.3\$ of income and a professor just after phd would be expected to ear 91718.7\$. We can also plot the model to inspect it:
+
+```{r}
+salaries |>
+  ggplot(aes(x = yrs.since.phd, y = salary)) +
+  geom_point(alpha = .4) +
+  geom_smooth(method = "lm")
+```
+
+The effect seems to be visible (though there is some drop for those who are over 40 years after their phd, maybe the relation is more quadratic?)
+
+Lets try to add another variable to the model: the rank of the professor (either assistant, associate or full). Maybe we should adjust for it?
+
+```{r}
+lm(salary ~ yrs.since.phd + rank, salaries) |>
+  summary()
+```
+
+Uh oh! When we included rank the effect of years since phd disappeared completely! This might look rather puzzling so lets try to take a look at a plot again. Maybe it will show us something we were missing:
+
+```{r}
+salaries %>%
+  mutate(predicted = lm(salary ~ yrs.since.phd + rank, salaries) |> predict()) %>%
+  ggplot(aes(x = yrs.since.phd, y = predicted, color = rank, group = rank)) +
+  geom_line(size = 2) +
+  geom_point(aes(x = yrs.since.phd, y = salary, color = rank))
+
+
+```
+
+Now this is more illuminating. When we look inside each of the ranks there seems to be no effect of years since phd. So why do we see an overall effect of years since phd? Just looking at the plot you can see that years since phd and rank are very closely related. Basically the more experienced you are the higher your rank. And the higher your rank, the higher your salary.
+
+Such change of effects within subgroups compared to overall effect is called the Simpson Paradox.
+
+## Berkson
+
+## Regression to the mean
+
+-   make something on pre-post correlations.
