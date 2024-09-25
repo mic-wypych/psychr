@@ -288,3 +288,8 @@ augment(lm1) %>%
   coord_equal() +
   labs(title = "Visualizing R squared", subtitle = "The plot shows what R squared is visually.\nThis value (R squared) represents by how much we can improve  prediction over using just the mean of y\nby introducing predictors. The red line is the mean of y and red squares are squared residuals\nwhen we use just the mean to predict y. Blue line is the line from a simple model y ~ x\nand blue squares are residuals from that model. Black dots are raw data points") +
   theme_classic()
+
+
+
+
+#### can I make Harrell's simulation on using stepwise regression and bootstrap?

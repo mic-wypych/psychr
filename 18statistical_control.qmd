@@ -7,36 +7,108 @@ So far we have been working with only 1 independent variable at a time. It's tim
 
 ## What is statistical control?
 
-When we include more than one predictor we often say that we are controlling for a number of variables in the model. This innocent-sounding term can actually sometimes cause quite a head ache to wrap your head around it. What does it mean to control for a variable?
+When we include more than one predictor we often say that we are controlling for a number of variables in the model. This innocent-sounding term can actually sometimes cause quite a head ache to wrap your head around it. What does it mean to control for a variable?\
+One seemingly simple answer is that controlling means estimating the effect of one variable while holding the other variable constant.
 
 -   What does it mean to control for a variable?
 
 -   How do we do it in R?
 
+Make a simple graphical interpretation for categorical and continuous predictors?
+
 ## To control or not to control?
 
-Why do we add control variables into the model? We can think about two basic reasons: to make better predictions or to adjust the effect of one variable to account for confounding. The first case is tied to prediction problems - adding additional information should make our predictions better right? The second case has a lot to do with the "correct model specification" assumption for linear models. If there is an important variable that should be included in the model but we did not do it then our effect is going to be biased. Such variables are called confounders.
+Why do we add control variables into the model? We can think about two basic reasons: to make better predictions or to adjust the effect of one variable to account for confounding. The first case is tied to prediction problems - adding additional information should make our predictions better right? The second case has a lot to do with the "correct model specification" assumption for linear models. If there is an important variable that should be included in the model but we did not do it then our effect is going to be biased. Such variables are called confounders. However they can take different forms depending on exactly how the relations between variables look like. A really good paper on this topic is [here](https://compass.onlinelibrary.wiley.com/doi/10.1111/spc3.12948).
 
--   What are confounders
+I think one of the clearest ways to see how different confounders affect the model is to simulate them. This way we know exactly what the correct answers are and how including the confounder affects the model. The basic types of confounds are: fork, mediator, collider and descendant. In each of the simulated situations below we will work with 3 variables `x` is our independent variable, `y` is our dependent variable and `u` is the confounder.
 
--   Basic types of confounds: fork, mediator, collider, descendant. A really good paper on this topic is [here](https://journals.sagepub.com/doi/full/10.1177/25152459221095823).
+### Fork
 
-## Why can't we just throw everything in and let regression sort it out?
+A fork is a variable that affects both `x` and `y`.
 
--   Why throwing things into the model does not work: McElreath Regression, fire dangerous things
+```{r}
+N <- 1e4
+u <- rnorm(N, 5, 1.3)
+x <- rnorm(N, 3 + .5*u, 1)
+y <- rnorm(N, 2 + .4*x + .3*u, 1.3)
 
--   When should you control?
+lm(y ~ x) |> summary()
+lm(y ~ x + u) |> summary()
+```
+
+You can see that not including `u` in the model gives us the wrong answer. This is the confounding that people most commonly have in mind when they are controlling for things in their models.
+
+### mediator
+
+A mediator is a variable that is affected by `x` and affects `y`.
+
+```{r}
+x <- rnorm(N, 3 , 1)
+u <- rnorm(N, 5 + .5*x, 1.3)
+y <- rnorm(N, 2 + .4*x + .3*u, 1.3)
+
+lm(y ~ x) |> summary()
+lm(y ~ x + u) |> summary()
+```
+
+Again including a mediator gives us the wrong answer!
+
+Given how popular mediation analysis is in psychology you might be a bit worried about this result and rightly so! [Here's a great paper that goes into this topic in details](https://journals.sagepub.com/doi/full/10.1177/25152459221095827).
+
+This issue also pops up in what is called the port-treatment bias. Basically it boils down to controlling for variables that are downstream of your treatment (be it in experiment or in an observational study). For example if you ran a randomized experiment and measured a bunch of things should you control for something measured after the experimental manipulation? If you are interested in the effect of the experiment then the anwser is no. There are even much more subtle ways in which post treatment bias can creep in - e.g. excluding participants who failed an attention check after the manipulation is effectively introducing post treatment bias. After all you are holding constant the value of a variable "passed attention check". You can read about it [here](https://bpb-us-e1.wpmucdn.com/sites.dartmouth.edu/dist/5/2293/files/2021/03/post-treatment-bias.pdf).
+
+### Collider
+
+A collider is a variable that is affected by both `x` and `y`.
+
+```{r}
+x <- rnorm(N, 3 , 1)
+y <- rnorm(N, 2 + .4*x , 1.3)
+u <- rnorm(N, 5 + .5*x + .3*y, 1.3)
+
+
+lm(y ~ x) |> summary()
+lm(y ~ x + u) |> summary()
+```
+
+This one is particularly bad because here including `u` gives us the wrong anwser!
+
+It is worth spending a little more time on colliders because they are particularly insiduous and can creep in where you expect them the least.
+
+-   disucss selection bias as a case of collider bias?
+
+    Collider bias ca
+
+### Descendant
+
+A descendant is a variable that is affected by the confounder. We will denote the descendant as `z`.
+
+```{r}
+u <- rnorm(N, 5, 1.3)
+z <- rnorm(N, 1 + .8*u, .5)
+x <- rnorm(N, 3 + .5*u, 1)
+y <- rnorm(N, 2 + .4*x + .3*u, 1.3)
+
+lm(y ~ x) |> summary()
+lm(y ~ x + z) |> summary()
+lm(y ~ x + u) |> summary()
+```
+
+The anwser when controlling for the descendant is not perfect but it is much better than including just `x`. One way to think about it is that in some analyses it can serve as a proxy variable if the actual confound is difficult to measure.
 
 ## Interpreting multiple regression
 
--   Interpreting coefficients from covariates - should you?\
-    For example you might be tempted to interpret the effect of gender which was included in a model as a covariate. But ask yourself - is it the total or direct effect? Link the "Control needs causal justification" paper.
-
-You should also be aware that introducing a covariate changes the interpretation of the coefficient for the main variable of interest. This is especially stark in some situations where the variables you put in the model are conceptually linked to each other. Here's an example I've seen somewhere (unfortunately can't find where to give you a link).\
+Lets say we have already ran a model with multiple predictors in it. How should we interpret the results? I have already told you that in such a case the effect of your main variable should be understood as "the effect of x while holding all other covariates constant". How should we understand this in practice though? You should be aware that introducing a covariate changes the interpretation of the coefficient for the main variable of interest. This is especially stark in some situations where the variables you put in the model are conceptually linked to each other. Here's an example I've seen somewhere (unfortunately can't find where to give you a link).\
 Imagine you are predicting household income using family size and number of adults in the household. In such a model what does it mean to have an effect of family size while holding number of adults constant? Well, it's the number of kids in the house! So including number of adults into the model completely changes the meaning of the family size variable. What then is the effect of number of adults while holding family size constant? This one then is pretty weird and much harder to interpret. Maybe it's the effect of a kid becoming an adult?
 
 Here's another example from psychology: imagine you are predicting voting intentions using a set of
 
-This shows that throwing random variables into the model not only will probably estimate wrong effects but renders them pretty much uninterpetable
+**describe this example**
 
--   What does introducing a covariate change about the model?
+This shows that throwing additional variables into the model can not only estimate wrong effects but render them pretty much uninterpetable.
+
+Apart from changes in interpretation of the effect of the main variable you might be interested in interpretation of the effects of the covariates themselves. Imagine a model in which you predict verbal aggression with Social Dominance Orientation (a social darwinist worldview that the world is inherently hierarchical and groups fight each other for status and resources). You think that both of these are different between men and women so you control for gender in the model. What does the effect of gender mean here? You might be tempted to interpret it just as "the difference between men and women in verbal aggression while holding SDO constant". But what does that really mean? Remember that we think that both SDO and verbal aggression are affected by gender and that SDO affects verbal aggression. This means that when we shift focus from SDO to gender SDO becomes a mediator! So the effect we get from our regression is the direct effect of gender and not the total effect. Casually interpreting the effects of covariates from a model is often called [Table 2 fallacy](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3626058/). Always think carefully what a given effect represents because it is rarely obvious and simple. [Here's another great paper on this topic](https://journals.sagepub.com/doi/full/10.1177/25152459221095823).
+
+## So what do I do?
+
+From all of the above you might get the impression that working in the multivariate world is dangerous and you are pretty much destined to fall into one of the many traps of statistical control. There is indeed a lot of things that can go wrong very easily. So what should you do? The answer is always: think! Think carefully. This way you can at least prepare for potential problems and avoid misinterpretation. A humble and right result is infinitely better than a bombastic and wrong one. The software will (almost) always spit out some result. It is up to you to decide what it means and whether it makes any sense at all. You have to be able to say what the model can and what it can't tell you. Being able to critique models (not in the sense of saying how they are wrong but carefully studying their limitations) is a skill that takes time to develop but with practice you can get really good at it and it will profit in the future.
