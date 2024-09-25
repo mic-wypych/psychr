@@ -290,7 +290,8 @@ augment(lm1) %>%
   theme_classic()
 
 
+#### datasets for the statistical classes ----
+#' which dataset can I use for the stats classes?
+#' 
+#' 
 
-
-
-#### can I make Harrell's simulation on using stepwise regression and bootstrap?

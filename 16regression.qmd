@@ -58,13 +58,10 @@ When we add predictors into the model we will be able to assess how much we can 
 
 Before we move on to running our first model we have to understand one more thing - formulas in R. They allow us to write models in a very succint form. A formula generally takes the form of `y ~ x1 + x2 + ...`. On the left hand side is always the dependent variable and on the right hand side you put all of your predictors.
 
-Now it's time to introduce some data we can work on.
-
--   which dataset?
+Now it's time to introduce some data we can work on. We will be working with a dataset that stores information about
 
 ```{r message=F}
 library(tidyverse)
-
 ```
 
 We can start with the null model - a model that has no predictors, just the intercept in it. As we already know this intercept will in fact be the sample mean. Intercept can be coded with 1:

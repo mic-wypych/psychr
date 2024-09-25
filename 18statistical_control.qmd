@@ -8,9 +8,7 @@ So far we have been working with only 1 independent variable at a time. It's tim
 ## What is statistical control?
 
 When we include more than one predictor we often say that we are controlling for a number of variables in the model. This innocent-sounding term can actually sometimes cause quite a head ache to wrap your head around it. What does it mean to control for a variable?\
-One seemingly simple answer is that controlling means estimating the effect of one variable while holding the other variable constant.
-
-Lets make a simple graphical interpretation of statistical control. We will denote `x` as the min independent variable, `u` as the control variable and `y` as the dependent variable.
+One seemingly simple answer is that controlling means estimating the effect of one variable while holding the other variable constant. We'll look at what exactly that means in this class. As a first approximation lets make a simple graphical interpretation of statistical control. We will denote `x` as the min independent variable, `u` as the control variable and `y` as the dependent variable.
 
 ```{r}
 library(ggplot2)
@@ -117,11 +115,9 @@ lm(y ~ x) |> summary()
 lm(y ~ x + u) |> summary()
 ```
 
-This one is particularly bad because here including `u` gives us the wrong anwser!
+This one is particularly bad because here including `u` gives us the wrong answer! It is worth spending a little more time on colliders because they are particularly insidious and can creep in where you expect them the least.
 
-It is worth spending a little more time on colliders because they are particularly insiduous and can creep in where you expect them the least.
-
--   disucss selection bias as a case of collider bias?
+-   **disucss selection bias as a case of collider bias?**
 
     Collider bias ca
 

@@ -34,3 +34,5 @@ An extremely good and clear introduction to marginal effects with explanation of
 ## Contrasts
 
 In many situations when you work with categorical variables you are interested in specific comparisons or hypotheses.
+
+## Working with predictions
