@@ -10,11 +10,57 @@ So far we have been working with only 1 independent variable at a time. It's tim
 When we include more than one predictor we often say that we are controlling for a number of variables in the model. This innocent-sounding term can actually sometimes cause quite a head ache to wrap your head around it. What does it mean to control for a variable?\
 One seemingly simple answer is that controlling means estimating the effect of one variable while holding the other variable constant.
 
--   What does it mean to control for a variable?
+Lets make a simple graphical interpretation of statistical control. We will denote `x` as the min independent variable, `u` as the control variable and `y` as the dependent variable.
 
--   How do we do it in R?
+```{r}
+library(ggplot2)
 
-Make a simple graphical interpretation for categorical and continuous predictors?
+N <- 1e3
+x <- rnorm(N)
+u <- rbinom(N,1,.5)
+y <- rnorm(N, 4 + .7*x + 1*u, 1.3)
+
+df <- data.frame(x, u, y)
+
+
+df$pred <- lm(y ~ x + u, df) |>
+  predict() # get predicted values from the model
+
+#plot predictions and raw data 
+df %>% 
+  ggplot(aes(x = x, y = pred, color = factor(u), group = factor(u))) +
+  geom_point(aes(x = x, y = y, color = factor(u)),alpha = .3) +
+  geom_line() +
+  theme_minimal()
+  
+```
+
+You can see the effects plotted. The lines show the effects of `x` on `y`. Each level of `u` has its own line. Notice that both lines have the same slope - regardless of the level of `u` the effect of `x` on `y` is the same. This is exactly what statistical control means in this case. The effect of `u` can be understood as the distance between both lines. Again notice that it is the same across the entire range of the lines. No matte what value of `x` we take the effect of `u` is the same. Likewise for the effect of `x`.
+
+We can try a similar thing with 2 continuous predictors but this is going to be more difficult to plot as we are still working in 2 dimensions. One trick we can use is to plot the effect of `x` on `y` for various levels of `u` (lets say quantiles).
+
+```{r}
+N <- 1e3
+x <- rnorm(N)
+u <- rnorm(N,1 + .3*x, 1)
+y <- rnorm(N, 4 + .7*x + 1*u, 1.3)
+
+df <- data.frame(x, u, y)
+
+
+model_2<- lm(y ~ x + u, df)  # get predicted values from the model
+
+pred.data = expand.grid(x = seq(min(df$x), max(df$x), length=20),
+                        u = quantile(df$y))
+pred.data$y = predict(model_2, newdata=pred.data)
+
+ggplot(pred.data, aes(x, y, colour=factor(u))) +
+  geom_line() +
+  labs(colour="U Quantiles") +
+  theme_minimal()
+```
+
+You can again see that the slope for `x` is the same at each quantile of `u`. This means that in our model for any value of `u` the effect of `x` on `y` is the same. If we reversed it we would see the same thing for `u`.
 
 ## To control or not to control?
 

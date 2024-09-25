@@ -292,4 +292,5 @@ augment(lm1) %>%
 
 
 
+
 #### can I make Harrell's simulation on using stepwise regression and bootstrap?
