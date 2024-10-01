@@ -58,6 +58,74 @@ When we add predictors into the model we will be able to assess how much we can 
 
 Before we move on to running our first model we have to understand one more thing - formulas in R. They allow us to write models in a very succint form. A formula generally takes the form of `y ~ x1 + x2 + ...`. On the left hand side is always the dependent variable and on the right hand side you put all of your predictors.
 
+We'll start with a simple simulated example to get an intuition on what exactly a simple linear model does. We will simulate some data, run a model and then plot the predictions against the data.
+
+```{r}
+N <- 1e4
+x1 <- rnorm(N)
+y <- rnorm(N, 2 + .5*x1)
+df1 <- data.frame(x1, y)
+```
+
+Lets run a simple linear model:
+
+```{r}
+lm_sim <- lm(y ~ x1, df1)
+```
+
+Ok, now we can get to the plotting. What we will do is:
+
+1.  Plot the original data
+2.  Plot the regression line
+3.  Plot the conditional distributions implied by the model.
+
+You can inspect the code if you want but it's not that important right now
+
+```{r}
+#| code-fold: true
+#| code-summary: "simulating data implied by the model"
+x1 <- seq(min(df1$x1), max(df1$x1), length.out = 10)
+
+#set up a data frame to store simulated values
+df_sim <- data.frame(x1 = numeric(), sim = numeric())
+
+#run loop for simulation
+for(i in x1) {
+  #simulate y for given x1
+  sim <- rnorm(1e5, mean = lm_sim$coefficients[[1]] + lm_sim$coefficients[[2]]*i, sd = 1)
+  #store x1 for given simulations
+  x1_1 <- rep(i, 1e5)
+  #store sim and x1 in temp
+  temp <- data.frame(x1 = x1_1, sim = sim)
+  #append simulated data to results data frame
+  df_sim <- rbind(df_sim, temp)
+}
+
+#' the above is based on simulating data from the distribution
+df_rib <- data.frame(x1 = numeric(), lb = numeric(), hb = numeric())
+for(i in x1) {
+  q <- qnorm(c(.025, .975), mean = lm_sim$coefficients[[1]] + lm_sim$coefficients[[2]]*i, sd = 1)
+
+  temp <- data.frame(x1 = i, lb = q[1], hb = q[2])
+  df_rib <- rbind(df_rib, temp)
+  
+}
+
+
+df_sim %>%
+  ggplot(aes(x = x1, y = sim)) +
+  geom_point(data = df1, aes(x = x1, y = y), alpha = .1) +
+  geom_ribbon(data = df_rib, aes(x = x1, ymin = lb, ymax = hb, y = hb), alpha = .2, fill = "steelblue") +
+  ggdist::stat_halfeye(alpha = .8, fill = "navyblue") +
+  geom_smooth(data = df1, aes(x = x1, y = y), alpha = .4, method = "lm", color = "firebrick4", fill = "firebrick4") +
+  labs(title = "Conditional distribution for linear regression",
+       subtitle = "The plot shows raw data and simualted data from regressing y on x1.\nRed line is line of best fit, gray area is 95% prediction interval",
+       y = "y") +
+  theme_minimal()
+```
+
+The plot above is quite packed with information so lets unpack it. First, we have the datapoints plotted as a scatterplot. Next we have the red line which indicates the regression line or in other words the conditional means of `y` given `x1`. The we have the distributions which are data simulated from the model for 10 values of `x1`. Each distribution is what we would expect y to look like given a value of `x1` based on our model. Notice that the mean of each distribution (the black dot) passes exactly through the red line. Next notice that each distribution has the same shape (pretty much a normal distribution - that is the normal distribution assumption) and more or less the same width (that is the homoscedacticity assumption. The light blue area indicates where we would expect 95% of the `y` to fall in for any given value of `x1`.
+
 Now it's time to introduce some data we can work on. We will be working with a dataset that stores information about
 
 ```{r message=F}
