@@ -216,6 +216,10 @@ window.Quarto = {
     <a class="dropdown-item" href="./12eda.html">
  <span class="dropdown-text">Exploratory analysis</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="./16regression.html">
+ <span class="dropdown-text">Simple regression</span></a>
+  </li>  
     </ul>
   </li>
 </ul>
@@ -408,31 +412,98 @@ Y_i \sim Normal(\mu_i, \sigma)
 </div>
 </div>
 <p>The plot above is quite packed with information so lets unpack it. First, we have the datapoints plotted as a scatterplot. Next we have the red line which indicates the regression line or in other words the conditional means of <code>y</code> given <code>x1</code>. The we have the distributions which are data simulated from the model for 10 values of <code>x1</code>. Each distribution is what we would expect y to look like given a value of <code>x1</code> based on our model. Notice that the mean of each distribution (the black dot) passes exactly through the red line. Next notice that each distribution has the same shape (pretty much a normal distribution - that is the normal distribution assumption) and more or less the same width (that is the homoscedacticity assumption. The light blue area indicates where we would expect 95% of the <code>y</code> to fall in for any given value of <code>x1</code>.</p>
-<p>Now it’s time to introduce some data we can work on. We will be working with a dataset that stores information about</p>
-<p>We can start with the null model - a model that has no predictors, just the intercept in it. As we already know this intercept will in fact be the sample mean. Intercept can be coded with 1:</p>
+<p>Now it’s time to introduce some data we can work on. We will be working with a dataset that stores information from 2010 General Social Survey. the dataset can be found in the <code>openintro</code> package (which stores data from various open source textbooks). Lets load the dataset and take a look at it.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>null_model <span class="ot">&lt;-</span> <span class="fu">lm</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(openintro)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">"gss2010"</span>)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(gss2010)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>tibble [2,044 × 5] (S3: tbl_df/tbl/data.frame)
+ $ hrsrelax: int [1:2044] 2 4 NA NA NA NA 3 NA 0 5 ...
+ $ mntlhlth: int [1:2044] 3 6 NA NA NA NA 0 NA 0 10 ...
+ $ hrs1    : int [1:2044] 55 45 NA NA NA NA 45 NA 40 48 ...
+ $ degree  : Factor w/ 5 levels "BACHELOR","GRADUATE",..: 1 1 5 5 5 5 4 4 3 3 ...
+ $ grass   : Factor w/ 2 levels "LEGAL","NOT LEGAL": NA 1 NA 2 2 1 NA NA 2 NA ...</code></pre>
 </div>
+</div>
+<p>The dataset stores information on 5 variables: number of hours for relaxing after and average work day, number of days during the last 30 days in which participants mental health was not good, number of hours worked per week, degree and opinion on legalizing marihuana. (the docs are also available <a href="#0">here</a>). For now we will be mainly intersted in the <code>hrsrelax</code> variable and explaining it with <code>hrs1</code>.</p>
+<p>We can start with the null model - a model that has no predictors, just the intercept in it. As we already know this intercept will in fact be the sample mean. Intercept can be coded with 1 in the formula. Running a regression in R is actually super simple. You can use the <code>lm()</code> function to do it.:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>null_model <span class="ot">&lt;-</span> <span class="fu">lm</span>(hrsrelax <span class="sc">~</span> <span class="dv">1</span>, gss2010)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>We can inspect the output using <code>summary()</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(null_model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = hrsrelax ~ 1, data = gss2010)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-3.6802 -1.6802 -0.6802  1.3198 20.3198 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)  3.68024    0.07741   47.54   &lt;2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 2.63 on 1153 degrees of freedom
+  (890 obserwacji zostało skasowanych z uwagi na braki w nich zawarte)</code></pre>
+</div>
+</div>
+<p>This summary tells us the following:</p>
+<ol type="1">
+<li>the formula and data used for the model (under the “Call”)</li>
+<li>Rough approximation of the distribution of residuals</li>
+<li>The coefficients: the estimated Intercept equal to 3.68, its standard error and associated t and p values. This is equal to the mean of the <code>hrsrelax</code> variable: 3.68</li>
+<li>The residual standard error (which in the case of the null model is just the standard deviation of the variable) and degrees of freedom</li>
+<li>The number of deleted observations due to missing values. This one is real unfortunate as <code>lm()</code> will silently drop any missing values without so much as a warning! This can cause a lot of trouble so it’s worth always inspecting how many observations were in fact dropped.</li>
+<li>Once we add predictors we will also get an omnibus F test statistic and its p value as well as an R squared value.</li>
+</ol>
 <p>Lets add the first predictor to our model. The model will then look like this</p>
 <p><span class="math display">\[
 Y_i \sim Normal(\mu_i, \sigma)
 \]</span></p>
 <p><span class="math display">\[
-\mu_i =\alpha + \beta_1 * x_1
+\mu_i =\alpha + \beta_1 * hrs1
 \]</span></p>
-<p>Running a regression in R is actually super simple. You can use the <code>lm()</code> function to do it.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>simple_fit <span class="ot">&lt;-</span> <span class="fu">lm</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>simple_fit <span class="ot">&lt;-</span> <span class="fu">lm</span>(hrsrelax <span class="sc">~</span> hrs1, gss2010)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Now that we have our model lets proceed to interpret it. You can use the <code>summary()</code> function for that:</p>
+<p>Now that we have our model lets proceed to interpret it:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(simple_fit)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(simple_fit)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = hrsrelax ~ hrs1, data = gss2010)
+
+Residuals:
+   Min     1Q Median     3Q    Max 
+-4.865 -1.710 -0.360  1.212 20.640 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)  5.11038    0.21953  23.279  &lt; 2e-16 ***
+hrs1        -0.03501    0.00506  -6.919 7.56e-12 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 2.579 on 1149 degrees of freedom
+  (893 obserwacje zostały skasowane z uwagi na braki w nich zawarte)
+Multiple R-squared:  0.03999,   Adjusted R-squared:  0.03916 
+F-statistic: 47.87 on 1 and 1149 DF,  p-value: 7.564e-12</code></pre>
 </div>
-<p>Lets look at the null model as well:</p>
-<ul>
-<li>compare to the null model, explain R squared</li>
-<li>Important note: lm() silently drops missing values!</li>
-</ul>
+</div>
+<p>What this output tells us is:</p>
+<ol type="1">
+<li>for a person who works 0 hours per week we expect 5.11 hours of relax time per day on average.</li>
+<li>With each additional hour worked per week we expect .035 hours of relax time less. This means that we expect people whose work time per week differs by 10 to have on average .35 hour difference in their time for relaxation per day. This effect is significant at conventional levels.</li>
+<li>The model dropped 893 observations which had missing values in any of the variables used in the model. Notice that it’s a lot!</li>
+<li>The model explains about 4% of variance in <code>hrsrelax</code> variable and the F statistic is also significant. This means we were able to reduce the squared erros by 4% compared to the null model.</li>
+</ol>
 <section id="a-note-on-assumptions" class="level3">
 <h3 class="anchored" data-anchor-id="a-note-on-assumptions">A note on assumptions</h3>
 <p>A lot of psych statistic courses has an obsession with assumptions for statistical tests. You may have heard such terms as normality, independence or homoscedacticity. They sound very scary and often intimidate students into running all sorts of tests to check for those assumptions and state things like “oh no that test for normality was violated I cannot use a parametric test!”. Truth is you always make assumptions of some sorts (even of the sorts like “my measurement tools actually worked”) and there is no running away from them. Rather than blindly checking assumptions it is much better to actually understand how they impact your model - what is affected if one of the assumptions gets violated and can we do something to deal with it? <a href="https://blog.msbstats.info/posts/2018-08-30-linear-regression-assumptions/">Here is a great post on precisely this topic</a>.</p>
@@ -441,12 +512,158 @@ Y_i \sim Normal(\mu_i, \sigma)
 <section id="categorical-predictors" class="level2">
 <h2 class="anchored" data-anchor-id="categorical-predictors">Categorical predictors</h2>
 <p>Simple OLS regression is actually quite flexible in what kinds of predictors it can use. You can easily include various categorical predictors into your linear model. The trick is to code them properly.</p>
-<p>Remember that the regression coefficient from a linear model tells us what is the predicted difference in Y for 1 unit increase in x? We can use that to code categorical predictors. For those variables that have only 2 levels (e.g.&nbsp;control and experimental condition) you code one as 0 (this level is called the reference category) and the other as 1. Then a 1 unit increase in x is simply the shift from the category coded as 0 to the category coded as 1. Lets look at an example:</p>
+<p>Remember that the regression coefficient from a linear model tells us what is the predicted difference in Y for 1 unit increase in x? We can use that to code categorical predictors. For those variables that have only 2 levels (e.g.&nbsp;control and experimental condition) you code one as 0 (this level is called the reference category) and the other as 1. Then a 1 unit increase in x is simply the shift from the category coded as 0 to the category coded as 1. Lets look at an example. Lets see if people who want or do not want legalization of marijuana differ in the amount of time they have to relax:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>lm_mar <span class="ot">&lt;-</span> <span class="fu">lm</span>(hrsrelax <span class="sc">~</span> grass, gss2010)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(lm_mar)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = hrsrelax ~ grass, data = gss2010)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-3.7307 -1.7307 -0.6648  1.2693 20.2693 
+
+Coefficients:
+               Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)     3.66477    0.13934  26.301   &lt;2e-16 ***
+grassNOT LEGAL  0.06589    0.19748   0.334    0.739    
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 2.614 on 699 degrees of freedom
+  (1343 obserwacje zostały skasowane z uwagi na braki w nich zawarte)
+Multiple R-squared:  0.0001592, Adjusted R-squared:  -0.001271 
+F-statistic: 0.1113 on 1 and 699 DF,  p-value: 0.7388</code></pre>
+</div>
+</div>
+<p>This output is quite similar but the coefficients require a bit more attention now. What the output tells us is that people who want legalization of marijuana have on average 3.67 hours for relaxing per day. This is coded by the intercept. People who do not want legalization of marijuana have on average .07 hours more for relaxing per day. This difference is not statistically significant. Notice that we are silently dropping 1343 observations which is most of our sample! In this model <code>LEGAL</code> was coded as the reference category by default. This is because unless specified otherwise R will use the category that comes first alphabetically as the reference category. You can change it to set a different reference category with <code>relevel()</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>lm_mar_2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(hrsrelax <span class="sc">~</span> grass, gss2010 <span class="sc">%&gt;%</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>                 <span class="fu">mutate</span>(<span class="at">grass =</span> <span class="fu">relevel</span>(grass, <span class="at">ref =</span> <span class="st">"NOT LEGAL"</span>)))</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(lm_mar_2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = hrsrelax ~ grass, data = gss2010 %&gt;% mutate(grass = relevel(grass, 
+    ref = "NOT LEGAL")))
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-3.7307 -1.7307 -0.6648  1.2693 20.2693 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)  3.73066    0.13994  26.660   &lt;2e-16 ***
+grassLEGAL  -0.06589    0.19748  -0.334    0.739    
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 2.614 on 699 degrees of freedom
+  (1343 obserwacje zostały skasowane z uwagi na braki w nich zawarte)
+Multiple R-squared:  0.0001592, Adjusted R-squared:  -0.001271 
+F-statistic: 0.1113 on 1 and 699 DF,  p-value: 0.7388</code></pre>
+</div>
+</div>
+<p>The output is pretty much the same with intercept and dummy swapped. Now the intercept codes the mean number of hours of relax time for those who do not want legalization of marijuana and</p>
 <p>In case you were wondering, yes we just did a simple t test. We can compare the results to the output of <code>t.test()</code> function:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(hrsrelax <span class="sc">~</span> grass, gss2010)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Welch Two Sample t-test
+
+data:  hrsrelax by grass
+t = -0.33333, df = 665.97, p-value = 0.739
+alternative hypothesis: true difference in means between group LEGAL and group NOT LEGAL is not equal to 0
+95 percent confidence interval:
+ -0.4539979  0.3222253
+sample estimates:
+    mean in group LEGAL mean in group NOT LEGAL 
+               3.664773                3.730659 </code></pre>
+</div>
+</div>
 <p>So far we had only 2 levels of our categorical predictor. However, often you have to work with variables that have multiple levels. In such case you can no longer code one level as 0 and the other as 1. There are a few ways in which you can deal with this. We’ll look at two: dummy coding and effect coding.</p>
-<p>Dummy coding extends the logic of coding categorical variables as 0 and 1. We still have one level as reference category coded as 0. Other levels are coded as 1 but this time we need 1 variable for each of those levels. We end up with k-1 variables that take values of 0 or 1 where k is the number of levels that a variable has (these are called dummy variables). Each dummy variable is coded 1 if it takes the value of a corresponding level and 0 otherwise. We have k-1 dummy variables because we do not need a variable for the reference level. If all the dummy variables take the value of 0 then we know it has the value of the reference level. Each of the dummy variables is going to express the difference between the reference level and a given dummy level. Note that this coding itself does not allow to compare 2 dummy levels to each other (we’ll see how to do that later). Lets see this type of coding in action:</p>
+<p>Dummy coding extends the logic of coding categorical variables as 0 and 1. We still have one level as reference category coded as 0. Other levels are coded as 1 but this time we need 1 variable for each of those levels. We end up with k-1 variables that take values of 0 or 1 where k is the number of levels that a variable has (these are called dummy variables). Each dummy variable is coded 1 if it takes the value of a corresponding level and 0 otherwise. We have k-1 dummy variables because we do not need a variable for the reference level. If all the dummy variables take the value of 0 then we know it has the value of the reference level. Each of the dummy variables is going to express the difference between the reference level and a given dummy level. Note that this coding itself does not allow to compare 2 dummy levels to each other (we’ll see how to do that later). Lets see this type of coding in action. We will see if number of hours for relaxing after work differs among people with different degrees:</p>
+<p>before we do it lets look up the levels of <code>degree</code> variable:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(gss2010<span class="sc">$</span>degree)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "BACHELOR"       "GRADUATE"       "HIGH SCHOOL"    "JUNIOR COLLEGE"
+[5] "LT HIGH SCHOOL"</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>lm_deg <span class="ot">&lt;-</span> <span class="fu">lm</span>(hrsrelax <span class="sc">~</span> degree, gss2010)</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(lm_deg)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = hrsrelax ~ degree, data = gss2010)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-3.7918 -1.7761 -0.4779  1.2082 20.4681 
+
+Coefficients:
+                     Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)            3.4779     0.1667  20.859   &lt;2e-16 ***
+degreeGRADUATE         0.1931     0.2692   0.717    0.473    
+degreeHIGH SCHOOL      0.3139     0.2017   1.557    0.120    
+degreeJUNIOR COLLEGE   0.0540     0.3185   0.170    0.865    
+degreeLT HIGH SCHOOL   0.2509     0.2940   0.853    0.394    
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 2.631 on 1149 degrees of freedom
+  (890 obserwacji zostało skasowanych z uwagi na braki w nich zawarte)
+Multiple R-squared:  0.002415,  Adjusted R-squared:  -0.001058 
+F-statistic: 0.6953 on 4 and 1149 DF,  p-value: 0.5953</code></pre>
+</div>
+</div>
+<p>Since bachelor is first alphabetically it was coded as the reference category. All other dummy variables code comparisons between the reference category and a given level. We can see the for people with bachelor degree we expect 3.48 hours of relax time per day on average. All other degrees are expected to have more relax time on average but none of the comparisons is statistically significant. Again we are dropping a lot of observations.</p>
 <p>The other way to code a categorical variable is through effect coding. This type of coding will use intercept as the grand mean and each variable will reflect the difference between the grand mean and a given level. Not that again we have k-1 variables because the last comparison is just a function of the other ones.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>lm_deg_2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(hrsrelax <span class="sc">~</span> degree, gss2010, <span class="at">contrasts =</span> <span class="fu">list</span>(<span class="at">degree =</span> <span class="st">"contr.sum"</span>))</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(lm_deg_2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = hrsrelax ~ degree, data = gss2010, contrasts = list(degree = "contr.sum"))
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-3.7918 -1.7761 -0.4779  1.2082 20.4681 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)  3.64029    0.09330  39.016   &lt;2e-16 ***
+degree1     -0.16237    0.15933  -1.019    0.308    
+degree2      0.03068    0.18842   0.163    0.871    
+degree3      0.15154    0.12816   1.182    0.237    
+degree4     -0.10837    0.22998  -0.471    0.638    
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 2.631 on 1149 degrees of freedom
+  (890 obserwacji zostało skasowanych z uwagi na braki w nich zawarte)
+Multiple R-squared:  0.002415,  Adjusted R-squared:  -0.001058 
+F-statistic: 0.6953 on 4 and 1149 DF,  p-value: 0.5953</code></pre>
+</div>
+</div>
+<p>In this case the intercept codes the grand mean and each dummy codes the difference for a given level from the grand mean.</p>
 <p>Finally lets compare the results of our model to simple one-way anova:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">aov</span>(hrsrelax <span class="sc">~</span> degree, gss2010) <span class="sc">%&gt;%</span> <span class="fu">summary</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>              Df Sum Sq Mean Sq F value Pr(&gt;F)
+degree         4     19   4.813   0.695  0.595
+Residuals   1149   7954   6.922               
+890 obserwacji zostało skasowanych z uwagi na braki w nich zawarte</code></pre>
+</div>
+</div>
+<p>The F and p values are exactly the same. In fact <code>aov()</code> calls <code>lm()</code>.</p>
 
 
 </section>

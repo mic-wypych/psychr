@@ -188,6 +188,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <a class="dropdown-item" href="./12eda.html">
  <span class="dropdown-text">Exploratory analysis</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="./16regression.html">
+ <span class="dropdown-text">Simple regression</span></a>
+  </li>  
     </ul>
   </li>
 </ul>
@@ -487,11 +491,11 @@ character</code></pre>
 <div class="cell-output cell-output-stdout">
 <pre><code>Unit: milliseconds
                                                expr      min       lq     mean
- for (i in 1:ncol(df)) {     print(mean(df[, i])) } 3.205032 3.248893 3.357500
-                                 apply(df, 2, mean) 4.544029 6.057564 7.301477
+ for (i in 1:ncol(df)) {     print(mean(df[, i])) } 3.228118 3.265829 3.360365
+                                 apply(df, 2, mean) 4.456520 5.350516 6.502162
    median       uq       max neval
- 3.280386 3.395416  4.505267   100
- 6.122490 6.267045 63.364125   100</code></pre>
+ 3.315382 3.449422  3.676586   100
+ 5.381393 5.417181 60.410797   100</code></pre>
 </div>
 </div>
 <p>You can see that <code>apply()</code> is much faster than a for loop.</p>
