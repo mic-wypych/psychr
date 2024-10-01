@@ -117,9 +117,33 @@ lm(y ~ x + u) |> summary()
 
 This one is particularly bad because here including `u` gives us the wrong answer! It is worth spending a little more time on colliders because they are particularly insidious and can creep in where you expect them the least.
 
--   **disucss selection bias as a case of collider bias?**
+One way in which a collider can creep in is through selection bias. Selecting based on a variable effectively means controlling for it (as we are holding a variable constant). Below is a crude example
 
-    Collider bias ca
+```{r}
+x_c <- rnorm(N)
+y_c <- rnorm(N)
+
+u_c <- rnorm(N, .5*x_c + .7*y_c, .4)
+
+df_c <- data.frame(x_c, y_c, u_c)
+
+lm(y_c ~ x_c, df_c) |> summary()
+
+lm(y_c ~ x_c, df_c %>% filter(u_c >= .2)) |> summary()
+```
+
+In our simulation there is no relation between `x_c` and `y_c` but if we select for only certain values of `u_c` which is a collider we are inducing a spurious relation! This can become clearer once we plot the data:
+
+```{r}
+df_c %>%
+  ggplot(aes(x = x_c, y = y_c, color = u_c >= .2)) +
+  geom_point() +
+  theme_minimal()
+```
+
+We can see there is no relation in the entire dataset but in the subgroup of `u_c >= .2` there seems to be one! But this is only because `u_c` is itself a product of `x_c` and `y_c` so that is has higher values for high `x_c` and `y_c`. `u_c` takes high values if either `x_c`, `y_c` or both have a high value and this induces the spurious correlation.
+
+This problem can be especially tricky if you think about surveys with voluntary participation. If both your independent and dependent variable affect willingness to participate in the survey (e.g. you are interested in assessing the effect of number of hours worked per week on mental health and people who work a lot and people with poor mental health are less willing to participate in your survey then you have a collider problem).
 
 ### Descendant
 
@@ -143,9 +167,7 @@ The answer when controlling for the descendant is not perfect but it is much bet
 Lets say we have already ran a model with multiple predictors in it. How should we interpret the results? I have already told you that in such a case the effect of your main variable should be understood as "the effect of x while holding all other covariates constant". How should we understand this in practice though? You should be aware that introducing a covariate changes the interpretation of the coefficient for the main variable of interest. This is especially stark in some situations where the variables you put in the model are conceptually linked to each other. Here's an example I've seen somewhere (unfortunately can't find where to give you a link).\
 Imagine you are predicting household income using family size and number of adults in the household. In such a model what does it mean to have an effect of family size while holding number of adults constant? Well, it's the number of kids in the house! So including number of adults into the model completely changes the meaning of the family size variable. What then is the effect of number of adults while holding family size constant? This one then is pretty weird and much harder to interpret. Maybe it's the effect of a kid becoming an adult?
 
-Here's another example from psychology: imagine you are predicting voting intentions using a set of
-
-**describe this example**
+Here's another example from psychology: imagine you are predicting prejudice towards a group of people using the perceived warmth (how friendly this group's intentions towards us seem) and competence (perceived capability to enact intent) as in classic [Stereotype Content model](https://www.sciencedirect.com/science/article/abs/pii/S0065260107000020). When we put both of them into the model we have to adjust our interpretations of the effects of warmth and competence. The effect of warmth becomes the effect of perceived intentions of the outgroup regardless of how capable to enact these intentions this group seems to be. Similarly the effect of competence has to be interpreted differently - as perceived ability to act on intentions regardles of whether they are good or bad.
 
 This shows that throwing additional variables into the model can not only estimate wrong effects but render them pretty much uninterpetable.
 

@@ -38,6 +38,8 @@ website:
             text: Exploratory analysis
           - href: 16regression.qmd
             text: Simple regression
+          - href: 18statistical_control.qmd
+            text: Statistical control
         
           
   search: 
