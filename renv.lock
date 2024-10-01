@@ -94,6 +94,16 @@
       ],
       "Hash": "f27411eb6d9c3dada5edd444b8416675"
     },
+    "airports": {
+      "Package": "airports",
+      "Version": "0.1.0",
+      "Source": "Repository",
+      "Repository": "RSPM",
+      "Requirements": [
+        "R"
+      ],
+      "Hash": "14e997c91e0cdca32231b04143e0904c"
+    },
     "askpass": {
       "Package": "askpass",
       "Version": "1.2.0",
@@ -247,6 +257,16 @@
         "tibble"
       ],
       "Hash": "f61dbaec772ccd2e17705c1e872e9e7c"
+    },
+    "cherryblossom": {
+      "Package": "cherryblossom",
+      "Version": "0.1.0",
+      "Source": "Repository",
+      "Repository": "RSPM",
+      "Requirements": [
+        "R"
+      ],
+      "Hash": "ef936debf27cd40d667339a6ad89cd75"
     },
     "cli": {
       "Package": "cli",
@@ -996,6 +1016,24 @@
       ],
       "Hash": "df58958f293b166e4ab885ebcad90e02"
     },
+    "openintro": {
+      "Package": "openintro",
+      "Version": "2.5.0",
+      "Source": "Repository",
+      "Repository": "RSPM",
+      "Requirements": [
+        "R",
+        "airports",
+        "cherryblossom",
+        "ggplot2",
+        "graphics",
+        "readr",
+        "rmarkdown",
+        "tibble",
+        "usdata"
+      ],
+      "Hash": "d25a629e4f3163cfc981516817f358ca"
+    },
     "openssl": {
       "Package": "openssl",
       "Version": "2.2.2",
@@ -1560,6 +1598,17 @@
         "cpp11"
       ],
       "Hash": "f561504ec2897f4d46f0c7657e488ae1"
+    },
+    "usdata": {
+      "Package": "usdata",
+      "Version": "0.3.1",
+      "Source": "Repository",
+      "Repository": "RSPM",
+      "Requirements": [
+        "R",
+        "tibble"
+      ],
+      "Hash": "924b597b270e2f6a84387f563abadb39"
     },
     "utf8": {
       "Package": "utf8",

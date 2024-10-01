@@ -130,17 +130,37 @@ df_sim %>%
 
 The plot above is quite packed with information so lets unpack it. First, we have the datapoints plotted as a scatterplot. Next we have the red line which indicates the regression line or in other words the conditional means of `y` given `x1`. The we have the distributions which are data simulated from the model for 10 values of `x1`. Each distribution is what we would expect y to look like given a value of `x1` based on our model. Notice that the mean of each distribution (the black dot) passes exactly through the red line. Next notice that each distribution has the same shape (pretty much a normal distribution - that is the normal distribution assumption) and more or less the same width (that is the homoscedacticity assumption. The light blue area indicates where we would expect 95% of the `y` to fall in for any given value of `x1`.
 
-Now it's time to introduce some data we can work on. We will be working with a dataset that stores information about
+Now it's time to introduce some data we can work on. We will be working with a dataset that stores information from 2010 General Social Survey. the dataset can be found in the `openintro` package (which stores data from various open source textbooks). Lets load the dataset and take a look at it.
 
 ```{r message=F}
+library(openintro)
+data("gss2010")
+str(gss2010)
+```
+
+The dataset stores information on 5 variables: number of hours for relaxing after and average work day, number of days during the last 30 days in which participants mental health was not good, number of hours worked per week, degree and opinion on legalizing marihuana. (the docs are also available [here](#0)). For now we will be mainly intersted in the `hrsrelax` variable and explaining it with `hrs1`.
+
+We can start with the null model - a model that has no predictors, just the intercept in it. As we already know this intercept will in fact be the sample mean. Intercept can be coded with 1 in the formula. Running a regression in R is actually super simple. You can use the `lm()` function to do it.:
+
+```{r}
+null_model <- lm(hrsrelax ~ 1, gss2010)
 
 ```
 
-We can start with the null model - a model that has no predictors, just the intercept in it. As we already know this intercept will in fact be the sample mean. Intercept can be coded with 1:
+We can inspect the output using `summary()`:
 
-```{r eval = F}
-null_model <- lm()
+```{r}
+summary(null_model)
 ```
+
+This summary tells us the following:
+
+1.  the formula and data used for the model (under the "Call")
+2.  Rough approximation of the distribution of residuals
+3.  The coefficients: the estimated Intercept equal to `r round(null_model$coefficients[[1]],2)`, its standard error and associated t and p values. This is equal to the mean of the `hrsrelax` variable: `r round(mean(gss2010$hrsrelax, na.rm = T),2)`
+4.  The residual standard error (which in the case of the null model is just the standard deviation of the variable) and degrees of freedom
+5.  The number of deleted observations due to missing values. This one is real unfortunate as `lm()` will silently drop any missing values without so much as a warning! This can cause a lot of trouble so it's worth always inspecting how many observations were in fact dropped.
+6.  Once we add predictors we will also get an omnibus F test statistic and its p value as well as an R squared value.
 
 Lets add the first predictor to our model. The model will then look like this
 
@@ -149,29 +169,25 @@ Y_i \sim Normal(\mu_i, \sigma)
 $$
 
 $$
-\mu_i =\alpha + \beta_1 * x_1
+\mu_i =\alpha + \beta_1 * hrs1
 $$
 
-Running a regression in R is actually super simple. You can use the `lm()` function to do it.
-
-```{r eval=F}
-simple_fit <- lm()
+```{r}
+simple_fit <- lm(hrsrelax ~ hrs1, gss2010)
 ```
 
-Now that we have our model lets proceed to interpret it. You can use the `summary()` function for that:
+Now that we have our model lets proceed to interpret it:
 
-```{r eval=F}
+```{r}
 summary(simple_fit)
 ```
 
-Lets look at the null model as well:
+What this output tells us is:
 
-```{r}
-
-```
-
--   compare to the null model, explain R squared
--   Important note: lm() silently drops missing values!
+1.  for a person who works 0 hours per week we expect 5.11 hours of relax time per day on average.
+2.  With each additional hour worked per week we expect .035 hours of relax time less. This means that we expect people whose work time per week differs by 10 to have on average .35 hour difference in their time for relaxation per day. This effect is significant at conventional levels.
+3.  The model dropped 893 observations which had missing values in any of the variables used in the model. Notice that it's a lot!
+4.  The model explains about 4% of variance in `hrsrelax` variable and the F statistic is also significant. This means we were able to reduce the squared erros by 4% compared to the null model.
 
 ### A note on assumptions
 
@@ -181,34 +197,59 @@ A lot of psych statistic courses has an obsession with assumptions for statistic
 
 Simple OLS regression is actually quite flexible in what kinds of predictors it can use. You can easily include various categorical predictors into your linear model. The trick is to code them properly.
 
-Remember that the regression coefficient from a linear model tells us what is the predicted difference in Y for 1 unit increase in x? We can use that to code categorical predictors. For those variables that have only 2 levels (e.g. control and experimental condition) you code one as 0 (this level is called the reference category) and the other as 1. Then a 1 unit increase in x is simply the shift from the category coded as 0 to the category coded as 1. Lets look at an example:
+Remember that the regression coefficient from a linear model tells us what is the predicted difference in Y for 1 unit increase in x? We can use that to code categorical predictors. For those variables that have only 2 levels (e.g. control and experimental condition) you code one as 0 (this level is called the reference category) and the other as 1. Then a 1 unit increase in x is simply the shift from the category coded as 0 to the category coded as 1. Lets look at an example. Lets see if people who want or do not want legalization of marijuana differ in the amount of time they have to relax:
 
 ```{r}
-
+lm_mar <- lm(hrsrelax ~ grass, gss2010)
+summary(lm_mar)
 ```
+
+This output is quite similar but the coefficients require a bit more attention now. What the output tells us is that people who want legalization of marijuana have on average 3.67 hours for relaxing per day. This is coded by the intercept. People who do not want legalization of marijuana have on average .07 hours more for relaxing per day. This difference is not statistically significant. Notice that we are silently dropping 1343 observations which is most of our sample! In this model `LEGAL` was coded as the reference category by default. This is because unless specified otherwise R will use the category that comes first alphabetically as the reference category. You can change it to set a different reference category with `relevel()`:
+
+```{r}
+lm_mar_2 <- lm(hrsrelax ~ grass, gss2010 %>%
+                 mutate(grass = relevel(grass, ref = "NOT LEGAL")))
+summary(lm_mar_2)
+```
+
+The output is pretty much the same with intercept and dummy swapped. Now the intercept codes the mean number of hours of relax time for those who do not want legalization of marijuana and
 
 In case you were wondering, yes we just did a simple t test. We can compare the results to the output of `t.test()` function:
 
 ```{r}
-
+t.test(hrsrelax ~ grass, gss2010)
 ```
 
 So far we had only 2 levels of our categorical predictor. However, often you have to work with variables that have multiple levels. In such case you can no longer code one level as 0 and the other as 1. There are a few ways in which you can deal with this. We'll look at two: dummy coding and effect coding.
 
-Dummy coding extends the logic of coding categorical variables as 0 and 1. We still have one level as reference category coded as 0. Other levels are coded as 1 but this time we need 1 variable for each of those levels. We end up with k-1 variables that take values of 0 or 1 where k is the number of levels that a variable has (these are called dummy variables). Each dummy variable is coded 1 if it takes the value of a corresponding level and 0 otherwise. We have k-1 dummy variables because we do not need a variable for the reference level. If all the dummy variables take the value of 0 then we know it has the value of the reference level. Each of the dummy variables is going to express the difference between the reference level and a given dummy level. Note that this coding itself does not allow to compare 2 dummy levels to each other (we'll see how to do that later). Lets see this type of coding in action:
+Dummy coding extends the logic of coding categorical variables as 0 and 1. We still have one level as reference category coded as 0. Other levels are coded as 1 but this time we need 1 variable for each of those levels. We end up with k-1 variables that take values of 0 or 1 where k is the number of levels that a variable has (these are called dummy variables). Each dummy variable is coded 1 if it takes the value of a corresponding level and 0 otherwise. We have k-1 dummy variables because we do not need a variable for the reference level. If all the dummy variables take the value of 0 then we know it has the value of the reference level. Each of the dummy variables is going to express the difference between the reference level and a given dummy level. Note that this coding itself does not allow to compare 2 dummy levels to each other (we'll see how to do that later). Lets see this type of coding in action. We will see if number of hours for relaxing after work differs among people with different degrees:
+
+before we do it lets look up the levels of `degree` variable:
 
 ```{r}
-
+levels(gss2010$degree)
 ```
+
+```{r}
+lm_deg <- lm(hrsrelax ~ degree, gss2010)
+summary(lm_deg)
+```
+
+Since bachelor is first alphabetically it was coded as the reference category. All other dummy variables code comparisons between the reference category and a given level. We can see the for people with bachelor degree we expect 3.48 hours of relax time per day on average. All other degrees are expected to have more relax time on average but none of the comparisons is statistically significant. Again we are dropping a lot of observations.
 
 The other way to code a categorical variable is through effect coding. This type of coding will use intercept as the grand mean and each variable will reflect the difference between the grand mean and a given level. Not that again we have k-1 variables because the last comparison is just a function of the other ones.
 
 ```{r}
-
+lm_deg_2 <- lm(hrsrelax ~ degree, gss2010, contrasts = list(degree = "contr.sum"))
+summary(lm_deg_2)
 ```
+
+In this case the intercept codes the grand mean and each dummy codes the difference for a given level from the grand mean.
 
 Finally lets compare the results of our model to simple one-way anova:
 
 ```{r}
-
+aov(hrsrelax ~ degree, gss2010) %>% summary()
 ```
+
+The F and p values are exactly the same. In fact `aov()` calls `lm()`.

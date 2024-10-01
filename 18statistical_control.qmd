@@ -136,7 +136,7 @@ lm(y ~ x + z) |> summary()
 lm(y ~ x + u) |> summary()
 ```
 
-The anwser when controlling for the descendant is not perfect but it is much better than including just `x`. One way to think about it is that in some analyses it can serve as a proxy variable if the actual confound is difficult to measure.
+The answer when controlling for the descendant is not perfect but it is much better than including just `x`. One way to think about it is that in some analyses it can serve as a proxy variable if the actual confound is difficult to measure.
 
 ## Interpreting multiple regression
 
