@@ -15,6 +15,7 @@ The dataset we will be working with comes from `carData` package and stores info
 
 ```{r}
 library(carData)
+library(tidyverse)
 salaries <- carData::Salaries
 glimpse(salaries)
 ```

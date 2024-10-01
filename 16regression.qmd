@@ -21,6 +21,7 @@ Lets start with the simplest example possible. Lets say we have no other informa
 Lets first simulate a bunch of observations from a normal distribution: our dependent variable. We will keep mean = 0 and standard deviation = 1.
 
 ```{r}
+library(tidyverse)
 y <- rnorm(1000)
 ```
 
@@ -84,6 +85,8 @@ You can inspect the code if you want but it's not that important right now
 ```{r}
 #| code-fold: true
 #| code-summary: "simulating data implied by the model"
+
+
 x1 <- seq(min(df1$x1), max(df1$x1), length.out = 10)
 
 #set up a data frame to store simulated values
@@ -129,12 +132,12 @@ The plot above is quite packed with information so lets unpack it. First, we hav
 Now it's time to introduce some data we can work on. We will be working with a dataset that stores information about
 
 ```{r message=F}
-library(tidyverse)
+
 ```
 
 We can start with the null model - a model that has no predictors, just the intercept in it. As we already know this intercept will in fact be the sample mean. Intercept can be coded with 1:
 
-```{r}
+```{r eval = F}
 null_model <- lm()
 ```
 
@@ -150,13 +153,13 @@ $$
 
 Running a regression in R is actually super simple. You can use the `lm()` function to do it.
 
-```{r}
+```{r eval=F}
 simple_fit <- lm()
 ```
 
 Now that we have our model lets proceed to interpret it. You can use the `summary()` function for that:
 
-```{r}
+```{r eval=F}
 summary(simple_fit)
 ```
 

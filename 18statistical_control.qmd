@@ -11,7 +11,7 @@ When we include more than one predictor we often say that we are controlling for
 One seemingly simple answer is that controlling means estimating the effect of one variable while holding the other variable constant. We'll look at what exactly that means in this class. As a first approximation lets make a simple graphical interpretation of statistical control. We will denote `x` as the min independent variable, `u` as the control variable and `y` as the dependent variable.
 
 ```{r}
-library(ggplot2)
+library(tidyverse)
 
 N <- 1e3
 x <- rnorm(N)

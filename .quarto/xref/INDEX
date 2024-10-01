@@ -109,5 +109,17 @@
   },
   "about.qmd": {
     "about.html": "b99c8145"
+  },
+  "20diagnostics.qmd": {
+    "20diagnostics.html": "0763d8b0"
+  },
+  "21whatnext.qmd": {
+    "21whatnext.html": "990703b4"
+  },
+  "22paradoxes.qmd": {
+    "22paradoxes.html": "a2798f5f"
+  },
+  "future_ideas.qmd": {
+    "future_ideas.html": "46831cf9"
   }
 }
