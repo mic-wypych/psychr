@@ -85,6 +85,7 @@ You can inspect the code if you want but it's not that important right now
 ```{r}
 #| code-fold: true
 #| code-summary: "simulating data implied by the model"
+#| fig-align: "center"
 
 
 x1 <- seq(min(df1$x1), max(df1$x1), length.out = 10)
