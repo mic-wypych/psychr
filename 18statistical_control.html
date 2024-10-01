@@ -2,13 +2,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.450">
+<meta name="generator" content="quarto-1.5.57">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Michał Wypych">
 
-<title>r_website - Statistical control</title>
+<title>Statistical control – r_website</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -46,7 +80,12 @@ ul.task-list li input[type="checkbox"] {
   "collapse-after": 3,
   "panel-placement": "end",
   "type": "textbox",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -55,6 +94,7 @@ ul.task-list li input[type="checkbox"] {
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
     "search-submit-button-title": "Submit",
     "search-label": "Search"
@@ -68,114 +108,122 @@ ul.task-list li input[type="checkbox"] {
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg navbar-dark ">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container">
+      <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="./index.html">
     <span class="navbar-title">r_website</span>
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./index.html" rel="" target="">
- <span class="menu-text">Home</span></a>
+    <a class="nav-link" href="./index.html"> 
+<span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-basics" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-basics" role="link" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">Basics</span>
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-basics">    
         <li>
-    <a class="dropdown-item" href="./01r_intro.html" rel="" target="">
+    <a class="dropdown-item" href="./01r_intro.html">
  <span class="dropdown-text">Introduction</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./02basic_data.html" rel="" target="">
+    <a class="dropdown-item" href="./02basic_data.html">
  <span class="dropdown-text">Basic objects</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./03data_types.html" rel="" target="">
+    <a class="dropdown-item" href="./03data_types.html">
  <span class="dropdown-text">Data types</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./04loops_conditionals.html" rel="" target="">
+    <a class="dropdown-item" href="./04loops_conditionals.html">
  <span class="dropdown-text">Loops and conditionals</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./05functions.html" rel="" target="">
+    <a class="dropdown-item" href="./05functions.html">
  <span class="dropdown-text">Functions</span></a>
   </li>  
     </ul>
   </li>
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-working-with-data" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-working-with-data" role="link" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">Working with data</span>
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-working-with-data">    
         <li>
-    <a class="dropdown-item" href="./06loading_data.html" rel="" target="">
+    <a class="dropdown-item" href="./06loading_data.html">
  <span class="dropdown-text">Loading data</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./07data_wrangling.html" rel="" target="">
+    <a class="dropdown-item" href="./07data_wrangling.html">
  <span class="dropdown-text">Data wrangling</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./08join_restructure.html" rel="" target="">
+    <a class="dropdown-item" href="./08join_restructure.html">
  <span class="dropdown-text">Joining and restructuring data</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./09data_viz_1.html" rel="" target="">
+    <a class="dropdown-item" href="./09data_viz_1.html">
  <span class="dropdown-text">Vizualization vol 1</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./10data_viz_2.html" rel="" target="">
+    <a class="dropdown-item" href="./10data_viz_2.html">
  <span class="dropdown-text">Vizualization vol 2</span></a>
   </li>  
     </ul>
   </li>
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-analyzing-data" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-analyzing-data" role="link" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">Analyzing data</span>
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-analyzing-data">    
         <li>
-    <a class="dropdown-item" href="./12eda.html" rel="" target="">
+    <a class="dropdown-item" href="./12eda.html">
  <span class="dropdown-text">Exploratory analysis</span></a>
   </li>  
     </ul>
   </li>
 </ul>
-            <div class="quarto-navbar-tools ms-auto">
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
   <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
   <div class="quarto-reader-toggle-btn">
   <i class="bi"></i>
   </div>
 </a>
 </div>
-          </div> <!-- /navcollapse -->
       </div> <!-- /container-fluid -->
     </nav>
 </header>
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">On this page</h2>
    
   <ul>
   <li><a href="#what-is-statistical-control" id="toc-what-is-statistical-control" class="nav-link active" data-scroll-target="#what-is-statistical-control">What is statistical control?</a></li>
-  <li><a href="#to-control-or-not-to-control" id="toc-to-control-or-not-to-control" class="nav-link" data-scroll-target="#to-control-or-not-to-control">To control or not to control?</a></li>
+  <li><a href="#to-control-or-not-to-control" id="toc-to-control-or-not-to-control" class="nav-link" data-scroll-target="#to-control-or-not-to-control">To control or not to control?</a>
+  <ul class="collapse">
+  <li><a href="#fork" id="toc-fork" class="nav-link" data-scroll-target="#fork">Fork</a></li>
+  <li><a href="#mediator" id="toc-mediator" class="nav-link" data-scroll-target="#mediator">mediator</a></li>
+  <li><a href="#collider" id="toc-collider" class="nav-link" data-scroll-target="#collider">Collider</a></li>
+  <li><a href="#descendant" id="toc-descendant" class="nav-link" data-scroll-target="#descendant">Descendant</a></li>
+  </ul></li>
+  <li><a href="#interpreting-multiple-regression" id="toc-interpreting-multiple-regression" class="nav-link" data-scroll-target="#interpreting-multiple-regression">Interpreting multiple regression</a></li>
+  <li><a href="#so-what-do-i-do" id="toc-so-what-do-i-do" class="nav-link" data-scroll-target="#so-what-do-i-do">So what do I do?</a></li>
   </ul>
 </nav>
 </nav>
-<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
     </div>
@@ -189,7 +237,7 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<div class="quarto-title-meta">
+<div class="quarto-title-meta column-page-right">
 
     <div>
     <div class="quarto-title-meta-heading">Author</div>
@@ -203,25 +251,349 @@ ul.task-list li input[type="checkbox"] {
   </div>
   
 
+
 </header>
 
-<p>So far we have been working with only 1 independent variable at a time.</p>
+
+<p>So far we have been working with only 1 independent variable at a time. It’s time to move on to multiple predictors.</p>
 <section id="what-is-statistical-control" class="level2">
 <h2 class="anchored" data-anchor-id="what-is-statistical-control">What is statistical control?</h2>
-<ul>
-<li><p>What does it mean to control for a variable?</p></li>
-<li><p>How do we do it in R?</p></li>
-</ul>
+<p>When we include more than one predictor we often say that we are controlling for a number of variables in the model. This innocent-sounding term can actually sometimes cause quite a head ache to wrap your head around it. What does it mean to control for a variable?<br>
+One seemingly simple answer is that controlling means estimating the effect of one variable while holding the other variable constant. We’ll look at what exactly that means in this class. As a first approximation lets make a simple graphical interpretation of statistical control. We will denote <code>x</code> as the min independent variable, <code>u</code> as the control variable and <code>y</code> as the dependent variable.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+✔ dplyr     1.1.4     ✔ readr     2.1.5
+✔ forcats   1.0.0     ✔ stringr   1.5.1
+✔ ggplot2   3.5.1     ✔ tibble    3.2.1
+✔ lubridate 1.9.3     ✔ tidyr     1.3.1
+✔ purrr     1.0.2     
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>N <span class="ot">&lt;-</span> <span class="fl">1e3</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(N)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>u <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(N,<span class="dv">1</span>,.<span class="dv">5</span>)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(N, <span class="dv">4</span> <span class="sc">+</span> .<span class="dv">7</span><span class="sc">*</span>x <span class="sc">+</span> <span class="dv">1</span><span class="sc">*</span>u, <span class="fl">1.3</span>)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(x, u, y)</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>pred <span class="ot">&lt;-</span> <span class="fu">lm</span>(y <span class="sc">~</span> x <span class="sc">+</span> u, df) <span class="sc">|&gt;</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">predict</span>() <span class="co"># get predicted values from the model</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="co">#plot predictions and raw data </span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span> </span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> pred, <span class="at">color =</span> <span class="fu">factor</span>(u), <span class="at">group =</span> <span class="fu">factor</span>(u))) <span class="sc">+</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y, <span class="at">color =</span> <span class="fu">factor</span>(u)),<span class="at">alpha =</span> .<span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="18statistical_control_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>You can see the effects plotted. The lines show the effects of <code>x</code> on <code>y</code>. Each level of <code>u</code> has its own line. Notice that both lines have the same slope - regardless of the level of <code>u</code> the effect of <code>x</code> on <code>y</code> is the same. This is exactly what statistical control means in this case. The effect of <code>u</code> can be understood as the distance between both lines. Again notice that it is the same across the entire range of the lines. No matte what value of <code>x</code> we take the effect of <code>u</code> is the same. Likewise for the effect of <code>x</code>.</p>
+<p>We can try a similar thing with 2 continuous predictors but this is going to be more difficult to plot as we are still working in 2 dimensions. One trick we can use is to plot the effect of <code>x</code> on <code>y</code> for various levels of <code>u</code> (lets say quantiles).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>N <span class="ot">&lt;-</span> <span class="fl">1e3</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(N)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>u <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(N,<span class="dv">1</span> <span class="sc">+</span> .<span class="dv">3</span><span class="sc">*</span>x, <span class="dv">1</span>)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(N, <span class="dv">4</span> <span class="sc">+</span> .<span class="dv">7</span><span class="sc">*</span>x <span class="sc">+</span> <span class="dv">1</span><span class="sc">*</span>u, <span class="fl">1.3</span>)</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(x, u, y)</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>model_2<span class="ot">&lt;-</span> <span class="fu">lm</span>(y <span class="sc">~</span> x <span class="sc">+</span> u, df)  <span class="co"># get predicted values from the model</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>pred.data <span class="ot">=</span> <span class="fu">expand.grid</span>(<span class="at">x =</span> <span class="fu">seq</span>(<span class="fu">min</span>(df<span class="sc">$</span>x), <span class="fu">max</span>(df<span class="sc">$</span>x), <span class="at">length=</span><span class="dv">20</span>),</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>                        <span class="at">u =</span> <span class="fu">quantile</span>(df<span class="sc">$</span>y))</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>pred.data<span class="sc">$</span>y <span class="ot">=</span> <span class="fu">predict</span>(model_2, <span class="at">newdata=</span>pred.data)</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(pred.data, <span class="fu">aes</span>(x, y, <span class="at">colour=</span><span class="fu">factor</span>(u))) <span class="sc">+</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">colour=</span><span class="st">"U Quantiles"</span>) <span class="sc">+</span></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="18statistical_control_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>You can again see that the slope for <code>x</code> is the same at each quantile of <code>u</code>. This means that in our model for any value of <code>u</code> the effect of <code>x</code> on <code>y</code> is the same. If we reversed it we would see the same thing for <code>u</code>.</p>
 </section>
 <section id="to-control-or-not-to-control" class="level2">
 <h2 class="anchored" data-anchor-id="to-control-or-not-to-control">To control or not to control?</h2>
+<p>Why do we add control variables into the model? We can think about two basic reasons: to make better predictions or to adjust the effect of one variable to account for confounding. The first case is tied to prediction problems - adding additional information should make our predictions better right? The second case has a lot to do with the “correct model specification” assumption for linear models. If there is an important variable that should be included in the model but we did not do it then our effect is going to be biased. Such variables are called confounders. However they can take different forms depending on exactly how the relations between variables look like. A really good paper on this topic is <a href="https://compass.onlinelibrary.wiley.com/doi/10.1111/spc3.12948">here</a>.</p>
+<p>I think one of the clearest ways to see how different confounders affect the model is to simulate them. This way we know exactly what the correct answers are and how including the confounder affects the model. The basic types of confounds are: fork, mediator, collider and descendant. In each of the simulated situations below we will work with 3 variables <code>x</code> is our independent variable, <code>y</code> is our dependent variable and <code>u</code> is the confounder.</p>
+<section id="fork" class="level3">
+<h3 class="anchored" data-anchor-id="fork">Fork</h3>
+<p>A fork is a variable that affects both <code>x</code> and <code>y</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>N <span class="ot">&lt;-</span> <span class="fl">1e4</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>u <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(N, <span class="dv">5</span>, <span class="fl">1.3</span>)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(N, <span class="dv">3</span> <span class="sc">+</span> .<span class="dv">5</span><span class="sc">*</span>u, <span class="dv">1</span>)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(N, <span class="dv">2</span> <span class="sc">+</span> .<span class="dv">4</span><span class="sc">*</span>x <span class="sc">+</span> .<span class="dv">3</span><span class="sc">*</span>u, <span class="fl">1.3</span>)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="fu">lm</span>(y <span class="sc">~</span> x) <span class="sc">|&gt;</span> <span class="fu">summary</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = y ~ x)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-4.8660 -0.9080 -0.0023  0.8762  4.9912 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)  2.56682    0.06355   40.39   &lt;2e-16 ***
+x            0.57103    0.01129   50.56   &lt;2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 1.352 on 9998 degrees of freedom
+Multiple R-squared:  0.2036,    Adjusted R-squared:  0.2036 
+F-statistic:  2557 on 1 and 9998 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lm</span>(y <span class="sc">~</span> x <span class="sc">+</span> u) <span class="sc">|&gt;</span> <span class="fu">summary</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = y ~ x + u)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-5.0928 -0.8848 -0.0052  0.8596  4.8787 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)  2.04951    0.06497   31.54   &lt;2e-16 ***
+x            0.39143    0.01308   29.94   &lt;2e-16 ***
+u            0.30063    0.01195   25.15   &lt;2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 1.311 on 9997 degrees of freedom
+Multiple R-squared:  0.251, Adjusted R-squared:  0.2509 
+F-statistic:  1675 on 2 and 9997 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+</div>
+<p>You can see that not including <code>u</code> in the model gives us the wrong answer. This is the confounding that people most commonly have in mind when they are controlling for things in their models.</p>
+</section>
+<section id="mediator" class="level3">
+<h3 class="anchored" data-anchor-id="mediator">mediator</h3>
+<p>A mediator is a variable that is affected by <code>x</code> and affects <code>y</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(N, <span class="dv">3</span> , <span class="dv">1</span>)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>u <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(N, <span class="dv">5</span> <span class="sc">+</span> .<span class="dv">5</span><span class="sc">*</span>x, <span class="fl">1.3</span>)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(N, <span class="dv">2</span> <span class="sc">+</span> .<span class="dv">4</span><span class="sc">*</span>x <span class="sc">+</span> .<span class="dv">3</span><span class="sc">*</span>u, <span class="fl">1.3</span>)</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="fu">lm</span>(y <span class="sc">~</span> x) <span class="sc">|&gt;</span> <span class="fu">summary</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = y ~ x)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-5.4962 -0.9201  0.0129  0.9275  5.4487 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)  3.46045    0.04313   80.22   &lt;2e-16 ***
+x            0.55864    0.01359   41.10   &lt;2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 1.367 on 9998 degrees of freedom
+Multiple R-squared:  0.1446,    Adjusted R-squared:  0.1445 
+F-statistic:  1690 on 1 and 9998 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lm</span>(y <span class="sc">~</span> x <span class="sc">+</span> u) <span class="sc">|&gt;</span> <span class="fu">summary</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = y ~ x + u)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-4.9803 -0.8843 -0.0017  0.9004  5.1770 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept) 1.911302   0.064254   29.75   &lt;2e-16 ***
+x           0.399900   0.013918   28.73   &lt;2e-16 ***
+u           0.312903   0.009967   31.39   &lt;2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 1.304 on 9997 degrees of freedom
+Multiple R-squared:  0.2213,    Adjusted R-squared:  0.2212 
+F-statistic:  1421 on 2 and 9997 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+</div>
+<p>Again including a mediator gives us the wrong answer!</p>
+<p>Given how popular mediation analysis is in psychology you might be a bit worried about this result and rightly so! <a href="https://journals.sagepub.com/doi/full/10.1177/25152459221095827">Here’s a great paper that goes into this topic in details</a>.</p>
+<p>This issue also pops up in what is called the port-treatment bias. Basically it boils down to controlling for variables that are downstream of your treatment (be it in experiment or in an observational study). For example if you ran a randomized experiment and measured a bunch of things should you control for something measured after the experimental manipulation? If you are interested in the effect of the experiment then the anwser is no. There are even much more subtle ways in which post treatment bias can creep in - e.g.&nbsp;excluding participants who failed an attention check after the manipulation is effectively introducing post treatment bias. After all you are holding constant the value of a variable “passed attention check”. You can read about it <a href="https://bpb-us-e1.wpmucdn.com/sites.dartmouth.edu/dist/5/2293/files/2021/03/post-treatment-bias.pdf">here</a>.</p>
+</section>
+<section id="collider" class="level3">
+<h3 class="anchored" data-anchor-id="collider">Collider</h3>
+<p>A collider is a variable that is affected by both <code>x</code> and <code>y</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(N, <span class="dv">3</span> , <span class="dv">1</span>)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(N, <span class="dv">2</span> <span class="sc">+</span> .<span class="dv">4</span><span class="sc">*</span>x , <span class="fl">1.3</span>)</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>u <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(N, <span class="dv">5</span> <span class="sc">+</span> .<span class="dv">5</span><span class="sc">*</span>x <span class="sc">+</span> .<span class="dv">3</span><span class="sc">*</span>y, <span class="fl">1.3</span>)</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="fu">lm</span>(y <span class="sc">~</span> x) <span class="sc">|&gt;</span> <span class="fu">summary</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = y ~ x)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-4.7080 -0.8593  0.0094  0.8710  5.6003 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)  2.00076    0.04071   49.15   &lt;2e-16 ***
+x            0.39720    0.01281   31.00   &lt;2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 1.292 on 9998 degrees of freedom
+Multiple R-squared:  0.08771,   Adjusted R-squared:  0.08762 
+F-statistic: 961.2 on 1 and 9998 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lm</span>(y <span class="sc">~</span> x <span class="sc">+</span> u) <span class="sc">|&gt;</span> <span class="fu">summary</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = y ~ x + u)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-4.9042 -0.8362  0.0083  0.8412  5.1951 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept) 0.449546   0.064122   7.011 2.52e-12 ***
+x           0.221474   0.013547  16.349  &lt; 2e-16 ***
+u           0.279170   0.009168  30.450  &lt; 2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 1.236 on 9997 degrees of freedom
+Multiple R-squared:  0.1651,    Adjusted R-squared:  0.165 
+F-statistic: 988.8 on 2 and 9997 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+</div>
+<p>This one is particularly bad because here including <code>u</code> gives us the wrong answer! It is worth spending a little more time on colliders because they are particularly insidious and can creep in where you expect them the least.</p>
 <ul>
-<li><p>What are confounders</p></li>
-<li><p>Basic types of confounds: fork, mediator, collider, descendant. A really good paper on this topic is <a href="https://journals.sagepub.com/doi/full/10.1177/25152459221095823">here</a>.</p></li>
-<li><p>When should you control?</p></li>
-<li><p>Interpreting coefficients from covariates - should you?<br>
-For example you might be tempted to interpret the effect of gender which was included in a model as a covariate. But ask yourself - is it the total or direct effect?</p></li>
+<li><p><strong>disucss selection bias as a case of collider bias?</strong></p>
+<p>Collider bias ca</p></li>
 </ul>
+</section>
+<section id="descendant" class="level3">
+<h3 class="anchored" data-anchor-id="descendant">Descendant</h3>
+<p>A descendant is a variable that is affected by the confounder. We will denote the descendant as <code>z</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>u <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(N, <span class="dv">5</span>, <span class="fl">1.3</span>)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>z <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(N, <span class="dv">1</span> <span class="sc">+</span> .<span class="dv">8</span><span class="sc">*</span>u, .<span class="dv">5</span>)</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(N, <span class="dv">3</span> <span class="sc">+</span> .<span class="dv">5</span><span class="sc">*</span>u, <span class="dv">1</span>)</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(N, <span class="dv">2</span> <span class="sc">+</span> .<span class="dv">4</span><span class="sc">*</span>x <span class="sc">+</span> .<span class="dv">3</span><span class="sc">*</span>u, <span class="fl">1.3</span>)</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="fu">lm</span>(y <span class="sc">~</span> x) <span class="sc">|&gt;</span> <span class="fu">summary</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = y ~ x)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-5.2007 -0.8910  0.0178  0.9208  4.7636 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)  2.52241    0.06182   40.80   &lt;2e-16 ***
+x            0.57499    0.01100   52.26   &lt;2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 1.327 on 9998 degrees of freedom
+Multiple R-squared:  0.2146,    Adjusted R-squared:  0.2145 
+F-statistic:  2731 on 1 and 9998 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lm</span>(y <span class="sc">~</span> x <span class="sc">+</span> z) <span class="sc">|&gt;</span> <span class="fu">summary</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = y ~ x + z)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-5.0817 -0.8706  0.0063  0.8865  4.9189 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)  1.83829    0.06824   26.94   &lt;2e-16 ***
+x            0.44531    0.01232   36.15   &lt;2e-16 ***
+z            0.27911    0.01293   21.59   &lt;2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 1.297 on 9997 degrees of freedom
+Multiple R-squared:  0.2496,    Adjusted R-squared:  0.2494 
+F-statistic:  1662 on 2 and 9997 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lm</span>(y <span class="sc">~</span> x <span class="sc">+</span> u) <span class="sc">|&gt;</span> <span class="fu">summary</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = y ~ x + u)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-4.6480 -0.8709  0.0071  0.8801  5.0006 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)  1.99499    0.06360   31.37   &lt;2e-16 ***
+x            0.40123    0.01274   31.49   &lt;2e-16 ***
+u            0.29634    0.01187   24.97   &lt;2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 1.287 on 9997 degrees of freedom
+Multiple R-squared:  0.2607,    Adjusted R-squared:  0.2605 
+F-statistic:  1762 on 2 and 9997 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+</div>
+<p>The anwser when controlling for the descendant is not perfect but it is much better than including just <code>x</code>. One way to think about it is that in some analyses it can serve as a proxy variable if the actual confound is difficult to measure.</p>
+</section>
+</section>
+<section id="interpreting-multiple-regression" class="level2">
+<h2 class="anchored" data-anchor-id="interpreting-multiple-regression">Interpreting multiple regression</h2>
+<p>Lets say we have already ran a model with multiple predictors in it. How should we interpret the results? I have already told you that in such a case the effect of your main variable should be understood as “the effect of x while holding all other covariates constant”. How should we understand this in practice though? You should be aware that introducing a covariate changes the interpretation of the coefficient for the main variable of interest. This is especially stark in some situations where the variables you put in the model are conceptually linked to each other. Here’s an example I’ve seen somewhere (unfortunately can’t find where to give you a link).<br>
+Imagine you are predicting household income using family size and number of adults in the household. In such a model what does it mean to have an effect of family size while holding number of adults constant? Well, it’s the number of kids in the house! So including number of adults into the model completely changes the meaning of the family size variable. What then is the effect of number of adults while holding family size constant? This one then is pretty weird and much harder to interpret. Maybe it’s the effect of a kid becoming an adult?</p>
+<p>Here’s another example from psychology: imagine you are predicting voting intentions using a set of</p>
+<p><strong>describe this example</strong></p>
+<p>This shows that throwing additional variables into the model can not only estimate wrong effects but render them pretty much uninterpetable.</p>
+<p>Apart from changes in interpretation of the effect of the main variable you might be interested in interpretation of the effects of the covariates themselves. Imagine a model in which you predict verbal aggression with Social Dominance Orientation (a social darwinist worldview that the world is inherently hierarchical and groups fight each other for status and resources). You think that both of these are different between men and women so you control for gender in the model. What does the effect of gender mean here? You might be tempted to interpret it just as “the difference between men and women in verbal aggression while holding SDO constant”. But what does that really mean? Remember that we think that both SDO and verbal aggression are affected by gender and that SDO affects verbal aggression. This means that when we shift focus from SDO to gender SDO becomes a mediator! So the effect we get from our regression is the direct effect of gender and not the total effect. Casually interpreting the effects of covariates from a model is often called <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3626058/">Table 2 fallacy</a>. Always think carefully what a given effect represents because it is rarely obvious and simple. <a href="https://journals.sagepub.com/doi/full/10.1177/25152459221095823">Here’s another great paper on this topic</a>.</p>
+</section>
+<section id="so-what-do-i-do" class="level2">
+<h2 class="anchored" data-anchor-id="so-what-do-i-do">So what do I do?</h2>
+<p>From all of the above you might get the impression that working in the multivariate world is dangerous and you are pretty much destined to fall into one of the many traps of statistical control. There is indeed a lot of things that can go wrong very easily. So what should you do? The answer is always: think! Think carefully. This way you can at least prepare for potential problems and avoid misinterpretation. A humble and right result is infinitely better than a bombastic and wrong one. The software will (almost) always spit out some result. It is up to you to decide what it means and whether it makes any sense at all. You have to be able to say what the model can and what it can’t tell you. Being able to critique models (not in the sense of saying how they are wrong but carefully studying their limitations) is a skill that takes time to develop but with practice you can get really good at it and it will profit in the future.</p>
 
 
 </section>
@@ -262,18 +634,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -305,11 +666,50 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
-  function tippyHover(el, contentFn) {
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/mic-wypych\.github\.io\/psychr\/");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -319,8 +719,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -332,7 +741,130 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
     });
   }
       let selectedAnnoteEl;
@@ -376,6 +908,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
+            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -401,6 +934,32 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -461,6 +1020,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script>
 </div> <!-- /content -->
+
 
 
 

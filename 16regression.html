@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.450">
+<meta name="generator" content="quarto-1.5.57">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>r_website - Regression</title>
+<title>Regression – r_website</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -22,7 +22,7 @@ ul.task-list li input[type="checkbox"] {
 }
 /* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -33,7 +33,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -79,7 +79,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   "collapse-after": 3,
   "panel-placement": "end",
   "type": "textbox",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -88,14 +93,42 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
 }</script>
 
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -103,104 +136,104 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg navbar-dark ">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container">
+      <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="./index.html">
     <span class="navbar-title">r_website</span>
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./index.html" rel="" target="">
- <span class="menu-text">Home</span></a>
+    <a class="nav-link" href="./index.html"> 
+<span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-basics" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-basics" role="link" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">Basics</span>
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-basics">    
         <li>
-    <a class="dropdown-item" href="./01r_intro.html" rel="" target="">
+    <a class="dropdown-item" href="./01r_intro.html">
  <span class="dropdown-text">Introduction</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./02basic_data.html" rel="" target="">
+    <a class="dropdown-item" href="./02basic_data.html">
  <span class="dropdown-text">Basic objects</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./03data_types.html" rel="" target="">
+    <a class="dropdown-item" href="./03data_types.html">
  <span class="dropdown-text">Data types</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./04loops_conditionals.html" rel="" target="">
+    <a class="dropdown-item" href="./04loops_conditionals.html">
  <span class="dropdown-text">Loops and conditionals</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./05functions.html" rel="" target="">
+    <a class="dropdown-item" href="./05functions.html">
  <span class="dropdown-text">Functions</span></a>
   </li>  
     </ul>
   </li>
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-working-with-data" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-working-with-data" role="link" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">Working with data</span>
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-working-with-data">    
         <li>
-    <a class="dropdown-item" href="./06loading_data.html" rel="" target="">
+    <a class="dropdown-item" href="./06loading_data.html">
  <span class="dropdown-text">Loading data</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./07data_wrangling.html" rel="" target="">
+    <a class="dropdown-item" href="./07data_wrangling.html">
  <span class="dropdown-text">Data wrangling</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./08join_restructure.html" rel="" target="">
+    <a class="dropdown-item" href="./08join_restructure.html">
  <span class="dropdown-text">Joining and restructuring data</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./09data_viz_1.html" rel="" target="">
+    <a class="dropdown-item" href="./09data_viz_1.html">
  <span class="dropdown-text">Vizualization vol 1</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./10data_viz_2.html" rel="" target="">
+    <a class="dropdown-item" href="./10data_viz_2.html">
  <span class="dropdown-text">Vizualization vol 2</span></a>
   </li>  
     </ul>
   </li>
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-analyzing-data" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-analyzing-data" role="link" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">Analyzing data</span>
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-analyzing-data">    
         <li>
-    <a class="dropdown-item" href="./12eda.html" rel="" target="">
+    <a class="dropdown-item" href="./12eda.html">
  <span class="dropdown-text">Exploratory analysis</span></a>
   </li>  
     </ul>
   </li>
 </ul>
-            <div class="quarto-navbar-tools ms-auto">
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
   <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
   <div class="quarto-reader-toggle-btn">
   <i class="bi"></i>
   </div>
 </a>
 </div>
-          </div> <!-- /navcollapse -->
       </div> <!-- /container-fluid -->
     </nav>
 </header>
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">On this page</h2>
    
@@ -209,13 +242,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul class="collapse">
   <li><a href="#prediction-and-inference" id="toc-prediction-and-inference" class="nav-link" data-scroll-target="#prediction-and-inference">Prediction and inference</a></li>
   <li><a href="#regression-engine" id="toc-regression-engine" class="nav-link" data-scroll-target="#regression-engine">Regression engine</a></li>
-  <li><a href="#making-a-simple-regression" id="toc-making-a-simple-regression" class="nav-link" data-scroll-target="#making-a-simple-regression">Making a simple regression</a></li>
+  <li><a href="#making-a-simple-regression" id="toc-making-a-simple-regression" class="nav-link" data-scroll-target="#making-a-simple-regression">Making a simple regression</a>
+  <ul class="collapse">
+  <li><a href="#a-note-on-assumptions" id="toc-a-note-on-assumptions" class="nav-link" data-scroll-target="#a-note-on-assumptions">A note on assumptions</a></li>
+  </ul></li>
   <li><a href="#categorical-predictors" id="toc-categorical-predictors" class="nav-link" data-scroll-target="#categorical-predictors">Categorical predictors</a></li>
   </ul></li>
   </ul>
 </nav>
 </nav>
-<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
     </div>
@@ -229,7 +265,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-<div class="quarto-title-meta">
+<div class="quarto-title-meta column-page-right">
 
     
   
@@ -237,46 +273,58 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </div>
   
 
+
 </header>
+
 
 <section id="regression-analysis" class="level1">
 <h1>Regression analysis</h1>
-<p>What type of problems are we talking about?</p>
-<p>-What is a regression analysis?</p>
+<p>We will finally move to actually running statistical models with general linear models. We’ll see that a simple t-test and between-subjects anova are just linear models.</p>
 <section id="prediction-and-inference" class="level2">
 <h2 class="anchored" data-anchor-id="prediction-and-inference">Prediction and inference</h2>
-<p>Regression analysis is often described in two ways. One of them talks about how to predict a value of variable of interest given a set of other variables. The other context focuses on inference: which variables are in fact related to a variable of interest.</p>
-<p>Housing market example: imagine you work in a real estate agency selling houses. You track information on a number of characteristics of each house: their price, size, number of rooms, distance from city center and various facilities etc. You might be interested in predicting the price of a house as accurately as possible given all the characteristics of a house. You might also be interested in how various characteristics of a house relate to its price so as to know what to focus on.</p>
+<p>Regression analysis is often described in two ways. One of them talks about how to predict a value of variable of interest given a set of other variables. The other context focuses on inference: which variables are in fact related to a variable of interest. When doing inference you are interested in learning how the data was generated as a function of your variables of interest. In prediction you just want to be as accurate as possible. This is of course a bit simplistic and as you’ll see looking at predicitons can be very useful for actual inference but this explanation will do for now.</p>
+<p>As an example imagine you work in a real estate agency selling houses. You track information on a number of characteristics of each house: their price, size, number of rooms, distance from city center and various facilities etc. You might be interested in predicting the price of a house as accurately as possible given all the characteristics of a house. You might also be interested in how various characteristics of a house relate to its price so as to know what to focus on (e.g.&nbsp;what to invest in).</p>
 </section>
 <section id="regression-engine" class="level2">
 <h2 class="anchored" data-anchor-id="regression-engine">Regression engine</h2>
-<p>The very idea of making a regression analysis is to reexpress the relations between variables so as to be able to express one of them as a combination of the other ones.</p>
-<p>Making a guess:</p>
-<p>So, we know we need to optimize our prediction - we want to make the best guess possible. But what does it mean ‘the best guess possible’? We need some rule on what it would mean to make a best guess. Since we are predicting a continuous variable we can calculate how much we miss for every prediction (subtract the actual value from the predicted value) and then choose the one that has the smallest error. This is already a start but we can miss in two ways: we can predict too little or too much. The first one is going to produce a negative error and the other one a positive one. Negative numbers are smaller than positive ones so our rule so far will always favor predicting too little! Fortunately there is a very easy way to deal with this - we can square the errors (there are reasons why squaring is preferred to taking absolute values but they are beyond the scope of this course). Now, we can sum all the squared errors for each observation in our dataset. The prediction that gets the smallest sum of squared errors wins! This is pretty much how the Ordinary Least Squares (OLS) regression works.</p>
+<p>The very idea of making a regression analysis is to reexpress the relations between variables so as to be able to express one of them as a combination of the other ones. How can we do that? We want a way that will approximate our variable of interest so that each time we are to say what value this variable will have we will make the best guess possible. But what does it mean ‘the best guess possible’? We need some rule on what it would mean to make a best guess. Since we are predicting a continuous variable we can calculate how much we miss for every prediction (subtract the actual value from the predicted value) and then choose the one that has the smallest error. This is already a start but we can miss in two ways: we can predict too little or too much. The first one is going to produce a negative error and the other one a positive one. Negative numbers are smaller than positive ones so our rule so far will always favor predicting too little! Fortunately there is a very easy way to deal with this - we can square the errors (there are reasons why squaring is preferred to taking absolute values but they are beyond the scope of this course). Now, we can sum all the squared errors for each observation in our dataset. The prediction that gets the smallest sum of squared errors wins! This is pretty much how the Ordinary Least Squares (OLS) regression works.</p>
 <p>Lets start with the simplest example possible. Lets say we have no other information except our variable that we want to predict. Which value will minimize the sum of squared errors? There’s actually a fancy formula for this because OLS regression has a closed form but perhaps a better way to learn this is to actually make a bunch of guesses and see what happens. This is what simulation is perfect for.</p>
 <p>Lets first simulate a bunch of observations from a normal distribution: our dependent variable. We will keep mean = 0 and standard deviation = 1.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">1000</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+✔ dplyr     1.1.4     ✔ readr     2.1.5
+✔ forcats   1.0.0     ✔ stringr   1.5.1
+✔ ggplot2   3.5.1     ✔ tibble    3.2.1
+✔ lubridate 1.9.3     ✔ tidyr     1.3.1
+✔ purrr     1.0.2     
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
 </div>
-<p>Next, we’ll make a bunch of guesses and see how each of them performs (what is their sum of squared errors)</p>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">1000</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Next, we’ll make a bunch of guesses in the range from -1 to 1 and see how each of them performs (what is their sum of squared errors).</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>sse <span class="ot">&lt;-</span> <span class="fu">c</span>() <span class="co">#initialize vector to store sum of squared errors</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>pred <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">1</span>,<span class="dv">1</span>,<span class="at">length.out =</span> <span class="dv">10</span>) <span class="co">#we'll make 10 guesses from -1 to 1, equally spaced</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> pred) {</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  res <span class="ot">&lt;-</span> <span class="fu">sum</span>((i <span class="sc">-</span> y)<span class="sc">^</span><span class="dv">2</span>) <span class="co"># for each guess calculate sum of squared errors</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  sse <span class="ot">&lt;-</span> <span class="fu">c</span>(sse, res) <span class="co">#append the sum to the vector</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>pred_sse <span class="ot">&lt;-</span><span class="fu">data.frame</span>(pred,sse) <span class="co">#put these </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>sse <span class="ot">&lt;-</span> <span class="fu">c</span>() <span class="co">#initialize vector to store sum of squared errors</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>pred <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">1</span>,<span class="dv">1</span>,<span class="at">length.out =</span> <span class="dv">10</span>) <span class="co">#we'll make 10 guesses from -1 to 1, equally spaced</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> pred) {</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  res <span class="ot">&lt;-</span> <span class="fu">sum</span>((i <span class="sc">-</span> y)<span class="sc">^</span><span class="dv">2</span>) <span class="co"># for each guess calculate sum of squared errors</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  sse <span class="ot">&lt;-</span> <span class="fu">c</span>(sse, res) <span class="co">#append the sum to the vector</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>pred_sse <span class="ot">&lt;-</span><span class="fu">data.frame</span>(pred,sse) <span class="co">#put these </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>You can go ahead and inspect the <code>sse</code> and <code>pred</code>. Can you see for which guess we get the smallest error? You can also look at the animation below:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/sse_example.gif" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">predictions and sums of squared errors</figcaption>
+<figcaption>predictions and sums of squared errors</figcaption>
 </figure>
 </div>
-<p>You can see that the points fall on a really nice parabola. For a guess of mean - 1 standard deviation we get a really big sum of squared errors, they gradually get smaller and smaller and then start to get bigger up to mean + 1 standard deviation. The lowest point of the parabola is at the mean and that is in fact our best guess. When making regression analysis we will be working with means all the time. We’ll just be adding more information to the model (e.g.&nbsp;if we add belonging to experimental vs control group into the model, then our best guess will be the mean in each of those groups and we get a two sample t-test).</p>
-<p>A more general way which we can use to think about linear models is that we are modelling Y as following a normal distribution with mean <span class="math inline">\(\mu\)</span> and variance <span class="math inline">\(\sigma\)</span>. The mean is then determined by the variables we put into the model. If we don’t add anything <span class="math inline">\(\mu\)</span> is going to be the actual mean in our sample. If we start adding variables into the model then <span class="math inline">\(\mu_i\)</span> will be determined by them (that’s why we have the i).</p>
+<p>You can see that the points fall on a really nice parabola. For a guess of mean - 1 standard deviation we get a really big sum of squared errors, they gradually get smaller and smaller and then start to get bigger up to mean + 1 standard deviation. The lowest point of the parabola is at the mean and that is in fact our best guess. When making regression analysis we will be working with means all the time. We’ll just be adding more information to the model (e.g.&nbsp;if we add belonging to experimental vs control group into the model, then our best guess will be the mean in each of those groups and we get a two sample t-test). Linear models are all about conditional means i.e.&nbsp;means of one variable given a value of another variable.</p>
+<p>A more general way which we can use to think about linear models is that we are modelling Y as following a normal distribution with mean <span class="math inline">\(\mu\)</span> and variance <span class="math inline">\(\sigma\)</span>. The mean is then determined by the variables we put into the model (those are the conditional means from above). If we don’t add anything <span class="math inline">\(\mu\)</span> is going to be the actual mean in our sample. If we start adding variables into the model then <span class="math inline">\(\mu_i\)</span> will be determined by them (that’s why we have the i).</p>
 <p><span class="math display">\[
 Y_i \sim Normal(\mu_i, \sigma)
 \]</span></p>
@@ -287,12 +335,83 @@ Y_i \sim Normal(\mu_i, \sigma)
 </section>
 <section id="making-a-simple-regression" class="level2">
 <h2 class="anchored" data-anchor-id="making-a-simple-regression">Making a simple regression</h2>
-<p>Now it’s time to introduce some data we can work on.</p>
-<ul>
-<li>which dataset?</li>
-</ul>
+<p>Before we move on to running our first model we have to understand one more thing - formulas in R. They allow us to write models in a very succint form. A formula generally takes the form of <code>y ~ x1 + x2 + ...</code>. On the left hand side is always the dependent variable and on the right hand side you put all of your predictors.</p>
+<p>We’ll start with a simple simulated example to get an intuition on what exactly a simple linear model does. We will simulate some data, run a model and then plot the predictions against the data.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>N <span class="ot">&lt;-</span> <span class="fl">1e4</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>x1 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(N)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(N, <span class="dv">2</span> <span class="sc">+</span> .<span class="dv">5</span><span class="sc">*</span>x1)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>df1 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(x1, y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Lets run a simple linear model:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>lm_sim <span class="ot">&lt;-</span> <span class="fu">lm</span>(y <span class="sc">~</span> x1, df1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Ok, now we can get to the plotting. What we will do is:</p>
+<ol type="1">
+<li>Plot the original data</li>
+<li>Plot the regression line</li>
+<li>Plot the conditional distributions implied by the model.</li>
+</ol>
+<p>You can inspect the code if you want but it’s not that important right now</p>
+<div class="cell" data-layout-align="center">
+<details class="code-fold">
+<summary>simulating data implied by the model</summary>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>x1 <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="fu">min</span>(df1<span class="sc">$</span>x1), <span class="fu">max</span>(df1<span class="sc">$</span>x1), <span class="at">length.out =</span> <span class="dv">10</span>)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co">#set up a data frame to store simulated values</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>df_sim <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x1 =</span> <span class="fu">numeric</span>(), <span class="at">sim =</span> <span class="fu">numeric</span>())</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="co">#run loop for simulation</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> x1) {</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>  <span class="co">#simulate y for given x1</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>  sim <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="fl">1e5</span>, <span class="at">mean =</span> lm_sim<span class="sc">$</span>coefficients[[<span class="dv">1</span>]] <span class="sc">+</span> lm_sim<span class="sc">$</span>coefficients[[<span class="dv">2</span>]]<span class="sc">*</span>i, <span class="at">sd =</span> <span class="dv">1</span>)</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>  <span class="co">#store x1 for given simulations</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>  x1_1 <span class="ot">&lt;-</span> <span class="fu">rep</span>(i, <span class="fl">1e5</span>)</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>  <span class="co">#store sim and x1 in temp</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>  temp <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x1 =</span> x1_1, <span class="at">sim =</span> sim)</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>  <span class="co">#append simulated data to results data frame</span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>  df_sim <span class="ot">&lt;-</span> <span class="fu">rbind</span>(df_sim, temp)</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a><span class="co">#' the above is based on simulating data from the distribution</span></span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>df_rib <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x1 =</span> <span class="fu">numeric</span>(), <span class="at">lb =</span> <span class="fu">numeric</span>(), <span class="at">hb =</span> <span class="fu">numeric</span>())</span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> x1) {</span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>  q <span class="ot">&lt;-</span> <span class="fu">qnorm</span>(<span class="fu">c</span>(.<span class="dv">025</span>, .<span class="dv">975</span>), <span class="at">mean =</span> lm_sim<span class="sc">$</span>coefficients[[<span class="dv">1</span>]] <span class="sc">+</span> lm_sim<span class="sc">$</span>coefficients[[<span class="dv">2</span>]]<span class="sc">*</span>i, <span class="at">sd =</span> <span class="dv">1</span>)</span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>  temp <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x1 =</span> i, <span class="at">lb =</span> q[<span class="dv">1</span>], <span class="at">hb =</span> q[<span class="dv">2</span>])</span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>  df_rib <span class="ot">&lt;-</span> <span class="fu">rbind</span>(df_rib, temp)</span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a>df_sim <span class="sc">%&gt;%</span></span>
+<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> x1, <span class="at">y =</span> sim)) <span class="sc">+</span></span>
+<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> df1, <span class="fu">aes</span>(<span class="at">x =</span> x1, <span class="at">y =</span> y), <span class="at">alpha =</span> .<span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_ribbon</span>(<span class="at">data =</span> df_rib, <span class="fu">aes</span>(<span class="at">x =</span> x1, <span class="at">ymin =</span> lb, <span class="at">ymax =</span> hb, <span class="at">y =</span> hb), <span class="at">alpha =</span> .<span class="dv">2</span>, <span class="at">fill =</span> <span class="st">"steelblue"</span>) <span class="sc">+</span></span>
+<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a>  ggdist<span class="sc">::</span><span class="fu">stat_halfeye</span>(<span class="at">alpha =</span> .<span class="dv">8</span>, <span class="at">fill =</span> <span class="st">"navyblue"</span>) <span class="sc">+</span></span>
+<span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">data =</span> df1, <span class="fu">aes</span>(<span class="at">x =</span> x1, <span class="at">y =</span> y), <span class="at">alpha =</span> .<span class="dv">4</span>, <span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">color =</span> <span class="st">"firebrick4"</span>, <span class="at">fill =</span> <span class="st">"firebrick4"</span>) <span class="sc">+</span></span>
+<span id="cb7-35"><a href="#cb7-35" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Conditional distribution for linear regression"</span>,</span>
+<span id="cb7-36"><a href="#cb7-36" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">"The plot shows raw data and simualted data from regressing y on x1.</span><span class="sc">\n</span><span class="st">Red line is line of best fit, gray area is 95% prediction interval"</span>,</span>
+<span id="cb7-37"><a href="#cb7-37" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"y"</span>) <span class="sc">+</span></span>
+<span id="cb7-38"><a href="#cb7-38" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
+</div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="16regression_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The plot above is quite packed with information so lets unpack it. First, we have the datapoints plotted as a scatterplot. Next we have the red line which indicates the regression line or in other words the conditional means of <code>y</code> given <code>x1</code>. The we have the distributions which are data simulated from the model for 10 values of <code>x1</code>. Each distribution is what we would expect y to look like given a value of <code>x1</code> based on our model. Notice that the mean of each distribution (the black dot) passes exactly through the red line. Next notice that each distribution has the same shape (pretty much a normal distribution - that is the normal distribution assumption) and more or less the same width (that is the homoscedacticity assumption. The light blue area indicates where we would expect 95% of the <code>y</code> to fall in for any given value of <code>x1</code>.</p>
+<p>Now it’s time to introduce some data we can work on. We will be working with a dataset that stores information about</p>
+<p>We can start with the null model - a model that has no predictors, just the intercept in it. As we already know this intercept will in fact be the sample mean. Intercept can be coded with 1:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>null_model <span class="ot">&lt;-</span> <span class="fu">lm</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Lets add the first predictor to our model. The model will then look like this</p>
 <p><span class="math display">\[
@@ -302,15 +421,32 @@ Y_i \sim Normal(\mu_i, \sigma)
 \mu_i =\alpha + \beta_1 * x_1
 \]</span></p>
 <p>Running a regression in R is actually super simple. You can use the <code>lm()</code> function to do it.</p>
-<p>-how to look at the results</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>simple_fit <span class="ot">&lt;-</span> <span class="fu">lm</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Now that we have our model lets proceed to interpret it. You can use the <code>summary()</code> function for that:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(simple_fit)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Lets look at the null model as well:</p>
+<ul>
+<li>compare to the null model, explain R squared</li>
+<li>Important note: lm() silently drops missing values!</li>
+</ul>
+<section id="a-note-on-assumptions" class="level3">
+<h3 class="anchored" data-anchor-id="a-note-on-assumptions">A note on assumptions</h3>
+<p>A lot of psych statistic courses has an obsession with assumptions for statistical tests. You may have heard such terms as normality, independence or homoscedacticity. They sound very scary and often intimidate students into running all sorts of tests to check for those assumptions and state things like “oh no that test for normality was violated I cannot use a parametric test!”. Truth is you always make assumptions of some sorts (even of the sorts like “my measurement tools actually worked”) and there is no running away from them. Rather than blindly checking assumptions it is much better to actually understand how they impact your model - what is affected if one of the assumptions gets violated and can we do something to deal with it? <a href="https://blog.msbstats.info/posts/2018-08-30-linear-regression-assumptions/">Here is a great post on precisely this topic</a>.</p>
+</section>
 </section>
 <section id="categorical-predictors" class="level2">
 <h2 class="anchored" data-anchor-id="categorical-predictors">Categorical predictors</h2>
-<ul>
-<li><p>What are categorical predictors</p></li>
-<li><p>How R codes categorical predictors</p></li>
-<li><p>t-tests, one-way anovas and regressions - it’s all the same!</p></li>
-</ul>
+<p>Simple OLS regression is actually quite flexible in what kinds of predictors it can use. You can easily include various categorical predictors into your linear model. The trick is to code them properly.</p>
+<p>Remember that the regression coefficient from a linear model tells us what is the predicted difference in Y for 1 unit increase in x? We can use that to code categorical predictors. For those variables that have only 2 levels (e.g.&nbsp;control and experimental condition) you code one as 0 (this level is called the reference category) and the other as 1. Then a 1 unit increase in x is simply the shift from the category coded as 0 to the category coded as 1. Lets look at an example:</p>
+<p>In case you were wondering, yes we just did a simple t test. We can compare the results to the output of <code>t.test()</code> function:</p>
+<p>So far we had only 2 levels of our categorical predictor. However, often you have to work with variables that have multiple levels. In such case you can no longer code one level as 0 and the other as 1. There are a few ways in which you can deal with this. We’ll look at two: dummy coding and effect coding.</p>
+<p>Dummy coding extends the logic of coding categorical variables as 0 and 1. We still have one level as reference category coded as 0. Other levels are coded as 1 but this time we need 1 variable for each of those levels. We end up with k-1 variables that take values of 0 or 1 where k is the number of levels that a variable has (these are called dummy variables). Each dummy variable is coded 1 if it takes the value of a corresponding level and 0 otherwise. We have k-1 dummy variables because we do not need a variable for the reference level. If all the dummy variables take the value of 0 then we know it has the value of the reference level. Each of the dummy variables is going to express the difference between the reference level and a given dummy level. Note that this coding itself does not allow to compare 2 dummy levels to each other (we’ll see how to do that later). Lets see this type of coding in action:</p>
+<p>The other way to code a categorical variable is through effect coding. This type of coding will use intercept as the grand mean and each variable will reflect the difference between the grand mean and a given level. Not that again we have k-1 variables because the last comparison is just a function of the other ones.</p>
+<p>Finally lets compare the results of our model to simple one-way anova:</p>
 
 
 </section>
@@ -352,18 +488,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -395,11 +520,50 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
-  function tippyHover(el, contentFn) {
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/mic-wypych\.github\.io\/psychr\/");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -409,8 +573,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -422,7 +595,130 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
     });
   }
       let selectedAnnoteEl;
@@ -466,6 +762,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
+            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -491,6 +788,32 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -551,6 +874,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script>
 </div> <!-- /content -->
+
 
 
 

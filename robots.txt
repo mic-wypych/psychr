@@ -1,1 +1,1 @@
-Sitemap: https://github.com/mic-wypych/psychr/sitemap.xml
+Sitemap: https://mic-wypych.github.io/psychr/sitemap.xml
