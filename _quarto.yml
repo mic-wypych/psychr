@@ -36,6 +36,8 @@ website:
         menu: 
           - href: 12eda.qmd
             text: Exploratory analysis
+          - href: 16regression.qmd
+            text: Simple regression
         
           
   search: 
