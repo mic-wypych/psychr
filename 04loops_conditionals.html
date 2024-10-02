@@ -495,11 +495,11 @@ character</code></pre>
 <div class="cell-output cell-output-stdout">
 <pre><code>Unit: milliseconds
                                                expr      min       lq     mean
- for (i in 1:ncol(df)) {     print(mean(df[, i])) } 3.255215 3.310173 3.426139
-                                 apply(df, 2, mean) 5.235179 6.047591 7.355718
+ for (i in 1:ncol(df)) {     print(mean(df[, i])) } 3.231882 3.280233 3.357487
+                                 apply(df, 2, mean) 5.310813 5.957961 6.751015
    median       uq       max neval
- 3.374593 3.548637  3.731554   100
- 6.070107 6.133481 65.177078   100</code></pre>
+ 3.326855 3.391064  4.305126   100
+ 5.994810 6.025868 11.133851   100</code></pre>
 </div>
 </div>
 <p>You can see that <code>apply()</code> is much faster than a for loop.</p>
