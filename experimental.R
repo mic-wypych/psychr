@@ -301,19 +301,10 @@ augment(lm1) %>%
 N <- 1e3
 x_c <- rnorm(N)
 y_c <- rnorm(N)
-t <- x + y
-u_c <- t > 0
 
-df_c <- data.frame(x_c, y_c, u_c, t)
+u_c <- rnorm(N, .5*x_c + .7*y_c, .4)
 
-df_c %>%
-  ggplot(aes(x = x_c, y = y_c, color = u_c)) +
-  geom_point()
 
-df_c %>%
-  filter(u_c >= 1) %>%
-  ggplot(aes(x = x_c, y = y_c, color = u_c)) +
-  geom_point()
 
 lm(y_c ~ x_c, df_c) |> summary()
 

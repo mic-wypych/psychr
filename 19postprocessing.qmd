@@ -5,7 +5,7 @@ author: "Michał Wypych"
 
 In the final class we will look at how to post process your models to get exactly what you want from them. In older tutorials or textbooks you could usually read to make models directly interpretable. That meant for example such coding of categorical variables so that the regression coefficient were exactly the contrast you wanted.
 
-With newer and more versatile software you don't really need to do it this way. You can run a model and then process the results to get exactly what matches your hypothesis e.g. if you want to test a specific contrast from an experiment. Or if you want to compare whether the effect of one variable is significantly stronger than the effect of another variable (remember that [if one effect is statistically significant and another is not it does not mean they are significantly different](http://www.stat.columbia.edu/~gelman/research/published/signif4.pdf)). This gets especially important once you start working with more complex models (like logistic or ordinal regression) where coefficients themselves aren't easily interpretable.
+With newer and more versatile software you don't really need to do it this way. You can run a model and then process the results to get exactly what matches your hypothesis e.g. if you want to test a specific contrast from an experiment. Or if you want to compare whether the effect of one variable is significantly stronger than the effect of another variable. This gets especially important once you start working with more complex models (like logistic or ordinal regression) where coefficients themselves aren't easily interpretable.
 
 ## General logic
 
@@ -13,9 +13,49 @@ The dataset we will be working with today is
 
 The packages we will be working with today is `broom`, `performance` and (amazing!) `marginaleffects`. The last package also has absolutely incredible documentation so I highly recommend checking out its [website](https://marginaleffects.com/).
 
+The dataset we will be working with is:
+
+```{r}
+library(tidyverse)
+library(broom)
+library(performance)
+library(marginaleffects)
+library(openintro)
+
+
+
+```
+
+## Tidying the model
+
+You may have noticed that results of the `lm()` function is a rather complicated list. It is not easy to work with. Fortunately there is the `broom` package that has functions extremely useful for tidying up the results of such models. We can extract infromation from the model on 3 levels: individual observations, model coefficients or the entire model.\
+The first one can be achieved with the `augment()` function which will give us predicted values as well as plenty of diagnostics.
+
+```{r}
+
+```
+
+We can tidy the coefficients using `tidy()`. It will give us a nice data frame with all model coefficients:
+
+```{r}
+
+```
+
+Finally we can tidy the model-level information using `glance()`:
+
+```{r}
+
+```
+
+## Assessing model performance
+
+The `performance` package from the `easystats` suite of packages has a host of functions for assessing the performance of models.
+
+We can extract such values like the R squared, rmse, AIC etc. This can also provide a basis for comparing models.
+
 ## Making predictions
 
-Sometimes you might want to assess the predictions of your model - how well does it predict?
+Sometimes you might want to assess the predictions of your model - how well does it predict? Do predictions for various combinations of independent variables differ from each other?
 
 -   splitting the sample
 
@@ -23,7 +63,7 @@ Sometimes you might want to assess the predictions of your model - how well does
 
 ## Marginal effects
 
-An extremely good and clear introduction to marginal effects with explanation of differences between 2 main packages used for them in R can be found on [Andrew Heiss' blog](https://www.andrewheiss.com/blog/2022/05/20/marginalia/). If you want to dive deeper into this topic I highly recommend you read that blog post (as well as documentation of the `marginaleffects` package linked above).
+An extremely good and clear introduction to marginal effects with explanation of differences between 2 main packages used for them in R can be found on [Andrew Heiss' blog](https://www.andrewheiss.com/blog/2022/05/20/marginalia/) (although this blog works a lot with logisitc regression). If you want to dive deeper into this topic I highly recommend you read that blog post (as well as documentation of the `marginaleffects` package linked above).
 
 -   What is a marginal effect
 
@@ -33,6 +73,12 @@ An extremely good and clear introduction to marginal effects with explanation of
 
 ## Contrasts
 
-In many situations when you work with categorical variables you are interested in specific comparisons or hypotheses.
+In many situations when you work linear model you are interested in testing specific hypotheses.
+
+**For example**
+
+-   A very common mistake is to look at coefficients for two predictors from a model one of which is statistically significant while the other is not and declaring that these coefficients differ significantly. [These are two completely different things](https://stat.columbia.edu/~gelman/research/published/signif4.pdf)! You can make a more principled comparison using `marginaleffects`.
 
 ## Working with predictions
+
+In simple models you might get away with directly interpreting the coefficients but for anything even slightly more complicated things get messy really quickly. It is often much easier to work on predictions from the model rather than directly on the coefficients. It is a good practice to get accustomed to working with predictions even for simple models especially that ultimately they allow you to do more.
