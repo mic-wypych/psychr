@@ -9,9 +9,7 @@ With newer and more versatile software you don't really need to do it this way. 
 
 ## General logic
 
-The dataset we will be working with today is
-
-The packages we will be working with today is `broom`, `performance` and (amazing!) `marginaleffects`. The last package also has absolutely incredible documentation so I highly recommend checking out its [website](https://marginaleffects.com/).
+The packages we will be working with is `broom`, `performance` and (amazing!) `marginaleffects`. The last package also has absolutely incredible documentation so I highly recommend checking out its [website](https://marginaleffects.com/).
 
 The dataset we will be working with is:
 

@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>r_website - Explporatory Data Analysis</title>
+<title>r_website - Exploratory Data Analysis</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -236,7 +236,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Explporatory Data Analysis</h1>
+<h1 class="title">Exploratory Data Analysis</h1>
 </div>
 
 
@@ -393,7 +393,7 @@ $ season       &lt;dbl&gt; 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3,
 7 Levels: clear scattered clouds Broken clouds Cloudy  ... snowfall</code></pre>
 </div>
 </div>
-<p>The <code>psych</code> package also has a pretty useful function that can give you multiple summaries very quickly. It’s called <code>describe()</code>. It takes a data frame or a matrix as an argument and can provide a lot of summary statistics for numeric variables such as the mean, median, standard deviation, standard error, skew, kurtosis and quantiles. You can specify which of these you want by setting additional arguments</p>
+<p>The <code>psych</code> package also has a pretty useful function that can give you multiple summaries very quickly. It’s called <code>describe()</code>. It takes a data frame or a matrix as an argument and can provide a lot of summary statistics for numeric variables such as the mean, median, standard deviation, standard error, skew, kurtosis and quantiles. You can specify which of these you want by setting additional arguments. We will also round numeric values using <code>mutate()</code> and <code>across()</code>.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(psych)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
@@ -408,24 +408,25 @@ Dołączanie pakietu: 'psych'</code></pre>
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>bikes <span class="sc">%&gt;%</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="fu">where</span>(is.numeric)) <span class="sc">%&gt;%</span></span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">describe</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  knitr<span class="sc">::</span><span class="fu">kable</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(is.numeric, \(x) <span class="fu">round</span>(x, <span class="dv">2</span>))) <span class="sc">%&gt;%</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>  knitr<span class="sc">::</span><span class="fu">kable</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <table class="table table-sm table-striped small">
 <colgroup>
-<col style="width: 9%">
-<col style="width: 4%">
-<col style="width: 4%">
-<col style="width: 9%">
-<col style="width: 9%">
+<col style="width: 11%">
 <col style="width: 5%">
+<col style="width: 6%">
+<col style="width: 8%">
 <col style="width: 8%">
 <col style="width: 7%">
-<col style="width: 4%">
-<col style="width: 5%">
-<col style="width: 5%">
-<col style="width: 9%">
-<col style="width: 9%">
 <col style="width: 8%">
+<col style="width: 7%">
+<col style="width: 5%">
+<col style="width: 7%">
+<col style="width: 7%">
+<col style="width: 6%">
+<col style="width: 9%">
+<col style="width: 5%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -450,87 +451,87 @@ Dołączanie pakietu: 'psych'</code></pre>
 <td style="text-align: left;">cnt</td>
 <td style="text-align: right;">1</td>
 <td style="text-align: right;">17414</td>
-<td style="text-align: right;">1143.10164</td>
-<td style="text-align: right;">1085.108068</td>
+<td style="text-align: right;">1143.10</td>
+<td style="text-align: right;">1085.11</td>
 <td style="text-align: right;">844.0</td>
-<td style="text-align: right;">973.25639</td>
-<td style="text-align: right;">972.5856</td>
+<td style="text-align: right;">973.26</td>
+<td style="text-align: right;">972.59</td>
 <td style="text-align: right;">0.0</td>
 <td style="text-align: right;">7860.0</td>
 <td style="text-align: right;">7860.0</td>
-<td style="text-align: right;">1.3254784</td>
-<td style="text-align: right;">1.5433229</td>
-<td style="text-align: right;">8.2228756</td>
+<td style="text-align: right;">1.33</td>
+<td style="text-align: right;">1.54</td>
+<td style="text-align: right;">8.22</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">t1</td>
 <td style="text-align: right;">2</td>
 <td style="text-align: right;">17414</td>
-<td style="text-align: right;">12.46809</td>
-<td style="text-align: right;">5.571818</td>
+<td style="text-align: right;">12.47</td>
+<td style="text-align: right;">5.57</td>
 <td style="text-align: right;">12.5</td>
-<td style="text-align: right;">12.36192</td>
-<td style="text-align: right;">5.9304</td>
+<td style="text-align: right;">12.36</td>
+<td style="text-align: right;">5.93</td>
 <td style="text-align: right;">-1.5</td>
 <td style="text-align: right;">34.0</td>
 <td style="text-align: right;">35.5</td>
-<td style="text-align: right;">0.2038272</td>
-<td style="text-align: right;">-0.2622630</td>
-<td style="text-align: right;">0.0422229</td>
+<td style="text-align: right;">0.20</td>
+<td style="text-align: right;">-0.26</td>
+<td style="text-align: right;">0.04</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">t2</td>
 <td style="text-align: right;">3</td>
 <td style="text-align: right;">17414</td>
-<td style="text-align: right;">11.52084</td>
-<td style="text-align: right;">6.615145</td>
+<td style="text-align: right;">11.52</td>
+<td style="text-align: right;">6.62</td>
 <td style="text-align: right;">12.5</td>
-<td style="text-align: right;">11.55978</td>
-<td style="text-align: right;">7.4130</td>
+<td style="text-align: right;">11.56</td>
+<td style="text-align: right;">7.41</td>
 <td style="text-align: right;">-6.0</td>
 <td style="text-align: right;">34.0</td>
 <td style="text-align: right;">40.0</td>
-<td style="text-align: right;">-0.0583421</td>
-<td style="text-align: right;">-0.6603278</td>
-<td style="text-align: right;">0.0501291</td>
+<td style="text-align: right;">-0.06</td>
+<td style="text-align: right;">-0.66</td>
+<td style="text-align: right;">0.05</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">hum</td>
 <td style="text-align: right;">4</td>
 <td style="text-align: right;">17414</td>
-<td style="text-align: right;">72.32495</td>
-<td style="text-align: right;">14.313186</td>
+<td style="text-align: right;">72.32</td>
+<td style="text-align: right;">14.31</td>
 <td style="text-align: right;">74.5</td>
-<td style="text-align: right;">73.31433</td>
-<td style="text-align: right;">14.8260</td>
+<td style="text-align: right;">73.31</td>
+<td style="text-align: right;">14.83</td>
 <td style="text-align: right;">20.5</td>
 <td style="text-align: right;">100.0</td>
 <td style="text-align: right;">79.5</td>
-<td style="text-align: right;">-0.5726832</td>
-<td style="text-align: right;">-0.2563514</td>
-<td style="text-align: right;">0.1084644</td>
+<td style="text-align: right;">-0.57</td>
+<td style="text-align: right;">-0.26</td>
+<td style="text-align: right;">0.11</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">wind_speed</td>
 <td style="text-align: right;">5</td>
 <td style="text-align: right;">17414</td>
-<td style="text-align: right;">15.91306</td>
-<td style="text-align: right;">7.894570</td>
+<td style="text-align: right;">15.91</td>
+<td style="text-align: right;">7.89</td>
 <td style="text-align: right;">15.0</td>
-<td style="text-align: right;">15.35255</td>
-<td style="text-align: right;">7.4130</td>
+<td style="text-align: right;">15.35</td>
+<td style="text-align: right;">7.41</td>
 <td style="text-align: right;">0.0</td>
 <td style="text-align: right;">56.5</td>
 <td style="text-align: right;">56.5</td>
-<td style="text-align: right;">0.6688960</td>
-<td style="text-align: right;">0.4483664</td>
-<td style="text-align: right;">0.0598245</td>
+<td style="text-align: right;">0.67</td>
+<td style="text-align: right;">0.45</td>
+<td style="text-align: right;">0.06</td>
 </tr>
 </tbody>
 </table>
 </div>
 </div>
-<p>Sometimes you want summary statistics grouped by some categorical variable (e.g.&nbsp;experimental condition). You can do it with <code>describe.by()</code> from <code>psych</code> package. It works the same way as <code>describe()</code> you just need to provide the <code>group</code> argument which tells R what variable to split the dataset by. Lets look at the dataset split by season. We will also round numeric values:</p>
+<p>Sometimes you want summary statistics grouped by some categorical variable (e.g.&nbsp;experimental condition). You can do it with <code>describe.by()</code> from <code>psych</code> package. It works the same way as <code>describe()</code> you just need to provide the <code>group</code> argument which tells R what variable to split the dataset by. Lets look at the dataset split by season.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">describeBy</span>(t1 <span class="sc">+</span> t2 <span class="sc">+</span> hum <span class="sc">+</span> cnt <span class="sc">~</span> season, <span class="at">data =</span> bikes, <span class="at">mat=</span><span class="cn">TRUE</span>)<span class="sc">%&gt;%</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(is.numeric, \(x) <span class="fu">round</span>(x, <span class="dv">2</span>))) <span class="sc">%&gt;%</span></span>
@@ -898,13 +899,14 @@ Dołączanie pakietu: 'psych'</code></pre>
 </div>
 </div>
 </div>
-<p>IT shows bivariate scatterplots, correlations and distributions for all the numeric variables. You can quickly see e.g.&nbsp;that actual and felt temperature are pretty much the same with correlation of .99.</p>
-<p>Lets focus in a bit more detail on some of the variables like count, temperature and s:eason</p>
+<p>It shows bivariate scatterplots, correlations and distributions for all the numeric variables. You can quickly see e.g.&nbsp;that actual and felt temperature are pretty much the same with correlation of .99.</p>
+<p>Lets focus in a bit more detail on some of the variables like count, temperature and season.</p>
+<p>Lets start by looking at distributions of counts across seasons:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>bikes <span class="sc">%&gt;%</span></span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> t1, <span class="at">y =</span> cnt, <span class="at">color =</span> season)) <span class="sc">+</span></span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_count</span>(<span class="at">alpha =</span> .<span class="dv">3</span>) <span class="sc">+</span></span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>season)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> season, <span class="at">y =</span> cnt, <span class="at">fill =</span> season, <span class="at">color =</span> season)) <span class="sc">+</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_violin</span>(<span class="at">alpha =</span> .<span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_summary</span>(<span class="at">fun.data =</span> <span class="st">"mean_cl_boot"</span>, <span class="at">geom =</span> <span class="st">"pointrange"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -913,6 +915,21 @@ Dołączanie pakietu: 'psych'</code></pre>
 </div>
 </div>
 </div>
+<p>We can see that summer has a much longer tail - there are some measurements with way moire counts than in other seasons and that there are much more low counts in the winter. We can also look at relations between e.g.&nbsp;temperature and counts in each season:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>bikes <span class="sc">%&gt;%</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> t1, <span class="at">y =</span> cnt, <span class="at">color =</span> season)) <span class="sc">+</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_count</span>(<span class="at">alpha =</span> .<span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>season)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="12eda_alt_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Unsurprisingly there are much lower temperatures in the winter.</p>
 <section id="a-cautionary-tale-the-boring-way" class="level3">
 <h3 class="anchored" data-anchor-id="a-cautionary-tale-the-boring-way">A cautionary tale the boring way</h3>
 <p>One of the reasons why plotting is very important and useful is that all sorts of data can provide you the same point estimate (like a mean or a regression slope). The most common example is the Anscombe quartet. It’s a set of 4 datasets with x and y variable each. Each of these have exactly the same correlation coefficient between x and y so you might be tempted to say they are pretty much the same, right? But if you plot them you’ll see this:</p>
@@ -939,11 +956,11 @@ $ att_migrants   &lt;dbl&gt; 6.12, -0.62, -2.12, 5.68, 6.00, 0.54, 5.70, 7.04, 6
 </div>
 <p>Lets look at some summary statistics first:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>experiment <span class="sc">%&gt;%</span>  </span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(condition) <span class="sc">%&gt;%</span>  </span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean_att =</span> <span class="fu">mean</span>(att_migrants),</span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">se_att =</span> <span class="fu">sd</span>(att_migrants)<span class="sc">/</span><span class="fu">sqrt</span>(<span class="fu">n</span>())) <span class="sc">%&gt;%</span> </span>
-<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>  knitr<span class="sc">::</span><span class="fu">kable</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>experiment <span class="sc">%&gt;%</span>  </span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(condition) <span class="sc">%&gt;%</span>  </span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean_att =</span> <span class="fu">mean</span>(att_migrants),</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">se_att =</span> <span class="fu">sd</span>(att_migrants)<span class="sc">/</span><span class="fu">sqrt</span>(<span class="fu">n</span>())) <span class="sc">%&gt;%</span> </span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>  knitr<span class="sc">::</span><span class="fu">kable</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <table class="table table-sm table-striped small">
 <thead>
@@ -970,38 +987,38 @@ $ att_migrants   &lt;dbl&gt; 6.12, -0.62, -2.12, 5.68, 6.00, 0.54, 5.70, 7.04, 6
 </div>
 <p>Well, it does not look like there are any meaningful differences between the conditions. We can also plot these differences:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>experiment <span class="sc">%&gt;%</span>   </span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> condition, <span class="at">y =</span> att_migrants)) <span class="sc">+</span>  </span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_summary</span>(<span class="at">fun.data =</span> <span class="st">"mean_se"</span>, <span class="at">geom =</span> <span class="st">"pointrange"</span>) <span class="sc">+</span>  </span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_cartesian</span>(<span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">5</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>experiment <span class="sc">%&gt;%</span>   </span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> condition, <span class="at">y =</span> att_migrants)) <span class="sc">+</span>  </span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_summary</span>(<span class="at">fun.data =</span> <span class="st">"mean_se"</span>, <span class="at">geom =</span> <span class="st">"pointrange"</span>) <span class="sc">+</span>  </span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_cartesian</span>(<span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">5</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="12eda_alt_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="12eda_alt_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
 <p>This is a bit disappointing. We could say that we did not reject the null hypothesis and there is no support in the data that reading a negative article affect attitudes towards migrants relative to reading a neutral article. Lets at least look at the correlation between media exposure and attitude towards migrants. Maybe there is something interesting there? We can use the <code>cor()</code> function for it:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(experiment<span class="sc">$</span>media_exposure, experiment<span class="sc">$</span>att_migrants)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(experiment<span class="sc">$</span>media_exposure, experiment<span class="sc">$</span>att_migrants)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] -0.2702737</code></pre>
 </div>
 </div>
 <p>Well the correlation seems negative and it definitely is not small. Maybe we are finally on to something! So lets finally plot the data to see how it looks like:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>experiment <span class="sc">%&gt;%</span> </span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> media_exposure, <span class="at">y =</span> att_migrants)) <span class="sc">+</span> </span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>experiment <span class="sc">%&gt;%</span> </span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> media_exposure, <span class="at">y =</span> att_migrants)) <span class="sc">+</span> </span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
 </div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="12eda_alt_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="12eda_alt_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>

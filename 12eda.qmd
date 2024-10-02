@@ -4,122 +4,128 @@ title: "Exploratory Data Analysis"
 
 Usually once you get the data for your analysis the first thing you want to do is get to know it and briefly browse through it to know e.g. what variables are in the dataset, how many observations you have etc. You might feel the urge to jump right into answering your key research questions. After all, usually data collection is a laborious and tiring process and you are so curious to check what the results are! But it's best to set aside the main analyses for a moment and first take a closer look at the data. Why? It is a necessary steps because there is a near-infinite number of things that can go wrong when preparing the data from errors in how data was coded to errors in preprocessing or loading the files. Lots of things can also happen that can make analysis or drawing conclusions difficult. These can range from issues with your measures (e.g. reliability) through unexpected behaviour of participants during the study (e.g. non-compliance, reactance, purposufely giving ridiculous answers) all the way to errors in the data (e.g. items not recoded or errors in coding, values out of range etc.). Generally exploring the data is not so much about writing/using proper functions but about thinking what could possibly be off with the data to prepare yourself before further analyses.
 
-## getting the basic information about a dataset
-
 How to best get to know a new dataset? You can work with datasets from various sources. If it's your study that you're analyzing, then you probably know everything about the variables that should be in it, how many particiapnts took part in the study, how variables are coded etc. However, you might also be working with datasets provided by other people (e.g. by a colleague who ran the study, by a company, or you got the data from an open repository). In these situation it is crucial that you can get to know your data. Many of such datasets will have a codebook available which should describe it in detail. Unfortunately that is not always the case (codebook is like documentation - super important but nobody wants to do it). If a codebook is available, read it (this still does not allow you to skip checking for potential errors/problems with the data). If you don't have a codebook you need to check everything yourself. Fortunately there is a lot of functions in R that make it a lot easier.
 
-Lets starts with just general first look at the data. We might want to see how many observations we have, how many columns there are, and the names and types of columns. `dplyr` has a very nice function for it called `glimpse()`. It's more concise than `str()` but gives you more information than e.g. `head()`. Lets load our dataset and have a firsty look at it! We will work with a dataset on wine reviews (the original dataset and its documentation can be found [here](https://www.kaggle.com/datasets/zynicide/wine-reviews)). The dataset has information on country and region of the vineyard, points awarded by reviewers and the price of the wine, as well as variety of the wine.
+Lets starts with just general first look at the data. We might want to see how many observations we have, how many columns there are, and the names and types of columns. `dplyr` has a very nice function for it called `glimpse()`. It's more concise than `str()` but gives you more information than e.g. `head()`. We will work with a dataset on bike sharing. The dataset is powered by TfL Open Data. and contains OS data © Crown copyright and database rights 2016' and Geomni UK Map data © and database rights \[2019\]. You can find the link to the data as well as codebook for variables [here](https://www.kaggle.com/datasets/hmavrodiev/london-bike-sharing-dataset). Lets load our dataset and have a firsty look at it!
 
-Lets load the dataset, set some base theme for the plots and look at the variables in the dataset:
-
-```{r}
+```{r message=F, warning=F}
 library(tidyverse)
 
 theme_set(theme_minimal(base_size = 15))
 
-wine <- read_csv("data/wine.csv")
-glimpse(wine)
+bikes <- read_csv("data/london_merged.csv")
+glimpse(bikes)
 ```
 
-There's plenty of variables but we will focus on 3: country (where the vineyard is located), points (score awarded by reviewer) and price (price of the wine). There is a number of things we might want to look at to get to know the data better. Lets start with the numeric columns. A good point to start is to look at some summary statistics like means, standard deviations, minimum and maximum values (we'll use `knitr::kable()` just to make the table look nicer in the output).
+## Getting basic information about the dataset
 
-```{r warning=FALSE}
-wine <- wine %>%
-  select(-`...1`)
-wine %>%
-  summarize(across(is.numeric, .fns = list(mean = ~mean(.x, na.rm = T), 
-                                           sd = ~sd(.x, na.rm = T),
-                                           min = ~min(.x, na.rm = T), 
-                                           max = ~max(.x, na.rm = T)))) %>%
+Before we do any analysis there are a few things to clean. Firstly some variables are factors according to the codebook but are coded as numeric.
+
+```{r}
+bikes <- bikes %>%
+  mutate(across(c("weather_code", "is_holiday", "is_weekend", "season"), as.factor))
+```
+
+There are also a few variables that are coded with numbers but have corresponding values: `weather_code` and `season`. Recoding them will make it easier to work with them (we will use slightly abbreviated names for `weather_code` to keep them more readable).
+
+```{r}
+bikes <- bikes %>%
+  mutate(season = recode(season, "0" = "spring", "1" = "summer", "2" = "fall", "3" = "winter"),
+         weather_code = recode(weather_code, "1" = "clear", "2" = "scattered clouds", 
+                               "3" = "Broken clouds", "4" = "Cloudy ", 
+                               "7" = "Rain", "10" = "rain with thunderstorm", 
+                               "26" = "snowfall", "94" = "Freezing Fog"))
+```
+
+There is a number of things we might want to look at to get to know the data better. Lets start with the numeric columns. A good point to start is to look at some summary statistics like means, standard deviations, minimum and maximum values (we'll use `knitr::kable()` just to make the table look nicer in the output).
+
+```{r}
+bikes %>%
+  select(is.numeric) %>%
+  pivot_longer(cols = everything(), names_to = "variable", values_to = "value") %>%
+  group_by(variable) %>%
+  summarize(mean = mean(value, na.rm = T), 
+                                           sd = sd(value, na.rm = T),
+                                           min = min(value, na.rm = T), 
+                                           max = max(value, na.rm = T)) %>%
   knitr::kable()
 ```
 
-It seems that no values are out out range as the documentation says that `points` should be between 1 and 100 and the price seems reasonable as well - from 4 to 2300. Perhaps surprisingly the lowest rating is 80 - this is fairly high for a 1 to 100 scale!
-
-We can also look at other variables that aren't numeric - lets look at the country variable as an example. Lets see which countries are available and for which countries we have the most reviews. We can do it by combining `count()` with `arrange()`.
+We can also look at other variables that aren't numeric - lets look at the `weather_code` variable as an example. Lets see which countries are available and for which countries we have the most reviews. We can do it by combining `count()` with `arrange()`.
 
 ```{r}
-wine %>%
-  count(country) %>%
+bikes %>%
+  count(weather_code) %>%
   arrange(desc(n))
 ```
 
 If we just want to get information on which countries are in the data we can use `unique()`:
 
 ```{r}
-unique(wine$country)
+unique(bikes$weather_code)
 ```
 
-The `psych` package also has a pretty useful function that can give you multiple summaries very quickly. It's called `describe()`. It takes a data frame or a matrix as an argument and can provide a lot of summary statistics for numeric variables such as the mean, median, standard deviation, standard error, skew, kurtosis and quantiles. You can specify which of these you want by setting additional arguments.d
+The `psych` package also has a pretty useful function that can give you multiple summaries very quickly. It's called `describe()`. It takes a data frame or a matrix as an argument and can provide a lot of summary statistics for numeric variables such as the mean, median, standard deviation, standard error, skew, kurtosis and quantiles. You can specify which of these you want by setting additional arguments. We will also round numeric values using `mutate()` and `across()`.
 
 ```{r}
 library(psych)
-wine %>%
+bikes %>%
   select(where(is.numeric)) %>%
   describe() %>%
+  mutate(across(is.numeric, \(x) round(x, 2))) %>%
   knitr::kable()
 ```
 
-Sometimes you want summary statistics grouped by some categorical variable (e.g. experimental condition). You can do it with `describe.by()` from `psych` package. It works the same way as `describe()` you just need to provide the `group` argument which tells R what variable to split the dataset by. Lets look at a subset of countries (since there are so many!): USA, Italy and France:
+Sometimes you want summary statistics grouped by some categorical variable (e.g. experimental condition). You can do it with `describe.by()` from `psych` package. It works the same way as `describe()` you just need to provide the `group` argument which tells R what variable to split the dataset by. Lets look at the dataset split by season.
 
 ```{r}
-describeBy(price + points ~ country, data = wine[which(wine$country %in% c("US", "Italy", "France")),], mat=TRUE)%>%
+describeBy(t1 + t2 + hum + cnt ~ season, data = bikes, mat=TRUE)%>%
+  mutate(across(is.numeric, \(x) round(x, 2))) %>%
   knitr::kable()
-
 ```
 
 ## Exploring via plots
 
-Doing numeric exploration is always useful and can give you plenty of information about a dataset but in many situations a plot makes exploration much easier. It allows you to immediately spot certain problems like implausible outliers, weird (e.g. censored) distributions or types of relations (is it linear? quadratic? Does it make sense at all?). Lets look at some quick summaries of our variables with plots. We can start by simple histograms of numeric variables and a scatterplot to show the relation between
+Doing numeric exploration is always useful and can give you plenty of information about a dataset but in many situations a plot makes exploration much easier. It allows you to immediately spot certain problems like implausible outliers, weird (e.g. censored) distributions or types of relations (is it linear? quadratic? Does it make sense at all?). Lets look at some quick summaries of our variables with plots. We can start by simple histograms of numeric variables and a scatterplot to show the relation between numeric variables:
 
 ```{r}
-wine %>%
-  select(price, points) %>%
+bikes %>%
+  select(where(is.numeric)) %>%
   pivot_longer(cols = everything(), names_to = "var", values_to = "value") %>%
   ggplot(aes(x = value)) +
   geom_histogram(bins = 30) +
   facet_wrap(~var, scales = "free")
 ```
 
-We can see that `points` is a nicely normal distribution while the `price` variable is heavily skewed (which is to be expected). Lets look at the scatterplot of the two:
+We can immediately see the skew in some of the variables. You can also get a rough look at bivariate relations with `pairs.panels()` function from `psych` package:
 
 ```{r}
-wine %>%
-  ggplot(aes(x = points, y = price)) +
-  geom_point(alpha = .4) +
-  geom_smooth()
+pairs.panels(bikes %>% select(where(is.numeric)))
 ```
 
-Seems that as the score increases the variability in price goes up as well. especially above 90 points. Another good idea might be looktng at price and scores e.g. in different countries. Lets focus again on a subset of countries: US, Italy and France.
+It shows bivariate scatterplots, correlations and distributions for all the numeric variables. You can quickly see e.g. that actual and felt temperature are pretty much the same with correlation of .99.
+
+Lets focus in a bit more detail on some of the variables like count, temperature and season.
+
+Lets start by looking at distributions of counts across seasons:
 
 ```{r}
-wine %>%
-  filter(country %in% c("US", "Italy", "France")) %>%
-  ggplot(aes(x = country, y = price)) +
-  geom_violin() +
-  geom_boxplot(width = .2)
+bikes %>%
+  ggplot(aes(x = season, y = cnt, fill = season, color = season)) +
+  geom_violin(alpha = .3) +
+  stat_summary(fun.data = "mean_cl_boot", geom = "pointrange")
 ```
+
+We can see that summer has a much longer tail - there are some measurements with way moire counts than in other seasons and that there are much more low counts in the winter. We can also look at relations between e.g. temperature and counts in each season:
 
 ```{r}
-wine %>%
-  filter(country %in% c("US", "Italy", "France")) %>%
-  ggplot(aes(x = country, y = points)) +
-  geom_violin() +
-  geom_boxplot(width = .2)
+bikes %>%
+  ggplot(aes(x = t1, y = cnt, color = season)) +
+  geom_count(alpha = .3) +
+  facet_wrap(~season)
 ```
 
-And the relation between points and price in each of the three countries:
-
-```{r}
-wine %>%
-  filter(country %in% c("US", "Italy", "France")) %>%
-  ggplot(aes(x = points, y = price)) +
-  geom_point(alpha = .4) +
-  geom_smooth() +
-  facet_wrap(~country)
-```
-
-Looks like the rise in price for the highest scored wines is driven especially by French wines.
+Unsurprisingly there are much lower temperatures in the winter.
 
 ### A cautionary tale the boring way
 
@@ -134,26 +140,27 @@ Even though the regression line is the same on each plot you can immediately see
 There is a more fun way to see the same point that was made by Anscombe. We'll look at an experiment that was conducted to test how displaying information in the media affects attitude towards migrants. The researchers showed participants either a negative article or a neutral one and measured attitudes towards migrants. They also measured general exposure to the media (ie how much media does one consume) because they were interested in the relation between media consumption and attitudes towards migrants. They also recorded gender and age of participants. Lets load the data:
 
 ```{r echo=FALSE, message=FALSE}
-experiment <- read_csv("data/att_experiment.csv")
+
+experiment <- read_csv("data/att_experiment.csv") 
 glimpse(experiment)
 ```
 
 Lets look at some summary statistics first:
 
 ```{r}
-experiment %>%
-  group_by(condition) %>%
+experiment %>%  
+  group_by(condition) %>%  
   summarise(mean_att = mean(att_migrants),
-            se_att = sd(att_migrants)/sqrt(n())) %>%
+            se_att = sd(att_migrants)/sqrt(n())) %>% 
   knitr::kable()
 ```
 
 Well, it does not look like there are any meaningful differences between the conditions. We can also plot these differences:
 
 ```{r}
-experiment %>%
-  ggplot(aes(x = condition, y = att_migrants)) +
-  stat_summary(fun.data = "mean_se", geom = "pointrange") +
+experiment %>%   
+  ggplot(aes(x = condition, y = att_migrants)) +  
+  stat_summary(fun.data = "mean_se", geom = "pointrange") +  
   coord_cartesian(ylim = c(0,5))
 ```
 
@@ -166,9 +173,9 @@ cor(experiment$media_exposure, experiment$att_migrants)
 Well the correlation seems negative and it definitely is not small. Maybe we are finally on to something! So lets finally plot the data to see how it looks like:
 
 ```{r}
-experiment %>%
-  ggplot(aes(x = media_exposure, y = att_migrants)) +
-  geom_point() +
+experiment %>% 
+  ggplot(aes(x = media_exposure, y = att_migrants)) + 
+  geom_point() + 
   geom_smooth(method = "lm")
 ```
 

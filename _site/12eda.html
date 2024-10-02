@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.340">
+<meta name="generator" content="quarto-1.4.549">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -22,7 +22,7 @@ ul.task-list li input[type="checkbox"] {
 }
 /* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -79,7 +79,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   "collapse-after": 3,
   "panel-placement": "end",
   "type": "textbox",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -88,8 +93,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit"
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
   }
 }</script>
 
@@ -100,9 +107,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg navbar-dark ">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container">
+      <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="./index.html">
     <span class="navbar-title">r_website</span>
     </a>
@@ -114,95 +121,103 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./index.html" rel="" target="">
- <span class="menu-text">Home</span></a>
+    <a class="nav-link" href="./index.html"> 
+<span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-basics" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-basics" role="button" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">Basics</span>
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-basics">    
         <li>
-    <a class="dropdown-item" href="./01r_intro.html" rel="" target="">
+    <a class="dropdown-item" href="./01r_intro.html">
  <span class="dropdown-text">Introduction</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./02basic_data.html" rel="" target="">
+    <a class="dropdown-item" href="./02basic_data.html">
  <span class="dropdown-text">Basic objects</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./03data_types.html" rel="" target="">
+    <a class="dropdown-item" href="./03data_types.html">
  <span class="dropdown-text">Data types</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./04loops_conditionals.html" rel="" target="">
+    <a class="dropdown-item" href="./04loops_conditionals.html">
  <span class="dropdown-text">Loops and conditionals</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./05functions.html" rel="" target="">
+    <a class="dropdown-item" href="./05functions.html">
  <span class="dropdown-text">Functions</span></a>
   </li>  
     </ul>
   </li>
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-working-with-data" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-working-with-data" role="button" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">Working with data</span>
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-working-with-data">    
         <li>
-    <a class="dropdown-item" href="./06loading_data.html" rel="" target="">
+    <a class="dropdown-item" href="./06loading_data.html">
  <span class="dropdown-text">Loading data</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./07data_wrangling.html" rel="" target="">
+    <a class="dropdown-item" href="./07data_wrangling.html">
  <span class="dropdown-text">Data wrangling</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./08join_restructure.html" rel="" target="">
+    <a class="dropdown-item" href="./08join_restructure.html">
  <span class="dropdown-text">Joining and restructuring data</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./09data_viz_1.html" rel="" target="">
+    <a class="dropdown-item" href="./09data_viz_1.html">
  <span class="dropdown-text">Vizualization vol 1</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./10data_viz_2.html" rel="" target="">
+    <a class="dropdown-item" href="./10data_viz_2.html">
  <span class="dropdown-text">Vizualization vol 2</span></a>
   </li>  
     </ul>
   </li>
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-analyzing-data" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-analyzing-data" role="button" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">Analyzing data</span>
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-analyzing-data">    
         <li>
-    <a class="dropdown-item" href="./12eda.html" rel="" target="">
+    <a class="dropdown-item" href="./12eda.html">
  <span class="dropdown-text">Exploratory analysis</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./16regression.html">
+ <span class="dropdown-text">Simple regression</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./18statistical_control.html">
+ <span class="dropdown-text">Statistical control</span></a>
   </li>  
     </ul>
   </li>
 </ul>
-            <div class="quarto-navbar-tools ms-auto">
+          </div> <!-- /navcollapse -->
+          <div class="quarto-navbar-tools">
   <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
   <div class="quarto-reader-toggle-btn">
   <i class="bi"></i>
   </div>
 </a>
 </div>
-          </div> <!-- /navcollapse -->
       </div> <!-- /container-fluid -->
     </nav>
 </header>
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#getting-the-basic-information-about-a-dataset" id="toc-getting-the-basic-information-about-a-dataset" class="nav-link active" data-scroll-target="#getting-the-basic-information-about-a-dataset">getting the basic information about a dataset</a></li>
+  <li><a href="#getting-basic-information-about-the-dataset" id="toc-getting-basic-information-about-the-dataset" class="nav-link active" data-scroll-target="#getting-basic-information-about-the-dataset">Getting basic information about the dataset</a></li>
   <li><a href="#exploring-via-plots" id="toc-exploring-via-plots" class="nav-link" data-scroll-target="#exploring-via-plots">Exploring via plots</a>
   <ul class="collapse">
   <li><a href="#a-cautionary-tale-the-boring-way" id="toc-a-cautionary-tale-the-boring-way" class="nav-link" data-scroll-target="#a-cautionary-tale-the-boring-way">A cautionary tale the boring way</a></li>
@@ -212,7 +227,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </ul>
 </nav>
 </nav>
-<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
     </div>
@@ -226,7 +241,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-<div class="quarto-title-meta">
+<div class="quarto-title-meta column-page-right">
 
     
   
@@ -234,157 +249,153 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </div>
   
 
+
 </header>
 
+
 <p>Usually once you get the data for your analysis the first thing you want to do is get to know it and briefly browse through it to know e.g.&nbsp;what variables are in the dataset, how many observations you have etc. You might feel the urge to jump right into answering your key research questions. After all, usually data collection is a laborious and tiring process and you are so curious to check what the results are! But it’s best to set aside the main analyses for a moment and first take a closer look at the data. Why? It is a necessary steps because there is a near-infinite number of things that can go wrong when preparing the data from errors in how data was coded to errors in preprocessing or loading the files. Lots of things can also happen that can make analysis or drawing conclusions difficult. These can range from issues with your measures (e.g.&nbsp;reliability) through unexpected behaviour of participants during the study (e.g.&nbsp;non-compliance, reactance, purposufely giving ridiculous answers) all the way to errors in the data (e.g.&nbsp;items not recoded or errors in coding, values out of range etc.). Generally exploring the data is not so much about writing/using proper functions but about thinking what could possibly be off with the data to prepare yourself before further analyses.</p>
-<section id="getting-the-basic-information-about-a-dataset" class="level2">
-<h2 class="anchored" data-anchor-id="getting-the-basic-information-about-a-dataset">getting the basic information about a dataset</h2>
 <p>How to best get to know a new dataset? You can work with datasets from various sources. If it’s your study that you’re analyzing, then you probably know everything about the variables that should be in it, how many particiapnts took part in the study, how variables are coded etc. However, you might also be working with datasets provided by other people (e.g.&nbsp;by a colleague who ran the study, by a company, or you got the data from an open repository). In these situation it is crucial that you can get to know your data. Many of such datasets will have a codebook available which should describe it in detail. Unfortunately that is not always the case (codebook is like documentation - super important but nobody wants to do it). If a codebook is available, read it (this still does not allow you to skip checking for potential errors/problems with the data). If you don’t have a codebook you need to check everything yourself. Fortunately there is a lot of functions in R that make it a lot easier.</p>
-<p>Lets starts with just general first look at the data. We might want to see how many observations we have, how many columns there are, and the names and types of columns. <code>dplyr</code> has a very nice function for it called <code>glimpse()</code>. It’s more concise than <code>str()</code> but gives you more information than e.g.&nbsp;<code>head()</code>. Lets load our dataset and have a firsty look at it! We will work with a dataset on wine reviews (the original dataset and its documentation can be found <a href="https://www.kaggle.com/datasets/zynicide/wine-reviews">here</a>). The dataset has information on country and region of the vineyard, points awarded by reviewers and the price of the wine, as well as variety of the wine.</p>
-<p>Lets load the dataset, set some base theme for the plots and look at the variables in the dataset:</p>
+<p>Lets starts with just general first look at the data. We might want to see how many observations we have, how many columns there are, and the names and types of columns. <code>dplyr</code> has a very nice function for it called <code>glimpse()</code>. It’s more concise than <code>str()</code> but gives you more information than e.g.&nbsp;<code>head()</code>. We will work with a dataset on bike sharing. The dataset is powered by TfL Open Data. and contains OS data © Crown copyright and database rights 2016’ and Geomni UK Map data © and database rights [2019]. You can find the link to the data as well as codebook for variables <a href="https://www.kaggle.com/datasets/hmavrodiev/london-bike-sharing-dataset">here</a>. Lets load our dataset and have a firsty look at it!</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
-✔ dplyr     1.1.1     ✔ readr     2.1.4
-✔ forcats   1.0.0     ✔ stringr   1.5.0
-✔ ggplot2   3.4.2     ✔ tibble    3.2.1
-✔ lubridate 1.9.2     ✔ tidyr     1.3.0
-✔ purrr     1.0.1     
-── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
-✖ dplyr::filter() masks stats::filter()
-✖ dplyr::lag()    masks stats::lag()
-ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_set</span>(<span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">15</span>))</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>wine <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/wine.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>New names:
-Rows: 150930 Columns: 11
-── Column specification
-──────────────────────────────────────────────────────── Delimiter: "," chr
-(8): country, description, designation, province, region_1, region_2, va... dbl
-(3): ...1, points, price
-ℹ Use `spec()` to retrieve the full column specification for this data. ℹ
-Specify the column types or set `show_col_types = FALSE` to quiet this message.
-• `` -&gt; `...1`</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(wine)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_set</span>(<span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">15</span>))</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>bikes <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/london_merged.csv"</span>)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(bikes)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Rows: 150,930
-Columns: 11
-$ ...1        &lt;dbl&gt; 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, …
-$ country     &lt;chr&gt; "US", "Spain", "US", "US", "France", "Spain", "Spain", "Sp…
-$ description &lt;chr&gt; "This tremendous 100% varietal wine hails from Oakville an…
-$ designation &lt;chr&gt; "Martha's Vineyard", "Carodorum Selección Especial Reserva…
-$ points      &lt;dbl&gt; 96, 96, 96, 96, 95, 95, 95, 95, 95, 95, 95, 95, 95, 95, 95…
-$ price       &lt;dbl&gt; 235, 110, 90, 65, 66, 73, 65, 110, 65, 60, 80, 48, 48, 90,…
-$ province    &lt;chr&gt; "California", "Northern Spain", "California", "Oregon", "P…
-$ region_1    &lt;chr&gt; "Napa Valley", "Toro", "Knights Valley", "Willamette Valle…
-$ region_2    &lt;chr&gt; "Napa", NA, "Sonoma", "Willamette Valley", NA, NA, NA, NA,…
-$ variety     &lt;chr&gt; "Cabernet Sauvignon", "Tinta de Toro", "Sauvignon Blanc", …
-$ winery      &lt;chr&gt; "Heitz", "Bodega Carmen Rodríguez", "Macauley", "Ponzi", "…</code></pre>
+<pre><code>Rows: 17,414
+Columns: 10
+$ timestamp    &lt;dttm&gt; 2015-01-04 00:00:00, 2015-01-04 01:00:00, 2015-01-04 02:…
+$ cnt          &lt;dbl&gt; 182, 138, 134, 72, 47, 46, 51, 75, 131, 301, 528, 727, 86…
+$ t1           &lt;dbl&gt; 3.0, 3.0, 2.5, 2.0, 2.0, 2.0, 1.0, 1.0, 1.5, 2.0, 3.0, 2.…
+$ t2           &lt;dbl&gt; 2.0, 2.5, 2.5, 2.0, 0.0, 2.0, -1.0, -1.0, -1.0, -0.5, -0.…
+$ hum          &lt;dbl&gt; 93.0, 93.0, 96.5, 100.0, 93.0, 93.0, 100.0, 100.0, 96.5, …
+$ wind_speed   &lt;dbl&gt; 6.0, 5.0, 0.0, 0.0, 6.5, 4.0, 7.0, 7.0, 8.0, 9.0, 12.0, 1…
+$ weather_code &lt;dbl&gt; 3, 1, 1, 1, 1, 1, 4, 4, 4, 3, 3, 3, 4, 3, 3, 3, 3, 3, 3, …
+$ is_holiday   &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
+$ is_weekend   &lt;dbl&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, …
+$ season       &lt;dbl&gt; 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, …</code></pre>
 </div>
 </div>
-<p>There’s plenty of variables but we will focus on 3: country (where the vineyard is located), points (score awarded by reviewer) and price (price of the wine). There is a number of things we might want to look at to get to know the data better. Lets start with the numeric columns. A good point to start is to look at some summary statistics like means, standard deviations, minimum and maximum values (we’ll use <code>knitr::kable()</code> just to make the table look nicer in the output).</p>
+<section id="getting-basic-information-about-the-dataset" class="level2">
+<h2 class="anchored" data-anchor-id="getting-basic-information-about-the-dataset">Getting basic information about the dataset</h2>
+<p>Before we do any analysis there are a few things to clean. Firstly some variables are factors according to the codebook but are coded as numeric.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>wine <span class="ot">&lt;-</span> wine <span class="sc">%&gt;%</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span><span class="st">`</span><span class="at">...1</span><span class="st">`</span>)</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>wine <span class="sc">%&gt;%</span></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="fu">across</span>(is.numeric, <span class="at">.fns =</span> <span class="fu">list</span>(<span class="at">mean =</span> <span class="sc">~</span><span class="fu">mean</span>(.x, <span class="at">na.rm =</span> T), </span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>                                           <span class="at">sd =</span> <span class="sc">~</span><span class="fu">sd</span>(.x, <span class="at">na.rm =</span> T),</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>                                           <span class="at">min =</span> <span class="sc">~</span><span class="fu">min</span>(.x, <span class="at">na.rm =</span> T), </span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>                                           <span class="at">max =</span> <span class="sc">~</span><span class="fu">max</span>(.x, <span class="at">na.rm =</span> T)))) <span class="sc">%&gt;%</span></span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>  knitr<span class="sc">::</span><span class="fu">kable</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>bikes <span class="ot">&lt;-</span> bikes <span class="sc">%&gt;%</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">c</span>(<span class="st">"weather_code"</span>, <span class="st">"is_holiday"</span>, <span class="st">"is_weekend"</span>, <span class="st">"season"</span>), as.factor))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>There are also a few variables that are coded with numbers but have corresponding values: <code>weather_code</code> and <code>season</code>. Recoding them will make it easier to work with them (we will use slightly abbreviated names for <code>weather_code</code> to keep them more readable).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>bikes <span class="ot">&lt;-</span> bikes <span class="sc">%&gt;%</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">season =</span> <span class="fu">recode</span>(season, <span class="st">"0"</span> <span class="ot">=</span> <span class="st">"spring"</span>, <span class="st">"1"</span> <span class="ot">=</span> <span class="st">"summer"</span>, <span class="st">"2"</span> <span class="ot">=</span> <span class="st">"fall"</span>, <span class="st">"3"</span> <span class="ot">=</span> <span class="st">"winter"</span>),</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">weather_code =</span> <span class="fu">recode</span>(weather_code, <span class="st">"1"</span> <span class="ot">=</span> <span class="st">"clear"</span>, <span class="st">"2"</span> <span class="ot">=</span> <span class="st">"scattered clouds"</span>, </span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>                               <span class="st">"3"</span> <span class="ot">=</span> <span class="st">"Broken clouds"</span>, <span class="st">"4"</span> <span class="ot">=</span> <span class="st">"Cloudy "</span>, </span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>                               <span class="st">"7"</span> <span class="ot">=</span> <span class="st">"Rain"</span>, <span class="st">"10"</span> <span class="ot">=</span> <span class="st">"rain with thunderstorm"</span>, </span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>                               <span class="st">"26"</span> <span class="ot">=</span> <span class="st">"snowfall"</span>, <span class="st">"94"</span> <span class="ot">=</span> <span class="st">"Freezing Fog"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>There is a number of things we might want to look at to get to know the data better. Lets start with the numeric columns. A good point to start is to look at some summary statistics like means, standard deviations, minimum and maximum values (we’ll use <code>knitr::kable()</code> just to make the table look nicer in the output).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>bikes <span class="sc">%&gt;%</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(is.numeric) <span class="sc">%&gt;%</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">everything</span>(), <span class="at">names_to =</span> <span class="st">"variable"</span>, <span class="at">values_to =</span> <span class="st">"value"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(variable) <span class="sc">%&gt;%</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">mean =</span> <span class="fu">mean</span>(value, <span class="at">na.rm =</span> T), </span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>                                           <span class="at">sd =</span> <span class="fu">sd</span>(value, <span class="at">na.rm =</span> T),</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>                                           <span class="at">min =</span> <span class="fu">min</span>(value, <span class="at">na.rm =</span> T), </span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>                                           <span class="at">max =</span> <span class="fu">max</span>(value, <span class="at">na.rm =</span> T)) <span class="sc">%&gt;%</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>  knitr<span class="sc">::</span><span class="fu">kable</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Use of bare predicate functions was deprecated in tidyselect 1.1.0.
+ℹ Please use wrap predicates in `where()` instead.
+  # Was:
+  data %&gt;% select(is.numeric)
+
+  # Now:
+  data %&gt;% select(where(is.numeric))</code></pre>
+</div>
 <div class="cell-output-display">
 <table class="table table-sm table-striped small">
-<colgroup>
-<col style="width: 14%">
-<col style="width: 11%">
-<col style="width: 13%">
-<col style="width: 13%">
-<col style="width: 13%">
-<col style="width: 10%">
-<col style="width: 11%">
-<col style="width: 11%">
-</colgroup>
 <thead>
 <tr class="header">
-<th style="text-align: right;">points_mean</th>
-<th style="text-align: right;">points_sd</th>
-<th style="text-align: right;">points_min</th>
-<th style="text-align: right;">points_max</th>
-<th style="text-align: right;">price_mean</th>
-<th style="text-align: right;">price_sd</th>
-<th style="text-align: right;">price_min</th>
-<th style="text-align: right;">price_max</th>
+<th style="text-align: left;">variable</th>
+<th style="text-align: right;">mean</th>
+<th style="text-align: right;">sd</th>
+<th style="text-align: right;">min</th>
+<th style="text-align: right;">max</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: right;">87.88842</td>
-<td style="text-align: right;">3.222392</td>
-<td style="text-align: right;">80</td>
-<td style="text-align: right;">100</td>
-<td style="text-align: right;">33.13148</td>
-<td style="text-align: right;">36.32254</td>
-<td style="text-align: right;">4</td>
-<td style="text-align: right;">2300</td>
+<td style="text-align: left;">cnt</td>
+<td style="text-align: right;">1143.10164</td>
+<td style="text-align: right;">1085.108068</td>
+<td style="text-align: right;">0.0</td>
+<td style="text-align: right;">7860.0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">hum</td>
+<td style="text-align: right;">72.32495</td>
+<td style="text-align: right;">14.313186</td>
+<td style="text-align: right;">20.5</td>
+<td style="text-align: right;">100.0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">t1</td>
+<td style="text-align: right;">12.46809</td>
+<td style="text-align: right;">5.571818</td>
+<td style="text-align: right;">-1.5</td>
+<td style="text-align: right;">34.0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">t2</td>
+<td style="text-align: right;">11.52084</td>
+<td style="text-align: right;">6.615145</td>
+<td style="text-align: right;">-6.0</td>
+<td style="text-align: right;">34.0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">wind_speed</td>
+<td style="text-align: right;">15.91306</td>
+<td style="text-align: right;">7.894570</td>
+<td style="text-align: right;">0.0</td>
+<td style="text-align: right;">56.5</td>
 </tr>
 </tbody>
 </table>
 </div>
 </div>
-<p>It seems that no values are out out range as the documentation says that <code>points</code> should be between 1 and 100 and the price seems reasonable as well - from 4 to 2300. Perhaps surprisingly the lowest rating is 80 - this is fairly high for a 1 to 100 scale!</p>
-<p>We can also look at other variables that aren’t numeric - lets look at the country variable as an example. Lets see which countries are available and for which countries we have the most reviews. We can do it by combining <code>count()</code> with <code>arrange()</code>.</p>
+<p>We can also look at other variables that aren’t numeric - lets look at the <code>weather_code</code> variable as an example. Lets see which countries are available and for which countries we have the most reviews. We can do it by combining <code>count()</code> with <code>arrange()</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>wine <span class="sc">%&gt;%</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(country) <span class="sc">%&gt;%</span></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(n))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>bikes <span class="sc">%&gt;%</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(weather_code) <span class="sc">%&gt;%</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(n))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 49 × 2
-   country         n
-   &lt;chr&gt;       &lt;int&gt;
- 1 US          62397
- 2 Italy       23478
- 3 France      21098
- 4 Spain        8268
- 5 Chile        5816
- 6 Argentina    5631
- 7 Portugal     5322
- 8 Australia    4957
- 9 New Zealand  3320
-10 Austria      3057
-# ℹ 39 more rows</code></pre>
+<pre><code># A tibble: 7 × 2
+  weather_code                 n
+  &lt;fct&gt;                    &lt;int&gt;
+1 "clear"                   6150
+2 "scattered clouds"        4034
+3 "Broken clouds"           3551
+4 "Rain"                    2141
+5 "Cloudy "                 1464
+6 "snowfall"                  60
+7 "rain with thunderstorm"    14</code></pre>
 </div>
 </div>
 <p>If we just want to get information on which countries are in the data we can use <code>unique()</code>:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(wine<span class="sc">$</span>country)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(bikes<span class="sc">$</span>weather_code)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] "US"                     "Spain"                  "France"                
- [4] "Italy"                  "New Zealand"            "Bulgaria"              
- [7] "Argentina"              "Australia"              "Portugal"              
-[10] "Israel"                 "South Africa"           "Greece"                
-[13] "Chile"                  "Morocco"                "Romania"               
-[16] "Germany"                "Canada"                 "Moldova"               
-[19] "Hungary"                "Austria"                "Croatia"               
-[22] "Slovenia"               NA                       "India"                 
-[25] "Turkey"                 "Macedonia"              "Lebanon"               
-[28] "Serbia"                 "Uruguay"                "Switzerland"           
-[31] "Albania"                "Bosnia and Herzegovina" "Brazil"                
-[34] "Cyprus"                 "Lithuania"              "Japan"                 
-[37] "China"                  "South Korea"            "Ukraine"               
-[40] "England"                "Mexico"                 "Georgia"               
-[43] "Montenegro"             "Luxembourg"             "Slovakia"              
-[46] "Czech Republic"         "Egypt"                  "Tunisia"               
-[49] "US-France"             </code></pre>
+<pre><code>[1] Broken clouds          clear                  Cloudy                
+[4] Rain                   scattered clouds       snowfall              
+[7] rain with thunderstorm
+7 Levels: clear scattered clouds Broken clouds Cloudy  ... snowfall</code></pre>
 </div>
 </div>
-<p>The <code>psych</code> package also has a pretty useful function that can give you multiple summaries very quickly. It’s called <code>describe()</code>. It takes a data frame or a matrix as an argument and can provide a lot of summary statistics for numeric variables such as the mean, median, standard deviation, standard error, skew, kurtosis and quantiles. You can specify which of these you want by setting additional arguments.d</p>
+<p>The <code>psych</code> package also has a pretty useful function that can give you multiple summaries very quickly. It’s called <code>describe()</code>. It takes a data frame or a matrix as an argument and can provide a lot of summary statistics for numeric variables such as the mean, median, standard deviation, standard error, skew, kurtosis and quantiles. You can specify which of these you want by setting additional arguments. We will also round numeric values using <code>mutate()</code> and <code>across()</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(psych)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(psych)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>
 Dołączanie pakietu: 'psych'</code></pre>
@@ -394,27 +405,28 @@ Dołączanie pakietu: 'psych'</code></pre>
 
     %+%, alpha</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>wine <span class="sc">%&gt;%</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="fu">where</span>(is.numeric)) <span class="sc">%&gt;%</span></span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">describe</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  knitr<span class="sc">::</span><span class="fu">kable</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>bikes <span class="sc">%&gt;%</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="fu">where</span>(is.numeric)) <span class="sc">%&gt;%</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">describe</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(is.numeric, \(x) <span class="fu">round</span>(x, <span class="dv">2</span>))) <span class="sc">%&gt;%</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>  knitr<span class="sc">::</span><span class="fu">kable</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <table class="table table-sm table-striped small">
 <colgroup>
-<col style="width: 6%">
-<col style="width: 4%">
+<col style="width: 11%">
+<col style="width: 5%">
 <col style="width: 6%">
 <col style="width: 8%">
-<col style="width: 9%">
-<col style="width: 6%">
 <col style="width: 8%">
 <col style="width: 7%">
-<col style="width: 3%">
-<col style="width: 4%">
+<col style="width: 8%">
+<col style="width: 7%">
 <col style="width: 5%">
-<col style="width: 10%">
-<col style="width: 10%">
+<col style="width: 7%">
+<col style="width: 7%">
+<col style="width: 6%">
 <col style="width: 9%">
+<col style="width: 5%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -436,64 +448,113 @@ Dołączanie pakietu: 'psych'</code></pre>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">points</td>
+<td style="text-align: left;">cnt</td>
 <td style="text-align: right;">1</td>
-<td style="text-align: right;">150930</td>
-<td style="text-align: right;">87.88842</td>
-<td style="text-align: right;">3.222392</td>
-<td style="text-align: right;">88</td>
-<td style="text-align: right;">87.84567</td>
-<td style="text-align: right;">2.9652</td>
-<td style="text-align: right;">80</td>
-<td style="text-align: right;">100</td>
-<td style="text-align: right;">20</td>
-<td style="text-align: right;">0.1428298</td>
-<td style="text-align: right;">-0.2864823</td>
-<td style="text-align: right;">0.0082945</td>
+<td style="text-align: right;">17414</td>
+<td style="text-align: right;">1143.10</td>
+<td style="text-align: right;">1085.11</td>
+<td style="text-align: right;">844.0</td>
+<td style="text-align: right;">973.26</td>
+<td style="text-align: right;">972.59</td>
+<td style="text-align: right;">0.0</td>
+<td style="text-align: right;">7860.0</td>
+<td style="text-align: right;">7860.0</td>
+<td style="text-align: right;">1.33</td>
+<td style="text-align: right;">1.54</td>
+<td style="text-align: right;">8.22</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">price</td>
+<td style="text-align: left;">t1</td>
 <td style="text-align: right;">2</td>
-<td style="text-align: right;">137235</td>
-<td style="text-align: right;">33.13148</td>
-<td style="text-align: right;">36.322536</td>
-<td style="text-align: right;">24</td>
-<td style="text-align: right;">27.33739</td>
-<td style="text-align: right;">14.8260</td>
+<td style="text-align: right;">17414</td>
+<td style="text-align: right;">12.47</td>
+<td style="text-align: right;">5.57</td>
+<td style="text-align: right;">12.5</td>
+<td style="text-align: right;">12.36</td>
+<td style="text-align: right;">5.93</td>
+<td style="text-align: right;">-1.5</td>
+<td style="text-align: right;">34.0</td>
+<td style="text-align: right;">35.5</td>
+<td style="text-align: right;">0.20</td>
+<td style="text-align: right;">-0.26</td>
+<td style="text-align: right;">0.04</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">t2</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">17414</td>
+<td style="text-align: right;">11.52</td>
+<td style="text-align: right;">6.62</td>
+<td style="text-align: right;">12.5</td>
+<td style="text-align: right;">11.56</td>
+<td style="text-align: right;">7.41</td>
+<td style="text-align: right;">-6.0</td>
+<td style="text-align: right;">34.0</td>
+<td style="text-align: right;">40.0</td>
+<td style="text-align: right;">-0.06</td>
+<td style="text-align: right;">-0.66</td>
+<td style="text-align: right;">0.05</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">hum</td>
 <td style="text-align: right;">4</td>
-<td style="text-align: right;">2300</td>
-<td style="text-align: right;">2296</td>
-<td style="text-align: right;">11.8198417</td>
-<td style="text-align: right;">372.8051184</td>
-<td style="text-align: right;">0.0980491</td>
+<td style="text-align: right;">17414</td>
+<td style="text-align: right;">72.32</td>
+<td style="text-align: right;">14.31</td>
+<td style="text-align: right;">74.5</td>
+<td style="text-align: right;">73.31</td>
+<td style="text-align: right;">14.83</td>
+<td style="text-align: right;">20.5</td>
+<td style="text-align: right;">100.0</td>
+<td style="text-align: right;">79.5</td>
+<td style="text-align: right;">-0.57</td>
+<td style="text-align: right;">-0.26</td>
+<td style="text-align: right;">0.11</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">wind_speed</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">17414</td>
+<td style="text-align: right;">15.91</td>
+<td style="text-align: right;">7.89</td>
+<td style="text-align: right;">15.0</td>
+<td style="text-align: right;">15.35</td>
+<td style="text-align: right;">7.41</td>
+<td style="text-align: right;">0.0</td>
+<td style="text-align: right;">56.5</td>
+<td style="text-align: right;">56.5</td>
+<td style="text-align: right;">0.67</td>
+<td style="text-align: right;">0.45</td>
+<td style="text-align: right;">0.06</td>
 </tr>
 </tbody>
 </table>
 </div>
 </div>
-<p>Sometimes you want summary statistics grouped by some categorical variable (e.g.&nbsp;experimental condition). You can do it with <code>describe.by()</code> from <code>psych</code> package. It works the same way as <code>describe()</code> you just need to provide the <code>group</code> argument which tells R what variable to split the dataset by. Lets look at a subset of countries (since there are so many!): USA, Italy and France:</p>
+<p>Sometimes you want summary statistics grouped by some categorical variable (e.g.&nbsp;experimental condition). You can do it with <code>describe.by()</code> from <code>psych</code> package. It works the same way as <code>describe()</code> you just need to provide the <code>group</code> argument which tells R what variable to split the dataset by. Lets look at the dataset split by season.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">describeBy</span>(price <span class="sc">+</span> points <span class="sc">~</span> country, <span class="at">data =</span> wine[<span class="fu">which</span>(wine<span class="sc">$</span>country <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"US"</span>, <span class="st">"Italy"</span>, <span class="st">"France"</span>)),], <span class="at">mat=</span><span class="cn">TRUE</span>)<span class="sc">%&gt;%</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  knitr<span class="sc">::</span><span class="fu">kable</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">describeBy</span>(t1 <span class="sc">+</span> t2 <span class="sc">+</span> hum <span class="sc">+</span> cnt <span class="sc">~</span> season, <span class="at">data =</span> bikes, <span class="at">mat=</span><span class="cn">TRUE</span>)<span class="sc">%&gt;%</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(is.numeric, \(x) <span class="fu">round</span>(x, <span class="dv">2</span>))) <span class="sc">%&gt;%</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  knitr<span class="sc">::</span><span class="fu">kable</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <table class="table table-sm table-striped small">
 <colgroup>
-<col style="width: 6%">
 <col style="width: 4%">
-<col style="width: 5%">
+<col style="width: 4%">
+<col style="width: 6%">
 <col style="width: 4%">
 <col style="width: 4%">
 <col style="width: 7%">
-<col style="width: 8%">
-<col style="width: 5%">
 <col style="width: 7%">
 <col style="width: 6%">
-<col style="width: 3%">
+<col style="width: 7%">
+<col style="width: 7%">
 <col style="width: 4%">
-<col style="width: 4%">
-<col style="width: 9%">
-<col style="width: 9%">
+<col style="width: 6%">
+<col style="width: 6%">
+<col style="width: 5%">
 <col style="width: 8%">
+<col style="width: 5%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -517,112 +578,292 @@ Dołączanie pakietu: 'psych'</code></pre>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">price1</td>
+<td style="text-align: left;">t11</td>
 <td style="text-align: left;">1</td>
-<td style="text-align: left;">France</td>
+<td style="text-align: left;">spring</td>
 <td style="text-align: right;">1</td>
-<td style="text-align: right;">14785</td>
-<td style="text-align: right;">45.61988</td>
-<td style="text-align: right;">69.697060</td>
-<td style="text-align: right;">25</td>
-<td style="text-align: right;">32.55541</td>
-<td style="text-align: right;">16.3086</td>
-<td style="text-align: right;">5</td>
-<td style="text-align: right;">2300</td>
-<td style="text-align: right;">2295</td>
-<td style="text-align: right;">9.3637885</td>
-<td style="text-align: right;">174.0621606</td>
-<td style="text-align: right;">0.5731968</td>
+<td style="text-align: right;">4394</td>
+<td style="text-align: right;">10.67</td>
+<td style="text-align: right;">4.02</td>
+<td style="text-align: right;">10.0</td>
+<td style="text-align: right;">10.50</td>
+<td style="text-align: right;">4.45</td>
+<td style="text-align: right;">0.5</td>
+<td style="text-align: right;">26.0</td>
+<td style="text-align: right;">25.5</td>
+<td style="text-align: right;">0.42</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0.06</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">price2</td>
+<td style="text-align: left;">t12</td>
 <td style="text-align: left;">2</td>
-<td style="text-align: left;">Italy</td>
+<td style="text-align: left;">summer</td>
 <td style="text-align: right;">1</td>
-<td style="text-align: right;">18784</td>
-<td style="text-align: right;">37.54791</td>
-<td style="text-align: right;">37.067869</td>
-<td style="text-align: right;">25</td>
-<td style="text-align: right;">31.23556</td>
-<td style="text-align: right;">16.3086</td>
-<td style="text-align: right;">5</td>
-<td style="text-align: right;">900</td>
-<td style="text-align: right;">895</td>
-<td style="text-align: right;">5.7314418</td>
-<td style="text-align: right;">64.9905166</td>
-<td style="text-align: right;">0.2704603</td>
+<td style="text-align: right;">4387</td>
+<td style="text-align: right;">18.43</td>
+<td style="text-align: right;">3.62</td>
+<td style="text-align: right;">18.0</td>
+<td style="text-align: right;">18.29</td>
+<td style="text-align: right;">2.97</td>
+<td style="text-align: right;">9.0</td>
+<td style="text-align: right;">34.0</td>
+<td style="text-align: right;">25.0</td>
+<td style="text-align: right;">0.49</td>
+<td style="text-align: right;">0.78</td>
+<td style="text-align: right;">0.05</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">price3</td>
+<td style="text-align: left;">t13</td>
 <td style="text-align: left;">3</td>
-<td style="text-align: left;">US</td>
+<td style="text-align: left;">fall</td>
 <td style="text-align: right;">1</td>
-<td style="text-align: right;">62139</td>
-<td style="text-align: right;">33.65381</td>
-<td style="text-align: right;">24.891343</td>
-<td style="text-align: right;">28</td>
-<td style="text-align: right;">30.06270</td>
-<td style="text-align: right;">14.8260</td>
-<td style="text-align: right;">4</td>
-<td style="text-align: right;">2013</td>
-<td style="text-align: right;">2009</td>
-<td style="text-align: right;">11.3983381</td>
-<td style="text-align: right;">674.5951508</td>
-<td style="text-align: right;">0.0998542</td>
+<td style="text-align: right;">4303</td>
+<td style="text-align: right;">13.04</td>
+<td style="text-align: right;">4.29</td>
+<td style="text-align: right;">13.0</td>
+<td style="text-align: right;">13.01</td>
+<td style="text-align: right;">3.71</td>
+<td style="text-align: right;">-1.0</td>
+<td style="text-align: right;">33.0</td>
+<td style="text-align: right;">34.0</td>
+<td style="text-align: right;">0.18</td>
+<td style="text-align: right;">1.06</td>
+<td style="text-align: right;">0.07</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">points1</td>
+<td style="text-align: left;">t14</td>
 <td style="text-align: left;">4</td>
-<td style="text-align: left;">France</td>
-<td style="text-align: right;">2</td>
-<td style="text-align: right;">21098</td>
-<td style="text-align: right;">88.92587</td>
-<td style="text-align: right;">3.199695</td>
-<td style="text-align: right;">89</td>
-<td style="text-align: right;">88.88436</td>
-<td style="text-align: right;">2.9652</td>
-<td style="text-align: right;">80</td>
-<td style="text-align: right;">100</td>
-<td style="text-align: right;">20</td>
-<td style="text-align: right;">0.1288524</td>
-<td style="text-align: right;">-0.3625780</td>
-<td style="text-align: right;">0.0220287</td>
+<td style="text-align: left;">winter</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">4330</td>
+<td style="text-align: right;">7.69</td>
+<td style="text-align: right;">3.79</td>
+<td style="text-align: right;">7.5</td>
+<td style="text-align: right;">7.68</td>
+<td style="text-align: right;">4.45</td>
+<td style="text-align: right;">-1.5</td>
+<td style="text-align: right;">16.5</td>
+<td style="text-align: right;">18.0</td>
+<td style="text-align: right;">0.04</td>
+<td style="text-align: right;">-0.80</td>
+<td style="text-align: right;">0.06</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">points2</td>
+<td style="text-align: left;">t21</td>
 <td style="text-align: left;">5</td>
-<td style="text-align: left;">Italy</td>
+<td style="text-align: left;">spring</td>
 <td style="text-align: right;">2</td>
-<td style="text-align: right;">23478</td>
-<td style="text-align: right;">88.41366</td>
-<td style="text-align: right;">2.728914</td>
-<td style="text-align: right;">88</td>
-<td style="text-align: right;">88.31820</td>
-<td style="text-align: right;">2.9652</td>
-<td style="text-align: right;">80</td>
-<td style="text-align: right;">100</td>
-<td style="text-align: right;">20</td>
-<td style="text-align: right;">0.3800496</td>
-<td style="text-align: right;">0.1094096</td>
-<td style="text-align: right;">0.0178098</td>
+<td style="text-align: right;">4394</td>
+<td style="text-align: right;">9.42</td>
+<td style="text-align: right;">5.10</td>
+<td style="text-align: right;">9.0</td>
+<td style="text-align: right;">9.31</td>
+<td style="text-align: right;">5.93</td>
+<td style="text-align: right;">-2.5</td>
+<td style="text-align: right;">26.0</td>
+<td style="text-align: right;">28.5</td>
+<td style="text-align: right;">0.19</td>
+<td style="text-align: right;">-0.75</td>
+<td style="text-align: right;">0.08</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">points3</td>
+<td style="text-align: left;">t22</td>
 <td style="text-align: left;">6</td>
-<td style="text-align: left;">US</td>
+<td style="text-align: left;">summer</td>
 <td style="text-align: right;">2</td>
-<td style="text-align: right;">62397</td>
-<td style="text-align: right;">87.81879</td>
-<td style="text-align: right;">3.410294</td>
-<td style="text-align: right;">88</td>
-<td style="text-align: right;">87.77596</td>
-<td style="text-align: right;">2.9652</td>
-<td style="text-align: right;">80</td>
-<td style="text-align: right;">100</td>
-<td style="text-align: right;">20</td>
-<td style="text-align: right;">0.1404701</td>
-<td style="text-align: right;">-0.5299118</td>
-<td style="text-align: right;">0.0136524</td>
+<td style="text-align: right;">4387</td>
+<td style="text-align: right;">18.39</td>
+<td style="text-align: right;">3.63</td>
+<td style="text-align: right;">18.0</td>
+<td style="text-align: right;">18.26</td>
+<td style="text-align: right;">2.97</td>
+<td style="text-align: right;">6.0</td>
+<td style="text-align: right;">34.0</td>
+<td style="text-align: right;">28.0</td>
+<td style="text-align: right;">0.41</td>
+<td style="text-align: right;">1.03</td>
+<td style="text-align: right;">0.05</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">t23</td>
+<td style="text-align: left;">7</td>
+<td style="text-align: left;">fall</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">4303</td>
+<td style="text-align: right;">12.51</td>
+<td style="text-align: right;">5.06</td>
+<td style="text-align: right;">13.0</td>
+<td style="text-align: right;">12.70</td>
+<td style="text-align: right;">4.45</td>
+<td style="text-align: right;">-4.5</td>
+<td style="text-align: right;">32.5</td>
+<td style="text-align: right;">37.0</td>
+<td style="text-align: right;">-0.30</td>
+<td style="text-align: right;">0.61</td>
+<td style="text-align: right;">0.08</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">t24</td>
+<td style="text-align: left;">8</td>
+<td style="text-align: left;">winter</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">4330</td>
+<td style="text-align: right;">5.71</td>
+<td style="text-align: right;">4.88</td>
+<td style="text-align: right;">5.0</td>
+<td style="text-align: right;">5.59</td>
+<td style="text-align: right;">5.19</td>
+<td style="text-align: right;">-6.0</td>
+<td style="text-align: right;">16.5</td>
+<td style="text-align: right;">22.5</td>
+<td style="text-align: right;">0.29</td>
+<td style="text-align: right;">-0.96</td>
+<td style="text-align: right;">0.07</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">hum1</td>
+<td style="text-align: left;">9</td>
+<td style="text-align: left;">spring</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">4394</td>
+<td style="text-align: right;">68.60</td>
+<td style="text-align: right;">15.23</td>
+<td style="text-align: right;">71.0</td>
+<td style="text-align: right;">69.28</td>
+<td style="text-align: right;">16.31</td>
+<td style="text-align: right;">23.0</td>
+<td style="text-align: right;">100.0</td>
+<td style="text-align: right;">77.0</td>
+<td style="text-align: right;">-0.37</td>
+<td style="text-align: right;">-0.65</td>
+<td style="text-align: right;">0.23</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">hum2</td>
+<td style="text-align: left;">10</td>
+<td style="text-align: left;">summer</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">4387</td>
+<td style="text-align: right;">66.85</td>
+<td style="text-align: right;">15.13</td>
+<td style="text-align: right;">68.0</td>
+<td style="text-align: right;">67.37</td>
+<td style="text-align: right;">17.79</td>
+<td style="text-align: right;">20.5</td>
+<td style="text-align: right;">97.0</td>
+<td style="text-align: right;">76.5</td>
+<td style="text-align: right;">-0.29</td>
+<td style="text-align: right;">-0.77</td>
+<td style="text-align: right;">0.23</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">hum3</td>
+<td style="text-align: left;">11</td>
+<td style="text-align: left;">fall</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">4303</td>
+<td style="text-align: right;">76.10</td>
+<td style="text-align: right;">12.21</td>
+<td style="text-align: right;">77.0</td>
+<td style="text-align: right;">76.92</td>
+<td style="text-align: right;">12.60</td>
+<td style="text-align: right;">31.0</td>
+<td style="text-align: right;">100.0</td>
+<td style="text-align: right;">69.0</td>
+<td style="text-align: right;">-0.60</td>
+<td style="text-align: right;">-0.05</td>
+<td style="text-align: right;">0.19</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">hum4</td>
+<td style="text-align: left;">12</td>
+<td style="text-align: left;">winter</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">4330</td>
+<td style="text-align: right;">77.91</td>
+<td style="text-align: right;">10.90</td>
+<td style="text-align: right;">79.0</td>
+<td style="text-align: right;">78.43</td>
+<td style="text-align: right;">11.86</td>
+<td style="text-align: right;">36.0</td>
+<td style="text-align: right;">100.0</td>
+<td style="text-align: right;">64.0</td>
+<td style="text-align: right;">-0.44</td>
+<td style="text-align: right;">-0.17</td>
+<td style="text-align: right;">0.17</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">cnt1</td>
+<td style="text-align: left;">13</td>
+<td style="text-align: left;">spring</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">4394</td>
+<td style="text-align: right;">1103.83</td>
+<td style="text-align: right;">1039.00</td>
+<td style="text-align: right;">823.0</td>
+<td style="text-align: right;">945.91</td>
+<td style="text-align: right;">973.33</td>
+<td style="text-align: right;">0.0</td>
+<td style="text-align: right;">5322.0</td>
+<td style="text-align: right;">5322.0</td>
+<td style="text-align: right;">1.21</td>
+<td style="text-align: right;">0.99</td>
+<td style="text-align: right;">15.67</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">cnt2</td>
+<td style="text-align: left;">14</td>
+<td style="text-align: left;">summer</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">4387</td>
+<td style="text-align: right;">1464.47</td>
+<td style="text-align: right;">1250.76</td>
+<td style="text-align: right;">1214.0</td>
+<td style="text-align: right;">1299.39</td>
+<td style="text-align: right;">1322.48</td>
+<td style="text-align: right;">12.0</td>
+<td style="text-align: right;">7860.0</td>
+<td style="text-align: right;">7848.0</td>
+<td style="text-align: right;">0.99</td>
+<td style="text-align: right;">0.55</td>
+<td style="text-align: right;">18.88</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">cnt3</td>
+<td style="text-align: left;">15</td>
+<td style="text-align: left;">fall</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">4303</td>
+<td style="text-align: right;">1178.95</td>
+<td style="text-align: right;">1095.65</td>
+<td style="text-align: right;">898.0</td>
+<td style="text-align: right;">1009.91</td>
+<td style="text-align: right;">1000.76</td>
+<td style="text-align: right;">9.0</td>
+<td style="text-align: right;">5422.0</td>
+<td style="text-align: right;">5413.0</td>
+<td style="text-align: right;">1.31</td>
+<td style="text-align: right;">1.48</td>
+<td style="text-align: right;">16.70</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">cnt4</td>
+<td style="text-align: left;">16</td>
+<td style="text-align: left;">winter</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">4330</td>
+<td style="text-align: right;">821.73</td>
+<td style="text-align: right;">807.44</td>
+<td style="text-align: right;">632.0</td>
+<td style="text-align: right;">684.04</td>
+<td style="text-align: right;">687.93</td>
+<td style="text-align: right;">10.0</td>
+<td style="text-align: right;">4415.0</td>
+<td style="text-align: right;">4405.0</td>
+<td style="text-align: right;">1.63</td>
+<td style="text-align: right;">2.94</td>
+<td style="text-align: right;">12.27</td>
 </tr>
 </tbody>
 </table>
@@ -631,95 +872,70 @@ Dołączanie pakietu: 'psych'</code></pre>
 </section>
 <section id="exploring-via-plots" class="level2">
 <h2 class="anchored" data-anchor-id="exploring-via-plots">Exploring via plots</h2>
-<p>Doing numeric exploration is always useful and can give you plenty of information about a dataset but in many situations a plot makes exploration much easier. It allows you to immediately spot certain problems like implausible outliers, weird (e.g.&nbsp;censored) distributions or types of relations (is it linear? quadratic? Does it make sense at all?). Lets look at some quick summaries of our variables with plots. We can start by simple histograms of numeric variables and a scatterplot to show the relation between</p>
+<p>Doing numeric exploration is always useful and can give you plenty of information about a dataset but in many situations a plot makes exploration much easier. It allows you to immediately spot certain problems like implausible outliers, weird (e.g.&nbsp;censored) distributions or types of relations (is it linear? quadratic? Does it make sense at all?). Lets look at some quick summaries of our variables with plots. We can start by simple histograms of numeric variables and a scatterplot to show the relation between numeric variables:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>wine <span class="sc">%&gt;%</span></span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(price, points) <span class="sc">%&gt;%</span></span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">everything</span>(), <span class="at">names_to =</span> <span class="st">"var"</span>, <span class="at">values_to =</span> <span class="st">"value"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> value)) <span class="sc">+</span></span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">30</span>) <span class="sc">+</span></span>
-<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>var, <span class="at">scales =</span> <span class="st">"free"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 13695 rows containing non-finite values (`stat_bin()`).</code></pre>
-</div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>bikes <span class="sc">%&gt;%</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="fu">where</span>(is.numeric)) <span class="sc">%&gt;%</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">everything</span>(), <span class="at">names_to =</span> <span class="st">"var"</span>, <span class="at">values_to =</span> <span class="st">"value"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> value)) <span class="sc">+</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">30</span>) <span class="sc">+</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>var, <span class="at">scales =</span> <span class="st">"free"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="12eda_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="12eda_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
 </div>
 </div>
-<p>We can see that <code>points</code> is a nicely normal distribution while the <code>price</code> variable is heavily skewed (which is to be expected). Lets look at the scatterplot of the two:</p>
+</div>
+<p>We can immediately see the skew in some of the variables. You can also get a rough look at bivariate relations with <code>pairs.panels()</code> function from <code>psych</code> package:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>wine <span class="sc">%&gt;%</span></span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> points, <span class="at">y =</span> price)) <span class="sc">+</span></span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> .<span class="dv">4</span>) <span class="sc">+</span></span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>`geom_smooth()` using method = 'gam' and formula = 'y ~ s(x, bs = "cs")'</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 13695 rows containing non-finite values (`stat_smooth()`).</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 13695 rows containing missing values (`geom_point()`).</code></pre>
-</div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pairs.panels</span>(bikes <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="fu">where</span>(is.numeric)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="12eda_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="12eda_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
 </div>
 </div>
-<p>Seems that as the score increases the variability in price goes up as well. especially above 90 points. Another good idea might be looktng at price and scores e.g.&nbsp;in different countries. Lets focus again on a subset of countries: US, Italy and France.</p>
+</div>
+<p>It shows bivariate scatterplots, correlations and distributions for all the numeric variables. You can quickly see e.g.&nbsp;that actual and felt temperature are pretty much the same with correlation of .99.</p>
+<p>Lets focus in a bit more detail on some of the variables like count, temperature and season.</p>
+<p>Lets start by looking at distributions of counts across seasons:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>wine <span class="sc">%&gt;%</span></span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(country <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"US"</span>, <span class="st">"Italy"</span>, <span class="st">"France"</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> country, <span class="at">y =</span> price)) <span class="sc">+</span></span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_violin</span>() <span class="sc">+</span></span>
-<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">width =</span> .<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 11265 rows containing non-finite values (`stat_ydensity()`).</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 11265 rows containing non-finite values (`stat_boxplot()`).</code></pre>
-</div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>bikes <span class="sc">%&gt;%</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> season, <span class="at">y =</span> cnt, <span class="at">fill =</span> season, <span class="at">color =</span> season)) <span class="sc">+</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_violin</span>(<span class="at">alpha =</span> .<span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_summary</span>(<span class="at">fun.data =</span> <span class="st">"mean_cl_boot"</span>, <span class="at">geom =</span> <span class="st">"pointrange"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="12eda_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="12eda_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
 </div>
 </div>
+</div>
+<p>We can see that summer has a much longer tail - there are some measurements with way moire counts than in other seasons and that there are much more low counts in the winter. We can also look at relations between e.g.&nbsp;temperature and counts in each season:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>wine <span class="sc">%&gt;%</span></span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(country <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"US"</span>, <span class="st">"Italy"</span>, <span class="st">"France"</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> country, <span class="at">y =</span> points)) <span class="sc">+</span></span>
-<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_violin</span>() <span class="sc">+</span></span>
-<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">width =</span> .<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>bikes <span class="sc">%&gt;%</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> t1, <span class="at">y =</span> cnt, <span class="at">color =</span> season)) <span class="sc">+</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_count</span>(<span class="at">alpha =</span> .<span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>season)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="12eda_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="12eda_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
 </div>
 </div>
-<p>And the relation between points and price in each of the three countries:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>wine <span class="sc">%&gt;%</span></span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(country <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"US"</span>, <span class="st">"Italy"</span>, <span class="st">"France"</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> points, <span class="at">y =</span> price)) <span class="sc">+</span></span>
-<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> .<span class="dv">4</span>) <span class="sc">+</span></span>
-<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>() <span class="sc">+</span></span>
-<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>country)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>`geom_smooth()` using method = 'gam' and formula = 'y ~ s(x, bs = "cs")'</code></pre>
 </div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 11265 rows containing non-finite values (`stat_smooth()`).</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 11265 rows containing missing values (`geom_point()`).</code></pre>
-</div>
-<div class="cell-output-display">
-<p><img src="12eda_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid" width="672"></p>
-</div>
-</div>
-<p>Looks like the rise in price for the highest scored wines is driven especially by French wines.</p>
+<p>Unsurprisingly there are much lower temperatures in the winter.</p>
 <section id="a-cautionary-tale-the-boring-way" class="level3">
 <h3 class="anchored" data-anchor-id="a-cautionary-tale-the-boring-way">A cautionary tale the boring way</h3>
 <p>One of the reasons why plotting is very important and useful is that all sorts of data can provide you the same point estimate (like a mean or a regression slope). The most common example is the Anscombe quartet. It’s a set of 4 datasets with x and y variable each. Each of these have exactly the same correlation coefficient between x and y so you might be tempted to say they are pretty much the same, right? But if you plot them you’ll see this:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="images/paste-E216A64B.png" class="img-fluid figure-img"></p>
+<p><img src="images/paste-E216A64B.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
 </figure>
 </div>
 <p>Even though the regression line is the same on each plot you can immediately see that it makes sense only in the first one (top left). The top right one shows a quadratic and not a linear relation. The bottom left one clearly has an outlier that drives the regression line to be steeper. And the bottom right one shows pretty much no relation because entire variation in x is driven by a single data point. If we didn’t plot the data we wouldn’t realize just how different these datasets are. You could discover this in some numerical way (e.g.&nbsp;looking at regression diagnostics) but plotting makes it much faster and allows you to immediately spot the problem.</p>
@@ -740,11 +956,11 @@ $ att_migrants   &lt;dbl&gt; 6.12, -0.62, -2.12, 5.68, 6.00, 0.54, 5.70, 7.04, 6
 </div>
 <p>Lets look at some summary statistics first:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>experiment <span class="sc">%&gt;%</span></span>
-<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(condition) <span class="sc">%&gt;%</span></span>
-<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean_att =</span> <span class="fu">mean</span>(att_migrants),</span>
-<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">se_att =</span> <span class="fu">sd</span>(att_migrants)<span class="sc">/</span><span class="fu">sqrt</span>(<span class="fu">n</span>())) <span class="sc">%&gt;%</span></span>
-<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>  knitr<span class="sc">::</span><span class="fu">kable</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>experiment <span class="sc">%&gt;%</span>  </span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(condition) <span class="sc">%&gt;%</span>  </span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean_att =</span> <span class="fu">mean</span>(att_migrants),</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">se_att =</span> <span class="fu">sd</span>(att_migrants)<span class="sc">/</span><span class="fu">sqrt</span>(<span class="fu">n</span>())) <span class="sc">%&gt;%</span> </span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>  knitr<span class="sc">::</span><span class="fu">kable</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <table class="table table-sm table-striped small">
 <thead>
@@ -771,32 +987,40 @@ $ att_migrants   &lt;dbl&gt; 6.12, -0.62, -2.12, 5.68, 6.00, 0.54, 5.70, 7.04, 6
 </div>
 <p>Well, it does not look like there are any meaningful differences between the conditions. We can also plot these differences:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>experiment <span class="sc">%&gt;%</span></span>
-<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> condition, <span class="at">y =</span> att_migrants)) <span class="sc">+</span></span>
-<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_summary</span>(<span class="at">fun.data =</span> <span class="st">"mean_se"</span>, <span class="at">geom =</span> <span class="st">"pointrange"</span>) <span class="sc">+</span></span>
-<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_cartesian</span>(<span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">5</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>experiment <span class="sc">%&gt;%</span>   </span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> condition, <span class="at">y =</span> att_migrants)) <span class="sc">+</span>  </span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_summary</span>(<span class="at">fun.data =</span> <span class="st">"mean_se"</span>, <span class="at">geom =</span> <span class="st">"pointrange"</span>) <span class="sc">+</span>  </span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_cartesian</span>(<span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">5</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="12eda_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="12eda_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>This is a bit disappointing. We could say that we did not reject the null hypothesis and there is no support in the data that reading a negative article affect attitudes towards migrants relative to reading a neutral article. Lets at least look at the correlation between media exposure and attitude towards migrants. Maybe there is something interesting there? We can use the <code>cor()</code> function for it:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(experiment<span class="sc">$</span>media_exposure, experiment<span class="sc">$</span>att_migrants)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(experiment<span class="sc">$</span>media_exposure, experiment<span class="sc">$</span>att_migrants)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] -0.2702737</code></pre>
 </div>
 </div>
 <p>Well the correlation seems negative and it definitely is not small. Maybe we are finally on to something! So lets finally plot the data to see how it looks like:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>experiment <span class="sc">%&gt;%</span></span>
-<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> media_exposure, <span class="at">y =</span> att_migrants)) <span class="sc">+</span></span>
-<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>experiment <span class="sc">%&gt;%</span> </span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> media_exposure, <span class="at">y =</span> att_migrants)) <span class="sc">+</span> </span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="12eda_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="12eda_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Whoops! This obviously makes no sense. We get a plot of a gorilla. This dataset is fabricated! This example is taken fully from a paper: Yanai, I, Lercher, M. (2020). A Hypothesis is a liability. <em>Genome Biology</em>, 21, 231. What they did was provide students with a very similar dataset as above and randomly assign their students into one of two condition: half the students were asked to test a specific hypothesis and half to just analyze the dataset. The researchers were interested how many students would find the gorilla. They found (although the sample was small) that students who were asked to test specific hypothesis were less likely to find the gorilla in the data than the students that were not assigned a specific hypothesis to test. This of course dos not mean we should throw hypotheses away. However it shows that being too focused on testing very specific things with our data we can miss some really big errors and unless we explore the data properly we might make terrible mistakes.</p>
@@ -894,10 +1118,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
-  function tippyHover(el, contentFn) {
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -907,8 +1130,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -921,6 +1153,125 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
       return note.innerHTML;
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
     });
   }
       let selectedAnnoteEl;
@@ -964,6 +1315,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
+            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -989,6 +1341,32 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -1049,6 +1427,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script>
 </div> <!-- /content -->
+
 
 
 

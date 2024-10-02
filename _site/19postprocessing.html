@@ -264,8 +264,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>With newer and more versatile software you don’t really need to do it this way. You can run a model and then process the results to get exactly what matches your hypothesis e.g.&nbsp;if you want to test a specific contrast from an experiment. Or if you want to compare whether the effect of one variable is significantly stronger than the effect of another variable. This gets especially important once you start working with more complex models (like logistic or ordinal regression) where coefficients themselves aren’t easily interpretable.</p>
 <section id="general-logic" class="level2">
 <h2 class="anchored" data-anchor-id="general-logic">General logic</h2>
-<p>The dataset we will be working with today is</p>
-<p>The packages we will be working with today is <code>broom</code>, <code>performance</code> and (amazing!) <code>marginaleffects</code>. The last package also has absolutely incredible documentation so I highly recommend checking out its <a href="https://marginaleffects.com/">website</a>.</p>
+<p>The packages we will be working with is <code>broom</code>, <code>performance</code> and (amazing!) <code>marginaleffects</code>. The last package also has absolutely incredible documentation so I highly recommend checking out its <a href="https://marginaleffects.com/">website</a>.</p>
 <p>The dataset we will be working with is:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -290,7 +289,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 Ładowanie wymaganego pakietu: cherryblossom
 Ładowanie wymaganego pakietu: usdata</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">"acs12"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="tidying-the-model" class="level2">
@@ -303,10 +301,11 @@ The first one can be achieved with the <code>augment()</code> function which wil
 <section id="assessing-model-performance" class="level2">
 <h2 class="anchored" data-anchor-id="assessing-model-performance">Assessing model performance</h2>
 <p>The <code>performance</code> package from the <code>easystats</code> suite of packages has a host of functions for assessing the performance of models.</p>
+<p>We can extract such values like the R squared, rmse, AIC etc. This can also provide a basis for comparing models.</p>
 </section>
 <section id="making-predictions" class="level2">
 <h2 class="anchored" data-anchor-id="making-predictions">Making predictions</h2>
-<p>Sometimes you might want to assess the predictions of your model - how well does it predict?</p>
+<p>Sometimes you might want to assess the predictions of your model - how well does it predict? Do predictions for various combinations of independent variables differ from each other?</p>
 <ul>
 <li><p>splitting the sample</p></li>
 <li><p>common metrics like rmse, r2</p></li>
@@ -323,14 +322,15 @@ The first one can be achieved with the <code>augment()</code> function which wil
 </section>
 <section id="contrasts" class="level2">
 <h2 class="anchored" data-anchor-id="contrasts">Contrasts</h2>
-<p>In many situations when you work linear model you are interested in testing specific hypotheses. For example</p>
+<p>In many situations when you work linear model you are interested in testing specific hypotheses.</p>
+<p><strong>For example</strong></p>
 <ul>
 <li>A very common mistake is to look at coefficients for two predictors from a model one of which is statistically significant while the other is not and declaring that these coefficients differ significantly. <a href="https://stat.columbia.edu/~gelman/research/published/signif4.pdf">These are two completely different things</a>! You can make a more principled comparison using <code>marginaleffects</code>.</li>
 </ul>
 </section>
 <section id="working-with-predictions" class="level2">
 <h2 class="anchored" data-anchor-id="working-with-predictions">Working with predictions</h2>
-<p>In simple models you might get away with directly interpreting the coefficients but for anything even slightly more complicated things get messy really quickly. It is often much easier to work on predicitions from the model rather than directly on the coefficients. It is a good practice to get accustomed to working with predictions even for simple models especially that ultimately they allow you to do more.</p>
+<p>In simple models you might get away with directly interpreting the coefficients but for anything even slightly more complicated things get messy really quickly. It is often much easier to work on predictions from the model rather than directly on the coefficients. It is a good practice to get accustomed to working with predictions even for simple models especially that ultimately they allow you to do more.</p>
 
 
 </section>
