@@ -196,6 +196,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <a class="dropdown-item" href="./18statistical_control.html">
  <span class="dropdown-text">Statistical control</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="./21whatnext.html">
+ <span class="dropdown-text">What next</span></a>
+  </li>  
     </ul>
   </li>
 </ul>
@@ -467,18 +471,18 @@ $ hurricane_force_diameter     &lt;int&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, N
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_sample</span>(<span class="at">n =</span> <span class="dv">100</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 100 × 13
-   name       year month   day  hour   lat   long status category  wind pressure
-   &lt;chr&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;fct&gt;     &lt;dbl&gt; &lt;int&gt;    &lt;int&gt;
- 1 Helene     2018     9     9    18  13.4  -25.6 hurri…        1    65      992
- 2 Colin      2010     8     8     0  29.7  -65.7 tropi…       NA    30     1012
- 3 Dean       2001     8    29     0  47    -48.5 extra…       NA    45      999
- 4 Humberto   2013     9     8     0  13    -17.6 other…       NA    25     1009
- 5 Cristobal  2020     6     7     6  26.9  -90   tropi…       NA    45      992
- 6 Joyce      2012     8    22    18  12.8  -37.3 tropi…       NA    30     1009
- 7 Charley    1998     8    24     0  29.4 -101.  tropi…       NA    20     1008
- 8 Alberto    2012     5    20    18  31.1  -79.9 tropi…       NA    40     1005
- 9 Gabrielle  2001     9    15     6  28.6  -80.9 tropi…       NA    40      995
-10 Gloria     1976     9    29    12  29.7  -60.2 hurri…        1    65      979
+   name      year month   day  hour   lat  long status   category  wind pressure
+   &lt;chr&gt;    &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;fct&gt;       &lt;dbl&gt; &lt;int&gt;    &lt;int&gt;
+ 1 Erin      2019     8    28     6  32.2 -72.4 tropica…       NA    35     1002
+ 2 Alberto   2018     5    30     0  35.4 -87.6 tropica…       NA    30      998
+ 3 Gladys    1975     9    23     0  10.6 -35.8 tropica…       NA    25     1012
+ 4 Alberto   2006     6    10     6  20   -85   tropica…       NA    25     1004
+ 5 Florence  1988     9     8     0  22.6 -89.6 tropica…       NA    45      993
+ 6 Arlene    2017     4    22    18  31.9 -46.4 extratr…       NA    30     1001
+ 7 Erin      1995     8     4     6  32.3 -89.1 tropica…       NA    35     1001
+ 8 Rafael    2012    10    17    12  36.5 -60.1 hurrica…        1    65      972
+ 9 Katrina   2005     8    26     6  25.4 -81.3 hurrica…        1    65      987
+10 Cindy     1993     8    14    12  14.1 -59.5 tropica…       NA    30     1012
 # ℹ 90 more rows
 # ℹ 2 more variables: tropicalstorm_force_diameter &lt;int&gt;,
 #   hurricane_force_diameter &lt;int&gt;</code></pre>
