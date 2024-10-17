@@ -10,7 +10,7 @@ You went the entire course. Congratulations! Finishing a course often leaves one
 ### Programming
 
 -   [Advanced R](https://adv-r.hadley.nz/): this book delves deeper into R and some of the specifics of this programming language.
--   [Reproducible analytical pipelines in R:](https://raps-with-r.dev/) this book is a great resource for learning how to make your analyses more reproducible, how to work better with functions in R
+-   [Reproducible analytical pipelines in R:](https://raps-with-r.dev/) this book is a great resource for learning how to make your analyses more reproducible and automated.
 
 ### Statistics:
 
@@ -18,11 +18,11 @@ You went the entire course. Congratulations! Finishing a course often leaves one
 
 -   [Telling stories with data](https://tellingstorieswithdata.com/): a great book that covers the entire process of working with data from data acquisition through analysis to communication.
 
--   [CenterStats course on SEM](https://centerstat.org/structural-equation-modeling/): this a free 16 hour introductory course on Structural Equation Modelling with applications in R. If you are interested some of the instructors also run [a podcast on statistics.](https://quantitudepod.org/)
+-   [CenterStats course on SEM](https://centerstat.org/structural-equation-modeling/): this is a free 16 hour introductory course on Structural Equation Modelling with applications in R. It nicely balances the math with application so that you can learn what is behind SEM without being drowned in proofs and greek letters. If you are interested some of the instructors also run [a podcast on statistics.](https://quantitudepod.org/)
 
 -   [Another course on SEM by Sacha Epskamp](http://sachaepskamp.com/SEM2020): this one goes into more advanced and detailed models but also starts from the basics.
 
--   [Beyond multiple regression](https://bookdown.org/roback/bookdown-BeyondMLR/): this book is a very nice introduction into setting out on the high seas beyond general linear model. It introduces generalized linear models and multilevel models in a really nice way.
+-   [Beyond multiple regression](https://bookdown.org/roback/bookdown-BeyondMLR/): this book is a very nice introduction into setting out on the high seas beyond general linear model. It introduces generalized linear models and multilevel models in a really nice way with examples in R and attention paid to what each part of the model is.
 
 #### Causal inference stuff:
 
@@ -30,7 +30,11 @@ You went the entire course. Congratulations! Finishing a course often leaves one
 
 -   [The Effect](https://theeffectbook.net/): another great book on introduction to causal inference. This one is (I think) written more with political scientists in mind.
 
+## Bayes
+
 -   Richard McElreath's book and [lectures](https://www.youtube.com/playlist?list=PLDcUM9US4XdPz-KxHM4XHt7uUVGWWVSus). This book and set of recorded lectures will make your head spin. It literally changes the way you think about the world, research and statistics. Highly recommend for slow and multiple viewing and reading.
+
+-   [Bayes rules](https://www.bayesrulesbook.com/): online textbook that goes step by step through bayesian modelling from the simplest to more complex models.
 
 ### Blogs
 
