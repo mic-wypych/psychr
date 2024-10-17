@@ -11,6 +11,7 @@ You went the entire course. Congratulations! Finishing a course often leaves one
 
 -   [Advanced R](https://adv-r.hadley.nz/): this book delves deeper into R and some of the specifics of this programming language.
 -   [Reproducible analytical pipelines in R:](https://raps-with-r.dev/) this book is a great resource for learning how to make your analyses more reproducible and automated.
+-   [Mastering Shiny](https://mastering-shiny.org/): a book on building web applications with R.
 
 ### Statistics:
 
