@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.57">
+<meta name="generator" content="quarto-1.6.39">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -70,10 +70,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dd08061cb7210c315e315379d94beb87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-fb0f4046a41c9fd9b149278b37159e2a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -473,16 +473,16 @@ $ hurricane_force_diameter     &lt;int&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, N
 <pre><code># A tibble: 100 × 13
    name      year month   day  hour   lat  long status   category  wind pressure
    &lt;chr&gt;    &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;fct&gt;       &lt;dbl&gt; &lt;int&gt;    &lt;int&gt;
- 1 Erin      2019     8    28     6  32.2 -72.4 tropica…       NA    35     1002
- 2 Alberto   2018     5    30     0  35.4 -87.6 tropica…       NA    30      998
- 3 Gladys    1975     9    23     0  10.6 -35.8 tropica…       NA    25     1012
- 4 Alberto   2006     6    10     6  20   -85   tropica…       NA    25     1004
- 5 Florence  1988     9     8     0  22.6 -89.6 tropica…       NA    45      993
- 6 Arlene    2017     4    22    18  31.9 -46.4 extratr…       NA    30     1001
- 7 Erin      1995     8     4     6  32.3 -89.1 tropica…       NA    35     1001
- 8 Rafael    2012    10    17    12  36.5 -60.1 hurrica…        1    65      972
- 9 Katrina   2005     8    26     6  25.4 -81.3 hurrica…        1    65      987
-10 Cindy     1993     8    14    12  14.1 -59.5 tropica…       NA    30     1012
+ 1 Hugo      1989     9    12    18  12.6 -36.7 tropica…       NA    50      996
+ 2 Florence  2012     8     5     0  15.8 -32.5 tropica…       NA    50     1002
+ 3 Kirk      2018     9    28    12  13.6 -63.1 tropica…       NA    40     1007
+ 4 Fiona     2022     9    26     6  58.5 -59   extratr…       NA    35      985
+ 5 Five      2010     8    13     6  30.4 -88.8 other l…       NA    25     1007
+ 6 Doris     1975     9     1    18  35.4 -44   hurrica…        1    75      984
+ 7 Karl      2016     9    14    18  17.2 -25.8 tropica…       NA    30     1009
+ 8 Fifteen   2007    10    12    18  30.5 -49.4 tropica…       NA    25     1012
+ 9 Kirk      2018     9    27    12  13.6 -58.7 tropica…       NA    50      998
+10 Fabian    1985     9    19    12  32.1 -42.5 tropica…       NA    55      994
 # ℹ 90 more rows
 # ℹ 2 more variables: tropicalstorm_force_diameter &lt;int&gt;,
 #   hurricane_force_diameter &lt;int&gt;</code></pre>
@@ -895,8 +895,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   });
   clipboard.on('success', onCopySuccess);
   if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-    // For code content inside modals, clipBoardJS needs to be initialized with a container option
-    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
     const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
       text: getTextToCopy,
       container: window.document.getElementById('quarto-embedded-source-code-modal')
@@ -1007,7 +1005,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (window.Quarto?.typesetMath) {
         window.Quarto.typesetMath(note);
       }
-      // TODO in 1.5, we should make sure this works without a callout special case
       if (note.classList.contains("callout")) {
         return note.outerHTML;
       } else {

@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.57">
+<meta name="generator" content="quarto-1.6.39">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -35,10 +69,10 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dd08061cb7210c315e315379d94beb87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-fb0f4046a41c9fd9b149278b37159e2a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -187,8 +221,12 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#you-ran-a-model-what-now" id="toc-you-ran-a-model-what-now" class="nav-link active" data-scroll-target="#you-ran-a-model-what-now">you ran a model, what now?</a></li>
-  <li><a href="#what-to-include" id="toc-what-to-include" class="nav-link" data-scroll-target="#what-to-include">What to include:</a></li>
+  <li><a href="#model-assumptions" id="toc-model-assumptions" class="nav-link active" data-scroll-target="#model-assumptions">Model assumptions</a></li>
+  <li><a href="#additional-issues" id="toc-additional-issues" class="nav-link" data-scroll-target="#additional-issues">Additional issues</a>
+  <ul class="collapse">
+  <li><a href="#collinearity" id="toc-collinearity" class="nav-link" data-scroll-target="#collinearity">Collinearity</a></li>
+  <li><a href="#outliers" id="toc-outliers" class="nav-link" data-scroll-target="#outliers">Outliers</a></li>
+  </ul></li>
   </ul>
 </nav>
 </nav>
@@ -218,27 +256,78 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="you-ran-a-model-what-now" class="level2">
-<h2 class="anchored" data-anchor-id="you-ran-a-model-what-now">you ran a model, what now?</h2>
-<p>Usually after we run a model, apart from some postprocessing, we want to make some diagnostics - is our model any good? Can we trust it? Some things are not really testable, like model specification, but some others can be assessed, at least to some degree.</p>
+<p>Usually after we run a model, apart from some postprocessing in order to get exactly what we want from our model, we want to make some diagnostics - is our model any good? Can we trust it? Some things are not really testable, like model specification, but some others can be assessed, at least to some degree.</p>
+<p>Lets start by getting some data and running a model:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># simulate some data?</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># get some data? I would need to know the model</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="model-assumptions" class="level2">
+<h2 class="anchored" data-anchor-id="model-assumptions">Model assumptions</h2>
+<p>As the saying goes in statistics “there is no free lunch”. It means that there are no magical methods that will give us results without making some assumptions. Pretty much any model you want to run makes some assumptions and your results are valid</p>
+<p>Some of the key assumptions for general linear models are (for a nice overview you can also read <a href="https://blog.msbstats.info/posts/2018-08-30-linear-regression-assumptions/">here</a>):</p>
+<ol type="1">
+<li>Model is correctly specified</li>
+<li>Linearity of effect</li>
+<li>Homoscedacticity of residuals</li>
+<li>Independent residuals</li>
+<li>Normal residuals</li>
+</ol>
+<p>The first assumption basically means that the variables that should be in the model are in the model and those that should not are not included. There isn’t any test that will tell you whether this assumption holds. It comes down to laying out the theoretical relations and arguing what should be (or not be) in the model. The whole issue of statistical control is pretty much about this assumption so you can review the previous class.</p>
+<p>Lets try to see it in our example:</p>
+<p>Number 2 is sometimes subsumed under 1 but it’s a bit more specific so maybe it’s worth stating it as a separate assumption. Linear regression will estimate, well…, a linear effect. If you only include a linear term while the true relation is quadratic you will misspecify the model and recover the wrong effect. Easiest way to see if there are problems here is to plot the data (although with a lot of noise which is common in psychology it might not be that easy) and see if the model you specified makes sense.</p>
+<p>Lets take a look at our models again:</p>
+<p>Assumptions 3, 4 and 5 are important for hypothesis tests are affect especially your standard errors. First of all notice that all of those assumptions are about residuals. We do not care about the distribution of variables themselves or if variables themselves have equal variances. It’s all about residuals.</p>
+<p>If any of those are assumptions are violated our standard errors are going to be off and we will get incorrect t and F values (and corresponding p values).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(performance)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>What can you do if these assumptions are violated? For violated independece the best idea would be to properly account for the dependence structure e.g.&nbsp;with multilevel models.</p>
+<p>Dealing with issues with homoscedacticity can be achieved by using robust standard errors.</p>
+<p>Dealing with non-normal residuals:</p>
+<p>?</p>
 </section>
-<section id="what-to-include" class="level2">
-<h2 class="anchored" data-anchor-id="what-to-include">What to include:</h2>
+<section id="additional-issues" class="level2">
+<h2 class="anchored" data-anchor-id="additional-issues">Additional issues</h2>
+<p>Additional issues that often arise in models: collinearity and outliers</p>
+<p>There aren’t technically assumptions (you could say that collinearity is an issue with model specification or that <a href="https://quantitudepod.org/s5e02-multicollinearity/">it’s not even necessarily a problem</a>)</p>
+<section id="collinearity" class="level3">
+<h3 class="anchored" data-anchor-id="collinearity">Collinearity</h3>
 <ul>
-<li><p>checking assumptions:</p>
+<li><p>what is is</p></li>
+<li><p>what does it cause</p></li>
+</ul>
+<p><code>{performance}</code> package has a nice function for assessing multicollinearity: <code>check_multicollinearity()</code>. If we run it on our model we will get the 2 most common indexes for collinearity: variance inflation factor (VIF) and tolerance. VIF is <strong>what is vif</strong></p>
+<p>Tolerance can be derived from VIF like this:</p>
+<p><code>{performance}</code> also allows you to plot the VIFs:</p>
+<p>Now what do we do if we detect a serious issue with multicollinearity? First of all we might… do nothing. Multicollinearity itself is not necessarily an issue. It is only a problem if we are interested in making inferences for specific parameters. If we are interested in the predictive power of the model as a whole then we do not have to care about collinearity.</p>
+<p>Ok, but what if it actually is a problem? There are a few things you can try. Centering or standardizing thew variables sometimes helps. Other things you can is to drop one of the highly correlated variables or combine the variables into a common one.</p>
+</section>
+<section id="outliers" class="level3">
+<h3 class="anchored" data-anchor-id="outliers">Outliers</h3>
+<p>Outliers usually refer to observations that have values of our variables that are very far from the bulk of observations in the dataset. Like with collinearity it is not necessarily a problem. Extreme cases can exist in the world.</p>
+<p>The simple case is if the outlier is due to an error (e.g.&nbsp;you get a person who indicated they were born in 1800) - then probably removing such case is the way to go (or at least recoding this into a missing value). What do we do if the the observation is far away but is plausible?</p>
+<p>Why are outliers often considered a problem? Linear regression models always try to minimize squared residuals.</p>
+<p>Cases that are very far from the regression line are going to have large absolute residuals and even larger squared residuals. This means that minimizing the sum of squared residuals can be better achieved by moving the regression line towards those cases even if this is at the expense of a bunch of other data points that were closer to the regression line. This is why we say that outliers have large influence.</p>
+<p>There are a few ways to assess outliers that depend on exactly how we understand what an outlier is and how we want to quantify it:</p>
 <ul>
-<li><p>model correctly specified</p></li>
-<li><p>linearity</p></li>
-<li><p>homoscedacticity</p></li>
-<li><p>normal residuals</p></li>
-<li><p>collinearity</p></li>
+<li><p>data based:<br>
+these are model agnostic and don’t care what your dependent variable is. The problem with them is that an observation can be far away from all the other data points but at the same time fall perfectly where we would expect it to be. Is it still an outlier then?</p>
+<ul>
+<li>all the mahalanobis etc.</li>
 </ul></li>
-<li><p>outliers, influence etc.</p></li>
+<li><p>model based:<br>
+These measures will tell you how much a model would change if you excluded a given case from your dataset. The downside is (or isn’t?) that what is an outlier for one model might not be an outlier for another model.</p>
+<ul>
+<li><p>influence and levarage etc</p></li>
+<li><p>dfbetas</p></li>
+</ul></li>
 <li><p>Model comparisons? (should they go into postprocessing?)</p></li>
 <li><p>Something on sensitivity analysis?</p></li>
 </ul>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
@@ -324,8 +413,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   });
   clipboard.on('success', onCopySuccess);
   if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-    // For code content inside modals, clipBoardJS needs to be initialized with a container option
-    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
     const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
       text: getTextToCopy,
       container: window.document.getElementById('quarto-embedded-source-code-modal')
@@ -436,7 +523,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (window.Quarto?.typesetMath) {
         window.Quarto.typesetMath(note);
       }
-      // TODO in 1.5, we should make sure this works without a callout special case
       if (note.classList.contains("callout")) {
         return note.outerHTML;
       } else {

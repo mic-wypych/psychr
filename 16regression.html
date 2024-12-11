@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.57">
+<meta name="generator" content="quarto-1.6.39">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -69,10 +69,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dd08061cb7210c315e315379d94beb87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-fb0f4046a41c9fd9b149278b37159e2a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -397,7 +397,7 @@ Y_i \sim Normal(\mu_i, \sigma)
 <span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>}</span>
 <span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a>df_sim <span class="sc">%&gt;%</span></span>
+<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a>reg_plot <span class="ot">&lt;-</span> df_sim <span class="sc">%&gt;%</span></span>
 <span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> x1, <span class="at">y =</span> sim)) <span class="sc">+</span></span>
 <span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> df1, <span class="fu">aes</span>(<span class="at">x =</span> x1, <span class="at">y =</span> y), <span class="at">alpha =</span> .<span class="dv">1</span>) <span class="sc">+</span></span>
 <span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_ribbon</span>(<span class="at">data =</span> df_rib, <span class="fu">aes</span>(<span class="at">x =</span> x1, <span class="at">ymin =</span> lb, <span class="at">ymax =</span> hb, <span class="at">y =</span> hb), <span class="at">alpha =</span> .<span class="dv">2</span>, <span class="at">fill =</span> <span class="st">"steelblue"</span>) <span class="sc">+</span></span>
@@ -408,23 +408,19 @@ Y_i \sim Normal(\mu_i, \sigma)
 <span id="cb7-37"><a href="#cb7-37" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"y"</span>) <span class="sc">+</span></span>
 <span id="cb7-38"><a href="#cb7-38" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-stderr">
-<pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
 </div>
-<div class="cell-output-display">
+<p>You can see an animated version of the plot to make it more readable:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="16regression_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
+<p><img src="images/reg_engine.gif" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
 </figure>
-</div>
-</div>
 </div>
 <p>The plot above is quite packed with information so lets unpack it. First, we have the datapoints plotted as a scatterplot. Next we have the red line which indicates the regression line or in other words the conditional means of <code>y</code> given <code>x1</code>. The we have the distributions which are data simulated from the model for 10 values of <code>x1</code>. Each distribution is what we would expect y to look like given a value of <code>x1</code> based on our model. Notice that the mean of each distribution (the black dot) passes exactly through the red line. Next notice that each distribution has the same shape (pretty much a normal distribution - that is the normal distribution assumption) and more or less the same width (that is the homoscedacticity assumption. The light blue area indicates where we would expect 95% of the <code>y</code> to fall in for any given value of <code>x1</code>.</p>
 <p>Now it’s time to introduce some data we can work on. We will be working with a dataset that stores information from 2010 General Social Survey. the dataset can be found in the <code>openintro</code> package (which stores data from various open source textbooks). Lets load the dataset and take a look at it.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(openintro)</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">"gss2010"</span>)</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(gss2010)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(openintro)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">"gss2010"</span>)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(gss2010)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>tibble [2,044 × 5] (S3: tbl_df/tbl/data.frame)
  $ hrsrelax: int [1:2044] 2 4 NA NA NA NA 3 NA 0 5 ...
@@ -437,11 +433,11 @@ Y_i \sim Normal(\mu_i, \sigma)
 <p>The dataset stores information on 5 variables: number of hours for relaxing after and average work day, number of days during the last 30 days in which participants mental health was not good, number of hours worked per week, degree and opinion on legalizing marihuana. (the docs are also available <a href="#0">here</a>). For now we will be mainly intersted in the <code>hrsrelax</code> variable and explaining it with <code>hrs1</code>.</p>
 <p>We can start with the null model - a model that has no predictors, just the intercept in it. As we already know this intercept will in fact be the sample mean. Intercept can be coded with 1 in the formula. Running a regression in R is actually super simple. You can use the <code>lm()</code> function to do it.:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>null_model <span class="ot">&lt;-</span> <span class="fu">lm</span>(hrsrelax <span class="sc">~</span> <span class="dv">1</span>, gss2010)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>null_model <span class="ot">&lt;-</span> <span class="fu">lm</span>(hrsrelax <span class="sc">~</span> <span class="dv">1</span>, gss2010)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>We can inspect the output using <code>summary()</code>:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(null_model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(null_model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -458,7 +454,7 @@ Coefficients:
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 2.63 on 1153 degrees of freedom
-  (890 obserwacji zostało skasowanych z uwagi na braki w nich zawarte)</code></pre>
+  (890 observations deleted due to missingness)</code></pre>
 </div>
 </div>
 <p>This summary tells us the following:</p>
@@ -478,11 +474,11 @@ Y_i \sim Normal(\mu_i, \sigma)
 \mu_i =\alpha + \beta_1 * hrs1
 \]</span></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>simple_fit <span class="ot">&lt;-</span> <span class="fu">lm</span>(hrsrelax <span class="sc">~</span> hrs1, gss2010)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>simple_fit <span class="ot">&lt;-</span> <span class="fu">lm</span>(hrsrelax <span class="sc">~</span> hrs1, gss2010)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Now that we have our model lets proceed to interpret it:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(simple_fit)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(simple_fit)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -500,7 +496,7 @@ hrs1        -0.03501    0.00506  -6.919 7.56e-12 ***
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 2.579 on 1149 degrees of freedom
-  (893 obserwacje zostały skasowane z uwagi na braki w nich zawarte)
+  (893 observations deleted due to missingness)
 Multiple R-squared:  0.03999,   Adjusted R-squared:  0.03916 
 F-statistic: 47.87 on 1 and 1149 DF,  p-value: 7.564e-12</code></pre>
 </div>
@@ -522,8 +518,8 @@ F-statistic: 47.87 on 1 and 1149 DF,  p-value: 7.564e-12</code></pre>
 <p>Simple OLS regression is actually quite flexible in what kinds of predictors it can use. You can easily include various categorical predictors into your linear model. The trick is to code them properly.</p>
 <p>Remember that the regression coefficient from a linear model tells us what is the predicted difference in Y for 1 unit increase in x? We can use that to code categorical predictors. For those variables that have only 2 levels (e.g.&nbsp;control and experimental condition) you code one as 0 (this level is called the reference category) and the other as 1. Then a 1 unit increase in x is simply the shift from the category coded as 0 to the category coded as 1. Lets look at an example. Lets see if people who want or do not want legalization of marijuana differ in the amount of time they have to relax:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>lm_mar <span class="ot">&lt;-</span> <span class="fu">lm</span>(hrsrelax <span class="sc">~</span> grass, gss2010)</span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(lm_mar)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>lm_mar <span class="ot">&lt;-</span> <span class="fu">lm</span>(hrsrelax <span class="sc">~</span> grass, gss2010)</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(lm_mar)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -541,16 +537,16 @@ grassNOT LEGAL  0.06589    0.19748   0.334    0.739
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 2.614 on 699 degrees of freedom
-  (1343 obserwacje zostały skasowane z uwagi na braki w nich zawarte)
+  (1343 observations deleted due to missingness)
 Multiple R-squared:  0.0001592, Adjusted R-squared:  -0.001271 
 F-statistic: 0.1113 on 1 and 699 DF,  p-value: 0.7388</code></pre>
 </div>
 </div>
 <p>This output is quite similar but the coefficients require a bit more attention now. What the output tells us is that people who want legalization of marijuana have on average 3.67 hours for relaxing per day. This is coded by the intercept. People who do not want legalization of marijuana have on average .07 hours more for relaxing per day. This difference is not statistically significant. Notice that we are silently dropping 1343 observations which is most of our sample! In this model <code>LEGAL</code> was coded as the reference category by default. This is because unless specified otherwise R will use the category that comes first alphabetically as the reference category. You can change it to set a different reference category with <code>relevel()</code>:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>lm_mar_2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(hrsrelax <span class="sc">~</span> grass, gss2010 <span class="sc">%&gt;%</span></span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>                 <span class="fu">mutate</span>(<span class="at">grass =</span> <span class="fu">relevel</span>(grass, <span class="at">ref =</span> <span class="st">"NOT LEGAL"</span>)))</span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(lm_mar_2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>lm_mar_2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(hrsrelax <span class="sc">~</span> grass, gss2010 <span class="sc">%&gt;%</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>                 <span class="fu">mutate</span>(<span class="at">grass =</span> <span class="fu">relevel</span>(grass, <span class="at">ref =</span> <span class="st">"NOT LEGAL"</span>)))</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(lm_mar_2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -569,7 +565,7 @@ grassLEGAL  -0.06589    0.19748  -0.334    0.739
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 2.614 on 699 degrees of freedom
-  (1343 obserwacje zostały skasowane z uwagi na braki w nich zawarte)
+  (1343 observations deleted due to missingness)
 Multiple R-squared:  0.0001592, Adjusted R-squared:  -0.001271 
 F-statistic: 0.1113 on 1 and 699 DF,  p-value: 0.7388</code></pre>
 </div>
@@ -577,7 +573,7 @@ F-statistic: 0.1113 on 1 and 699 DF,  p-value: 0.7388</code></pre>
 <p>The output is pretty much the same with intercept and dummy swapped. Now the intercept codes the mean number of hours of relax time for those who do not want legalization of marijuana and</p>
 <p>In case you were wondering, yes we just did a simple t test. We can compare the results to the output of <code>t.test()</code> function:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(hrsrelax <span class="sc">~</span> grass, gss2010)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(hrsrelax <span class="sc">~</span> grass, gss2010)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     Welch Two Sample t-test
@@ -596,15 +592,15 @@ sample estimates:
 <p>Dummy coding extends the logic of coding categorical variables as 0 and 1. We still have one level as reference category coded as 0. Other levels are coded as 1 but this time we need 1 variable for each of those levels. We end up with k-1 variables that take values of 0 or 1 where k is the number of levels that a variable has (these are called dummy variables). Each dummy variable is coded 1 if it takes the value of a corresponding level and 0 otherwise. We have k-1 dummy variables because we do not need a variable for the reference level. If all the dummy variables take the value of 0 then we know it has the value of the reference level. Each of the dummy variables is going to express the difference between the reference level and a given dummy level. Note that this coding itself does not allow to compare 2 dummy levels to each other (we’ll see how to do that later). Lets see this type of coding in action. We will see if number of hours for relaxing after work differs among people with different degrees:</p>
 <p>before we do it lets look up the levels of <code>degree</code> variable:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(gss2010<span class="sc">$</span>degree)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(gss2010<span class="sc">$</span>degree)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "BACHELOR"       "GRADUATE"       "HIGH SCHOOL"    "JUNIOR COLLEGE"
 [5] "LT HIGH SCHOOL"</code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>lm_deg <span class="ot">&lt;-</span> <span class="fu">lm</span>(hrsrelax <span class="sc">~</span> degree, gss2010)</span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(lm_deg)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>lm_deg <span class="ot">&lt;-</span> <span class="fu">lm</span>(hrsrelax <span class="sc">~</span> degree, gss2010)</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(lm_deg)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -625,7 +621,7 @@ degreeLT HIGH SCHOOL   0.2509     0.2940   0.853    0.394
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 2.631 on 1149 degrees of freedom
-  (890 obserwacji zostało skasowanych z uwagi na braki w nich zawarte)
+  (890 observations deleted due to missingness)
 Multiple R-squared:  0.002415,  Adjusted R-squared:  -0.001058 
 F-statistic: 0.6953 on 4 and 1149 DF,  p-value: 0.5953</code></pre>
 </div>
@@ -633,8 +629,8 @@ F-statistic: 0.6953 on 4 and 1149 DF,  p-value: 0.5953</code></pre>
 <p>Since bachelor is first alphabetically it was coded as the reference category. All other dummy variables code comparisons between the reference category and a given level. We can see the for people with bachelor degree we expect 3.48 hours of relax time per day on average. All other degrees are expected to have more relax time on average but none of the comparisons is statistically significant. Again we are dropping a lot of observations.</p>
 <p>The other way to code a categorical variable is through effect coding. This type of coding will use intercept as the grand mean and each variable will reflect the difference between the grand mean and a given level. Not that again we have k-1 variables because the last comparison is just a function of the other ones.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>lm_deg_2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(hrsrelax <span class="sc">~</span> degree, gss2010, <span class="at">contrasts =</span> <span class="fu">list</span>(<span class="at">degree =</span> <span class="st">"contr.sum"</span>))</span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(lm_deg_2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>lm_deg_2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(hrsrelax <span class="sc">~</span> degree, gss2010, <span class="at">contrasts =</span> <span class="fu">list</span>(<span class="at">degree =</span> <span class="st">"contr.sum"</span>))</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(lm_deg_2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -655,7 +651,7 @@ degree4     -0.10837    0.22998  -0.471    0.638
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 2.631 on 1149 degrees of freedom
-  (890 obserwacji zostało skasowanych z uwagi na braki w nich zawarte)
+  (890 observations deleted due to missingness)
 Multiple R-squared:  0.002415,  Adjusted R-squared:  -0.001058 
 F-statistic: 0.6953 on 4 and 1149 DF,  p-value: 0.5953</code></pre>
 </div>
@@ -663,12 +659,12 @@ F-statistic: 0.6953 on 4 and 1149 DF,  p-value: 0.5953</code></pre>
 <p>In this case the intercept codes the grand mean and each dummy codes the difference for a given level from the grand mean.</p>
 <p>Finally lets compare the results of our model to simple one-way anova:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">aov</span>(hrsrelax <span class="sc">~</span> degree, gss2010) <span class="sc">%&gt;%</span> <span class="fu">summary</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">aov</span>(hrsrelax <span class="sc">~</span> degree, gss2010) <span class="sc">%&gt;%</span> <span class="fu">summary</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>              Df Sum Sq Mean Sq F value Pr(&gt;F)
 degree         4     19   4.813   0.695  0.595
 Residuals   1149   7954   6.922               
-890 obserwacji zostało skasowanych z uwagi na braki w nich zawarte</code></pre>
+890 observations deleted due to missingness</code></pre>
 </div>
 </div>
 <p>The F and p values are exactly the same. In fact <code>aov()</code> calls <code>lm()</code>.</p>
@@ -760,8 +756,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   });
   clipboard.on('success', onCopySuccess);
   if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-    // For code content inside modals, clipBoardJS needs to be initialized with a container option
-    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
     const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
       text: getTextToCopy,
       container: window.document.getElementById('quarto-embedded-source-code-modal')
@@ -872,7 +866,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (window.Quarto?.typesetMath) {
         window.Quarto.typesetMath(note);
       }
-      // TODO in 1.5, we should make sure this works without a callout special case
       if (note.classList.contains("callout")) {
         return note.outerHTML;
       } else {

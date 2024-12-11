@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.57">
+<meta name="generator" content="quarto-1.6.39">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -70,10 +70,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dd08061cb7210c315e315379d94beb87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-fb0f4046a41c9fd9b149278b37159e2a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -224,7 +224,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
   <li><a href="#general-logic" id="toc-general-logic" class="nav-link active" data-scroll-target="#general-logic">General logic</a></li>
   <li><a href="#tidying-the-model" id="toc-tidying-the-model" class="nav-link" data-scroll-target="#tidying-the-model">Tidying the model</a></li>
-  <li><a href="#assessing-model-performance" id="toc-assessing-model-performance" class="nav-link" data-scroll-target="#assessing-model-performance">Assessing model performance</a></li>
+  <li><a href="#assessing-general-model-performance" id="toc-assessing-general-model-performance" class="nav-link" data-scroll-target="#assessing-general-model-performance">Assessing general model performance</a></li>
   <li><a href="#making-predictions" id="toc-making-predictions" class="nav-link" data-scroll-target="#making-predictions">Making predictions</a></li>
   <li><a href="#marginal-effects" id="toc-marginal-effects" class="nav-link" data-scroll-target="#marginal-effects">Marginal effects</a></li>
   <li><a href="#contrasts" id="toc-contrasts" class="nav-link" data-scroll-target="#contrasts">Contrasts</a></li>
@@ -289,9 +289,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(marginaleffects)</span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(openintro)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>Ładowanie wymaganego pakietu: airports
-Ładowanie wymaganego pakietu: cherryblossom
-Ładowanie wymaganego pakietu: usdata</code></pre>
+<pre><code>Loading required package: airports
+Loading required package: cherryblossom
+Loading required package: usdata</code></pre>
 </div>
 </div>
 </section>
@@ -299,17 +299,40 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="tidying-the-model">Tidying the model</h2>
 <p>You may have noticed that results of the <code>lm()</code> function is a rather complicated list. It is not easy to work with. Fortunately there is the <code>broom</code> package that has functions extremely useful for tidying up the results of such models. We can extract infromation from the model on 3 levels: individual observations, model coefficients or the entire model.<br>
 The first one can be achieved with the <code>augment()</code> function which will give us predicted values as well as plenty of diagnostics.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">#augment()</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <p>We can tidy the coefficients using <code>tidy()</code>. It will give us a nice data frame with all model coefficients:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">#tidy()</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <p>Finally we can tidy the model-level information using <code>glance()</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co">#glance()</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
-<section id="assessing-model-performance" class="level2">
-<h2 class="anchored" data-anchor-id="assessing-model-performance">Assessing model performance</h2>
+<section id="assessing-general-model-performance" class="level2">
+<h2 class="anchored" data-anchor-id="assessing-general-model-performance">Assessing general model performance</h2>
 <p>The <code>performance</code> package from the <code>easystats</code> suite of packages has a host of functions for assessing the performance of models.</p>
 <p>We can extract such values like the R squared, rmse, AIC etc. This can also provide a basis for comparing models.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">#model_performance()</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>What you might also want to do is comparison of model performence. Remember that what you are comparing though is usually predictive performence and it won’t tell you which model is correctly specified</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co">#compare_performance()</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 <section id="making-predictions" class="level2">
 <h2 class="anchored" data-anchor-id="making-predictions">Making predictions</h2>
 <p>Sometimes you might want to assess the predictions of your model - how well does it predict? Do predictions for various combinations of independent variables differ from each other?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co">#predictions()</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co">#avg_predictions()</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>We can also make predictions for specific values of our predictors. For example we might be interested in <strong>what</strong></p>
 <ul>
 <li><p>splitting the sample</p></li>
 <li><p>common metrics like rmse, r2</p></li>
@@ -317,7 +340,7 @@ The first one can be achieved with the <code>augment()</code> function which wil
 </section>
 <section id="marginal-effects" class="level2">
 <h2 class="anchored" data-anchor-id="marginal-effects">Marginal effects</h2>
-<p>An extremely good and clear introduction to marginal effects with explanation of differences between 2 main packages used for them in R can be found on <a href="https://www.andrewheiss.com/blog/2022/05/20/marginalia/">Andrew Heiss’ blog</a> (although this blog works a lot with logisitc regression). If you want to dive deeper into this topic I highly recommend you read that blog post (as well as documentation of the <code>marginaleffects</code> package linked above).</p>
+<p>An extremely good and clear introduction to marginal effects with explanation of differences between 2 main packages used for them in R can be found on <a href="https://www.andrewheiss.com/blog/2022/05/20/marginalia/">Andrew Heiss’ blog</a> (although this blog works a lot with logistic regression). If you want to dive deeper into this topic I highly recommend you read that blog post (as well as documentation of the <code>marginaleffects</code> package linked above).</p>
 <ul>
 <li><p>What is a marginal effect</p></li>
 <li><p>calculating marginal effect</p></li>
@@ -330,6 +353,7 @@ The first one can be achieved with the <code>augment()</code> function which wil
 <p><strong>For example</strong></p>
 <ul>
 <li>A very common mistake is to look at coefficients for two predictors from a model one of which is statistically significant while the other is not and declaring that these coefficients differ significantly. <a href="https://stat.columbia.edu/~gelman/research/published/signif4.pdf">These are two completely different things</a>! You can make a more principled comparison using <code>marginaleffects</code>.</li>
+<li>For more complex models (e.g.&nbsp;with interactions) the coefficients will also be misleading and will depend on how you coded the contrasts (dummy, effect etc.). You can make specific comparisons</li>
 </ul>
 </section>
 <section id="working-with-predictions" class="level2">
@@ -422,8 +446,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   });
   clipboard.on('success', onCopySuccess);
   if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-    // For code content inside modals, clipBoardJS needs to be initialized with a container option
-    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
     const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
       text: getTextToCopy,
       container: window.document.getElementById('quarto-embedded-source-code-modal')
@@ -534,7 +556,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (window.Quarto?.typesetMath) {
         window.Quarto.typesetMath(note);
       }
-      // TODO in 1.5, we should make sure this works without a callout special case
       if (note.classList.contains("callout")) {
         return note.outerHTML;
       } else {

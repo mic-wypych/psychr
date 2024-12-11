@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.57">
+<meta name="generator" content="quarto-1.6.39">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -70,10 +70,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dd08061cb7210c315e315379d94beb87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-fb0f4046a41c9fd9b149278b37159e2a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -363,18 +363,18 @@ lm(formula = y ~ x)
 
 Residuals:
     Min      1Q  Median      3Q     Max 
--5.0566 -0.8997  0.0055  0.9122  4.5172 
+-4.7137 -0.9000  0.0049  0.8968  5.0774 
 
 Coefficients:
             Estimate Std. Error t value Pr(&gt;|t|)    
-(Intercept)   2.5710     0.0630   40.81   &lt;2e-16 ***
-x             0.5690     0.0112   50.81   &lt;2e-16 ***
+(Intercept)  2.56087    0.06259   40.91   &lt;2e-16 ***
+x            0.56857    0.01111   51.18   &lt;2e-16 ***
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
-Residual standard error: 1.331 on 9998 degrees of freedom
-Multiple R-squared:  0.2052,    Adjusted R-squared:  0.2051 
-F-statistic:  2581 on 1 and 9998 DF,  p-value: &lt; 2.2e-16</code></pre>
+Residual standard error: 1.332 on 9998 degrees of freedom
+Multiple R-squared:  0.2076,    Adjusted R-squared:  0.2075 
+F-statistic:  2620 on 1 and 9998 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lm</span>(y <span class="sc">~</span> x <span class="sc">+</span> u) <span class="sc">|&gt;</span> <span class="fu">summary</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -384,19 +384,19 @@ lm(formula = y ~ x + u)
 
 Residuals:
     Min      1Q  Median      3Q     Max 
--4.8869 -0.8705  0.0128  0.8938  4.3949 
+-5.0246 -0.8726 -0.0020  0.8734  4.8314 
 
 Coefficients:
             Estimate Std. Error t value Pr(&gt;|t|)    
-(Intercept)  2.10406    0.06461   32.57   &lt;2e-16 ***
-x            0.40489    0.01301   31.12   &lt;2e-16 ***
-u            0.27423    0.01184   23.15   &lt;2e-16 ***
+(Intercept)  2.01833    0.06407   31.50   &lt;2e-16 ***
+x            0.38813    0.01279   30.34   &lt;2e-16 ***
+u            0.30627    0.01177   26.02   &lt;2e-16 ***
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
-Residual standard error: 1.297 on 9997 degrees of freedom
-Multiple R-squared:  0.2457,    Adjusted R-squared:  0.2455 
-F-statistic:  1628 on 2 and 9997 DF,  p-value: &lt; 2.2e-16</code></pre>
+Residual standard error: 1.289 on 9997 degrees of freedom
+Multiple R-squared:  0.2579,    Adjusted R-squared:  0.2577 
+F-statistic:  1737 on 2 and 9997 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
 </div>
 <p>You can see that not including <code>u</code> in the model gives us the wrong answer. This is the confounding that people most commonly have in mind when they are controlling for things in their models.</p>
@@ -417,18 +417,18 @@ lm(formula = y ~ x)
 
 Residuals:
     Min      1Q  Median      3Q     Max 
--5.2177 -0.8897  0.0190  0.9166  5.5841 
+-4.9588 -0.9431  0.0080  0.9216  6.1174 
 
 Coefficients:
             Estimate Std. Error t value Pr(&gt;|t|)    
-(Intercept)  3.44893    0.04234   81.46   &lt;2e-16 ***
-x            0.57610    0.01339   43.03   &lt;2e-16 ***
+(Intercept)  3.52672    0.04296   82.09   &lt;2e-16 ***
+x            0.54694    0.01358   40.28   &lt;2e-16 ***
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
-Residual standard error: 1.337 on 9998 degrees of freedom
-Multiple R-squared:  0.1562,    Adjusted R-squared:  0.1562 
-F-statistic:  1851 on 1 and 9998 DF,  p-value: &lt; 2.2e-16</code></pre>
+Residual standard error: 1.361 on 9998 degrees of freedom
+Multiple R-squared:  0.1396,    Adjusted R-squared:  0.1395 
+F-statistic:  1622 on 1 and 9998 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lm</span>(y <span class="sc">~</span> x <span class="sc">+</span> u) <span class="sc">|&gt;</span> <span class="fu">summary</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -438,19 +438,19 @@ lm(formula = y ~ x + u)
 
 Residuals:
     Min      1Q  Median      3Q     Max 
--4.8672 -0.8502  0.0127  0.8631  5.1343 
+-5.1122 -0.9042  0.0015  0.8871  5.8501 
 
 Coefficients:
             Estimate Std. Error t value Pr(&gt;|t|)    
-(Intercept) 1.950341   0.062630   31.14   &lt;2e-16 ***
-x           0.415366   0.013770   30.16   &lt;2e-16 ***
-u           0.303723   0.009699   31.32   &lt;2e-16 ***
+(Intercept) 1.940963   0.064794   29.96   &lt;2e-16 ***
+x           0.391890   0.013848   28.30   &lt;2e-16 ***
+u           0.315121   0.009976   31.59   &lt;2e-16 ***
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
-Residual standard error: 1.276 on 9997 degrees of freedom
-Multiple R-squared:  0.2316,    Adjusted R-squared:  0.2315 
-F-statistic:  1507 on 2 and 9997 DF,  p-value: &lt; 2.2e-16</code></pre>
+Residual standard error: 1.297 on 9997 degrees of freedom
+Multiple R-squared:  0.2177,    Adjusted R-squared:  0.2175 
+F-statistic:  1391 on 2 and 9997 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
 </div>
 <p>Again including a mediator gives us the wrong answer!</p>
@@ -474,18 +474,18 @@ lm(formula = y ~ x)
 
 Residuals:
     Min      1Q  Median      3Q     Max 
--5.5042 -0.8810 -0.0107  0.8670  5.0288 
+-5.1998 -0.8437 -0.0155  0.8666  4.9992 
 
 Coefficients:
             Estimate Std. Error t value Pr(&gt;|t|)    
-(Intercept)  2.00966    0.04056   49.55   &lt;2e-16 ***
-x            0.39449    0.01277   30.90   &lt;2e-16 ***
+(Intercept)  2.02993    0.04094   49.58   &lt;2e-16 ***
+x            0.39371    0.01296   30.37   &lt;2e-16 ***
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
-Residual standard error: 1.293 on 9998 degrees of freedom
-Multiple R-squared:  0.08716,   Adjusted R-squared:  0.08707 
-F-statistic: 954.6 on 1 and 9998 DF,  p-value: &lt; 2.2e-16</code></pre>
+Residual standard error: 1.29 on 9998 degrees of freedom
+Multiple R-squared:  0.08446,   Adjusted R-squared:  0.08436 
+F-statistic: 922.3 on 1 and 9998 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lm</span>(y <span class="sc">~</span> x <span class="sc">+</span> u) <span class="sc">|&gt;</span> <span class="fu">summary</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -495,19 +495,19 @@ lm(formula = y ~ x + u)
 
 Residuals:
     Min      1Q  Median      3Q     Max 
--5.3578 -0.8333  0.0039  0.8208  4.8634 
+-5.2588 -0.8216 -0.0087  0.8348  4.7469 
 
 Coefficients:
             Estimate Std. Error t value Pr(&gt;|t|)    
-(Intercept) 0.441161   0.063774   6.918 4.88e-12 ***
-x           0.219487   0.013443  16.327  &lt; 2e-16 ***
-u           0.280361   0.009054  30.964  &lt; 2e-16 ***
+(Intercept) 0.527841   0.064227   8.218 2.32e-16 ***
+x           0.223772   0.013699  16.335  &lt; 2e-16 ***
+u           0.269924   0.009134  29.553  &lt; 2e-16 ***
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
-Residual standard error: 1.235 on 9997 degrees of freedom
-Multiple R-squared:  0.167, Adjusted R-squared:  0.1669 
-F-statistic:  1002 on 2 and 9997 DF,  p-value: &lt; 2.2e-16</code></pre>
+Residual standard error: 1.237 on 9997 degrees of freedom
+Multiple R-squared:  0.158, Adjusted R-squared:  0.1578 
+F-statistic: 938.1 on 2 and 9997 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
 </div>
 <p>This one is particularly bad because here including <code>u</code> gives us the wrong answer! It is worth spending a little more time on colliders because they are particularly insidious and can creep in where you expect them the least.</p>
@@ -528,16 +528,16 @@ lm(formula = y_c ~ x_c, data = df_c)
 
 Residuals:
     Min      1Q  Median      3Q     Max 
--3.7297 -0.6815  0.0140  0.6745  3.7547 
+-3.4678 -0.6858 -0.0058  0.6911  4.1181 
 
 Coefficients:
-             Estimate Std. Error t value Pr(&gt;|t|)
-(Intercept)  0.007051   0.009961   0.708    0.479
-x_c         -0.001216   0.010023  -0.121    0.903
+              Estimate Std. Error t value Pr(&gt;|t|)
+(Intercept) -0.0004001  0.0100382  -0.040    0.968
+x_c         -0.0099499  0.0100168  -0.993    0.321
 
-Residual standard error: 0.9961 on 9998 degrees of freedom
-Multiple R-squared:  1.471e-06, Adjusted R-squared:  -9.855e-05 
-F-statistic: 0.01471 on 1 and 9998 DF,  p-value: 0.9035</code></pre>
+Residual standard error: 1.004 on 9998 degrees of freedom
+Multiple R-squared:  9.868e-05, Adjusted R-squared:  -1.331e-06 
+F-statistic: 0.9867 on 1 and 9998 DF,  p-value: 0.3206</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lm</span>(y_c <span class="sc">~</span> x_c, df_c <span class="sc">%&gt;%</span> <span class="fu">filter</span>(u_c <span class="sc">&gt;=</span> .<span class="dv">2</span>)) <span class="sc">|&gt;</span> <span class="fu">summary</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -546,19 +546,19 @@ Call:
 lm(formula = y_c ~ x_c, data = df_c %&gt;% filter(u_c &gt;= 0.2))
 
 Residuals:
-     Min       1Q   Median       3Q      Max 
--2.57535 -0.50647 -0.04564  0.47102  3.10763 
+    Min      1Q  Median      3Q     Max 
+-2.1794 -0.5116 -0.0419  0.4637  3.5586 
 
 Coefficients:
             Estimate Std. Error t value Pr(&gt;|t|)    
-(Intercept)  0.84815    0.01277   66.43   &lt;2e-16 ***
-x_c         -0.33151    0.01255  -26.41   &lt;2e-16 ***
+(Intercept)  0.85169    0.01298   65.63   &lt;2e-16 ***
+x_c         -0.33282    0.01256  -26.50   &lt;2e-16 ***
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
-Residual standard error: 0.7272 on 4255 degrees of freedom
-Multiple R-squared:  0.1408,    Adjusted R-squared:  0.1406 
-F-statistic: 697.2 on 1 and 4255 DF,  p-value: &lt; 2.2e-16</code></pre>
+Residual standard error: 0.7383 on 4203 degrees of freedom
+Multiple R-squared:  0.1432,    Adjusted R-squared:  0.143 
+F-statistic: 702.2 on 1 and 4203 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
 </div>
 <p>In our simulation there is no relation between <code>x_c</code> and <code>y_c</code> but if we select for only certain values of <code>u_c</code> which is a collider we are inducing a spurious relation! This can become clearer once we plot the data:</p>
@@ -595,18 +595,18 @@ lm(formula = y ~ x)
 
 Residuals:
     Min      1Q  Median      3Q     Max 
--5.6441 -0.9064  0.0031  0.9063  5.3380 
+-5.2207 -0.9233  0.0028  0.9009  5.5157 
 
 Coefficients:
             Estimate Std. Error t value Pr(&gt;|t|)    
-(Intercept)  2.58151    0.06358   40.60   &lt;2e-16 ***
-x            0.56999    0.01132   50.37   &lt;2e-16 ***
+(Intercept)  2.63195    0.06374   41.29   &lt;2e-16 ***
+x            0.55926    0.01133   49.34   &lt;2e-16 ***
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
-Residual standard error: 1.351 on 9998 degrees of freedom
-Multiple R-squared:  0.2024,    Adjusted R-squared:  0.2023 
-F-statistic:  2537 on 1 and 9998 DF,  p-value: &lt; 2.2e-16</code></pre>
+Residual standard error: 1.343 on 9998 degrees of freedom
+Multiple R-squared:  0.1958,    Adjusted R-squared:  0.1958 
+F-statistic:  2435 on 1 and 9998 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lm</span>(y <span class="sc">~</span> x <span class="sc">+</span> z) <span class="sc">|&gt;</span> <span class="fu">summary</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -616,19 +616,19 @@ lm(formula = y ~ x + z)
 
 Residuals:
     Min      1Q  Median      3Q     Max 
--5.1997 -0.8893 -0.0006  0.8752  5.2889 
+-5.1502 -0.8936 -0.0184  0.8864  5.6768 
 
 Coefficients:
             Estimate Std. Error t value Pr(&gt;|t|)    
-(Intercept)  1.90166    0.06985   27.22   &lt;2e-16 ***
-x            0.43875    0.01266   34.66   &lt;2e-16 ***
-z            0.28055    0.01313   21.36   &lt;2e-16 ***
+(Intercept)  1.92509    0.07006   27.48   &lt;2e-16 ***
+x            0.42272    0.01269   33.31   &lt;2e-16 ***
+z            0.29173    0.01326   22.00   &lt;2e-16 ***
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
-Residual standard error: 1.321 on 9997 degrees of freedom
-Multiple R-squared:  0.2372,    Adjusted R-squared:  0.2371 
-F-statistic:  1555 on 2 and 9997 DF,  p-value: &lt; 2.2e-16</code></pre>
+Residual standard error: 1.311 on 9997 degrees of freedom
+Multiple R-squared:  0.233, Adjusted R-squared:  0.2328 
+F-statistic:  1518 on 2 and 9997 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lm</span>(y <span class="sc">~</span> x <span class="sc">+</span> u) <span class="sc">|&gt;</span> <span class="fu">summary</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -638,19 +638,19 @@ lm(formula = y ~ x + u)
 
 Residuals:
     Min      1Q  Median      3Q     Max 
--4.8941 -0.8865  0.0030  0.8717  5.2817 
+-5.0832 -0.8861 -0.0090  0.8820  5.6401 
 
 Coefficients:
             Estimate Std. Error t value Pr(&gt;|t|)    
-(Intercept)  2.06239    0.06510   31.68   &lt;2e-16 ***
-x            0.39432    0.01304   30.23   &lt;2e-16 ***
-u            0.29699    0.01190   24.95   &lt;2e-16 ***
+(Intercept)  2.08917    0.06553   31.88   &lt;2e-16 ***
+x            0.38013    0.01312   28.97   &lt;2e-16 ***
+u            0.30556    0.01221   25.02   &lt;2e-16 ***
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
-Residual standard error: 1.311 on 9997 degrees of freedom
-Multiple R-squared:  0.2492,    Adjusted R-squared:  0.249 
-F-statistic:  1659 on 2 and 9997 DF,  p-value: &lt; 2.2e-16</code></pre>
+Residual standard error: 1.303 on 9997 degrees of freedom
+Multiple R-squared:  0.2432,    Adjusted R-squared:  0.2431 
+F-statistic:  1607 on 2 and 9997 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
 </div>
 <p>The answer when controlling for the descendant is not perfect but it is much better than including just <code>x</code>. One way to think about it is that in some analyses it can serve as a proxy variable if the actual confound is difficult to measure.</p>
@@ -666,7 +666,9 @@ Imagine you are predicting household income using family size and number of adul
 </section>
 <section id="so-what-do-i-do" class="level2">
 <h2 class="anchored" data-anchor-id="so-what-do-i-do">So what do I do?</h2>
-<p>From all of the above you might get the impression that working in the multivariate world is dangerous and you are pretty much destined to fall into one of the many traps of statistical control. There is indeed a lot of things that can go wrong very easily. So what should you do? The answer is always: think! Think carefully. This way you can at least prepare for potential problems and avoid misinterpretation. A humble and right result is infinitely better than a bombastic and wrong one. The software will (almost) always spit out some result. It is up to you to decide what it means and whether it makes any sense at all. You have to be able to say what the model can and what it can’t tell you. Being able to critique models (not in the sense of saying how they are wrong but carefully studying their limitations) is a skill that takes time to develop but with practice you can get really good at it and it will profit in the future.</p>
+<p>From all of the above you might get the impression that working in the multivariate world is dangerous and you are pretty much destined to fall into one of the many traps of statistical control. There is indeed a lot of things that can go wrong very easily. So what should you do? The answer is always: think! Think carefully. This way you can at least prepare for potential problems and avoid misinterpretation. A humble and right result is infinitely better than a bombastic and wrong one. It;s much better to arrive at a conclusion that we can’t estimate a given effect than to estimate the wrong effect.</p>
+<p>The software will (almost) always spit out some result. It is up to you to decide what it means and whether it makes any sense at all. You have to be able to say what the model can and what it can’t tell you. Being able to critique models (not in the sense of saying how they are wrong but carefully studying their limitations) is a skill that takes time to develop but with practice you can get really good at it and it will profit in the future.</p>
+<p>One quite interesting debate recently that revolved around these issues is related to estimating the effect of social media use on mental health. <a href="https://sjwild.github.io/blog/2024/09/21/causal-inference-social-media-mental-health-part-1.html">Here</a> are some examples using the concepts introduced above to get at that question (or more precisely how hard it is to answer this question)</p>
 
 
 </section>
@@ -754,8 +756,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   });
   clipboard.on('success', onCopySuccess);
   if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-    // For code content inside modals, clipBoardJS needs to be initialized with a container option
-    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
     const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
       text: getTextToCopy,
       container: window.document.getElementById('quarto-embedded-source-code-modal')
@@ -866,7 +866,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (window.Quarto?.typesetMath) {
         window.Quarto.typesetMath(note);
       }
-      // TODO in 1.5, we should make sure this works without a callout special case
       if (note.classList.contains("callout")) {
         return note.outerHTML;
       } else {
