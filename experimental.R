@@ -311,3 +311,55 @@ lm(y_c ~ x_c, df_c) |> summary()
 lm(y_c ~ x_c, df_c %>% filter(u_c >= .2)) |> summary()
 
 
+
+
+#### animating plots
+
+x1 <- seq(min(df1$x1), max(df1$x1), length.out = 10)
+
+#set up a data frame to store simulated values
+df_sim <- data.frame(x1 = numeric(), sim = numeric())
+
+#run loop for simulation
+for(i in x1) {
+  #simulate y for given x1
+  sim <- rnorm(1e5, mean = lm_sim$coefficients[[1]] + lm_sim$coefficients[[2]]*i, sd = 1)
+  #store x1 for given simulations
+  x1_1 <- rep(i, 1e5)
+  #store sim and x1 in temp
+  temp <- data.frame(x1 = x1_1, sim = sim)
+  #append simulated data to results data frame
+  df_sim <- rbind(df_sim, temp)
+}
+
+#' the above is based on simulating data from the distribution
+df_rib <- data.frame(x1 = numeric(), lb = numeric(), hb = numeric())
+for(i in x1) {
+  q <- qnorm(c(.025, .975), mean = lm_sim$coefficients[[1]] + lm_sim$coefficients[[2]]*i, sd = 1)
+  
+  temp <- data.frame(x1 = i, lb = q[1], hb = q[2])
+  df_rib <- rbind(df_rib, temp)
+  
+}
+
+
+reg_engine_animation <- df_sim %>%
+  ggplot(aes(x = x1, y = sim)) +
+  geom_point(data = df1, aes(x = x1, y = y), alpha = .1) +
+  geom_smooth(data = df1, aes(x = x1, y = y), alpha = .4, method = "lm", color = "firebrick4", fill = "firebrick4") +
+  ggdist::stat_halfeye(alpha = .8, fill = "navyblue") +
+  geom_ribbon(data = df_rib, aes(x = x1, ymin = lb, ymax = hb, y = hb), alpha = .2, fill = "steelblue") +
+  
+  
+  labs(title = "Conditional distribution for linear regression",
+       subtitle = "The plot shows raw data and simualted data from regressing y on x1.\nRed line is line of best fit, gray area is 95% prediction interval",
+       y = "y") +
+  theme_minimal() +
+  transition_layers() 
+animate(reg_engine_animation, renderer = gifski_renderer())
+
+reg_engine_animation
+
+gifski_renderer("C:/Uers/User/Desktop/test.gif")
+
+anim_save("C:/Uers/User/Desktop/test.gif", animation = reg_engine_animation, )

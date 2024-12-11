@@ -116,7 +116,7 @@ for(i in x1) {
 }
 
 
-df_sim %>%
+reg_plot <- df_sim %>%
   ggplot(aes(x = x1, y = sim)) +
   geom_point(data = df1, aes(x = x1, y = y), alpha = .1) +
   geom_ribbon(data = df_rib, aes(x = x1, ymin = lb, ymax = hb, y = hb), alpha = .2, fill = "steelblue") +
@@ -127,6 +127,10 @@ df_sim %>%
        y = "y") +
   theme_minimal()
 ```
+
+You can see an animated version of the plot to make it more readable:
+
+![](images/reg_engine.gif){fig-align="center"}
 
 The plot above is quite packed with information so lets unpack it. First, we have the datapoints plotted as a scatterplot. Next we have the red line which indicates the regression line or in other words the conditional means of `y` given `x1`. The we have the distributions which are data simulated from the model for 10 values of `x1`. Each distribution is what we would expect y to look like given a value of `x1` based on our model. Notice that the mean of each distribution (the black dot) passes exactly through the red line. Next notice that each distribution has the same shape (pretty much a normal distribution - that is the normal distribution assumption) and more or less the same width (that is the homoscedacticity assumption. The light blue area indicates where we would expect 95% of the `y` to fall in for any given value of `x1`.
 

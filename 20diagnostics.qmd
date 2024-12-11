@@ -2,25 +2,112 @@
 title: "model diagnostics"
 ---
 
-## you ran a model, what now?
+Usually after we run a model, apart from some postprocessing in order to get exactly what we want from our model, we want to make some diagnostics - is our model any good? Can we trust it? Some things are not really testable, like model specification, but some others can be assessed, at least to some degree.
 
-Usually after we run a model, apart from some postprocessing, we want to make some diagnostics - is our model any good? Can we trust it? Some things are not really testable, like model specification, but some others can be assessed, at least to some degree.
+Lets start by getting some data and running a model:
 
-## What to include:
+```{r}
+# simulate some data?
+# get some data? I would need to know the model
+```
 
--   checking assumptions:
+## Model assumptions
 
-    -   model correctly specified
+As the saying goes in statistics "there is no free lunch". It means that there are no magical methods that will give us results without making some assumptions. Pretty much any model you want to run makes some assumptions and your results are valid
 
-    -   linearity
+Some of the key assumptions for general linear models are (for a nice overview you can also read [here](https://blog.msbstats.info/posts/2018-08-30-linear-regression-assumptions/)):
 
-    -   homoscedacticity
+1.  Model is correctly specified
+2.  Linearity of effect
+3.  Homoscedacticity of residuals
+4.  Independent residuals
+5.  Normal residuals
 
-    -   normal residuals
+The first assumption basically means that the variables that should be in the model are in the model and those that should not are not included. There isn't any test that will tell you whether this assumption holds. It comes down to laying out the theoretical relations and arguing what should be (or not be) in the model. The whole issue of statistical control is pretty much about this assumption so you can review the previous class.
 
-    -   collinearity
+Lets try to see it in our example:
 
--   outliers, influence etc.
+```{r}
+
+```
+
+Number 2 is sometimes subsumed under 1 but it's a bit more specific so maybe it's worth stating it as a separate assumption. Linear regression will estimate, well..., a linear effect. If you only include a linear term while the true relation is quadratic you will misspecify the model and recover the wrong effect. Easiest way to see if there are problems here is to plot the data (although with a lot of noise which is common in psychology it might not be that easy) and see if the model you specified makes sense.
+
+Lets take a look at our models again:
+
+```{r}
+
+```
+
+Assumptions 3, 4 and 5 are important for hypothesis tests are affect especially your standard errors. First of all notice that all of those assumptions are about residuals. We do not care about the distribution of variables themselves or if variables themselves have equal variances. It's all about residuals.
+
+If any of those are assumptions are violated our standard errors are going to be off and we will get incorrect t and F values (and corresponding p values).
+
+```{r}
+library(performance)
+```
+
+What can you do if these assumptions are violated? For violated independece the best idea would be to properly account for the dependence structure e.g. with multilevel models.
+
+Dealing with issues with homoscedacticity can be achieved by using robust standard errors.
+
+Dealing with non-normal residuals:
+
+?
+
+## Additional issues
+
+Additional issues that often arise in models: collinearity and outliers
+
+There aren't technically assumptions (you could say that collinearity is an issue with model specification or that [it's not even necessarily a problem](https://quantitudepod.org/s5e02-multicollinearity/))
+
+### Collinearity
+
+-   what is is
+
+-   what does it cause
+
+`{performance}` package has a nice function for assessing multicollinearity: `check_multicollinearity()`. If we run it on our model we will get the 2 most common indexes for collinearity: variance inflation factor (VIF) and tolerance. VIF is **what is vif**
+
+Tolerance can be derived from VIF like this:
+
+```{r}
+
+```
+
+`{performance}` also allows you to plot the VIFs:
+
+```{r}
+
+```
+
+Now what do we do if we detect a serious issue with multicollinearity? First of all we might... do nothing. Multicollinearity itself is not necessarily an issue. It is only a problem if we are interested in making inferences for specific parameters. If we are interested in the predictive power of the model as a whole then we do not have to care about collinearity.
+
+Ok, but what if it actually is a problem? There are a few things you can try. Centering or standardizing thew variables sometimes helps. Other things you can is to drop one of the highly correlated variables or combine the variables into a common one.
+
+### Outliers
+
+Outliers usually refer to observations that have values of our variables that are very far from the bulk of observations in the dataset. Like with collinearity it is not necessarily a problem. Extreme cases can exist in the world.
+
+The simple case is if the outlier is due to an error (e.g. you get a person who indicated they were born in 1800) - then probably removing such case is the way to go (or at least recoding this into a missing value). What do we do if the the observation is far away but is plausible?
+
+Why are outliers often considered a problem? Linear regression models always try to minimize squared residuals.
+
+Cases that are very far from the regression line are going to have large absolute residuals and even larger squared residuals. This means that minimizing the sum of squared residuals can be better achieved by moving the regression line towards those cases even if this is at the expense of a bunch of other data points that were closer to the regression line. This is why we say that outliers have large influence.
+
+There are a few ways to assess outliers that depend on exactly how we understand what an outlier is and how we want to quantify it:
+
+-   data based:\
+    these are model agnostic and don't care what your dependent variable is. The problem with them is that an observation can be far away from all the other data points but at the same time fall perfectly where we would expect it to be. Is it still an outlier then?
+
+    -   all the mahalanobis etc.
+
+-   model based:\
+    These measures will tell you how much a model would change if you excluded a given case from your dataset. The downside is (or isn't?) that what is an outlier for one model might not be an outlier for another model.
+
+    -   influence and levarage etc
+
+    -   dfbetas
 
 -   Model comparisons? (should they go into postprocessing?)
 
