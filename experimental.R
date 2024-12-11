@@ -349,8 +349,6 @@ reg_engine_animation <- df_sim %>%
   geom_smooth(data = df1, aes(x = x1, y = y), alpha = .4, method = "lm", color = "firebrick4", fill = "firebrick4") +
   ggdist::stat_halfeye(alpha = .8, fill = "navyblue") +
   geom_ribbon(data = df_rib, aes(x = x1, ymin = lb, ymax = hb, y = hb), alpha = .2, fill = "steelblue") +
-  
-  
   labs(title = "Conditional distribution for linear regression",
        subtitle = "The plot shows raw data and simualted data from regressing y on x1.\nRed line is line of best fit, gray area is 95% prediction interval",
        y = "y") +
@@ -362,4 +360,11 @@ reg_engine_animation
 
 gifski_renderer("C:/Uers/User/Desktop/test.gif")
 
-anim_save("C:/Uers/User/Desktop/test.gif", animation = reg_engine_animation, )
+anim_save("C:/Uers/User/Desktop/test.gif", animation = reg_engine_animation)
+
+
+#### testing models for postprocessing --------------------------------
+
+txhouse <- ggplot2::txhousing
+glimpse(txhouse)
+house_fit <- lm()

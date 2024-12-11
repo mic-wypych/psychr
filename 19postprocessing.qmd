@@ -30,19 +30,19 @@ You may have noticed that results of the `lm()` function is a rather complicated
 The first one can be achieved with the `augment()` function which will give us predicted values as well as plenty of diagnostics.
 
 ```{r}
-augment()
+#augment()
 ```
 
 We can tidy the coefficients using `tidy()`. It will give us a nice data frame with all model coefficients:
 
 ```{r}
-tidy()
+#tidy()
 ```
 
 Finally we can tidy the model-level information using `glance()`:
 
 ```{r}
-glance()
+#glance()
 ```
 
 ## Assessing general model performance
@@ -52,13 +52,13 @@ The `performance` package from the `easystats` suite of packages has a host of f
 We can extract such values like the R squared, rmse, AIC etc. This can also provide a basis for comparing models.
 
 ```{r}
-model_performance()
+#model_performance()
 ```
 
 What you might also want to do is comparison of model performence. Remember that what you are comparing though is usually predictive performence and it won't tell you which model is correctly specified
 
 ```{r}
-compare_performance()
+#compare_performance()
 ```
 
 ## Making predictions
@@ -66,14 +66,18 @@ compare_performance()
 Sometimes you might want to assess the predictions of your model - how well does it predict? Do predictions for various combinations of independent variables differ from each other?
 
 ```{r}
-predictions()
+#predictions()
 ```
 
 ```{r}
-avg_predictions()
+#avg_predictions()
 ```
 
-We can also make predictions for specific values of our predictors:
+We can also make predictions for specific values of our predictors. For example we might be interested in **what**
+
+```{r}
+
+```
 
 -   splitting the sample
 
