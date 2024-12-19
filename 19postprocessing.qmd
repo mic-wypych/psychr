@@ -83,27 +83,32 @@ We can also make predictions for specific values of our predictors. For example 
 
 -   common metrics like rmse, r2
 
+## Working with predictions
+
+In simple models you might get away with directly interpreting the coefficients but for anything even slightly more complicated things get messy really quickly. It is often much easier to work on predictions from the model rather than directly on the coefficients. It is a good practice to get accustomed to working with predictions even for simple models especially that ultimately they allow you to do more.
+
+You can still get everything you would get from looking at coefficients this way. For example lets say you have a simple linear model with a binary predictor (so basically a t-test). If you run it as a regression model you will get an intercept that tells you the predicted value for reference category and the coefficient that informs you about the size of the difference between reference and the other category. You could just as well get it by making predictions from the model (its going to predict one value for reference category and another value for the other category) and then calculating the mean difference. I promise the result is going to be the same. It might seem like more work than just reading the coefficients from the table but you will see that pretty quickly coefficients get very confusing and can't be easily interpreted.
+
+-   make an exmaple with a squared term?
+
 ## Marginal effects
 
 An extremely good and clear introduction to marginal effects with explanation of differences between 2 main packages used for them in R can be found on [Andrew Heiss' blog](https://www.andrewheiss.com/blog/2022/05/20/marginalia/) (although this blog works a lot with logistic regression). If you want to dive deeper into this topic I highly recommend you read that blog post (as well as documentation of the `marginaleffects` package linked above).
 
--   What is a marginal effect
+In simplest terms a marginal effect is the effect of some X variable on some Y variable when we increase X by a tiny amount (for ease of interpretation we often say about increasing X by 1).
 
--   calculating marginal effect
+How can we get a marginal effect? One way would be to take every observation in our dataset, make a prediction, then increment the variable of interest by 1, make a prediction, then take a mean of differences in predictions. This will give us what is called an average marginal effect.
 
--   conditional effects
+-   marginal means?
 
-## Contrasts
+## Comparisons, contrasts 
 
-In many situations when you work linear model you are interested in testing specific hypotheses.
+In many situations when you work linear model you are interested in testing specific hypotheses. In the examples below we will look at some of the most common scenarios like comparing predictions for various levels of categorical predictors, comparing effects of one variable across levels of a moderator
 
 **For example**
 
 -   A very common mistake is to look at coefficients for two predictors from a model one of which is statistically significant while the other is not and declaring that these coefficients differ significantly. [These are two completely different things](https://stat.columbia.edu/~gelman/research/published/signif4.pdf)! You can make a more principled comparison using `marginaleffects`.
--   For more complex models (e.g. with interactions) the coefficients will also be misleading and will depend on how you coded the contrasts (dummy, effect etc.). You can make specific comparisons
-
-## Working with predictions
-
-In simple models you might get away with directly interpreting the coefficients but for anything even slightly more complicated things get messy really quickly. It is often much easier to work on predictions from the model rather than directly on the coefficients. It is a good practice to get accustomed to working with predictions even for simple models especially that ultimately they allow you to do more.
+-   when you have a categorical predictor with multiple levels a common thing advised in older software was to recode that predictor in some way. This is not really necessary if you take a postprocessing approach.
+-   For more complex models (e.g. with interactions, polynomial terms) the coefficients will also be misleading or will tell you very little.
 
 ## Effect sizes?
