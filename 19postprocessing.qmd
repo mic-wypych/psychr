@@ -3,13 +3,13 @@ title: "Postprocessing results"
 author: "Michał Wypych"
 ---
 
-In the final class we will look at how to post process your models to get exactly what you want from them. In older tutorials or textbooks you could usually read to make models directly interpretable. That meant for example such coding of categorical variables so that the regression coefficient were exactly the contrast you wanted.
+Once you finally ran a model it finally is time to look at what it says and interpret the results. A common way of interpreting statistical models is to look directly at the coefficients In older tutorials or textbooks you could usually read to make models directly interpretable. That meant for example such coding of categorical variables so that the regression coefficient were exactly the contrast you wanted.
 
-With newer and more versatile software you don't really need to do it this way. You can run a model and then process the results to get exactly what matches your hypothesis e.g. if you want to test a specific contrast from an experiment. Or if you want to compare whether the effect of one variable is significantly stronger than the effect of another variable. This gets especially important once you start working with more complex models (like logistic or ordinal regression) where coefficients themselves aren't easily interpretable.
+With newer and more versatile software you don't really need to do it this way. You can run a model and then process the results to get exactly what matches your hypothesis e.g. if you want to test a specific contrast from an experiment. Or if you want to compare whether the effect of one variable is significantly stronger than the effect of another variable. This gets especially important once you start working with more complex models (like spline, logistic or ordinal regression) where coefficients themselves aren't easily interpretable.
 
 ## General logic
 
-The packages we will be working with is `broom`, `performance` and (amazing!) `marginaleffects`. The last package also has absolutely incredible documentation so I highly recommend checking out its [website](https://marginaleffects.com/).
+The packages we will be working with is `broom`, `performance` and (amazing!) `marginaleffects`. The last package also has absolutely incredible documentation so I highly recommend checking out its [website](https://marginaleffects.com/). It also has a wonderful paper on interpreting models [here](https://www.jstatsoft.org/article/view/v111i09). A very gentle and nice introduction by Julia Rohrer is [here](https://www.the100.ci/2022/05/27/%e2%9c%a8-unleash-your-inner-stats-sparkle-%e2%9c%a8-with-this-very-non-technical-introduction-to-marginal-effects/).
 
 The dataset we will be working with is:
 
@@ -105,3 +105,5 @@ In many situations when you work linear model you are interested in testing spec
 ## Working with predictions
 
 In simple models you might get away with directly interpreting the coefficients but for anything even slightly more complicated things get messy really quickly. It is often much easier to work on predictions from the model rather than directly on the coefficients. It is a good practice to get accustomed to working with predictions even for simple models especially that ultimately they allow you to do more.
+
+## Effect sizes?
