@@ -1,5 +1,7 @@
 /*-- scss:defaults --*/
-
+@import url('https://fonts.googleapis.com/css?family=Merriweather+sans&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Fira+code&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
 
 $primary: #f5cac3 !default;
 $body-bg: #e5e5e5 !default;
@@ -8,7 +10,7 @@ $code-block-bg: #1b263b !default;
 $font-size-root: 1em;
 
 
-$font-family-base: "Merriweather","Merriweather", "Roboto", "Cabin Regular", "Open Sans" !default;
+$font-family-base: "Merriweather sans","Merriweather", "Roboto", "Cabin Regular", "Open Sans" !default;
 $font-family-code: "Fira code" !default;
 $headings-font-family: "Roboto", "Lato", "Merriweather" !default;
 $headings-color: #001427 !default;
